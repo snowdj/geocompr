@@ -241,7 +241,7 @@ In most cases, as with the ESRI Shapefile (`.shp`) or the `GeoPackage` format (`
 ```r
 vector_filepath = system.file("shapes/world.gpkg", package = "spData")
 world = st_read(vector_filepath)
-#> Reading layer `world' from data source `/usr/lib/R/site-library/spData/shapes/world.gpkg' using driver `GPKG'
+#> Reading layer `world' from data source `/home/travis/R/Library/spData/shapes/world.gpkg' using driver `GPKG'
 #> Simple feature collection with 177 features and 10 fields
 #> geometry type:  MULTIPOLYGON
 #> dimension:      XY
@@ -383,7 +383,7 @@ st_write(obj = world, dsn = "world.gpkg")
 
 ```r
 st_write(obj = world, dsn = "world.gpkg")
-#> Updating layer `world' to data source `/home/robin/repos/geocompr/world.gpkg' using driver `GPKG'
+#> Updating layer `world' to data source `/home/travis/build/Robinlovelace/geocompr/world.gpkg' using driver `GPKG'
 #> Warning in CPL_write_ogr(obj, dsn, layer, driver, as.character(dataset_options), : GDAL Error 1: Layer world already exists, CreateLayer failed.
 #> Use the layer creation option OVERWRITE=YES to replace it.
 #> Creating layer world failed.

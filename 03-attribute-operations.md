@@ -170,7 +170,7 @@ This is especially useful when working with big data as well as **dplyr**'s data
 The main **dplyr** subsetting functions are `select()`, `slice()`, `filter()` and `pull()`.
 
 <div class="rmdnote">
-<p><strong>raster</strong> and <strong>dplyr</strong> packages have a function called <code>select()</code>. When using both packages, the function in the most recently attached package will be used, 'masking' the incumbent function. This can generate error messages containing text like: <code>unable to find an inherited method for function ‘select’ for signature ‘&quot;sf&quot;’</code>. To avoid this error message, and prevent ambiguity, we use the long-form function name, prefixed by the package name and two colons (usually omitted from R scripts for concise code): <code>dplyr::select()</code>.</p>
+<p><strong>raster</strong> and <strong>dplyr</strong> packages have a function called <code>select()</code>. When using both packages, the function in the most recently attached package will be used, ‘masking’ the incumbent function. This can generate error messages containing text like: <code>unable to find an inherited method for function ‘select’ for signature ‘&quot;sf&quot;’</code>. To avoid this error message, and prevent ambiguity, we use the long-form function name, prefixed by the package name and two colons (usually omitted from R scripts for concise code): <code>dplyr::select()</code>.</p>
 </div>
 
 `select()` selects columns by name or position.

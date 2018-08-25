@@ -884,7 +884,7 @@ group_by(zion_srtm_values, ID) %>%
 #> # A tibble: 1 x 4
 #>      ID   min  mean   max
 #>   <dbl> <dbl> <dbl> <dbl>
-#> 1     1  1122 1818.  2661
+#> 1    1. 1122. 1818. 2661.
 ```
 
 The preceding code chunk used the **tidyverse** to provide summary statistics for cell values per polygon ID, as described in Chapter \@ref(attr).
@@ -904,9 +904,9 @@ dplyr::select(zion_nlcd, ID, levels) %>%
   spread(value, n, fill = 0)
 #> # A tibble: 1 x 9
 #> # Groups:   ID, key [1]
-#>      ID key   Barren Cultivated Developed Forest Herbaceous Shrubland
-#>   <dbl> <chr>  <dbl>      <dbl>     <dbl>  <dbl>      <dbl>     <dbl>
-#> 1     1 leve…  98285         62      4205 298299        235    203701
+#>      ID key    Barren Cultivated Developed  Forest Herbaceous Shrubland
+#>   <dbl> <chr>   <dbl>      <dbl>     <dbl>   <dbl>      <dbl>     <dbl>
+#> 1    1. levels 98285.        62.     4205. 298299.       235.   203701.
 #> # ... with 1 more variable: Wetlands <dbl>
 ```
 
