@@ -1,0 +1,170 @@
+
+
+--- 
+title: 'Geocomputation with R'
+author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
+date: '2018-08-25'
+knit: bookdown::render_book
+site: bookdown::bookdown_site
+documentclass: krantz
+bibliography:
+  - refs.bib
+  - packages.bib
+biblio-style: apalike
+link-citations: yes
+description: "A book on geographic data with R."
+github-repo: "Robinlovelace/geocompr"
+cover-image: "images/cover.png"
+url: 'https\://geocompr.robinlovelace.net/'
+---
+
+
+
+# Welcome {-}
+
+This is the online home of *Geocomputation with R*, a forthcoming book with [CRC Press](https://www.crcpress.com/Chapman--HallCRC-The-R-Series/book-series/CRCTHERSER).
+
+## Development {-}
+
+Inspired by [**bookdown**](https://github.com/rstudio/bookdown) and the Free and Open Source Software for Geospatial ([FOSS4G](http://foss4g.org/)) movement, this book is open source and publicly available.
+This approach encourages contributions, ensures reproducibility and provides access to the material worldwide.
+
+The book explains how to undertake a range of geographic techniques from R and is divided into the floowing parts:
+
+1. Foundations, aimed at getting you up-to-speed with geographic data in R.
+2. Extensions, which covers advanced techniques.
+3. Applications, to real-world problems.
+
+The online version of the book is hosted at [geocompr.robinlovelace.net](https://geocompr.robinlovelace.net) and kept up-to-date thanks to [Travis](https://travis-ci.org/Robinlovelace/geocompr), which provides information on its 'build status' as follows:
+
+[![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
+
+The version of the book you are reading now was built on 2018-08-25 and was built locally.
+
+## How to contribute? {-}
+
+**bookdown** makes editing a book as easy as editing a wiki, provided you have a GitHub account ([sign-up at github.com](https://github.com/)).
+Once logged-in to GitHub, click on the 'edit me' icon highlighted with a red ellipse in the image below.
+This will take you to an editable version of the the source [R Markdown](http://rmarkdown.rstudio.com/) file that generated the page you're on:
+
+[![](figures/editme.png)](https://github.com/Robinlovelace/geocompr/edit/master/index.Rmd)
+
+To raise an issue about the book's content (e.g. code not running) or make a feature request, check-out the [issue tracker](https://github.com/Robinlovelace/geocompr/issues).
+
+## Reproducibility {-}
+
+To reproduce the book, you need a recent version of [R](https://cran.r-project.org/) and up-to-date packages, which can be installed with the following command (which requires [**devtools**](https://github.com/hadley/devtools)):
+
+
+```r
+devtools::install_github("geocompr/geocompkg")
+```
+
+To build the book locally, clone or [download](https://github.com/Robinlovelace/geocompr/archive/master.zip) the [geocompr repo](https://github.com/Robinlovelace/geocompr/), load R in root directory (e.g. by opening [geocompr.Rproj](https://github.com/Robinlovelace/geocompr/blob/master/geocompr.Rproj) in RStudio) and run the following lines:
+
+
+```r
+bookdown::render_book("index.Rmd") # to build the book
+browseURL("_book/index.html") # to view it
+```
+
+Further details can be found at [github.com/Robinlovelace/geocompr](https://github.com/Robinlovelace/geocompr#geocomputation-with-r).
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.
+
+<!-- suggested content on if you find the book useful but this intro is already quite long (RL)-->
+<!-- If you find the book useful, please support it by: -->
+
+<!-- - Recommending, citing or linking-to it -->
+<!-- - 'Starring' the Github repository -->
+<!-- - Reviewing it, e.g. on Amazon or Goodreads -->
+<!-- - Buying a copy -->
+
+# Preface {-}
+
+This book is aimed at people who want to do spatial data analysis, visualization and modeling using open source software and reproducible workflows.
+It is based on R, a flexible language for 'data science' with powerful geospatial capabilities and a strong ecosystem of add-on packages dedicated to spatial data (see the 'Spatial Task View' at [cran.r-project.org/web/views](https://cran.r-project.org/web/views/Spatial.html)).
+
+R enables reproducibility through its command-line interface and ensures accessibility because it is freely available and works on most modern operating systems (including Linux, Windows and Mac).
+The book will therefore be of interest to a wide range of people worldwide, although we expect it to be especially useful for:
+
+- People who have learned spatial analysis skills using a desktop Geographic Information System (GIS) such as [QGIS](http://qgis.org/en/site/), [ArcMap](http://desktop.arcgis.com/en/arcmap/), [GRASS](https://grass.osgeo.org/) or [SAGA](http://www.saga-gis.org/en/index.html), who want access to a powerful (geo)statistical and visualization programming language and the benefits of a command-line approach [@sherman_desktop_2008]:
+
+> With the advent of 'modern' GIS software, most people want to point and click their way through life. That’s good, but there is a tremendous amount of flexibility and power waiting for you with the command line.
+
+- Graduate students and researchers from fields specializing in geographic data including Geography, Remote Sensing, Planning, GIS and Geographic Data Science
+- Academics and post-graduate students working on projects in fields including Geology, Regional Science, Biology and Ecology, Agricultural Sciences (precision farming), Archaeology, Epidemiology, Transport Modeling, and broadly defined Data Science which require the power and flexibility of R for their research <!-- please add further fields-->
+- Applied researchers and analysts in public, private or third-sector organizations who need the reproducibility, speed and flexibility of a command-line language such as R in applications dealing with spatial data as diverse as Urban and Transport Planning, Logistics, Geo-marketing (store location analysis) and Emergency Planning <!-- please add further examples-->
+
+The book is designed for intermediate-to-advanced R users interested in geocomputation and R beginners who have prior experience with geographic data.
+If you are new to both R and geographic data do not be discouraged: we provide links to further materials and describe the nature of spatial data from a beginner's perspective in Chapter \@ref(spatial-class) and in links provided below.
+
+We aim to make R's famously steep learning curve more mellow and less rollercoaster:
+the chapters increase in difficulty as the book progresses; each chapter starts relatively easy and covers the most important topics first to make the book as accessible as possible.
+Exercises can be found at the end of each chapter.
+Completing these encourages using R interactively to solve geospatial problems, ensuring you can operationalize the concepts and code in each chapter.
+
+Impatient readers are welcome to dive straight into the practical examples, starting in Chapter \@ref(spatial-class).
+However, we recommend reading about the wider context of *Geocomputation with R* in Chapter \@ref(intro) first.
+If you are new to R we also recommend learning more about the language before attempting to run the code chunks provided in each chapter (unless you're reading the book for an understanding of the concepts).
+Fortunately for R beginners R has a supportive community that has developed a wealth of resources that can help.
+We particularly recommend three tutorials:  [R for Data Science](http://r4ds.had.co.nz/) [@grolemund_r_2016] and [Efficient R Programming](https://csgillespie.github.io/efficientR/) [@gillespie_efficient_2016], especially [Chapter 2](https://csgillespie.github.io/efficientR/set-up.html#r-version) (on installing and setting-up R/RStudio) and [Chapter 10](https://csgillespie.github.io/efficientR/learning.html) (on learning to learn), and  [An introduction to R](http://colinfay.me/intro-to-r/) [@venables_introduction_2017].
+A good interactive tutorial is DataCamp's [Introduction to R](https://www.datacamp.com/courses/free-introduction-to-r).
+<!-- and tutorials created with [**learnr**](https://rstudio.github.io/learnr/examples.html). -->
+
+Although R has a steep learning curve the command-line approach advocated in this book can quickly pay-off.
+<!-- within a few months for most people, including programming novices. -->
+As you'll learn in subsequent chapters, R is an effective tool for tackling a wide range of geographic data challenges.
+We expect that, with practice, R will become the program of choice in your geospatial toolbox for many applications.
+Typing and executing commands at the command-line is, in many cases, faster than pointing-and-clicking around the graphical user interface (GUI) a desktop GIS.
+For some applications such as Spatial Statistics and modeling R may be the *only* realistic way to get the work done.
+
+As outlined in section \@ref(why-geocomputation-with-r) there are many reasons for using R for geocomputation:
+R is well-suited to the interactive use required in many geographic data analysis workflows compared with other languages.
+R excels in the rapidly growing fields of Data Science (which includes data carpentry, statistical learning techniques and data visualization) and Big Data (via efficient interfaces to databases and distributed computing systems).
+Furthermore R enables a reproducible workflow: sharing scripts underlying your analysis will allow others to build-on your work.
+To ensure reproducibility in this book we have made its source code available at [github.com/Robinlovelace/geocompr](https://github.com/Robinlovelace/geocompr#geocomputation-with-r).
+There you will find script files in the `code/` folder that generate figures:
+when code generating a figure is not provided in the main text of the book the name of the script file that generated it is provided in the caption (see for example the caption for Figure \@ref(fig:zones)).
+
+Other languages such as Python, Java and C++ can be used for geocomputation  and there are excellent resources for learning geocomputation *without R*, as discussed in section \@ref(software-for-geocomputation).
+None of these provide the unique combination of package ecosystem, statistical capabilities, visualization options, powerful IDEs offered by the R community.
+Furthermore, by teaching how to use one language (R) in depth, this book will equip you with the concepts and confidence needed to do geocomputation in other languages.
+
+*Geocomputation with R* will equip you with knowledge and skills to tackle a wide range of issues, including those with scientific, societal and environmental implications, manifested in geographic data.
+As described in section \@ref(what-is-geocomputation), geocomputation is not only about using computers to process geographic data:
+it is also about real-world impact.
+If you are interested in the wider context and motivations behind this book, read on:
+these are covered in Chapter \@ref(intro).
+
+<!-- to think about, not sure if needed but then this would be a good place to point out why our book might have advantages over other books. Compare with:
+- Bivand, R., Pebesma, E., Gomez-Rubio, V. (2013): Applied spatial data analysis with R.
+- Blangiardo, M. & Cameletti, M. (2015): Spatial and spatio-temporal Bayesian models with R - INLA.
+- Brunsdon, C. & Comber, L. (2015): An introduction to R for spatial analysis and mapping.
+- Dorman, M. (2014): Learning R for geospatial analysis.
+- Hijmans, R. (2016): Spatial data analysis and modeling with R.  http://rspatial.org/intr/index.html (haven't read it but might be more suitable for beginners, however, it does not consider sf; additionally, it provides more code than text, and hence, probably less explanations than our book) 
+- Quiang, S. (2016): Environmental and Ecological Statistics with R (not really a competitor, I have ordered a copy, this book is really about modeling, and I would rather prefer the Zuur et al. books over it)
+- Wegmann, M., Leutner, B., Dech, S. (2016): Remote Sensing and GIS for ecologists: Using Open Source Software.
+- Zuur, A., Ieno, E., Saveliev, A. (2017): Beginner's guide to spatial, temporal and spatial-temporal ecological data analysis with R-INLA.
+
+Put the competing books into categories, e.g., introduction to spatial analysis (Brundsdon, Dorman, Hijmans), advanced spatial analysis (Bivand), topical spatial analysis (Quiang, Wegmann),  (mainly) spatial modeling (Bivand, Blangiardo, Hijmans, Quiang, Zuur).
+Point out where our book fits in and which gap it is filling -> somewhere between advanced (but not that hard) and spatial modeling with a broad range of topics (not just one like ecology).
+We try to address a broad audience with an interest in spatial data, and how things can be **get done**, not just theoretically but in an applied way.
+On the other hand, we embed the shown methods into the bigger field of GIScience, provide context and refer to further literature for the interested reader.
+
+-->
+
+## Acknowledgements {-}
+
+
+
+Many thanks to all the people who contributed to the book via GitHub: [katygregg](https://github.com/katygregg), [erstearns](https://github.com/erstearns), [eyesofbambi](https://github.com/eyesofbambi), [rsbivand](https://github.com/rsbivand), [pat-s](https://github.com/pat-s), [gisma](https://github.com/gisma), [ateucher](https://github.com/ateucher), [annakrystalli](https://github.com/annakrystalli), [gavinsimpson](https://github.com/gavinsimpson), [Himanshuteli](https://github.com/Himanshuteli), [yutannihilation](https://github.com/yutannihilation), [katiejolly](https://github.com/katiejolly), [layik](https://github.com/layik), [mvl22](https://github.com/mvl22), [nickbearman](https://github.com/nickbearman), [richfitz](https://github.com/richfitz), [wdearden](https://github.com/wdearden), [yihui](https://github.com/yihui), [chihinl](https://github.com/chihinl), [gregor-d](https://github.com/gregor-d), [p-kono](https://github.com/p-kono), [pokyah](https://github.com/pokyah), [tim-salabim](https://github.com/tim-salabim).
+
+
+We thank Patrick Schratz (University of Jena) for fruitful discussions on **mlr** and for providing code input (Chapters \@ref(spatial-cv) & \@ref(eco)).
+We also thank Dr. Alexander Brenning (University of Jena) for providing detailed feedback on Chapter \@ref(spatial-cv).
+We also would like to thank numerous anonymous reviewers who provided detailed feedback which helped to substantially improve the book in terms of structure, content and programming.
+
+<!-- add list of people who helped with this book -->
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.
