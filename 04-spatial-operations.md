@@ -635,45 +635,35 @@ Basically, this amounts to retrieving the values of the first raster (here: `ele
 So far, the subsetting returned the values of specific cells, however, when doing spatial subsetting, one often also expects a spatial object as an output.
 To do this, we can use again the `[` when we additionally set the `drop` parameter to `FALSE`.
 To illustrate this, we retrieve the first two cells of `elev` as an individual raster object. 
-As mentioned before (section \@ref(manipulating-raster-objects)), the `[` operator accepts as input cell IDs, row-column indexing, coordinates or another spatial object. 
-Here, we show the first two options:
+As mentioned in section \@ref(manipulating-raster-objects), the `[` operator accepts various inputs to subset rasters and returns a raster object when `drop = FALSE`.
+The code chunk below subsets the `elev` raster by cell ID and row-column index with identical results: the first two cells on the top row (only the first 2 lines of the output is shown):
 
 
 ```r
-# spatial subsetting using cell IDs
-elev[1:2, drop = FALSE]
+elev[1:2, drop = FALSE]    # spatial subsetting with cell IDs
+elev[1, 1:2, drop = FALSE] # spatial subsetting by row,column indeces
 #> class       : RasterLayer 
 #> dimensions  : 1, 2, 2  (nrow, ncol, ncell)
-#> resolution  : 0.5, 0.5  (x, y)
-#> extent      : -1.5, -0.5, 1, 1.5  (xmin, xmax, ymin, ymax)
-#> coord. ref. : +proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0 
-#> data source : in memory
-#> names       : layer 
-#> values      : 1, 2  (min, max)
-# the same can be achieved using row-/column indexing
-# elev[1, 1:2, drop = FALSE]
+#> ...
 ```
 
-Another typical use case is having two rasters with the same extent and resolution where one raster object serves as a mask (Figure \@ref(fig:raster-subset) middle and right panel).
-In these case, we can use `[` or the `mask()` and `overlay()` commands:
+
+
+
+Another common use case of spatial subsetting is when a raster with `logical` (or `NA`) values is used to mask another raster with the same extent and resolution, as illusrated in Figure \@ref(fig:raster-subset), middle and right panel.
+In this case, the `[`, `mask()` and `overlay()` functions can be used (results not shown):
 
 
 ```r
-rmask = raster(nrow = 6, ncol = 6, res = 0.5, 
-               xmn = -1.5, xmx = 1.5, ymn = -1.5, ymx = 1.5,
-               vals = sample(c(FALSE, TRUE), 36, replace = TRUE))
-elev[rmask, drop = FALSE]
-# using the mask command
-mask(elev, rmask, maskvalue = TRUE)
+rmask = elev # create raster mask
+values(rmask) = sample(c(NA, TRUE), 36, replace = TRUE)
 
-# or using overlay
-# first we replace FALSE by NA
-rmask[!rmask] = NA
-# then we retrieve the maximum values
-overlay(elev, rmask, fun = "max")
+elev[rmask, drop = FALSE]           # with [ operator
+mask(elev, rmask, maskvalue = TRUE) # with mask()
+overlay(elev, rmask, fun = "max")   # with overlay
 ```
 
-In the code chunk above, we have created a mask object called `rmask` randomly setting its values to `FALSE` and `TRUE`.
+In the code chunk above, we have created a mask object called `rmask` with values randomly assigned to `NA` and `TRUE`.
 Next we only want to keep those values of `elev` which are `TRUE` in `rmask`, or expressed differently, we want to mask `elev` with `rmask`.
 These operations are in fact Boolean local operations since we compare cell-wise two rasters.
 The next subsection explores these and related operations in more detail.

@@ -864,35 +864,22 @@ Figure 4.7: Subsetting raster values with the help of another raster (left). Ras
 <p>So far, the subsetting returned the values of specific cells, however, when doing spatial subsetting, one often also expects a spatial object as an output.
 To do this, we can use again the <code>[</code> when we additionally set the <code>drop</code> parameter to <code>FALSE</code>.
 To illustrate this, we retrieve the first two cells of <code>elev</code> as an individual raster object.
-As mentioned before (section <a href="attr.html#manipulating-raster-objects">3.3</a>), the <code>[</code> operator accepts as input cell IDs, row-column indexing, coordinates or another spatial object.
-Here, we show the first two options:</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" data-line-number="1"><span class="co"># spatial subsetting using cell IDs</span></a>
-<a class="sourceLine" id="cb139-2" data-line-number="2">elev[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, drop =<span class="st"> </span><span class="ot">FALSE</span>]</a>
+As mentioned in section <a href="attr.html#manipulating-raster-objects">3.3</a>, the <code>[</code> operator accepts various inputs to subset rasters and returns a raster object when <code>drop = FALSE</code>.
+The code chunk below subsets the <code>elev</code> raster by cell ID and row-column index with identical results: the first two cells on the top row (only the first 2 lines of the output is shown):</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" data-line-number="1">elev[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, drop =<span class="st"> </span><span class="ot">FALSE</span>]    <span class="co"># spatial subsetting with cell IDs</span></a>
+<a class="sourceLine" id="cb139-2" data-line-number="2">elev[<span class="dv">1</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, drop =<span class="st"> </span><span class="ot">FALSE</span>] <span class="co"># spatial subsetting by row,column indeces</span></a>
 <a class="sourceLine" id="cb139-3" data-line-number="3"><span class="co">#&gt; class       : RasterLayer </span></a>
 <a class="sourceLine" id="cb139-4" data-line-number="4"><span class="co">#&gt; dimensions  : 1, 2, 2  (nrow, ncol, ncell)</span></a>
-<a class="sourceLine" id="cb139-5" data-line-number="5"><span class="co">#&gt; resolution  : 0.5, 0.5  (x, y)</span></a>
-<a class="sourceLine" id="cb139-6" data-line-number="6"><span class="co">#&gt; extent      : -1.5, -0.5, 1, 1.5  (xmin, xmax, ymin, ymax)</span></a>
-<a class="sourceLine" id="cb139-7" data-line-number="7"><span class="co">#&gt; coord. ref. : +proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0 </span></a>
-<a class="sourceLine" id="cb139-8" data-line-number="8"><span class="co">#&gt; data source : in memory</span></a>
-<a class="sourceLine" id="cb139-9" data-line-number="9"><span class="co">#&gt; names       : layer </span></a>
-<a class="sourceLine" id="cb139-10" data-line-number="10"><span class="co">#&gt; values      : 1, 2  (min, max)</span></a>
-<a class="sourceLine" id="cb139-11" data-line-number="11"><span class="co"># the same can be achieved using row-/column indexing</span></a>
-<a class="sourceLine" id="cb139-12" data-line-number="12"><span class="co"># elev[1, 1:2, drop = FALSE]</span></a></code></pre></div>
-<p>Another typical use case is having two rasters with the same extent and resolution where one raster object serves as a mask (Figure <a href="spatial-operations.html#fig:raster-subset">4.7</a> middle and right panel).
-In these case, we can use <code>[</code> or the <code>mask()</code> and <code>overlay()</code> commands:</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" data-line-number="1">rmask =<span class="st"> </span><span class="kw">raster</span>(<span class="dt">nrow =</span> <span class="dv">6</span>, <span class="dt">ncol =</span> <span class="dv">6</span>, <span class="dt">res =</span> <span class="fl">0.5</span>, </a>
-<a class="sourceLine" id="cb140-2" data-line-number="2">               <span class="dt">xmn =</span> <span class="fl">-1.5</span>, <span class="dt">xmx =</span> <span class="fl">1.5</span>, <span class="dt">ymn =</span> <span class="fl">-1.5</span>, <span class="dt">ymx =</span> <span class="fl">1.5</span>,</a>
-<a class="sourceLine" id="cb140-3" data-line-number="3">               <span class="dt">vals =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">TRUE</span>), <span class="dv">36</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>))</a>
-<a class="sourceLine" id="cb140-4" data-line-number="4">elev[rmask, drop =<span class="st"> </span><span class="ot">FALSE</span>]</a>
-<a class="sourceLine" id="cb140-5" data-line-number="5"><span class="co"># using the mask command</span></a>
-<a class="sourceLine" id="cb140-6" data-line-number="6"><span class="kw">mask</span>(elev, rmask, <span class="dt">maskvalue =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb140-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb140-8" data-line-number="8"><span class="co"># or using overlay</span></a>
-<a class="sourceLine" id="cb140-9" data-line-number="9"><span class="co"># first we replace FALSE by NA</span></a>
-<a class="sourceLine" id="cb140-10" data-line-number="10">rmask[<span class="op">!</span>rmask] =<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb140-11" data-line-number="11"><span class="co"># then we retrieve the maximum values</span></a>
-<a class="sourceLine" id="cb140-12" data-line-number="12"><span class="kw">overlay</span>(elev, rmask, <span class="dt">fun =</span> <span class="st">&quot;max&quot;</span>)</a></code></pre></div>
-<p>In the code chunk above, we have created a mask object called <code>rmask</code> randomly setting its values to <code>FALSE</code> and <code>TRUE</code>.
+<a class="sourceLine" id="cb139-5" data-line-number="5"><span class="co">#&gt; ...</span></a></code></pre></div>
+<p>Another common use case of spatial subsetting is when a raster with <code>logical</code> (or <code>NA</code>) values is used to mask another raster with the same extent and resolution, as illusrated in Figure <a href="spatial-operations.html#fig:raster-subset">4.7</a>, middle and right panel.
+In this case, the <code>[</code>, <code>mask()</code> and <code>overlay()</code> functions can be used (results not shown):</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" data-line-number="1">rmask =<span class="st"> </span>elev <span class="co"># create raster mask</span></a>
+<a class="sourceLine" id="cb140-2" data-line-number="2"><span class="kw">values</span>(rmask) =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="ot">NA</span>, <span class="ot">TRUE</span>), <span class="dv">36</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb140-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb140-4" data-line-number="4">elev[rmask, drop =<span class="st"> </span><span class="ot">FALSE</span>]           <span class="co"># with [ operator</span></a>
+<a class="sourceLine" id="cb140-5" data-line-number="5"><span class="kw">mask</span>(elev, rmask, <span class="dt">maskvalue =</span> <span class="ot">TRUE</span>) <span class="co"># with mask()</span></a>
+<a class="sourceLine" id="cb140-6" data-line-number="6"><span class="kw">overlay</span>(elev, rmask, <span class="dt">fun =</span> <span class="st">&quot;max&quot;</span>)   <span class="co"># with overlay</span></a></code></pre></div>
+<p>In the code chunk above, we have created a mask object called <code>rmask</code> with values randomly assigned to <code>NA</code> and <code>TRUE</code>.
 Next we only want to keep those values of <code>elev</code> which are <code>TRUE</code> in <code>rmask</code>, or expressed differently, we want to mask <code>elev</code> with <code>rmask</code>.
 These operations are in fact Boolean local operations since we compare cell-wise two rasters.
 The next subsection explores these and related operations in more detail.</p>
