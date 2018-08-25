@@ -598,8 +598,8 @@ For the reader's convenience, these datasets can be also found in the **spData**
 
 ### Spatial subsetting {#spatial-raster-subsetting}
 
-The previous chapter (section \@ref(manipulating-raster-objects)) demonstrated how to subset raster datasets using cell IDs.
-Raster cell values can also be extracted by location (coordinates) and other spatial objects.
+The previous chapter (section \@ref(manipulating-raster-objects)) demonstrated how to retrieve values associated with specific cell IDs or row and column combinations.
+Raster objects can also be extracted by location (coordinates) and other spatial objects.
 To use coordinates for subsetting, one can 'translate' the coordinates into a cell ID with the **raster** function `cellFromXY()`.
 An alternative is to use `raster::extract()` (be careful, there is also a function called `extract()` in the **tidyverse**) to extract values.
 Both methods are demonstrated below to find the value of the cell that covers a point located 0.1 units from the origin.
@@ -631,6 +631,28 @@ Basically, this amounts to retrieving the values of the first raster (here: `ele
 <img src="figures/04_raster_subset.png" alt="Subsetting raster values with the help of another raster (left). Raster mask (middle). Output of masking a raster (right)." width="1125" />
 <p class="caption">(\#fig:raster-subset)Subsetting raster values with the help of another raster (left). Raster mask (middle). Output of masking a raster (right).</p>
 </div>
+
+So far, the subsetting returned the values of specific cells, however, when doing spatial subsetting, one often also expects a spatial object as an output.
+To do this, we can use again the `[` when we additionally set the `drop` parameter to `FALSE`.
+To illustrate this, we retrieve the first two cells of `elev` as an individual raster object. 
+As mentioned before (section \@ref(manipulating-raster-objects)), the `[` operator accepts as input cell IDs, row-column indexing, coordinates or another spatial object. 
+Here, we show the first two options:
+
+
+```r
+# spatial subsetting using cell IDs
+elev[1:2, drop = FALSE]
+#> class       : RasterLayer 
+#> dimensions  : 1, 2, 2  (nrow, ncol, ncell)
+#> resolution  : 0.5, 0.5  (x, y)
+#> extent      : -1.5, -0.5, 1, 1.5  (xmin, xmax, ymin, ymax)
+#> coord. ref. : +proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0 
+#> data source : in memory
+#> names       : layer 
+#> values      : 1, 2  (min, max)
+# the same can be achieved using row-/column indexing
+# elev[1, 1:2, drop = FALSE]
+```
 
 Another typical use case is having two rasters with the same extent and resolution where one raster object serves as a mask (Figure \@ref(fig:raster-subset) middle and right panel).
 In these case, we can use `[` or the `mask()` and `overlay()` commands:
