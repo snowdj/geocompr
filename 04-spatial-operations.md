@@ -663,6 +663,9 @@ mask(elev, rmask, maskvalue = TRUE) # with mask()
 overlay(elev, rmask, fun = "max")   # with overlay
 ```
 
+
+
+
 In the code chunk above, we have created a mask object called `rmask` with values randomly assigned to `NA` and `TRUE`.
 Next we only want to keep those values of `elev` which are `TRUE` in `rmask`, or expressed differently, we want to mask `elev` with `rmask`.
 These operations are in fact Boolean local operations since we compare cell-wise two rasters.
