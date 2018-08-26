@@ -896,7 +896,7 @@ To find out which drivers are available on your system, run `raster::writeFormat
 
 Rasters can also be created from scratch using the `raster()` function.
 This is illustrated in the subsequent code chunk, which results in a new `RasterLayer` object.
-The resulting raster consists of 36 cells (6 columns and 6 rows specified by `nrow` and `ncol`) centered around the Prime Meridian and the Equator (see `xmn`, `xmx`, `ymn` and `ymx` parameters).
+The resulting raster consists of 36 cells (6 columns and 6 rows specified by `nrows` and `ncols`) centered around the Prime Meridian and the Equator (see `xmn`, `xmx`, `ymn` and `ymx` parameters).
 The CRS is the default of raster objects: WGS84.
 This means the unit of the resolution is in degrees which we set to 0.5 (`res`). 
 Values (`vals`) are assigned to each cell: 1 to cell 1, 2 to cell 2, and so on.
@@ -904,7 +904,7 @@ Remember: `raster()` fills cells row-wise (unlike `matrix()`) starting at the up
 
 
 ```r
-new_raster2 = raster(nrow = 6, ncol = 6, res = 0.5, 
+new_raster2 = raster(nrows = 6, ncols = 6, res = 0.5, 
                      xmn = -1.5, xmx = 1.5, ymn = -1.5, ymx = 1.5,
                      vals = 1:36)
 ```

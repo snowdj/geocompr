@@ -652,7 +652,7 @@ This demonstrates how the `raster()` function works to create an example raster 
 
 
 ```r
-elev = raster(nrow = 6, ncol = 6, res = 0.5,
+elev = raster(nrows = 6, ncols = 6, res = 0.5,
               xmn = -1.5, xmx = 1.5, ymn = -1.5, ymx = 1.5,
               vals = 1:36)
 ```
@@ -667,7 +667,7 @@ The following code creates a raster representing grain sizes (Figure \@ref(fig:c
 grain_order = c("clay", "silt", "sand")
 grain_char = sample(grain_order, 36, replace = TRUE)
 grain_fact = factor(grain_char, levels = grain_order)
-grain = raster(nrow = 6, ncol = 6, res = 0.5, 
+grain = raster(nrows = 6, ncols = 6, res = 0.5, 
                xmn = -1.5, xmx = 1.5, ymn = -1.5, ymx = 1.5,
                vals = grain_fact)
 ```

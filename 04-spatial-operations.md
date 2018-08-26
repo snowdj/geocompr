@@ -617,7 +617,7 @@ Raster objects can also be subset with another raster object, as illustrated in 
 
 
 ```r
-clip = raster(nrow = 3, ncol = 3, res = 0.3, xmn = 0.9, xmx = 1.8, 
+clip = raster(nrows = 3, ncols = 3, res = 0.3, xmn = 0.9, xmx = 1.8, 
               ymn = -0.45, ymx = 0.45, vals = rep(1, 9))
 elev[clip]
 #> [1] 18 24
@@ -650,16 +650,18 @@ elev[1, 1:2, drop = FALSE] # spatial subsetting by row,column indeces
 
 
 
-Another common use case of spatial subsetting is when a raster with `logical` (or `NA`) values is used to mask another raster with the same extent and resolution, as illusrated in Figure \@ref(fig:raster-subset), middle and right panel.
+Another common use case of spatial subsetting is when a raster with `logical` (or `NA`) values is used to mask another raster with the same extent and resolution, as illustrated in Figure \@ref(fig:raster-subset), middle and right panel.
 In this case, the `[`, `mask()` and `overlay()` functions can be used (results not shown):
 
 
 ```r
-rmask = elev # create raster mask
+# create raster mask
+rmask = elev 
 values(rmask) = sample(c(NA, TRUE), 36, replace = TRUE)
 
+# spatial subsetting
 elev[rmask, drop = FALSE]           # with [ operator
-mask(elev, rmask, maskvalue = TRUE) # with mask()
+mask(elev, rmask)                   # with mask()
 overlay(elev, rmask, fun = "max")   # with overlay
 ```
 
