@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="preface.html">
+<link rel="prev" href="eco.html">
+<link rel="next" href="references.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -406,52 +406,105 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Geocomputation with R</h1>
-<h4 class="author"><em>Robin Lovelace, Jakub Nowosad, Jannes Muenchow</em></h4>
-<h4 class="date"><em>2018-08-26</em></h4>
+<div id="conclusion" class="section level1">
+<h1><span class="header-section-number">15</span> Conclusion: synthesis and next steps</h1>
+<div id="prerequisites-13" class="section level2 unnumbered">
+<h2>Prerequisites</h2>
+<p>Like Chapter <a href="intro.html#intro">1</a> this, the last in the book, has minimal code.
+However, its prerequisites are most demanding.
+It assumes that you have:</p>
+<ul>
+<li>read-through, and attempted the exercises in all chapters of Part 1 (Foundations)</li>
+<li>grasped the diversity of methods that build on these foundations, by following the code and prose in Part 2 (Extensions)</li>
+<li>considered how you can use geocomputation to solve real-world problems, at work or beyond, having engaged with the chapters in Part 3 (Applications).</li>
+</ul>
+<p>Its aim is to synthsise the body of knowledge disseminated in the book and inspire future directions of application and development.
+Section <a href="conclusion.html#concepts">15.1</a> reviews the content covered in the previous chapters but at a high level.
+Its focus is on the concepts learned, rather than the details of the packages, functions and arguments required to complete the code chunks.
+<!-- Section \@ref(gaps)  --></p>
+<!-- Section \@ref(next) -->
+<!-- Section \@ref(benefit) -->
 </div>
-<div id="welcome" class="section level1 unnumbered">
-<h1>Welcome</h1>
-<p>This is the online home of <em>Geocomputation with R</em>, a forthcoming book with <a href="https://www.crcpress.com/Chapman--HallCRC-The-R-Series/book-series/CRCTHERSER">CRC Press</a>.</p>
-<div id="development" class="section level2 unnumbered">
-<h2>Development</h2>
-<p>Inspired by <a href="https://github.com/rstudio/bookdown"><strong>bookdown</strong></a> and the Free and Open Source Software for Geospatial (<a href="http://foss4g.org/">FOSS4G</a>) movement, this book is open source and publicly available.
-This approach encourages contributions, ensures reproducibility and provides access to the material worldwide.</p>
-<p>The book explains how to undertake a range of geographic techniques from R and is divided into the floowing parts:</p>
-<ol style="list-style-type: decimal">
-<li>Foundations, aimed at getting you up-to-speed with geographic data in R.</li>
-<li>Extensions, which covers advanced techniques.</li>
-<li>Applications, to real-world problems.</li>
+<div id="concepts" class="section level2">
+<h2><span class="header-section-number">15.1</span> Concepts for geocomputation</h2>
+</div>
+<div id="gaps" class="section level2">
+<h2><span class="header-section-number">15.2</span> Gaps and overlaps</h2>
+</div>
+<div id="next" class="section level2">
+<h2><span class="header-section-number">15.3</span> Where next?</h2>
+<p>Learning geocomputation with R is challenging and there is much more to discover.
+We have progressed quickly.
+The jump from chapters <a href="spatial-class.html#spatial-class">2</a> to <a href="eco.html#eco">14</a> is large:
+the creation and manipulation of simple spatial objects Part I may seem a world away from the analysis of large datasets covered in Part III.
+It is impossible to become an expert in any area by reading a single book, and skills must be practiced.
+This section points toward sensible next steps on your geocomputational journey, <strong>highlighted in bold below</strong>.
+<!-- and ordered by difficulty, beginning with continue to improve your knowledge of R. --></p>
+<p>The language of R is a shared thread connecting all the chapters.
+All the analyses are based on R classes, primarily <code>sf</code> and <code>raster</code>, which in turn build on the base R classes of <code>data.frame</code> and <code>matrix</code>.
+The wider point is the importance of <em>depth of understanding</em>.
+This observation suggests a direction of travel: <strong>improving your understanding of the R language</strong>.
+A next step in this direction is to deepen your knowledge of base R, for example by: studying R’s key documents (which can be found by entering <code>help.start()</code> in the console), reading and playing with the source code of useful functions, or reading comprehensive resources on the subject such those by <span class="citation">Wickham (<a href="#ref-wickham_advanced_2014">2014</a><a href="#ref-wickham_advanced_2014">a</a>)</span> and <span class="citation">Chambers (<a href="#ref-chambers_extending_2016">2016</a>)</span>.
+<!-- creating and querying simple spatial in Chapter \ref(spatial-class) --></p>
+<!-- Many directions of travel could be taken after taking the geocomputational steps -->
+<p>Perhaps the most obvious direction of future learning is <strong>discovering geocomputation with other languages</strong>.
+There are good reasons for learning R as a language for geocomputation, as described in Chapter <a href="intro.html#intro">1</a>, but it is not the only option.<a href="#fn82" class="footnote-ref" id="fnref82"><sup>82</sup></a>
+It is possible to study <em>Geocomputation with Python</em>, <em>C++</em>, <em>JavaScript</em>, <em>Scala</em>, <em>Julia</em> or <em>Rust</em> in equal depth.
+Each of these is a promising language for geocomputation.
+<a href="https://github.com/Turfjs/turf"><strong>Turf.js</strong></a>, for example, provides many functions for geospatial analysis with implementations in JavaScript, Julia and even Swift.
+<a href="https://github.com/mapbox/rasterio"><strong>rasterio</strong></a> is a Python package for raster offering a high-performance interface to GDAL for handling raster data.
+These and other tantalizing geospatial software projects can be found on the GitHub repo <a href="https://github.com/sacridini/Awesome-Geospatial">Awesome-Geospatial</a>.</p>
+</div>
+<div id="benefit" class="section level2">
+<h2><span class="header-section-number">15.4</span> Geocomputation for social benefit</h2>
+<p>This is a technical book so it makes sense for the next steps to be of a technical nature.
+However, as we saw in section <a href="intro.html#what-is-geocomputation">1.1</a>, geocomputation originated as a field that has three main ingredients:</p>
+<ul>
+<li>the <em>creative</em> use of geographic data</li>
+<li>application to <em>real world problems</em> for social benefit</li>
+<li>building new tools</li>
+</ul>
+<p>We emphasize the first two ingredients because these broader non-technical aims make geospatial analysis so rewarding:
+what is the point of building new new geographic method (tool) if its only purpose is to increase sales of perfume?
+None.</p>
+<p>Building on the three key components of geocomputation mentioned above and described in early work <span class="citation">(Openshaw and Abrahart <a href="#ref-openshaw_geocomputation_2000">2000</a>)</span>, we added another: reproducibility.
+Reproducibility is a worthwhile aim in itself but it also supports <em>creativity</em> and the application of geographic methods to <em>real world problems</em>.
+Reproducibility encourages the focus of methods to shift away from the basics
+<!-- (which are readility available through shared code) -->
+and toward unusual applications.
+<!-- that nobody has yet thought of. -->
+Reproducibility encourages geocomputation for social benefit because it makes geographic data analysis publicly accessible and transparent.</p>
+<p>Think of the person using geocomputation to increase sales of perfume.
+They have developed a powerful new method combining multiple geographic data sources.
+If only people in the company have access to the underlying code, few people benefit.
+If they make their code open and reproducible, by contrast, the methods can be re-used for socially beneficial purposes.
+Furthermore, if they contribute upstream to packages they have used for their work, everyone benefits.
+One accessible way to contribute upstream is creating a reprex (reproducible example) to highlight a bug in the package’s issue tracker, as outlined in section <a href="algorithms.html#scripts">10.2</a>.</p>
+<!-- Like any worthwhile intellectual endeavour or nascent academic field geocomputation is diverse and contested. -->
+<!-- An editorial celebrating '21+ years of geocomputation' reflects on two decades of research that falls under the geocomputational banner [@harris_more_2017]. -->
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-wickham_advanced_2014">
+<p>Wickham, Hadley. 2014a. <em>Advanced R</em>. CRC Press.</p>
+</div>
+<div id="ref-chambers_extending_2016">
+<p>Chambers, John M. 2016. <em>Extending R</em>. CRC Press.</p>
+</div>
+<div id="ref-openshaw_geocomputation_2000">
+<p>Openshaw, Stan, and Robert J. Abrahart, eds. 2000. <em>Geocomputation</em>. 1 edition. London ; New York: CRC Press.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="82">
+<li id="fn82"><p>
+R’s strengths relevant to our definition geocomputation in,clude its emphasis on scientific reproducibility, widespread use in academic research and unparalleled support for statistical modelling of geographic data.
+Furthermore we advocate learning one language (R) for geocomputation in depth before delving into other languages/frameworks because of the costs associated with context switching.
+It is preferable to have expertise in one language than basic knowledge of many.<a href="conclusion.html#fnref82" class="footnote-back">↩</a></p></li>
 </ol>
-<p>The online version of the book is hosted at <a href="https://geocompr.robinlovelace.net">geocompr.robinlovelace.net</a> and kept up-to-date thanks to <a href="https://travis-ci.org/Robinlovelace/geocompr">Travis</a>, which provides information on its ‘build status’ as follows:</p>
-<p><a href="https://travis-ci.org/Robinlovelace/geocompr"><img src="https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master" alt="Build Status" /></a></p>
-<p>The version of the book you are reading now was built on 2018-08-26 and was built on <a href="https://travis-ci.org/Robinlovelace/geocompr">Travis</a>.</p>
-</div>
-<div id="how-to-contribute" class="section level2 unnumbered">
-<h2>How to contribute?</h2>
-<p><strong>bookdown</strong> makes editing a book as easy as editing a wiki, provided you have a GitHub account (<a href="https://github.com/">sign-up at github.com</a>).
-Once logged-in to GitHub, click on the ‘edit me’ icon highlighted with a red ellipse in the image below.
-This will take you to an editable version of the the source <a href="http://rmarkdown.rstudio.com/">R Markdown</a> file that generated the page you’re on:</p>
-<p><a href="https://github.com/Robinlovelace/geocompr/edit/master/index.Rmd"><img src="figures/editme.png" /></a></p>
-<p>To raise an issue about the book’s content (e.g. code not running) or make a feature request, check-out the <a href="https://github.com/Robinlovelace/geocompr/issues">issue tracker</a>.</p>
-</div>
-<div id="reproducibility" class="section level2 unnumbered">
-<h2>Reproducibility</h2>
-<p>To reproduce the book, you need a recent version of <a href="https://cran.r-project.org/">R</a> and up-to-date packages, which can be installed with the following command (which requires <a href="https://github.com/hadley/devtools"><strong>devtools</strong></a>):</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;geocompr/geocompkg&quot;</span>)</a></code></pre></div>
-<p>To build the book locally, clone or <a href="https://github.com/Robinlovelace/geocompr/archive/master.zip">download</a> the <a href="https://github.com/Robinlovelace/geocompr/">geocompr repo</a>, load R in root directory (e.g. by opening <a href="https://github.com/Robinlovelace/geocompr/blob/master/geocompr.Rproj">geocompr.Rproj</a> in RStudio) and run the following lines:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">bookdown<span class="op">::</span><span class="kw">render_book</span>(<span class="st">&quot;index.Rmd&quot;</span>) <span class="co"># to build the book</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">browseURL</span>(<span class="st">&quot;_book/index.html&quot;</span>) <span class="co"># to view it</span></a></code></pre></div>
-<p>Further details can be found at <a href="https://github.com/Robinlovelace/geocompr#geocomputation-with-r">github.com/Robinlovelace/geocompr</a>.</p>
-<p><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.</p>
-<!-- suggested content on if you find the book useful but this intro is already quite long (RL)-->
-<!-- If you find the book useful, please support it by: -->
-<!-- - Recommending, citing or linking-to it -->
-<!-- - 'Starring' the Github repository -->
-<!-- - Reviewing it, e.g. on Amazon or Goodreads -->
-<!-- - Buying a copy -->
-</div>
 </div>
 <script>
 /*
@@ -471,8 +524,8 @@ $(function(){
           </div>
         </div>
       </div>
-
-<a href="preface.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="eco.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -502,7 +555,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/Robinlovelace/geocompr/edit/master/index.Rmd",
+"link": "https://github.com/Robinlovelace/geocompr/edit/master/15-synthesis.Rmd",
 "text": "Edit"
 },
 "download": null,
