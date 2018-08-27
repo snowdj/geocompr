@@ -588,9 +588,9 @@ For this, however, you will have to resort most likely to Bayesian modeling appr
 <p>Spatial prediction maps are one very important outcome of a model.
 Even more important is how good the underlying model is at making them since a prediction map is useless if the model’s predictive performance is bad.
 The most popular measure to assess the predictive performance of a binomial model is the Area Under the Receiver Operator Characteristic Curve (AUROC).
-This is a value between 0.5 and 1.0 with 0.5 indicating por model fit and 1.0 indicating a perfect discrimination of the two classes.
-Thus, the higher the AUROC the better our model is at making predictions.
-In the following we compute the receiver operator characteristic with the help of <code>roc()</code> by providing it with the response variable and the predicted values.
+This is a value between 0.5 and 1.0, with 0.5 indicating a model that is no better than random and 1.0 indicating perfect prediction of the two classes.
+Thus, the higher the AUROC, the better the model’s predictive power.
+The follow code chunk computes the AUROC of the model with <code>roc()</code>, which takes the response and the predicted values as inputs.
 <code>auc()</code> returns the area under the curve.</p>
 <div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb367-1" data-line-number="1">pROC<span class="op">::</span><span class="kw">auc</span>(pROC<span class="op">::</span><span class="kw">roc</span>(lsl<span class="op">$</span>lslpts, <span class="kw">fitted</span>(fit)))</a>
 <a class="sourceLine" id="cb367-2" data-line-number="2"><span class="co">#&gt; Area under the curve: 0.826</span></a></code></pre></div>
