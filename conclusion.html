@@ -432,10 +432,9 @@ having read this book, where to next?</p>
 <h2><span class="header-section-number">15.1</span> Gaps and overlaps</h2>
 <p>A characteristic of R is that there are often multiple ways to acheive the same result.
 Geocomputation with R is no exception.
-The code chunk below illustrates this diversity by using 3 functions
+The code chunk below illustrates this by using 3 functions
 <!-- from 3 packages (**sf**, base R's **stats** and tidyverse's **dplyr**) -->
-based on <strong>sf</strong>
-to generate the same result, a single feature representing New Zealand from its 16 regions:</p>
+based on the <strong>sf</strong> package to combine the 16 regions of New Zealand into a single geometry:</p>
 <div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb457-1" data-line-number="1"><span class="kw">library</span>(spData)</a>
 <a class="sourceLine" id="cb457-2" data-line-number="2">nz_u1 =<span class="st"> </span>sf<span class="op">::</span><span class="kw">st_union</span>(nz)</a>
 <a class="sourceLine" id="cb457-3" data-line-number="3">nz_u2 =<span class="st"> </span><span class="kw">aggregate</span>(nz[<span class="st">&quot;Population&quot;</span>], <span class="kw">list</span>(<span class="kw">rep</span>(<span class="dv">1</span>, <span class="kw">nrow</span>(nz))), sum)</a>
@@ -444,7 +443,8 @@ to generate the same result, a single feature representing New Zealand from its 
 <a class="sourceLine" id="cb457-6" data-line-number="6"><span class="co">#&gt; [1] TRUE</span></a>
 <a class="sourceLine" id="cb457-7" data-line-number="7"><span class="kw">identical</span>(nz_u1, nz_u3<span class="op">$</span>geom)</a>
 <a class="sourceLine" id="cb457-8" data-line-number="8"><span class="co">#&gt; [1] TRUE</span></a></code></pre></div>
-<p>Although the results of the three operations differ, the underlying geometry they create is the same, as verified using the base R function <code>identical()</code>.<a href="#fn82" class="footnote-ref" id="fnref82"><sup>82</sup></a>
+<p>Although the attributes of the resulting objects <code>nz_u1</code> to <code>nz_u3</code> differ, their geometries are identical.
+This is verified using the base R function <code>identical()</code>.<a href="#fn82" class="footnote-ref" id="fnref82"><sup>82</sup></a>
 Which to use?
 It depends: the latter two options performed attribute operations, which may be useful for your work.
 Choosing between base R and the tidyverse is largely a matter of preference.</p>
