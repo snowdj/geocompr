@@ -419,7 +419,7 @@ It assumes that you have:</p>
 </ul>
 <p>The aim is to consolidate knowledge and skills for geocomputation and inspire future directions of application and development.
 <!-- Section \@ref(concepts) reviews the content covered in the previous chapters but at a high level. -->
-<!-- Previous chapters focus on the details of packages, functions and arguments needed for geocomputation with R. -->
+<!-- Previous chapters focus on the details of packages, functions, and arguments needed for geocomputation with R. -->
 <!-- This chapter focuses on concepts that recur throughout the book and how they may be useful. -->
 Section <a href="conclusion.html#gaps">15.1</a> discusses gaps in the book’s contents and explains why some areas of research were deliberately omitted while others were included multiple times.
 This discussion forms the foundation for section <a href="conclusion.html#next">15.2</a>, which asks:
@@ -430,7 +430,7 @@ having read this book, where to next?</p>
 </div>
 <div id="gaps" class="section level2">
 <h2><span class="header-section-number">15.1</span> Gaps and overlaps</h2>
-<p>A characteristic of R is that there are often multiple ways to acheive the same result.
+<p>A characteristic of R is that there are often multiple ways to achieve the same result.
 Geocomputation with R is no exception.
 The code chunk below illustrates this by using 3 functions
 <!-- from 3 packages (**sf**, base R's **stats** and tidyverse's **dplyr**) -->
@@ -450,16 +450,16 @@ It depends: the latter two options performed attribute operations, which may be 
 Choosing between base R and the tidyverse is largely a matter of preference.</p>
 <p>Another area of overlap is <em>between</em> packages.
 Chapter <a href="intro.html#intro">1</a> mentions 20+ influential spatial packages that have been developed over the years.
-Although each package covered in this book has a different emphasis, there is inevitably overlap between them, and there are dozens more packages for geographic data:
+Although each package covered in this book has a different emphasis, there is inevitably an overlap between them, and there are dozens more packages for geographic data:
 There are 176 packages in the Spatial <a href="https://cran.r-project.org/web/views/">Task View</a> alone (as of summer 2018), and more packages and countless functions for geographic data are developed each year.</p>
-<p>The volume and development velocity of geographic functions makes it practically impossible to keep-up with all of the developments in the broadly defined ‘R-spatial’ community (section <a href="conclusion.html#next">15.2</a> covers developments in other languages).
+<p>The volume and development velocity of geographic functions makes it practically impossible to keep up with all of the developments in the broadly defined ‘R-spatial’ community (section <a href="conclusion.html#next">15.2</a> covers developments in other languages).
 There is much overlap and some packages perform much better than others, making package selection an important decision.
-From this diversity we have chosen packages that we believe are worth learning because they are future-proof (i.e. they will be maintained into the future), high performance (relative to other R packages) and complimentary.
+From this diversity, we have chosen packages that we believe are worth learning because they are future-proof (i.e. they will be maintained into the future), high performance (relative to other R packages) and complimentary.
 But there is still much overlap between them, as illustrated by the diversity of packages in the field of geographic data visualization alone (see Chapter <a href="adv-map.html#adv-map">8</a>).
 Overlaps between packages are not a bad thing: they ensure the resilience of the wider R ecosystem and provide choice.
-Choice is a key feature of open source software.
+The choice is a key feature of open source software.
 When using a particular ‘stack’, such as the <strong>sf</strong>/<strong>tidyverse</strong>/<strong>raster</strong> ecosystem advocated in this book, it is worth being aware of alternatives already developed (such as <strong>sp</strong>/<strong>rgdal</strong>/<strong>rgeos</strong>) and under development.</p>
-<p>Likewise, there are gaps and overlaps in the contents of this book, which are worth considering before we consider next steps in the next section.</p>
+<p>Likewise, there are gaps and overlaps in the contents of this book, which are worth considering before we consider the next steps in the next section.</p>
 <!-- More than 15 years ago, before most of the packages used in this book had been developed,  -->
 </div>
 <div id="next" class="section level2">
@@ -478,11 +478,11 @@ This observation suggests a direction of travel: <strong>improving your understa
 A next step in this direction is to deepen your knowledge of base R, for example by: studying R’s key documents (which can be found by entering <code>help.start()</code> in the console), reading and playing with the source code of useful functions, or reading comprehensive resources on the subject such those by <span class="citation">Wickham (<a href="#ref-wickham_advanced_2014">2014</a><a href="#ref-wickham_advanced_2014">a</a>)</span> and <span class="citation">Chambers (<a href="#ref-chambers_extending_2016">2016</a>)</span>.
 <!-- creating and querying simple spatial in Chapter \ref(spatial-class) --></p>
 <!-- Many directions of travel could be taken after taking the geocomputational steps -->
-<p>Perhaps the most obvious direction of future learning is <strong>discovering geocomputation with other languages</strong>.
+<p>Perhaps the most obvious direction for future learning is <strong>discovering geocomputation with other languages</strong>.
 There are good reasons for learning R as a language for geocomputation, as described in Chapter <a href="intro.html#intro">1</a>, but it is not the only option.<a href="#fn83" class="footnote-ref" id="fnref83"><sup>83</sup></a>
 It is possible to study <em>Geocomputation with Python</em>, <em>C++</em>, <em>JavaScript</em>, <em>Scala</em>, <em>Julia</em> or <em>Rust</em> in equal depth.
 Each of these is a promising language for geocomputation.
-<a href="https://github.com/Turfjs/turf"><strong>Turf.js</strong></a>, for example, provides many functions for geospatial analysis with implementations in JavaScript, Julia and even Swift.
+<a href="https://github.com/Turfjs/turf"><strong>Turf.js</strong></a>, for example, provides many functions for geospatial analysis with implementations in JavaScript, Julia, and even Swift.
 <a href="https://github.com/mapbox/rasterio"><strong>rasterio</strong></a> is a Python package for raster offering a high-performance interface to GDAL for handling raster data.
 These and other tantalizing geospatial software projects can be found on the GitHub repo <a href="https://github.com/sacridini/Awesome-Geospatial">Awesome-Geospatial</a>.</p>
 </div>
@@ -492,16 +492,16 @@ These and other tantalizing geospatial software projects can be found on the Git
 However, as we saw in section <a href="intro.html#what-is-geocomputation">1.1</a>, geocomputation originated as a field that has three main ingredients:</p>
 <ul>
 <li>the <em>creative</em> use of geographic data</li>
-<li>application to <em>real world problems</em> for social benefit</li>
+<li>application to <em>real-world problems</em> for the social benefit</li>
 <li>building new tools</li>
 </ul>
 <p>We emphasize the first two ingredients because these broader non-technical aims make geospatial analysis so rewarding:
-what is the point of building new new geographic method (tool) if its only purpose is to increase sales of perfume?
+what is the point of building new geographic method (tool) if its only purpose is to increase sales of perfume?
 <!-- None. --></p>
 <p>Building on the three key components of geocomputation mentioned above and described in early work <span class="citation">(Openshaw and Abrahart <a href="#ref-openshaw_geocomputation_2000">2000</a>)</span>, we added another: reproducibility.
-Reproducibility is a worthwhile aim in itself but it also supports <em>creativity</em> and the application of geographic methods to <em>real world problems</em>.
+Reproducibility is a worthwhile aim in itself but it also supports <em>creativity</em> and the application of geographic methods to <em>real-world problems</em>.
 Reproducibility encourages the focus of methods to shift away from the basics
-<!-- (which are readility available through shared code) -->
+<!-- (which are readily available through shared code) -->
 and toward unusual applications.
 <!-- that nobody has yet thought of. -->
 Reproducibility encourages geocomputation for social benefit because it makes geographic data analysis publicly accessible and transparent.</p>
@@ -511,7 +511,7 @@ If only people in the company have access to the underlying code, few people ben
 If they make their code open and reproducible, by contrast, the methods can be re-used for socially beneficial purposes.
 Furthermore, if they contribute upstream to packages they have used for their work, everyone benefits.
 One accessible way to contribute upstream is creating a reprex (reproducible example) to highlight a bug in the package’s issue tracker, as outlined in section <a href="algorithms.html#scripts">10.2</a>.</p>
-<!-- Like any worthwhile intellectual endeavour or nascent academic field geocomputation is diverse and contested. -->
+<!-- Like any worthwhile intellectual endeavor or nascent academic field, geocomputation is diverse and contested. -->
 <!-- An editorial celebrating '21+ years of geocomputation' reflects on two decades of research that falls under the geocomputational banner [@harris_more_2017]. -->
 
 </div>
@@ -536,8 +536,8 @@ The first operation, undertaken by the function <code>st_union()</code>, creates
 The latter two operations create <code>sf</code> objects, each of which <em>contains</em> a simple feature column.
 Therefore it is the geometries contained in simple feature columns, not the objects themselves, that are identical.<a href="conclusion.html#fnref82" class="footnote-back">↩</a></p></li>
 <li id="fn83"><p>
-R’s strengths relevant to our definition geocomputation in,clude its emphasis on scientific reproducibility, widespread use in academic research and unparalleled support for statistical modelling of geographic data.
-Furthermore we advocate learning one language (R) for geocomputation in depth before delving into other languages/frameworks because of the costs associated with context switching.
+R’s strengths relevant to our definition geocomputation include its emphasis on scientific reproducibility, widespread use in academic research and unparalleled support for statistical modeling of geographic data.
+Furthermore, we advocate learning one language (R) for geocomputation in depth before delving into other languages/frameworks because of the costs associated with context switching.
 It is preferable to have expertise in one language than basic knowledge of many.<a href="conclusion.html#fnref83" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
