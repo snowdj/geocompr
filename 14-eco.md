@@ -3,7 +3,7 @@
 
 ## Prerequisites {-}
 
-This chapter assumes you have a strong grasp of spatial data analysis and processing, covered in chapters \@ref(spatial-class)-\@ref(geometric-operations).
+This chapter assumes you have a strong grasp of spatial data analysis and processing, covered in chapters \@ref(spatial-class) to \@ref(geometric-operations).
 In it you will also make use of R's interfaces to dedicated GIS software, and spatial cross validation, topics covered in chapters \@ref(gis) and \@ref(spatial-cv) respectively.
 
 The chapter uses the following packages:
@@ -23,7 +23,7 @@ library(vegan)
 Fog oases are one of the most fascinating vegetation formations we have ever encountered. 
 These formations, locally termed *lomas*, develop on mountains along the coastal deserts of Peru and Chile.
 The deserts' extreme conditions and remoteness provide the habitat for a unique ecosystem, including species endemic to the fog oases.
-Despite the arid conditions and low levels of precipitation of around 30-50 mm per year on average, plants can survive, by 'combing out' fog.
+Despite the arid conditions and low levels of precipitation of around 30-50 mm per year on average, plants can survive by 'combing out' fog. <!-- what is 'combing out' and is there a different way to say this that could be more easily understood by someone new to the subject? e.g. plants survive by absorbing moisture from fog  ... -->
 This fog, which develops below the temperature inversion caused by the cold Humboldt current in austral winter, provides the name for this habitat.
 Every few years, the El Niño phenomenon brings torrential rainfall to this sun-baked environment [@dillon_lomas_2003].
 This causes the desert to bloom, and provides tree seedlings a chance to develop roots long enough to survive the following arid conditions.
@@ -74,13 +74,13 @@ The values represent species cover per site, and were recorded as the area cover
 The rownames of `comm` correspond to the `id` column of `random_points`.
 Though `comm` only consists of 84 rows, we have in fact visited 100 sites in the field, however, in 16 of them no species were found.
 `dem` is the digital elevation model for the study area, and `ndvi` is the Normalized Difference Vegetation Index (NDVI) computed from the red and near-infrared channels of a Landsat scene (see section \@ref(local-operations) and `?ndvi`).
-Visualizing the data helps to get more familiar with the data:
+Visualizing the data helps to get more familiar with it:
 
 
 
 <div class="figure" style="text-align: center">
-<img src="figures/unnamed-chunk-5-1.png" alt="Study mask (polgyon), location of the sampling sites (black points) and DEM in the background." width="576" />
-<p class="caption">(\#fig:unnamed-chunk-5)Study mask (polgyon), location of the sampling sites (black points) and DEM in the background.</p>
+<img src="figures/unnamed-chunk-5-1.png" alt="Study mask (polygon), location of the sampling sites (black points) and DEM in the background." width="576" />
+<p class="caption">(\#fig:unnamed-chunk-5)Study mask (polygon), location of the sampling sites (black points) and DEM in the background.</p>
 </div>
 
 
@@ -336,7 +336,7 @@ Which one should we use for making spatial predictions?
 The answer is simple, none at all. 
 Remember, the tuning was done to retrieve a bias-reduced performance estimate, not to do the best possible spatial prediction.
 For the latter, one estimates the best hyperparameter combination from the complete dataset.
-This means, the inner hyperparameter tuning level is no longer needed which makes perfectly sense since we are applying our model to new data (unvisited field observations) for which the true outcomes are unavailable, hence testing is impossible in any case. 
+This means, the inner hyperparameter tuning level is no longer needed which makes perfect sense since we are applying our model to new data (unvisited field observations) for which the true outcomes are unavailable, hence testing is impossible in any case. 
 Therefore, we tune the hyperparameters for a good spatial prediction on the complete dataset via a 5-fold spatial CV with one repetition.
 <!-- If we used more than one repetition (say 2) we would retrieve multiple optimal tuned hyperparameter combinations (say 2) -->
 
@@ -385,7 +385,7 @@ If all predictors are used, then this corresponds in fact to bagging (see beginn
 The `sample.fraction` parameter specifies the fraction of observations to be used in each tree.
 Smaller fractions lead to greater diversity, and thus less correlated trees which often is desirable (see above).
 The `min.node.size` parameter indicates the number of observations a terminal node should at least have (see also Figure \@ref(fig:tree)).
-Naturally, trees and computing time become larger, the lower the `min.node.size`.
+Naturally, as trees and computing time become larger, the lower the `min.node.size`.
 
 Hyperparameter combinations will be selected randomly but should fall inside specific tuning limits (`makeParamSet()`).
 `mtry` should range between 1 and the number of predictors (4), `sample.fraction` should range between 0.2 and 0.9 and `min.node.size` should range between 1 and 10.
@@ -499,8 +499,8 @@ Since **lomas** mountains are heavily endangered, the prediction map can serve a
 
 In terms of methodology, a few additional points could be addressed:
 
-- It would be interesting to also model the second ordination axis, and to subsequently finding an innovative way of visualizing jointly the modeled scores of the two axes in one prediction map.
-- If we were interested in interpreting the model in an ecological meaningful way, we probably should use (semi-)parametric models [@muenchow_predictive_2013;@zuur_mixed_2009;@zuur_beginners_2017].
+- It would be interesting to also model the second ordination axis, and to subsequently find an innovative way of visualizing jointly the modeled scores of the two axes in one prediction map.
+- If we were interested in interpreting the model in an ecologically meaningful way, we should probably use (semi-)parametric models [@muenchow_predictive_2013;@zuur_mixed_2009;@zuur_beginners_2017].
 However, there are at least approaches that help to interpret machine learning models such as random forests (see e.g., [https://mlr-org.github.io/interpretable-machine-learning-iml-and-mlr/](https://mlr-org.github.io/interpretable-machine-learning-iml-and-mlr/)).
 - A sequential model-based optimization (SMBO) might be preferable to the here used random search for hyperparameter optimization [@probst_hyperparameters_2018]. 
 

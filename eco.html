@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-08-26">
+<meta name="date" content="2018-08-27">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -409,7 +409,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">14</span> Ecology</h1>
 <div id="prerequisites-12" class="section level2 unnumbered">
 <h2>Prerequisites</h2>
-<p>This chapter assumes you have a strong grasp of spatial data analysis and processing, covered in chapters <a href="spatial-class.html#spatial-class">2</a>-<a href="geometric-operations.html#geometric-operations">5</a>.
+<p>This chapter assumes you have a strong grasp of spatial data analysis and processing, covered in chapters <a href="spatial-class.html#spatial-class">2</a> to <a href="geometric-operations.html#geometric-operations">5</a>.
 In it you will also make use of R’s interfaces to dedicated GIS software, and spatial cross validation, topics covered in chapters <a href="gis.html#gis">9</a> and <a href="spatial-cv.html#spatial-cv">11</a> respectively.</p>
 <p>The chapter uses the following packages:</p>
 <div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb437-1" data-line-number="1"><span class="kw">library</span>(sf)</a>
@@ -424,7 +424,7 @@ In it you will also make use of R’s interfaces to dedicated GIS software, and 
 <p>Fog oases are one of the most fascinating vegetation formations we have ever encountered.
 These formations, locally termed <em>lomas</em>, develop on mountains along the coastal deserts of Peru and Chile.
 The deserts’ extreme conditions and remoteness provide the habitat for a unique ecosystem, including species endemic to the fog oases.
-Despite the arid conditions and low levels of precipitation of around 30-50 mm per year on average, plants can survive, by ‘combing out’ fog.
+Despite the arid conditions and low levels of precipitation of around 30-50 mm per year on average, plants can survive by ‘combing out’ fog. <!-- what is 'combing out' and is there a different way to say this that could be more easily understood by someone new to the subject? e.g. plants survive by absorbing moisture from fog  ... -->
 This fog, which develops below the temperature inversion caused by the cold Humboldt current in austral winter, provides the name for this habitat.
 Every few years, the El Niño phenomenon brings torrential rainfall to this sun-baked environment <span class="citation">(Dillon, Nakazawa, and Leiva <a href="#ref-dillon_lomas_2003">2003</a>)</span>.
 This causes the desert to bloom, and provides tree seedlings a chance to develop roots long enough to survive the following arid conditions.</p>
@@ -465,11 +465,11 @@ The values represent species cover per site, and were recorded as the area cover
 The rownames of <code>comm</code> correspond to the <code>id</code> column of <code>random_points</code>.
 Though <code>comm</code> only consists of 84 rows, we have in fact visited 100 sites in the field, however, in 16 of them no species were found.
 <code>dem</code> is the digital elevation model for the study area, and <code>ndvi</code> is the Normalized Difference Vegetation Index (NDVI) computed from the red and near-infrared channels of a Landsat scene (see section <a href="spatial-operations.html#local-operations">4.3.3</a> and <code>?ndvi</code>).
-Visualizing the data helps to get more familiar with the data:</p>
+Visualizing the data helps to get more familiar with it:</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-5"></span>
-<img src="figures/unnamed-chunk-5-1.png" alt="Study mask (polgyon), location of the sampling sites (black points) and DEM in the background." width="576" />
+<img src="figures/unnamed-chunk-5-1.png" alt="Study mask (polygon), location of the sampling sites (black points) and DEM in the background." width="576" />
 <p class="caption">
-Figure 14.2: Study mask (polgyon), location of the sampling sites (black points) and DEM in the background.
+Figure 14.2: Study mask (polygon), location of the sampling sites (black points) and DEM in the background.
 </p>
 </div>
 <p>The next step is to compute variables which we will predominantly need for the modeling and predictive mapping (see section <a href="eco.html#predictive-mapping">14.4.2</a>) but also for aligning the NMDS axes with the main gradient, altitude and humidity, respectively, in the study area (see section <a href="eco.html#nmds">14.3</a>).</p>
@@ -654,7 +654,7 @@ Which one should we use for making spatial predictions?
 The answer is simple, none at all.
 Remember, the tuning was done to retrieve a bias-reduced performance estimate, not to do the best possible spatial prediction.
 For the latter, one estimates the best hyperparameter combination from the complete dataset.
-This means, the inner hyperparameter tuning level is no longer needed which makes perfectly sense since we are applying our model to new data (unvisited field observations) for which the true outcomes are unavailable, hence testing is impossible in any case.
+This means, the inner hyperparameter tuning level is no longer needed which makes perfect sense since we are applying our model to new data (unvisited field observations) for which the true outcomes are unavailable, hence testing is impossible in any case.
 Therefore, we tune the hyperparameters for a good spatial prediction on the complete dataset via a 5-fold spatial CV with one repetition.
 <!-- If we used more than one repetition (say 2) we would retrieve multiple optimal tuned hyperparameter combinations (say 2) --></p>
 <p>The preparation for the modeling using the <strong>mlr</strong> package includes the construction of a response-predictor matrix containing only variables which should be used in the modeling and the construction of a separate coordinate dataframe.</p>
@@ -687,7 +687,7 @@ If all predictors are used, then this corresponds in fact to bagging (see beginn
 The <code>sample.fraction</code> parameter specifies the fraction of observations to be used in each tree.
 Smaller fractions lead to greater diversity, and thus less correlated trees which often is desirable (see above).
 The <code>min.node.size</code> parameter indicates the number of observations a terminal node should at least have (see also Figure <a href="eco.html#fig:tree">14.4</a>).
-Naturally, trees and computing time become larger, the lower the <code>min.node.size</code>.</p>
+Naturally, as trees and computing time become larger, the lower the <code>min.node.size</code>.</p>
 <p>Hyperparameter combinations will be selected randomly but should fall inside specific tuning limits (<code>makeParamSet()</code>).
 <code>mtry</code> should range between 1 and the number of predictors (4), <code>sample.fraction</code> should range between 0.2 and 0.9 and <code>min.node.size</code> should range between 1 and 10.</p>
 <div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb453-1" data-line-number="1"><span class="co"># specifying the search space</span></a>
@@ -777,8 +777,8 @@ The result demonstrates spatially the astounding biodiversity in the middle of t
 Since <strong>lomas</strong> mountains are heavily endangered, the prediction map can serve as basis for informed decision-making on delineating protection zones, and making the local population aware of the uniqueness found in their immediate neighborhood.</p>
 <p>In terms of methodology, a few additional points could be addressed:</p>
 <ul>
-<li>It would be interesting to also model the second ordination axis, and to subsequently finding an innovative way of visualizing jointly the modeled scores of the two axes in one prediction map.</li>
-<li>If we were interested in interpreting the model in an ecological meaningful way, we probably should use (semi-)parametric models <span class="citation">(J. Muenchow, Bräuning, et al. <a href="#ref-muenchow_predictive_2013">2013</a>; Zuur et al. <a href="#ref-zuur_mixed_2009">2009</a>, <a href="#ref-zuur_beginners_2017">2017</a>)</span>.
+<li>It would be interesting to also model the second ordination axis, and to subsequently find an innovative way of visualizing jointly the modeled scores of the two axes in one prediction map.</li>
+<li>If we were interested in interpreting the model in an ecologically meaningful way, we should probably use (semi-)parametric models <span class="citation">(J. Muenchow, Bräuning, et al. <a href="#ref-muenchow_predictive_2013">2013</a>; Zuur et al. <a href="#ref-zuur_mixed_2009">2009</a>, <a href="#ref-zuur_beginners_2017">2017</a>)</span>.
 However, there are at least approaches that help to interpret machine learning models such as random forests (see e.g., <a href="https://mlr-org.github.io/interpretable-machine-learning-iml-and-mlr/" class="uri">https://mlr-org.github.io/interpretable-machine-learning-iml-and-mlr/</a>).</li>
 <li>A sequential model-based optimization (SMBO) might be preferable to the here used random search for hyperparameter optimization <span class="citation">(Probst, Wright, and Boulesteix <a href="#ref-probst_hyperparameters_2018">2018</a>)</span>.</li>
 </ul>
