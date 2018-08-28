@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-08-27">
+<meta name="date" content="2018-08-28">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -421,11 +421,9 @@ It assumes that you have:</p>
 <!-- Section \@ref(concepts) reviews the content covered in the previous chapters but at a high level. -->
 <!-- Previous chapters focus on the details of packages, functions, and arguments needed for geocomputation with R. -->
 <!-- This chapter focuses on concepts that recur throughout the book and how they may be useful. -->
-Section <a href="conclusion.html#gaps">15.1</a> discusses gaps in the book’s contents and explains why some areas of research were deliberately omitted while others were included multiple times.
-This discussion forms the foundation for section <a href="conclusion.html#next">15.2</a>, which asks:
-having read this book, where to next?
-The final section (<a href="conclusion.html#benefit">15.3</a>) returns to the wider question: what is the point of geocomputation?
-It returns to the definition of the term introduced in Chapter <a href="intro.html#intro">1</a> and considers how the contents of this book can be used for social benefit.</p>
+Section <a href="conclusion.html#gaps">15.1</a> discusses gaps in the book’s contents and explains why some areas of research were deliberately omitted while others were emphasized.
+This discussion leads to the question (which is answered in section <a href="conclusion.html#next">15.2</a>): having read this book, where next?
+The final section (<a href="conclusion.html#benefit">15.3</a>) returns to the wider issues raised in Chapter <a href="intro.html#intro">1</a> and considers how geocomputation can be used for social benefit.</p>
 <!-- Section \@ref(next) -->
 <!-- ## Concepts for geocomputation {#concepts} -->
 </div>
@@ -444,11 +442,12 @@ based on the <strong>sf</strong> package to combine the 16 regions of New Zealan
 <a class="sourceLine" id="cb457-6" data-line-number="6"><span class="co">#&gt; [1] TRUE</span></a>
 <a class="sourceLine" id="cb457-7" data-line-number="7"><span class="kw">identical</span>(nz_u1, nz_u3<span class="op">$</span>geom)</a>
 <a class="sourceLine" id="cb457-8" data-line-number="8"><span class="co">#&gt; [1] TRUE</span></a></code></pre></div>
-<p>Although the attributes of the resulting objects <code>nz_u1</code> to <code>nz_u3</code> differ, their geometries are identical.
+<p>Although the classes, attributes and column names of the resulting objects <code>nz_u1</code> to <code>nz_u3</code> differ, their geometries are identical.
 This is verified using the base R function <code>identical()</code>.<a href="#fn82" class="footnote-ref" id="fnref82"><sup>82</sup></a>
 Which to use?
-It depends: the latter two options performed attribute operations, which may be useful for your work.
-Choosing between base R and the tidyverse is largely a matter of preference.</p>
+It depends.
+The former only processes the geometry data contained in <code>nz</code> so is faster. latter two options performed attribute operations, which may be useful for subsequent steps.
+Choosing between base R and the tidyverse is largely a matter of preference (see Chapter <a href="attr.html#attr">3</a>), although there are a number of pitfalls to avoid when using <strong>tidyverse</strong> functions to handle spatial data (see the supplementary article <code>spatial-tidyverse</code> at <a href="https://geocompr.github.io/">geocompr.github.io</a>).</p>
 <p>Another area of overlap is <em>between</em> packages.
 Chapter <a href="intro.html#intro">1</a> mentions 20+ influential spatial packages that have been developed over the years.
 Although each package covered in this book has a different emphasis, there are overlaps between them.
