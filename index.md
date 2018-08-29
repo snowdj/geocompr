@@ -6,6 +6,11 @@ date: '2018-08-29'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: krantz
+lot: yes
+lof: yes
+fontsize: 12pt
+monofont: "Source Code Pro"
+monofontoptions: "Scale=0.7"
 bibliography:
   - refs.bib
   - packages.bib
