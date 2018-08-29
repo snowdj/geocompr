@@ -234,7 +234,7 @@ tm_shape(nz) + tm_fill(col = "Land_area")
 ```
 
 <div class="figure" style="text-align: center">
-<img src="figures/tmcol-1.png" alt="Comparison of base (left) and tmap (right) handling of a numeric color field." width="50%" /><img src="figures/tmcol-2.png" alt="Comparison of base (left) and tmap (right) handling of a numeric color field." width="50%" />
+<img src="figures/tmcol-1.png" alt="Comparison of base (left) and tmap (right) handling of a numeric color field." width="45%" /><img src="figures/tmcol-2.png" alt="Comparison of base (left) and tmap (right) handling of a numeric color field." width="45%" />
 <p class="caption">(\#fig:tmcol)Comparison of base (left) and tmap (right) handling of a numeric color field.</p>
 </div>
 
@@ -318,7 +318,7 @@ Their main purpose is to visualize the difference from an important reference po
 The reference point's value can be adjusted in **tmap** using the `midpoint` argument.
 
 <div class="figure" style="text-align: center">
-<img src="figures/colpal-1.png" alt="Examples of categorical, sequential and diverging palettes." width="40%" />
+<img src="figures/colpal-1.png" alt="Examples of categorical, sequential and diverging palettes." width="50%" />
 <p class="caption">(\#fig:colpal)Examples of categorical, sequential and diverging palettes.</p>
 </div>
 
