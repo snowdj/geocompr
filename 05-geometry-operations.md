@@ -343,7 +343,7 @@ text(x = c(-0.5, 1.5), y = 1, labels = l)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="figures/venn-subset-1.png" alt="Randomly distributed points within the bounding box enclosing circles x and y." width="576" />
+<img src="figures/venn-subset-1.png" alt="Randomly distributed points within the bounding box enclosing circles x and y." width="50%" />
 <p class="caption">(\#fig:venn-subset)Randomly distributed points within the bounding box enclosing circles x and y.</p>
 </div>
 
@@ -678,9 +678,9 @@ dem_agg = aggregate(dem, fact = 5, fun = mean)
 
 ```r
 p_ar1 = tm_shape(dem) + tm_raster(style = "cont", legend.show = FALSE) +
-  tm_layout(main.title = "Original")
+  tm_layout(main.title = "Original", frame = FALSE)
 p_ar2 = tm_shape(dem_agg) + tm_raster(style = "cont", legend.show = FALSE) +
-  tm_layout(main.title = "Aggregated")
+  tm_layout(main.title = "Aggregated", frame = FALSE)
 tmap_arrange(p_ar1, p_ar2, ncol = 2)
 ```
 
