@@ -124,8 +124,8 @@ The result in Figure \@ref(fig:crs-buf) (right panel) shows that buffers based o
 every part of the buffer's border is equidistant to London.
 
 <div class="figure" style="text-align: center">
-<img src="figures/crs-buf-1.png" alt="Buffers around London with a geographic (left) and projected (right) CRS. The grey outline represents the UK coastline." width="45%" /><img src="figures/crs-buf-2.png" alt="Buffers around London with a geographic (left) and projected (right) CRS. The grey outline represents the UK coastline." width="45%" />
-<p class="caption">(\#fig:crs-buf)Buffers around London with a geographic (left) and projected (right) CRS. The grey outline represents the UK coastline.</p>
+<img src="figures/crs-buf-1.png" alt="Buffers around London with a geographic (left) and projected (right) CRS. The gray outline represents the UK coastline." width="45%" /><img src="figures/crs-buf-2.png" alt="Buffers around London with a geographic (left) and projected (right) CRS. The gray outline represents the UK coastline." width="45%" />
+<p class="caption">(\#fig:crs-buf)Buffers around London with a geographic (left) and projected (right) CRS. The gray outline represents the UK coastline.</p>
 </div>
 
 The importance of CRSs (primarily whether they are projected or geographic) has been demonstrated using the example of London.

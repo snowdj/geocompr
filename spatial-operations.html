@@ -458,9 +458,9 @@ The following code chunk first creates an object representing Canterbury, then u
 <div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" data-line-number="1">canterbury =<span class="st"> </span>nz <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Name <span class="op">==</span><span class="st"> &quot;Canterbury&quot;</span>)</a>
 <a class="sourceLine" id="cb112-2" data-line-number="2">canterbury_height =<span class="st"> </span>nz_height[canterbury, ]</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:nz-subset"></span>
-<img src="figures/nz-subset-1.png" alt="Illustration of spatial subsetting with red triangles representing 101 high points in New Zealand, clustered near the central Canterbuy region (left). The points in Canterbury were created with the `[` subsetting operator (highlighted in grey, right)." width="576" />
+<img src="figures/nz-subset-1.png" alt="Illustration of spatial subsetting with red triangles representing 101 high points in New Zealand, clustered near the central Canterbuy region (left). The points in Canterbury were created with the `[` subsetting operator (highlighted in gray, right)." width="576" />
 <p class="caption">
-Figure 4.1: Illustration of spatial subsetting with red triangles representing 101 high points in New Zealand, clustered near the central Canterbuy region (left). The points in Canterbury were created with the <code>[</code> subsetting operator (highlighted in grey, right).
+Figure 4.1: Illustration of spatial subsetting with red triangles representing 101 high points in New Zealand, clustered near the central Canterbuy region (left). The points in Canterbury were created with the <code>[</code> subsetting operator (highlighted in gray, right).
 </p>
 </div>
 <p>Like attribute subsetting <code>x[y, ]</code> subsets features of a <em>target</em> <code>x</code> using the contents of a <em>source</em> object <code>y</code>.
@@ -1018,7 +1018,7 @@ Computing a distance raster (zonal operation) while only considering a maximum d
 Reclassifying raster data (either local or zonal function depending on the input) is equivalent to dissolving vector data (section <a href="spatial-operations.html#spatial-joining">4.2.3</a>).
 Overlaying two rasters (local operation), where one contains <code>NULL</code> or <code>NA</code> values representing a mask, is similar to vector clipping (section <a href="geometric-operations.html#clipping">5.2.5</a>).
 Quite similar to spatial clipping is intersecting two layers (section <a href="spatial-operations.html#spatial-subsetting">4.2.1</a>).
-The difference is that these two layers (vector or raster) simply share an overlapping area (see Figure <a href="geometric-operations.html#fig:venn-clip">5.7</a> for an example).
+The difference is that these two layers (vector or raster) simply share an overlapping area (see Figure <a href="geometric-operations.html#fig:venn-clip">5.8</a> for an example).
 However, be careful with the wording.
 Sometimes the same words have slightly different meanings for raster and vector data models.
 Aggregating in the case of vector data refers to dissolving polygons while it means increasing the resolution in the case of raster data.

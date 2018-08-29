@@ -184,7 +184,7 @@ Aesthetic settings, however, are controlled by arguments to layer functions.
 ### Aesthetics
 
 The plots in the previous section demonstrate **tmap**'s default aesthetic settings.
-Grey shades are used for `tm_fill()` and  `tm_bubbles()` layers and a continuous black line is used to represent lines created with `tm_lines()`.
+Gray shades are used for `tm_fill()` and  `tm_bubbles()` layers and a continuous black line is used to represent lines created with `tm_lines()`.
 Of course, these default values and other aesthetics can be overridden.
 The purpose of this section is to show how.
 
@@ -376,7 +376,7 @@ Some useful layout settings are listed below (see Figure \@ref(fig:layout2) for 
 - Font settings, controlled by `fontface` and `fontfamily`.
 - Legend settings including binary options such as `legend.show` (whether or not to show the legend) `legend.only` (omit the map) and `legend.outside` (should the legend go outside the map?), as well as multiple choice settings such as `legend.position`.
 - Default colors of aesthetic layers (`aes.color`), map attributes such as the frame (`attr.color`).
-- Color settings controlling `sepia.intensity` (how yellowy the map looks) and `saturation` (a color-greyscale).
+- Color settings controlling `sepia.intensity` (how yellowy the map looks) and `saturation` (a color-grayscale).
 
 <div class="figure" style="text-align: center">
 <img src="figures/layout2-1.png" alt="Illustration of selected layout options." width="576" />
@@ -392,7 +392,7 @@ The impact of changing the color settings listed above is illustrated in Figure 
 
 <!-- Maybe reverse order and progress from the high- to the low-level control. Overall, this section reads a bit like a vignette. Is this the intention. -->
 Beyond the low-level control over layouts and colors, **tmap** also offers high-level styles, using the `tm_style()` function (representing the second meaning of 'style' in the package).
-Some styles such as `tm_style("cobalt")` result in stylized maps while others such as `tm_style("grey")` make more subtle changes, as illustrated in Figure \@ref(fig:tmstyles), created using code below (see `09-tmstyles.R`):
+Some styles such as `tm_style("cobalt")` result in stylized maps while others such as `tm_style("gray")` make more subtle changes, as illustrated in Figure \@ref(fig:tmstyles), created using code below (see `09-tmstyles.R`):
 
 
 ```r

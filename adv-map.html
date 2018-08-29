@@ -549,7 +549,7 @@ Aesthetic settings, however, are controlled by arguments to layer functions.</p>
 <div id="aesthetics" class="section level3">
 <h3><span class="header-section-number">8.2.3</span> Aesthetics</h3>
 <p>The plots in the previous section demonstrate <strong>tmap</strong>’s default aesthetic settings.
-Grey shades are used for <code>tm_fill()</code> and <code>tm_bubbles()</code> layers and a continuous black line is used to represent lines created with <code>tm_lines()</code>.
+Gray shades are used for <code>tm_fill()</code> and <code>tm_bubbles()</code> layers and a continuous black line is used to represent lines created with <code>tm_lines()</code>.
 Of course, these default values and other aesthetics can be overridden.
 The purpose of this section is to show how.</p>
 <p>There are two main types of map aesthetics: those that change with the data and those that are constant.
@@ -701,7 +701,7 @@ Some useful layout settings are listed below (see Figure <a href="adv-map.html#f
 <li>Font settings, controlled by <code>fontface</code> and <code>fontfamily</code>.</li>
 <li>Legend settings including binary options such as <code>legend.show</code> (whether or not to show the legend) <code>legend.only</code> (omit the map) and <code>legend.outside</code> (should the legend go outside the map?), as well as multiple choice settings such as <code>legend.position</code>.</li>
 <li>Default colors of aesthetic layers (<code>aes.color</code>), map attributes such as the frame (<code>attr.color</code>).</li>
-<li>Color settings controlling <code>sepia.intensity</code> (how yellowy the map looks) and <code>saturation</code> (a color-greyscale).</li>
+<li>Color settings controlling <code>sepia.intensity</code> (how yellowy the map looks) and <code>saturation</code> (a color-grayscale).</li>
 </ul>
 <div class="figure" style="text-align: center"><span id="fig:layout2"></span>
 <img src="figures/layout2-1.png" alt="Illustration of selected layout options." width="576" />
@@ -718,7 +718,7 @@ Figure 8.11: Illustration of selected color-related layout options.
 </div>
 <!-- Maybe reverse order and progress from the high- to the low-level control. Overall, this section reads a bit like a vignette. Is this the intention. -->
 <p>Beyond the low-level control over layouts and colors, <strong>tmap</strong> also offers high-level styles, using the <code>tm_style()</code> function (representing the second meaning of ‘style’ in the package).
-Some styles such as <code>tm_style(&quot;cobalt&quot;)</code> result in stylized maps while others such as <code>tm_style(&quot;grey&quot;)</code> make more subtle changes, as illustrated in Figure <a href="adv-map.html#fig:tmstyles">8.12</a>, created using code below (see <code>09-tmstyles.R</code>):</p>
+Some styles such as <code>tm_style(&quot;cobalt&quot;)</code> result in stylized maps while others such as <code>tm_style(&quot;gray&quot;)</code> make more subtle changes, as illustrated in Figure <a href="adv-map.html#fig:tmstyles">8.12</a>, created using code below (see <code>09-tmstyles.R</code>):</p>
 <div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb274-1" data-line-number="1">map_nza <span class="op">+</span><span class="st"> </span><span class="kw">tm_style</span>(<span class="st">&quot;bw&quot;</span>)</a>
 <a class="sourceLine" id="cb274-2" data-line-number="2">map_nza <span class="op">+</span><span class="st"> </span><span class="kw">tm_style</span>(<span class="st">&quot;classic&quot;</span>)</a>
 <a class="sourceLine" id="cb274-3" data-line-number="3">map_nza <span class="op">+</span><span class="st"> </span><span class="kw">tm_style</span>(<span class="st">&quot;cobalt&quot;</span>)</a>
