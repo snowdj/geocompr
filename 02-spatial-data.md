@@ -1125,17 +1125,6 @@ The warning message informs us that the `st_set_crs()` function does not transfo
 
 
 ```
-#> ── Attaching packages ────────────────────────────────── tidyverse 1.2.1 ──
-#> ✔ ggplot2 3.0.0.9000     ✔ purrr   0.2.4     
-#> ✔ tibble  1.4.2          ✔ dplyr   0.7.5     
-#> ✔ tidyr   0.8.0          ✔ stringr 1.3.1     
-#> ✔ readr   1.1.1          ✔ forcats 0.3.0
-#> ── Conflicts ───────────────────────────────────── tidyverse_conflicts() ──
-#> ✖ dplyr::combine() masks gridExtra::combine()
-#> ✖ tidyr::extract() masks raster::extract()
-#> ✖ dplyr::filter()  masks stats::filter()
-#> ✖ dplyr::lag()     masks stats::lag()
-#> ✖ dplyr::select()  masks raster::select()
 #> Reading layer `zion' from data source `/home/travis/R/Library/spDataLarge/vector/zion.gpkg' using driver `GPKG'
 #> Simple feature collection with 1 feature and 11 fields
 #> geometry type:  POLYGON
@@ -1167,21 +1156,9 @@ projection(new_raster) = "+proj=utm +zone=12 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0
                             +units=m +no_defs" # set CRS
 ```
 
-
-```
-#> Loading required package: lattice
-#> Loading required package: latticeExtra
-#> Loading required package: RColorBrewer
-#> 
-#> Attaching package: 'latticeExtra'
-#> The following object is masked from 'package:ggplot2':
-#> 
-#>     layer
-```
-
 <div class="figure" style="text-align: center">
-<img src="figures/raster-crs-1.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a raster data type" width="576" />
-<p class="caption">(\#fig:raster-crs)Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a raster data type</p>
+<img src="figures/raster-crs-1.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a raster data type." width="576" />
+<p class="caption">(\#fig:raster-crs)Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a raster data type.</p>
 </div>
 
 We will expand on CRSs and how to project from one CRS to another in much more detail in chapter \@ref(reproj-geo-data).
