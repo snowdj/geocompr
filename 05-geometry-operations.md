@@ -1078,7 +1078,7 @@ plot(cl, add = TRUE)
 ```
 
 Contours can also be added to existing plots with functions such as `contour()`, `rasterVis::contourplot()` or `tmap::tm_iso()`.
-As illustrated in Figure \@ref(fig:contour), isolines can be labelled.
+As illustrated in Figure \@ref(fig:contour-tmap), isolines can be labelled.
 
 
 ```r
@@ -1087,17 +1087,15 @@ data("dem", package = "RQGIS")
 hs = hillShade(slope = terrain(dem, "slope"), aspect = terrain(dem, "aspect"))
 plot(hs, col = gray(0:100 / 100), legend = FALSE)
 # overlay with DEM
-plot(dem, terrain.colors(25), alpha = 0.5, legend = FALSE, add = TRUE)
+plot(dem, col = terrain.colors(25), alpha = 0.5, legend = FALSE, add = TRUE)
 # add contour lines
 contour(dem, col = "white", add = TRUE)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="figures/contour-1.png" alt="DEM hillshade of the southern flank of Mt. Mongón overlaid with contour lines." width="576" />
-<p class="caption">(\#fig:contour)DEM hillshade of the southern flank of Mt. Mongón overlaid with contour lines.</p>
+<img src="figures/contour-tmap-1.png" alt="DEM hillshade of the southern flank of Mt. Mongón overlaid with contour lines." width="576" />
+<p class="caption">(\#fig:contour-tmap)DEM hillshade of the southern flank of Mt. Mongón overlaid with contour lines.</p>
 </div>
-
-
 
 The final type of vectorization involves conversion of rasters to polygons.
 This can be done with `raster::rasterToPolygons()`, which converts each raster cell into a polygon consisting of five coordinates, all of which are stored in memory (explaining why rasters are often fast compared with vectors!).
