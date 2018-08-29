@@ -795,7 +795,7 @@ srtm_inv_masked = mask(srtm, as(zion, "Spatial"), inverse = TRUE)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="figures/cropmask-1.png" alt="Illustration of raster cropping and raster masking." width="576" />
+<img src="figures/cropmask-1.png" alt="Illustration of raster cropping and raster masking." width="960" />
 <p class="caption">(\#fig:cropmask)Illustration of raster cropping and raster masking.</p>
 </div>
 
