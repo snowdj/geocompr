@@ -480,11 +480,6 @@ This can be verified with `identical(st_geometry(nz), st_geometry(nz_avheight))`
 The result of the previous operation is illustrated in Figure \@ref(fig:spatial-aggregation).
 The same result can also be generated using the 'tidy' functions `group_by()` and `summarize()` (used in combination with `st_join()`):
 
-
-```
-#> Some legend labels were too wide. These labels have been resized to 0.62, 0.62, 0.62, 0.62. Increase legend.width (argument of tm_layout) to make the legend wider and therefore the labels larger.
-```
-
 <div class="figure" style="text-align: center">
 <img src="figures/spatial-aggregation-1.png" alt="Average height of the top 101 high points across the regions of New Zealand." width="576" />
 <p class="caption">(\#fig:spatial-aggregation)Average height of the top 101 high points across the regions of New Zealand.</p>
@@ -527,7 +522,8 @@ This is implemented in `st_interpolate_aw()`, as demonstrated in the code chunk 
 
 
 ```r
-agg_aw = st_interpolate_aw(incongruent[, "value"], aggregating_zones, extensive = TRUE)
+agg_aw = st_interpolate_aw(incongruent[, "value"], aggregating_zones,
+                           extensive = TRUE)
 #> Warning in st_interpolate_aw(incongruent[, "value"], aggregating_zones, :
 #> st_interpolate_aw assumes attributes are constant over areas of x
 # show the aggregated result
