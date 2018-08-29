@@ -430,7 +430,7 @@ Finally, a geometrycollection might contain any combination of geometries includ
 - Geometry collection - `GEOMETRYCOLLECTION (MULTIPOINT (5 2, 1 3, 3 4, 3 2), LINESTRING (1 5, 4 4, 4 1, 2 2, 3 2))`
 
 <div class="figure" style="text-align: center">
-<img src="figures/geomcollection-1.png" alt="Illustration of geometry collection." width="30%" />
+<img src="figures/geomcollection-1.png" alt="Illustration of geometry collection." width="576" height="3.708" />
 <p class="caption">(\#fig:geomcollection)Illustration of geometry collection.</p>
 </div>
 
