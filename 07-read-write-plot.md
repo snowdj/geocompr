@@ -167,6 +167,14 @@ Table \@ref(tab:formats) presents some basic information about selected and ofte
 
 <!-- simple features are missing from this table-->
 
+```
+#> Warning in kableExtra::column_spec(., 3, width = "15em"): Please specify
+#> format in kable. kableExtra can customize either HTML or LaTeX outputs. See
+#> https://haozhu233.github.io/kableExtra/ for details.
+```
+
+
+
 Table: (\#tab:formats)Selected spatial file formats.
 
 Name                Extension              Info                                                                                                                                                                                                                                                                                     Type                Model          
@@ -219,16 +227,67 @@ sf_drivers = st_drivers()
 head(sf_drivers, n = 5)
 ```
 
-
-Table: (\#tab:drivers)Sample of available drivers for reading/writing vector data (it could vary between different GDAL versions).
-
-name             long_name                       write   copy    is_raster   is_vector   vsi  
----------------  ------------------------------  ------  ------  ----------  ----------  -----
-ESRI Shapefile   ESRI Shapefile                  TRUE    FALSE   FALSE       TRUE        TRUE 
-GPX              GPX                             TRUE    FALSE   FALSE       TRUE        TRUE 
-KML              Keyhole Markup Language (KML)   TRUE    FALSE   FALSE       TRUE        TRUE 
-GeoJSON          GeoJSON                         TRUE    FALSE   FALSE       TRUE        TRUE 
-GPKG             GeoPackage                      TRUE    TRUE    TRUE        TRUE        TRUE 
+<table>
+<caption>(\#tab:drivers)Sample of available drivers for reading/writing vector data (it could vary between different GDAL versions).</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> name </th>
+   <th style="text-align:left;"> long_name </th>
+   <th style="text-align:left;"> write </th>
+   <th style="text-align:left;"> copy </th>
+   <th style="text-align:left;"> is_raster </th>
+   <th style="text-align:left;"> is_vector </th>
+   <th style="text-align:left;"> vsi </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> ESRI Shapefile </td>
+   <td style="text-align:left;"> ESRI Shapefile </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> FALSE </td>
+   <td style="text-align:left;"> FALSE </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> TRUE </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> GPX </td>
+   <td style="text-align:left;"> GPX </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> FALSE </td>
+   <td style="text-align:left;"> FALSE </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> TRUE </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> KML </td>
+   <td style="text-align:left;"> Keyhole Markup Language (KML) </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> FALSE </td>
+   <td style="text-align:left;"> FALSE </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> TRUE </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> GeoJSON </td>
+   <td style="text-align:left;"> GeoJSON </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> FALSE </td>
+   <td style="text-align:left;"> FALSE </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> TRUE </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> GPKG </td>
+   <td style="text-align:left;"> GeoPackage </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> TRUE </td>
+  </tr>
+</tbody>
+</table>
 
 <!-- One of the major advantages of **sf** is that it is fast. -->
 <!-- reference to the vignette -->
@@ -447,20 +506,63 @@ Unsigned integers (INT1U, INT2U, INT4U) are suitable for categorical data, while
 While this works in most cases, the size of the output file will be unnecessarily large if you save binary or categorical data.
 Therefore, we would recommend to use the data type that needs the least storage space but is still able to represent all values (check the range of values with the `summary()` function).
 
-
-Table: (\#tab:datatypes)Data types supported by the raster package.
-
-Data type   Minimum value    Maximum value 
-----------  ---------------  --------------
-LOG1S       FALSE (0)        TRUE (1)      
-INT1S       -127             127           
-INT1U       0                255           
-INT2S       -32,767          32,767        
-INT2U       0                65,534        
-INT4S       -2,147,483,647   2,147,483,647 
-INT4U       0                4,294,967,296 
-FLT4S       -3.4e+38         3.4e+38       
-FLT8S       -1.7e+308        1.7e+308      
+<table>
+<caption>(\#tab:datatypes)Data types supported by the raster package.</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Data type </th>
+   <th style="text-align:left;"> Minimum value </th>
+   <th style="text-align:left;"> Maximum value </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> LOG1S </td>
+   <td style="text-align:left;"> FALSE (0) </td>
+   <td style="text-align:left;"> TRUE (1) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> INT1S </td>
+   <td style="text-align:left;"> -127 </td>
+   <td style="text-align:left;"> 127 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> INT1U </td>
+   <td style="text-align:left;"> 0 </td>
+   <td style="text-align:left;"> 255 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> INT2S </td>
+   <td style="text-align:left;"> -32,767 </td>
+   <td style="text-align:left;"> 32,767 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> INT2U </td>
+   <td style="text-align:left;"> 0 </td>
+   <td style="text-align:left;"> 65,534 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> INT4S </td>
+   <td style="text-align:left;"> -2,147,483,647 </td>
+   <td style="text-align:left;"> 2,147,483,647 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> INT4U </td>
+   <td style="text-align:left;"> 0 </td>
+   <td style="text-align:left;"> 4,294,967,296 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> FLT4S </td>
+   <td style="text-align:left;"> -3.4e+38 </td>
+   <td style="text-align:left;"> 3.4e+38 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> FLT8S </td>
+   <td style="text-align:left;"> -1.7e+308 </td>
+   <td style="text-align:left;"> 1.7e+308 </td>
+  </tr>
+</tbody>
+</table>
 
 The file extension determines the output file when saving a `Raster*` object to disk.
 For example, the `.tif` extension will create a GeoTIFF file:
