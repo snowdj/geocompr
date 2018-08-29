@@ -376,16 +376,16 @@ data("metro_names", package = "spDataLarge")
 
 Table: (\#tab:metro-names)Result of the reverse geocoding.
 
-locality            country 
-------------------  --------
-Hamburg             Germany 
-Berlin              Germany 
-Wülfrath            Germany 
-Leipzig             Germany 
-Frankfurt am Main   Germany 
-Nürnberg            Germany 
-Stuttgart           Germany 
-München             Germany 
+locality            administrative_area_level_1 
+------------------  ----------------------------
+Hamburg             Hamburg                     
+Berlin              Berlin                      
+Wülfrath            Nordrhein-Westfalen         
+Leipzig             Sachsen                     
+Frankfurt am Main   Hessen                      
+Nürnberg            Bayern                      
+Stuttgart           Baden-Württemberg           
+München             Bayern                      
 
 Overall, we are satisfied with the `locality` column serving as metropolitan names (Table \@ref(tab:metro-names)) apart from one exception, namely Wülfrath.
 Hence, we replace Wülfrath with the corresponding name in the `administrative_area_level_2` column, that is Düsseldorf (Fig. \@ref(fig:metro-areas)).
