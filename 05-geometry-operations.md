@@ -1,5 +1,5 @@
 
-# Geometric operations
+# Geometry operations {#geometric-operations}
 
 ## Prerequisites {-}
 
