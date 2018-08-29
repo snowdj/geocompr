@@ -169,6 +169,16 @@ T1 = rbind(O, poly_mat[2:3, ], O) # create 'triangle matrix'
 C1 = (T1[1, ] + T1[2, ] + T1[3, ]) / 3 # find centroid
 ```
 
+
+```
+#> Warning in par(old_par): graphical parameter "cin" cannot be set
+#> Warning in par(old_par): graphical parameter "cra" cannot be set
+#> Warning in par(old_par): graphical parameter "csi" cannot be set
+#> Warning in par(old_par): graphical parameter "cxy" cannot be set
+#> Warning in par(old_par): graphical parameter "din" cannot be set
+#> Warning in par(old_par): graphical parameter "page" cannot be set
+```
+
 <div class="figure" style="text-align: center">
 <img src="figures/polymat-1.png" alt="Illustration of polygon centroid calculation problem." width="576" />
 <p class="caption">(\#fig:polymat)Illustration of polygon centroid calculation problem.</p>

@@ -390,7 +390,7 @@ Of course, we would like to inspect our result visually (Figure \@ref(fig:saga-t
 To load and plot the SAGA output file, we use the **raster** package. 
 
 <div class="figure" style="text-align: center">
-<img src="figures/09_twi.png" alt="SAGA wetness index of Mount Mongón, Peru." width="70%" />
+<img src="figures/09_twi.png" alt="SAGA wetness index of Mount Mongón, Peru." width="50%" />
 <p class="caption">(\#fig:saga-twi)SAGA wetness index of Mount Mongón, Peru.</p>
 </div>
 
@@ -580,7 +580,7 @@ execGRASS(cmd = "v.net.salesman", input = "streets_points_con",
 To visualize our result, we import the output layer into R, convert it into an sf-object keeping only the geometry and visualize it with the help of the **mapview** package (Figure \@ref(fig:grass-mapview)).
 
 <div class="figure" style="text-align: center">
-<img src="figures/09_shortest_route.png" alt="Shortest route between 24 cycle hire station on the OSM street network of London." width="496" />
+<img src="figures/09_shortest_route.png" alt="Shortest route between 24 cycle hire station on the OSM street network of London." width="80%" />
 <p class="caption">(\#fig:grass-mapview)Shortest route between 24 cycle hire station on the OSM street network of London.</p>
 </div>
 
@@ -801,7 +801,7 @@ RPostgreSQL::postgresqlCloseConnection(conn)
 
 
 <div class="figure" style="text-align: center">
-<img src="figures/postgis-1.png" alt="Visualization of the output of previous PostGIS commands showing the highway (black line), a buffer (light yellow) and three restaurants (lightblue points) within the buffer." width="40%" />
+<img src="figures/postgis-1.png" alt="Visualization of the output of previous PostGIS commands showing the highway (black line), a buffer (light yellow) and three restaurants (lightblue points) within the buffer." width="60%" />
 <p class="caption">(\#fig:postgis)Visualization of the output of previous PostGIS commands showing the highway (black line), a buffer (light yellow) and three restaurants (lightblue points) within the buffer.</p>
 </div>
 
