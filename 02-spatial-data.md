@@ -734,7 +734,7 @@ Simple features are, in essence, data frames with a spatial extension.
 
 The geographic raster data model usually consists of a raster header
 and a matrix (with rows and columns) representing equally spaced cells (often also called pixels; Figure \@ref(fig:raster-intro-plot):A).^[
-Depending on the file format the header is part of the actual image data file, e.g., GeoTiff, or stored in an extra header or world file, e.g., ASCII grid formats. There is also the headerless (flat) binary raster format which should fascilitate the import into various software programs.
+Depending on the file format the header is part of the actual image data file, e.g., GeoTIFF, or stored in an extra header or world file, e.g., ASCII grid formats. There is also the headerless (flat) binary raster format which should fascilitate the import into various software programs.
 <!-- To convert these files into other raster formats requiring a header information, the user is often forced to provide the header information manually, see e.g. https://lta.cr.usgs.gov/glcc/technote. -->
 ]
 The raster header defines the coordinate reference system, the extent and the origin.
@@ -1100,7 +1100,7 @@ For this, we need to read-in a vector dataset:
 
 
 ```r
-vector_filepath = system.file("vector/zion.gpkg", package="spDataLarge")
+vector_filepath = system.file("vector/zion.gpkg", package = "spDataLarge")
 new_vector = st_read(vector_filepath)
 ```
 
@@ -1123,8 +1123,30 @@ new_vector = st_set_crs(new_vector, 26912) # set CRS
 
 The warning message informs us that the `st_set_crs()` function does not transform data from one CRS to another.
 
+
+```
+#> ── Attaching packages ────────────────────────────────── tidyverse 1.2.1 ──
+#> ✔ ggplot2 3.0.0.9000     ✔ purrr   0.2.4     
+#> ✔ tibble  1.4.2          ✔ dplyr   0.7.5     
+#> ✔ tidyr   0.8.0          ✔ stringr 1.3.1     
+#> ✔ readr   1.1.1          ✔ forcats 0.3.0
+#> ── Conflicts ───────────────────────────────────── tidyverse_conflicts() ──
+#> ✖ dplyr::combine() masks gridExtra::combine()
+#> ✖ tidyr::extract() masks raster::extract()
+#> ✖ dplyr::filter()  masks stats::filter()
+#> ✖ dplyr::lag()     masks stats::lag()
+#> ✖ dplyr::select()  masks raster::select()
+#> Reading layer `zion' from data source `/home/travis/R/Library/spDataLarge/vector/zion.gpkg' using driver `GPKG'
+#> Simple feature collection with 1 feature and 11 fields
+#> geometry type:  POLYGON
+#> dimension:      XY
+#> bbox:           xmin: 303000 ymin: 4110000 xmax: 335000 ymax: 4150000
+#> epsg (SRID):    NA
+#> proj4string:    +proj=utm +zone=12 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs
+```
+
 <div class="figure" style="text-align: center">
-<img src="figures/02_vector_crs.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a vector data type." width="765" />
+<img src="figures/vector-crs-1.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a vector data type." width="576" />
 <p class="caption">(\#fig:vector-crs)Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a vector data type.</p>
 </div>
 
@@ -1145,8 +1167,20 @@ projection(new_raster) = "+proj=utm +zone=12 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0
                             +units=m +no_defs" # set CRS
 ```
 
+
+```
+#> Loading required package: lattice
+#> Loading required package: latticeExtra
+#> Loading required package: RColorBrewer
+#> 
+#> Attaching package: 'latticeExtra'
+#> The following object is masked from 'package:ggplot2':
+#> 
+#>     layer
+```
+
 <div class="figure" style="text-align: center">
-<img src="figures/02_raster_crs.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a raster data type" width="475" />
+<img src="figures/raster-crs-1.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a raster data type" width="576" />
 <p class="caption">(\#fig:raster-crs)Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a raster data type</p>
 </div>
 
@@ -1218,7 +1252,7 @@ If we used the WGS84 projection, the units would change.
 ```r
 repr = projectRaster(new_raster, crs = "+init=epsg:4326")
 res(repr)
-#> [1] 7.47e-09 7.52e-09
+#> [1] 0.000833 0.000833
 ```
 
 Again, the `res()` command gives back a numeric vector without any unit, forcing us to know that the unit of the WGS84 projection is decimal degrees.
