@@ -98,8 +98,8 @@ tm_shape(nz) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="figures/tmshape-1.png" alt="New Zealand's shape plotted with fill (left), border (middle) and fill *and* border (right) layers added using **tmap** functions." width="576" />
-<p class="caption">(\#fig:tmshape)New Zealand's shape plotted with fill (left), border (middle) and fill *and* border (right) layers added using **tmap** functions.</p>
+<img src="figures/tmshape-1.png" alt="New Zealand's shape plotted with fill (left), border (middle) and fill and border (right) layers added using tmap functions." width="576" />
+<p class="caption">(\#fig:tmshape)New Zealand's shape plotted with fill (left), border (middle) and fill and border (right) layers added using tmap functions.</p>
 </div>
 
 The object passed to `tm_shape()` in this case is `nz`, an `sf` object representing the regions of New Zealand (see section \@ref(intro-sf) for more on `sf` objects).
@@ -787,8 +787,8 @@ shinyApp(ui, server)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="https://user-images.githubusercontent.com/1825120/39690606-8f9400c8-51d2-11e8-84d7-f4a66a477d2a.png" alt="Screenshot showing minimal example of a web mapping application created with **shiny**."  />
-<p class="caption">(\#fig:lifeApp)Screenshot showing minimal example of a web mapping application created with **shiny**.</p>
+<img src="https://user-images.githubusercontent.com/1825120/39690606-8f9400c8-51d2-11e8-84d7-f4a66a477d2a.png" alt="Screenshot showing minimal example of a web mapping application created with shiny."  />
+<p class="caption">(\#fig:lifeApp)Screenshot showing minimal example of a web mapping application created with shiny.</p>
 </div>
 
 The **user interface** (`ui`) of lifeApp is created by `fluidPage()`.
