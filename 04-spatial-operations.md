@@ -481,7 +481,7 @@ The result of the previous operation is illustrated in Figure \@ref(fig:spatial-
 The same result can also be generated using the 'tidy' functions `group_by()` and `summarize()` (used in combination with `st_join()`):
 
 <div class="figure" style="text-align: center">
-<img src="figures/spatial-aggregation-1.png" alt="Average height of the top 101 high points across the regions of New Zealand." width="576" />
+<img src="figures/spatial-aggregation-1.png" alt="Average height of the top 101 high points across the regions of New Zealand." width="50%" />
 <p class="caption">(\#fig:spatial-aggregation)Average height of the top 101 high points across the regions of New Zealand.</p>
 </div>
 
@@ -508,7 +508,7 @@ It helps to transfer data from one set of areal units to another.
 A number of algorithms have been developed for areal interpolation, including area weighted and pycnophylactic interpolation methods [@tobler_smooth_1979].
 
 <div class="figure" style="text-align: center">
-<img src="figures/areal-example-1.png" alt="Illustration of congruent (left) and incongruent (right) areal units with respect to larger aggregating zones (translucent blue borders)." width="576" />
+<img src="figures/areal-example-1.png" alt="Illustration of congruent (left) and incongruent (right) areal units with respect to larger aggregating zones (translucent blue borders)." width="100%" />
 <p class="caption">(\#fig:areal-example)Illustration of congruent (left) and incongruent (right) areal units with respect to larger aggregating zones (translucent blue borders).</p>
 </div>
 

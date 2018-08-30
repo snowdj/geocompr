@@ -255,7 +255,7 @@ plot(y = sc[, 1], x = elev, xlab = "elevation in m",
 ```
 
 <div class="figure" style="text-align: center">
-<img src="figures/xy-nmds-1.png" alt="Plotting the first NMDS axis against altitude." width="576" />
+<img src="figures/xy-nmds-1.png" alt="Plotting the first NMDS axis against altitude." width="60%" />
 <p class="caption">(\#fig:xy-nmds)Plotting the first NMDS axis against altitude.</p>
 </div>
 
