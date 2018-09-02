@@ -693,7 +693,7 @@ This gives remote routing services various advantages, including that they usual
 </ul>
 <!-- , explaining this section's focus on online routing services. -->
 <p>Disadvantages of remote routing services include speed (they rely on data transfer over the internet) and price (the Google routing API, for example, has a limit of 2500 free queries per day).
-The <strong>googleway</strong> package provides an interface to Google’s routing API
+The <strong>googleway</strong> package provides an interface to Google’s routing API.
 <!-- Todo: add link to Mark's presentation on dodgr vs Google routing costs (RL) -->
 Free (but rate limited) routing service include <a href="http://project-osrm.org/">OSRM</a> and <a href="https://openrouteservice.org/">openrouteservice.org</a>.</p>
 <p>Instead of routing <em>all</em> desire lines generated in the previous section, which would be time and memory-consuming, we will focus on the desire lines of policy interest.
@@ -721,9 +721,9 @@ Making the width of the routes proportional to the number of car journeys that c
 <!-- This is because zone centroids rarely lie on the route network: instead the route originate from the transport network node nearest the centroid. -->
 <!-- Note also that routes are assumed to originate in the zone centroids, a simplifying assumption which is used in transport models to reduce the computational resources needed to calculate the shortest path between all combinations of possible origins and destinations [@hollander_transport_2016]. -->
 <!-- ]: -->
-<p>Plotting the results on an interactive map, with <code>mapview::mapview(desire_carshort)</code> for example, shows that many short car trips take place in and around Bradley Stoke.
-This should come as no surprise: according to its <a href="https://en.wikipedia.org/wiki/Bradley_Stoke">Wikipedia</a>, entry Bradley Stoke is “Europe’s largest new town built with private investment”, suggesting limited public transport provision.
-The excessive number of short car journeys in this area can also be understood in terms of the car-orientated transport infrastructure surrounding this northern ‘edge city’ which includes “major transport nodes such as junctions on both the M4 and M5 motorways” <span class="citation">(Tallon <a href="#ref-tallon_bristol_2007">2007</a>)</span>.</p>
+<p>Plotting the results on an interactive map, with <code>mapview::mapview(desire_carshort$geom_car)</code> for example, shows that many short car trips take place in and around Bradley Stoke.
+Some internet research helps explain why this location has high car dependency: according to its <a href="https://en.wikipedia.org/wiki/Bradley_Stoke">Wikipedia</a>, entry Bradley Stoke is “Europe’s largest new town built with private investment”, suggesting limited public transport provision.
+The excessive number of short car journeys in this area can also be understood in terms of the car-orientated transport infrastructure surrounding this northern ‘edge city’ which includes “major transport nodes such as junctions on both the M4 and M5 motorways”, large inter-city roads <span class="citation">(Tallon <a href="#ref-tallon_bristol_2007">2007</a>)</span>.</p>
 <p>There are many benefits of converting travel desire lines into likely routes of travel from a policy perspective, primary among them the ability to understand what it is about the surrounding environment that makes people travel by a particular mode.
 We discuss future directions of research building on the routes in section <a href="transport.html#future-directions-of-travel">12.9</a>.
 For the purposes of this case study, suffice to say that the roads along which these short car journeys travel should be prioritized for investigation to understand how they can be made more conducive to sustainable transport modes.
