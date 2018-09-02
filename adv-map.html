@@ -1032,11 +1032,14 @@ The example contains some of the components of a web mapping application impleme
 These include <code>reactive()</code> and <code>observe()</code> (for creating outputs that respond to the user interface — see <code>?reactive</code>) and <code>leafletProxy()</code> (for modifying a <code>leaflet</code> object that has already been created).
 Such elements are critical to the creation of web mapping applications implemented in <strong>shiny</strong>.
 A range of ‘events’ can be programmed including advanced functionality such as drawing new layers or subsetting data, as described in the shiny section of RStudio’s <strong>leaflet</strong> <a href="https://rstudio.github.io/leaflet/shiny.html">website.</a></p>
+
 <div class="rmdnote">
-<p>
-There are a number of ways to run a <strong>shiny</strong> app. For RStudio users the simplest way is probably to click on the ‘Run App’ button located in the top right of the source pane when an <code>app.R</code>, <code>ui.R</code> or <code>server.R</code> script is open. <strong>shiny</strong> apps can also be initiated by using <code>runApp()</code> with the first argument being the folder containing the app code and data: <code>runApp(“coffeeApp”)</code> in this case (which assumes a folder named <code>coffeeApp</code> containing the <code>app.R</code> script is in your working directory). You can also launch apps from a Unix command line with the command <code>Rscript -e ‘shiny::runApp(“coffeeApp”)’</code>.
-</p>
+There are a number of ways to run a <strong>shiny</strong> app.
+For RStudio users the simplest way is probably to click on the ‘Run App’ button located in the top right of the source pane when an <code>app.R</code>, <code>ui.R</code> or <code>server.R</code> script is open.
+<strong>shiny</strong> apps can also be initiated by using <code>runApp()</code> with the first argument being the folder containing the app code and data: <code>runApp(&quot;coffeeApp&quot;)</code> in this case (which assumes a folder named <code>coffeeApp</code> containing the <code>app.R</code> script is in your working directory).
+You can also launch apps from a Unix command line with the command <code>Rscript -e 'shiny::runApp(&quot;coffeeApp&quot;)'</code>.
 </div>
+
 <p>Experimenting with apps such as <code>coffeeApp</code> will build not only your knowledge of web mapping applications in R but your practical skills.
 Changing the contents of <code>setView()</code>, for example, will change the starting bounding box that the user sees when the app is initiated.
 Such experimentation should not be done at random, but with reference to relevant documentation, starting with <code>?shiny</code>, and motivated by a desire to solve problems such as those posed in the exercises.</p>

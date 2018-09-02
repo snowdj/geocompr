@@ -812,9 +812,10 @@ These include `reactive()` and `observe()` (for creating outputs that respond to
 Such elements are critical to the creation of web mapping applications implemented in **shiny**.
 A range of 'events' can be programmed including advanced functionality such as drawing new layers or subsetting data, as described in the shiny section of RStudio's **leaflet** [website.](https://rstudio.github.io/leaflet/shiny.html)
 
-<div class="rmdnote">
-<p>There are a number of ways to run a <strong>shiny</strong> app. For RStudio users the simplest way is probably to click on the ‘Run App’ button located in the top right of the source pane when an <code>app.R</code>, <code>ui.R</code> or <code>server.R</code> script is open. <strong>shiny</strong> apps can also be initiated by using <code>runApp()</code> with the first argument being the folder containing the app code and data: <code>runApp(&quot;coffeeApp&quot;)</code> in this case (which assumes a folder named <code>coffeeApp</code> containing the <code>app.R</code> script is in your working directory). You can also launch apps from a Unix command line with the command <code>Rscript -e 'shiny::runApp(&quot;coffeeApp&quot;)'</code>.</p>
-</div>
+\BeginKnitrBlock{rmdnote}<div class="rmdnote">There are a number of ways to run a **shiny** app.
+For RStudio users the simplest way is probably to click on the 'Run App' button located in the top right of the source pane when an `app.R`, `ui.R` or `server.R` script is open.
+**shiny** apps can also be initiated by using `runApp()` with the first argument being the folder containing the app code and data: `runApp("coffeeApp")` in this case (which assumes a folder named `coffeeApp` containing the `app.R` script is in your working directory).
+You can also launch apps from a Unix command line with the command `Rscript -e 'shiny::runApp("coffeeApp")'`.</div>\EndKnitrBlock{rmdnote}
 
 Experimenting with apps such as `coffeeApp` will build not only your knowledge of web mapping applications in R but your practical skills.
 Changing the contents of `setView()`, for example, will change the starting bounding box that the user sees when the app is initiated.
