@@ -496,9 +496,8 @@ Layers are added to represent <code>nz</code> visually, with <code>tm_fill()</co
 <p>This is an intuitive approach to map making:
 the common task of <em>adding</em> new layers is undertaken by the addition operator <code>+</code>, followed by <code>tm_*()</code>.
 The asterisk (*) refers to a wide range of layer types which have self-explanatory names including <code>fill</code>, <code>borders</code> (demonstrated above), <code>bubbles</code>, <code>text</code> and <code>raster</code>
-(see the help page <a href="https://www.rdocumentation.org/packages/tmap/versions/2.0/topics/tmap-element"><code>tmap-element</code></a> for a full list).
-This layering is illustrated in the right panel of Figure <a href="adv-map.html#fig:tmshape">8.1</a>, the result of adding a border <em>on top of</em> the fill layer:
-note the <code>tm_borders()</code> call <em>after</em> <code>tm_fill() +</code> in the previous code chunk.</p>
+(see <a href="https://www.rdocumentation.org/packages/tmap/versions/2.0/topics/tmap-element"><code>help(&quot;tmap-element&quot;)</code></a> for a full list).
+This layering is illustrated in the right panel of Figure <a href="adv-map.html#fig:tmshape">8.1</a>, the result of adding a border <em>on top of</em> the fill layer.</p>
 
 <div class="rmdnote">
 <code>qtm()</code> is a handy function for <strong>q</strong>uickly creating <strong>t</strong>map <strong>m</strong>aps (hence the snappy name).
@@ -901,10 +900,10 @@ Figure 8.18: Interactive map of New Zealand created with tmap in view mode.
 </p>
 </div>
 <p>Now that the interactive mode has been ‘turned on’, all maps produced with <strong>tmap</strong> will launch (another way to create interactive maps is with the <code>tmap_leaflet</code> function) .
-Notable features of this interactive mode include the ability to specify the basemap using the <code>basemaps</code> argument in the function <code>tm_view()</code> (also see <code>?tm_basemap</code>), as demonstrated below (the result, a map of New Zealand with an interactive topographic basemap, is not shown):</p>
+Notable features of this interactive mode include the ability to specify the basemap with <code>tm_basemap()</code> (or <code>tmap_options()</code>) as demonstrated below (result not shown):</p>
 <div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb287-1" data-line-number="1">basemap =<span class="st"> </span>leaflet<span class="op">::</span>providers<span class="op">$</span>OpenTopoMap</a>
 <a class="sourceLine" id="cb287-2" data-line-number="2">map_nz <span class="op">+</span></a>
-<a class="sourceLine" id="cb287-3" data-line-number="3"><span class="st">  </span><span class="kw">tm_view</span>(<span class="dt">basemaps =</span> basemap)</a></code></pre></div>
+<a class="sourceLine" id="cb287-3" data-line-number="3"><span class="st">  </span><span class="kw">tm_basemap</span>(<span class="dt">server =</span> basemap)</a></code></pre></div>
 <p>An impressive and little-known feature of <strong>tmap</strong>’s view mode is that it also works with faceted plots.
 The argument <code>sync</code> in <code>tm_facets()</code> can be used in this case to produce multiple maps with synchronized zoom and pan settings, as illustrated in Figure <a href="adv-map.html#fig:sync">8.19</a> which was produced by the following code:</p>
 <div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb288-1" data-line-number="1">world_coffee =<span class="st"> </span><span class="kw">left_join</span>(world, coffee_data, <span class="dt">by =</span> <span class="st">&quot;name_long&quot;</span>)</a>
