@@ -532,7 +532,7 @@ The first column is the ID of the zone of origin and the second column is the zo
 <div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb392-1" data-line-number="1">zones_attr =<span class="st"> </span>bristol_od <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb392-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(o) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb392-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize_if</span>(is.numeric, sum) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb392-4" data-line-number="4"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">geo_code =</span> o)</a></code></pre></div>
+<a class="sourceLine" id="cb392-4" data-line-number="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">rename</span>(<span class="dt">geo_code =</span> o)</a></code></pre></div>
 <p>The preceding chunk performed three main steps:</p>
 <ul>
 <li>Grouped the data by zone of origin (contained in the column <code>o</code>).</li>

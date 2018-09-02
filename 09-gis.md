@@ -129,15 +129,11 @@ Please install the long-term release of QGIS, i.e. 2.18, since **RQGIS** so far 
 
 
 ```r
-devtools::install_github("jannes-m/RQGIS") # use dev version (for now)
 library(RQGIS)
 set_env(dev = FALSE)
 #> $`root`
 #> [1] "C:/OSGeo4W64"
-#> $qgis_prefix_path
-#> [1] "C:/OSGeo4W64/apps/qgis-ltr"
-#> $python_plugins
-#> [1] "C:/OSGeo4W64/apps/qgis-ltr/python/plugins"
+#> ...
 ```
 
 Leaving the `path`-argument of `set_env()` unspecified will search the computer for a QGIS installation.
@@ -171,7 +167,7 @@ Assuming that the short description of the function contains the word "union", w
 
 ```r
 find_algorithms("union", name_only = TRUE)
-#> [1] "qgis:union"        "saga:fuzzyunionor" "saga:union"   
+#> [1] "qgis:union"        "saga:fuzzyunionor" "saga:union"
 ```
 
 If you also want to have a short description for each geoalgorithm, set the `name_only`-parameter to `FALSE`.
