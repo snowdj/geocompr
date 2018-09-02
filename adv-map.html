@@ -460,13 +460,14 @@ Although many new techniques for geographic data visualization have been develop
 <p>Despite the innovation of interactive mapping in R, static maps are still the foundation of mapping in R.
 The generic <code>plot()</code> function is often the fastest way to create static maps from vector and raster spatial objects, as shown in sections <a href="spatial-class.html#basic-map">2.1.3</a> and <a href="spatial-class.html#basic-map-raster">2.2.2</a>.
 Sometimes simplicity and speed are priorities, especially during the development phase of a project, and this is where <code>plot()</code> excels.
-The base R approach is also extensible, with <code>plot()</code> offering dozens of arguments and the <strong>grid</strong> providing functions for low-level control of graphical outputs, — see <em>R Graphics</em> <span class="citation">(Murrell <a href="#ref-murrell_r_2016">2016</a>)</span>, especially Chapter <a href="https://www.stat.auckland.ac.nz/~paul/RG2e/chapter14.html">14</a>.
+The base R approach is also extensible, with <code>plot()</code> offering dozens of arguments.
+Another low-level approach is the <strong>grid</strong> package, which provides functions for low-level control of graphical outputs, — see <em>R Graphics</em> <span class="citation">(Murrell <a href="#ref-murrell_r_2016">2016</a>)</span>, especially Chapter <a href="https://www.stat.auckland.ac.nz/~paul/RG2e/chapter14.html">14</a>.
 The focus of this section, however, is making static maps with <strong>tmap</strong>.</p>
 <p>Why <strong>tmap</strong>?
 It is a powerful and flexible map-making package with sensible defaults.
 It has a concise syntax that allows for the creation of attractive maps with minimal code, that will be familiar to <strong>ggplot2</strong> users.
 Furthermore, <strong>tmap</strong> has a unique capability to generate static and interactive maps using the same code via <code>tmap_mode()</code>.
-It accepts a wider range of spatial classes (including <code>raster</code> objects) than alternatives such as <strong>ggplot2</strong>, as documented in vignettes <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-nutshell.html"><code>tmap-nutshell</code></a> and <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-modes.html"><code>tmap-modes</code></a> and an academic paper on the subject <span class="citation">(Tennekes <a href="#ref-tennekes_tmap_2018">2018</a>)</span>.
+It accepts a wider range of spatial classes (including <code>raster</code> objects) than alternatives such as <strong>ggplot2</strong>, as documented in vignettes <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html"><code>tmap-getstarted</code></a> and <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-changes-v2.html"><code>tmap-changes-v2</code></a> and an academic paper on the subject <span class="citation">(Tennekes <a href="#ref-tennekes_tmap_2018">2018</a>)</span>.
 This section teaches how to make static maps with <strong>tmap</strong>, emphasizing the important aesthetic and layout options.</p>
 <div id="tmap-basics" class="section level3">
 <h3><span class="header-section-number">8.2.1</span> tmap basics</h3>
@@ -843,7 +844,9 @@ See the <a href="https://geocompr.github.io/geocompkg/articles/us-map.html"><cod
 Facets become tiny when many of them are squeezed into a single plot, potentially hiding <em>any</em> spatial relationships.
 Furthermore the fact that each facet is separated by space on the screen or page means that subtle differences between facets can be hard to detect.</p>
 <p>With an increasing proportion of communication happening via digital screens, animated maps are becoming more popular.
-Animated maps can even be useful for paper reports: you can always link readers to a web-page containing an animated (or interactive) version of a printed map to help make it come alive.</p>
+Animated maps can even be useful for paper reports: you can always link readers to a web-page containing an animated (or interactive) version of a printed map to help make it come alive.
+There are many ways to generate animations in R, including with the popular <a href="https://github.com/thomasp85/gganimate"><strong>gganimate</strong></a> package, which provides a “grammar of animaged graphics” (see section <a href="adv-map.html#other-mapping-packages">8.6</a> for more on mapping with <strong>ggplot2</strong>).
+Only <strong>tmap</strong>, to the best of our knowledge, provides a framework for animated maps, hence the focus of this section on <code>animation_tmap()</code>.</p>
 <p>Figure <a href="adv-map.html#fig:urban-animated">8.16</a> is a simple example of an animated map.
 Unlike the faceted plot it does not squeeze multiple maps into a single screen and allows the reader to see how the spatial distribution of the worlds most populous agglomerations evolve over time (see the book’s website for the animated version).</p>
 <div class="figure" style="text-align: center"><span id="fig:urban-animated"></span>
