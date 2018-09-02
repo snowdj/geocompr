@@ -1,5 +1,5 @@
 
-# Spatial operations
+# Spatial data operations
 
 ## Prerequisites {-}
 
