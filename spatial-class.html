@@ -632,8 +632,8 @@ Figure 2.4: Plotting with sf, with multiple variables (left) and a single variab
 </div>
 <p>Plots are added as layers to existing images by setting <code>add = TRUE</code>.<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a>
 To demonstrate this, and to provide a taster of content covered in chapters <a href="attr.html#attr">3</a> and <a href="spatial-operations.html#spatial-operations">4</a> on attribute and spatial data operations, the subsequent code chunk combines countries in Asia:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">asia =<span class="st"> </span>world[world<span class="op">$</span>continent <span class="op">==</span><span class="st"> &quot;Asia&quot;</span>, ]</a>
-<a class="sourceLine" id="cb15-2" data-line-number="2">asia =<span class="st"> </span><span class="kw">st_union</span>(asia)</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">world_asia =<span class="st"> </span>world[world<span class="op">$</span>continent <span class="op">==</span><span class="st"> &quot;Asia&quot;</span>, ]</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">asia =<span class="st"> </span><span class="kw">st_union</span>(world_asia)</a></code></pre></div>
 <p>We can now plot the Asian continent over a map of the world.
 Note that the first plot must only have one facet for <code>add = TRUE</code> to work.
 If the first plot has a key, <code>reset = FALSE</code> must be used (result not shown):</p>
@@ -642,17 +642,10 @@ If the first plot has a key, <code>reset = FALSE</code> must be used (result not
 <p>Adding layers in this way can be used to verify the geographic correspondence between layers:
 the <code>plot()</code> function is fast to execute and requires few lines of code, but does not create interactive maps with a wide range of options.
 For more advanced map making we recommend using dedicated visualization packages such as <strong>tmap</strong> (see Chapter <a href="adv-map.html#adv-map">8</a>).</p>
-<!-- 
-- plot() function 
-- map export 
--->
-<!-- Maybe show also somewhere that `world[0]` produces only a plot of the geometry which is rather useful if you do not want to plot a specific attribute. This way, you can for example dismiss the col = "white"-argument in your Nigeria example.
-Sorry for commenting on this again but just to clarify africa[0] selects zero columns but since the geometry column is sticky it won't be dismissed. Nevertheless, to be more explicit one should probably use plot(st_geometry(africa))-->
 </div>
 <div id="base-args" class="section level3">
 <h3><span class="header-section-number">2.1.4</span> Base plot arguments</h3>
-<p>Advanced map making is covered in detail in Chapter <a href="adv-map.html#adv-map">8</a>.
-However, it is worth knowing how to modify plots using the <strong>sf</strong> package for quick and flexible visualization.
+<p>There are various ways to modify maps with <strong>sf</strong>’s <code>plot()</code> method.
 Because <strong>sf</strong> extends base R plotting methods <code>plot()</code>’s arguments such as <code>main =</code> — which specifies the title of the map — work with <code>sf</code> objects (see <code>?graphics::plot</code> and <code>?par</code>).<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a></p>
 <p>Figure <a href="spatial-class.html#fig:contpop">2.5</a> illustrates this flexibility by overlaying circles, whose diameters (set with <code>cex =</code>) represent country populations, on a map of the world.
 A basic version of the map can be created with the following commands (see exercises at the end of this chapter and the script <a href="https://github.com/Robinlovelace/geocompr/blob/master/code/02-contpop.R"><code>02-contplot.R</code></a> to create Figure <a href="spatial-class.html#fig:contpop">2.5</a>):</p>
@@ -666,9 +659,21 @@ A basic version of the map can be created with the following commands (see exerc
 Figure 2.5: Country continents (represented by fill color) and 2015 populations (represented by circles, with area proportional to population).
 </p>
 </div>
-<p>The code above uses the function <code>st_centroid()</code> to convert one geometry type (polygon) to another (point).
-Here is not the place to explain how the function works (this is covered in Chapter <a href="geometric-operations.html#geometric-operations">5</a>).
-The point is that simple feature geometries can come in different forms, the topic of the next sections.</p>
+<p>The code above uses the function <code>st_centroid()</code> to convert one geometry type (polygons) to another (points) (see Chapter <a href="geometric-operations.html#geometric-operations">5</a>), the aesthetics of which are varied with the <code>cex</code> argument.</p>
+<p><strong>sf</strong>’s plot method also has arguments specific to geographic data. <code>expandBB</code>, for example, can be used plot an <code>sf</code> object in context:
+it takes a numeric vector of length 4 that expands the bounding box of the plot relative to zero in the following order: bottom, left, top, right.
+This is used to plot India in the context of its giant Asian neighbors, with an emphasis on China to the East, in the following code chunk (which generates Figure <a href="spatial-class.html#fig:china">2.6</a>):</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">india =<span class="st"> </span>world[world<span class="op">$</span>name_long <span class="op">==</span><span class="st"> &quot;India&quot;</span>, ]</a>
+<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="kw">plot</span>(<span class="kw">st_geometry</span>(india), <span class="dt">expandBB =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.2</span>, <span class="fl">0.1</span>, <span class="dv">1</span>), <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>, <span class="dt">lwd =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="kw">plot</span>(world_asia[<span class="dv">0</span>], <span class="dt">add =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:china"></span>
+<img src="figures/china-1.png" alt="India in context, demonstrating how the expandBB argument can be used to control zoom in static plots." width="576" />
+<p class="caption">
+Figure 2.6: India in context, demonstrating how the expandBB argument can be used to control zoom in static plots.
+</p>
+</div>
+<p>Note the use of <code>[0]</code> to keep only the geometry column and <code>lwd</code> to emphasize India.
+See section <a href="adv-map.html#other-mapping-packages">8.6</a> for other visualization techniques for representing a range of geometry types, the subject of the next section.</p>
 </div>
 <div id="geometry" class="section level3">
 <h3><span class="header-section-number">2.1.5</span> Geometry types</h3>
@@ -683,23 +688,23 @@ This is why GIS and spatial databases use WKB to transfer and store geometry obj
 WKT, on the other hand, is a human-readable text markup description of simple features.
 Both formats are exchangeable, and if we present one, we will naturally choose the WKT representation.</p>
 <p>The basis for each geometry type is the point.
-A point is simply a coordinate in 2D, 3D or 4D space (see <code>vignette(&quot;sf1&quot;)</code> for more information) such as (see left panel in Figure <a href="spatial-class.html#fig:sfcs">2.6</a>):</p>
+A point is simply a coordinate in 2D, 3D or 4D space (see <code>vignette(&quot;sf1&quot;)</code> for more information) such as (see left panel in Figure <a href="spatial-class.html#fig:sfcs">2.7</a>):</p>
 <ul>
 <li><code>POINT (5 2)</code></li>
 </ul>
-<p>A linestring is a sequence of points with a straight line connecting the points, for example (see middle panel in Figure <a href="spatial-class.html#fig:sfcs">2.6</a>):</p>
+<p>A linestring is a sequence of points with a straight line connecting the points, for example (see middle panel in Figure <a href="spatial-class.html#fig:sfcs">2.7</a>):</p>
 <ul>
 <li><code>LINESTRING (1 5, 4 4, 4 1, 2 2, 3 2)</code></li>
 </ul>
 <p>A polygon is a sequence of points that form a closed, non-intersecting ring.
-Closed means that the first and the last point of a polygon have the same coordinates (see right panel in Figure <a href="spatial-class.html#fig:sfcs">2.6</a>).<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a></p>
+Closed means that the first and the last point of a polygon have the same coordinates (see right panel in Figure <a href="spatial-class.html#fig:sfcs">2.7</a>).<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a></p>
 <ul>
 <li>Polygon without a hole - <code>POLYGON ((1 5, 2 2, 4 1, 4 4, 1 5))</code></li>
 </ul>
 <div class="figure" style="text-align: center"><span id="fig:sfcs"></span>
 <img src="figures/sfcs-1.png" alt="Illustration of point, linestring and polygon geometries." width="576" />
 <p class="caption">
-Figure 2.6: Illustration of point, linestring and polygon geometries.
+Figure 2.7: Illustration of point, linestring and polygon geometries.
 </p>
 </div>
 <p>So far we have created geometries with only one geometric entity per feature.
@@ -712,17 +717,17 @@ However, <strong>sf</strong> also allows multiple geometries to exist within a s
 <div class="figure" style="text-align: center"><span id="fig:multis"></span>
 <img src="figures/multis-1.png" alt="Illustration of multipoint, mutlilinestring and multipolygon geometries." width="576" />
 <p class="caption">
-Figure 2.7: Illustration of multipoint, mutlilinestring and multipolygon geometries.
+Figure 2.8: Illustration of multipoint, mutlilinestring and multipolygon geometries.
 </p>
 </div>
-<p>Finally, a geometrycollection might contain any combination of geometries including (multi)points and linestrings (see Figure <a href="spatial-class.html#fig:geomcollection">2.8</a>):</p>
+<p>Finally, a geometrycollection might contain any combination of geometries including (multi)points and linestrings (see Figure <a href="spatial-class.html#fig:geomcollection">2.9</a>):</p>
 <ul>
 <li>Geometry collection - <code>GEOMETRYCOLLECTION (MULTIPOINT (5 2, 1 3, 3 4, 3 2), LINESTRING (1 5, 4 4, 4 1, 2 2, 3 2))</code></li>
 </ul>
 <div class="figure" style="text-align: center"><span id="fig:geomcollection"></span>
 <img src="figures/geomcollection-1.png" alt="Illustration of geometry collection." width="33%" />
 <p class="caption">
-Figure 2.8: Illustration of geometry collection.
+Figure 2.9: Illustration of geometry collection.
 </p>
 </div>
 </div>
@@ -748,55 +753,55 @@ The names of these functions are simple and consistent, as they all start with t
 <li>A list - any other set, e.g. a multilinestring or geometry collection</li>
 </ol>
 <p>To create point objects, we use the <code>st_point()</code> function in conjunction with a numeric vector:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="co"># note that we use a numeric vector for points</span></a>
-<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="kw">st_point</span>(<span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">2</span>)) <span class="co"># XY point</span></a>
-<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="co">#&gt; POINT (5 2)</span></a>
-<a class="sourceLine" id="cb18-4" data-line-number="4"><span class="kw">st_point</span>(<span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">3</span>)) <span class="co"># XYZ point</span></a>
-<a class="sourceLine" id="cb18-5" data-line-number="5"><span class="co">#&gt; POINT Z (5 2 3)</span></a>
-<a class="sourceLine" id="cb18-6" data-line-number="6"><span class="kw">st_point</span>(<span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">1</span>), <span class="dt">dim =</span> <span class="st">&quot;XYM&quot;</span>) <span class="co"># XYM point</span></a>
-<a class="sourceLine" id="cb18-7" data-line-number="7"><span class="co">#&gt; POINT M (5 2 1)</span></a>
-<a class="sourceLine" id="cb18-8" data-line-number="8"><span class="kw">st_point</span>(<span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>)) <span class="co"># XYZM point</span></a>
-<a class="sourceLine" id="cb18-9" data-line-number="9"><span class="co">#&gt; POINT ZM (5 2 3 1)</span></a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="co"># note that we use a numeric vector for points</span></a>
+<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="kw">st_point</span>(<span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">2</span>)) <span class="co"># XY point</span></a>
+<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="co">#&gt; POINT (5 2)</span></a>
+<a class="sourceLine" id="cb19-4" data-line-number="4"><span class="kw">st_point</span>(<span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">3</span>)) <span class="co"># XYZ point</span></a>
+<a class="sourceLine" id="cb19-5" data-line-number="5"><span class="co">#&gt; POINT Z (5 2 3)</span></a>
+<a class="sourceLine" id="cb19-6" data-line-number="6"><span class="kw">st_point</span>(<span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">1</span>), <span class="dt">dim =</span> <span class="st">&quot;XYM&quot;</span>) <span class="co"># XYM point</span></a>
+<a class="sourceLine" id="cb19-7" data-line-number="7"><span class="co">#&gt; POINT M (5 2 1)</span></a>
+<a class="sourceLine" id="cb19-8" data-line-number="8"><span class="kw">st_point</span>(<span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>)) <span class="co"># XYZM point</span></a>
+<a class="sourceLine" id="cb19-9" data-line-number="9"><span class="co">#&gt; POINT ZM (5 2 3 1)</span></a></code></pre></div>
 <!-- is this really important? -->
 <p>XY, XYZ and XYZM types of points are automatically created based on the length of a numeric vector.
 Only the XYM type needs to be specified using a <code>dim</code> argument.</p>
 <p>By contrast, use matrices in the case of multipoint (<code>st_multipoint()</code>) and linestring (<code>st_linestring()</code>) objects:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="co"># the rbind function simplifies the creation of matrices</span></a>
-<a class="sourceLine" id="cb19-2" data-line-number="2">## MULTIPOINT</a>
-<a class="sourceLine" id="cb19-3" data-line-number="3">multipoint_matrix =<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb19-4" data-line-number="4"><span class="kw">st_multipoint</span>(multipoint_matrix)</a>
-<a class="sourceLine" id="cb19-5" data-line-number="5"><span class="co">#&gt; MULTIPOINT (5 2, 1 3, 3 4, 3 2)</span></a>
-<a class="sourceLine" id="cb19-6" data-line-number="6">## LINESTRING</a>
-<a class="sourceLine" id="cb19-7" data-line-number="7">linestring_matrix =<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb19-8" data-line-number="8"><span class="kw">st_linestring</span>(linestring_matrix)</a>
-<a class="sourceLine" id="cb19-9" data-line-number="9"><span class="co">#&gt; LINESTRING (1 5, 4 4, 4 1, 2 2, 3 2)</span></a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="co"># the rbind function simplifies the creation of matrices</span></a>
+<a class="sourceLine" id="cb20-2" data-line-number="2">## MULTIPOINT</a>
+<a class="sourceLine" id="cb20-3" data-line-number="3">multipoint_matrix =<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb20-4" data-line-number="4"><span class="kw">st_multipoint</span>(multipoint_matrix)</a>
+<a class="sourceLine" id="cb20-5" data-line-number="5"><span class="co">#&gt; MULTIPOINT (5 2, 1 3, 3 4, 3 2)</span></a>
+<a class="sourceLine" id="cb20-6" data-line-number="6">## LINESTRING</a>
+<a class="sourceLine" id="cb20-7" data-line-number="7">linestring_matrix =<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb20-8" data-line-number="8"><span class="kw">st_linestring</span>(linestring_matrix)</a>
+<a class="sourceLine" id="cb20-9" data-line-number="9"><span class="co">#&gt; LINESTRING (1 5, 4 4, 4 1, 2 2, 3 2)</span></a></code></pre></div>
 <p>Finally, use lists for the creation of multilinestrings, (multi-)polygons and geometry collections:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">## POLYGON</a>
-<a class="sourceLine" id="cb20-2" data-line-number="2">polygon_list =<span class="st"> </span><span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>)))</a>
-<a class="sourceLine" id="cb20-3" data-line-number="3"><span class="kw">st_polygon</span>(polygon_list)</a>
-<a class="sourceLine" id="cb20-4" data-line-number="4"><span class="co">#&gt; POLYGON ((1 5, 2 2, 4 1, 4 4, 1 5))</span></a></code></pre></div>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">## POLYGON with a hole</a>
-<a class="sourceLine" id="cb21-2" data-line-number="2">polygon_border =<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>))</a>
-<a class="sourceLine" id="cb21-3" data-line-number="3">polygon_hole =<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>))</a>
-<a class="sourceLine" id="cb21-4" data-line-number="4">polygon_with_hole_list =<span class="st"> </span><span class="kw">list</span>(polygon_border, polygon_hole)</a>
-<a class="sourceLine" id="cb21-5" data-line-number="5"><span class="kw">st_polygon</span>(polygon_with_hole_list)</a>
-<a class="sourceLine" id="cb21-6" data-line-number="6"><span class="co">#&gt; POLYGON ((1 5, 2 2, 4 1, 4 4, 1 5), (2 4, 3 4, 3 3, 2 3, 2 4))</span></a></code></pre></div>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">## MULTILINESTRING</a>
-<a class="sourceLine" id="cb22-2" data-line-number="2">multilinestring_list =<span class="st"> </span><span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>)), </a>
-<a class="sourceLine" id="cb22-3" data-line-number="3">                            <span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)))</a>
-<a class="sourceLine" id="cb22-4" data-line-number="4"><span class="kw">st_multilinestring</span>((multilinestring_list))</a>
-<a class="sourceLine" id="cb22-5" data-line-number="5"><span class="co">#&gt; MULTILINESTRING ((1 5, 4 4, 4 1, 2 2, 3 2), (1 2, 2 4))</span></a></code></pre></div>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">## MULTIPOLYGON</a>
-<a class="sourceLine" id="cb23-2" data-line-number="2">multipolygon_list =<span class="st"> </span><span class="kw">list</span>(<span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>))),</a>
-<a class="sourceLine" id="cb23-3" data-line-number="3">                         <span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">2</span>))))</a>
-<a class="sourceLine" id="cb23-4" data-line-number="4"><span class="kw">st_multipolygon</span>(multipolygon_list)</a>
-<a class="sourceLine" id="cb23-5" data-line-number="5"><span class="co">#&gt; MULTIPOLYGON (((1 5, 2 2, 4 1, 4 4, 1 5)), ((0 2, 1 2, 1 3, 0 3, 0 2)))</span></a></code></pre></div>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">## GEOMETRYCOLLECTION</a>
-<a class="sourceLine" id="cb24-2" data-line-number="2">gemetrycollection_list =<span class="st"> </span><span class="kw">list</span>(<span class="kw">st_multipoint</span>(multipoint_matrix),</a>
-<a class="sourceLine" id="cb24-3" data-line-number="3">                              <span class="kw">st_linestring</span>(linestring_matrix))</a>
-<a class="sourceLine" id="cb24-4" data-line-number="4"><span class="kw">st_geometrycollection</span>(gemetrycollection_list)</a>
-<a class="sourceLine" id="cb24-5" data-line-number="5"><span class="co">#&gt; GEOMETRYCOLLECTION (MULTIPOINT (5 2, 1 3, 3 4, 3 2),</span></a>
-<a class="sourceLine" id="cb24-6" data-line-number="6"><span class="co">#&gt;   LINESTRING (1 5, 4 4, 4 1, 2 2, 3 2))</span></a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">## POLYGON</a>
+<a class="sourceLine" id="cb21-2" data-line-number="2">polygon_list =<span class="st"> </span><span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>)))</a>
+<a class="sourceLine" id="cb21-3" data-line-number="3"><span class="kw">st_polygon</span>(polygon_list)</a>
+<a class="sourceLine" id="cb21-4" data-line-number="4"><span class="co">#&gt; POLYGON ((1 5, 2 2, 4 1, 4 4, 1 5))</span></a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">## POLYGON with a hole</a>
+<a class="sourceLine" id="cb22-2" data-line-number="2">polygon_border =<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>))</a>
+<a class="sourceLine" id="cb22-3" data-line-number="3">polygon_hole =<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>))</a>
+<a class="sourceLine" id="cb22-4" data-line-number="4">polygon_with_hole_list =<span class="st"> </span><span class="kw">list</span>(polygon_border, polygon_hole)</a>
+<a class="sourceLine" id="cb22-5" data-line-number="5"><span class="kw">st_polygon</span>(polygon_with_hole_list)</a>
+<a class="sourceLine" id="cb22-6" data-line-number="6"><span class="co">#&gt; POLYGON ((1 5, 2 2, 4 1, 4 4, 1 5), (2 4, 3 4, 3 3, 2 3, 2 4))</span></a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">## MULTILINESTRING</a>
+<a class="sourceLine" id="cb23-2" data-line-number="2">multilinestring_list =<span class="st"> </span><span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>)), </a>
+<a class="sourceLine" id="cb23-3" data-line-number="3">                            <span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)))</a>
+<a class="sourceLine" id="cb23-4" data-line-number="4"><span class="kw">st_multilinestring</span>((multilinestring_list))</a>
+<a class="sourceLine" id="cb23-5" data-line-number="5"><span class="co">#&gt; MULTILINESTRING ((1 5, 4 4, 4 1, 2 2, 3 2), (1 2, 2 4))</span></a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">## MULTIPOLYGON</a>
+<a class="sourceLine" id="cb24-2" data-line-number="2">multipolygon_list =<span class="st"> </span><span class="kw">list</span>(<span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>))),</a>
+<a class="sourceLine" id="cb24-3" data-line-number="3">                         <span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">2</span>))))</a>
+<a class="sourceLine" id="cb24-4" data-line-number="4"><span class="kw">st_multipolygon</span>(multipolygon_list)</a>
+<a class="sourceLine" id="cb24-5" data-line-number="5"><span class="co">#&gt; MULTIPOLYGON (((1 5, 2 2, 4 1, 4 4, 1 5)), ((0 2, 1 2, 1 3, 0 3, 0 2)))</span></a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">## GEOMETRYCOLLECTION</a>
+<a class="sourceLine" id="cb25-2" data-line-number="2">gemetrycollection_list =<span class="st"> </span><span class="kw">list</span>(<span class="kw">st_multipoint</span>(multipoint_matrix),</a>
+<a class="sourceLine" id="cb25-3" data-line-number="3">                              <span class="kw">st_linestring</span>(linestring_matrix))</a>
+<a class="sourceLine" id="cb25-4" data-line-number="4"><span class="kw">st_geometrycollection</span>(gemetrycollection_list)</a>
+<a class="sourceLine" id="cb25-5" data-line-number="5"><span class="co">#&gt; GEOMETRYCOLLECTION (MULTIPOINT (5 2, 1 3, 3 4, 3 2),</span></a>
+<a class="sourceLine" id="cb25-6" data-line-number="6"><span class="co">#&gt;   LINESTRING (1 5, 4 4, 4 1, 2 2, 3 2))</span></a></code></pre></div>
 <!-- table -->
 <!-- figure - image/fig1.jpg -->
 <!-- they are interconnected - points could create mulitpoints or lines; -->
@@ -809,48 +814,48 @@ Only the XYM type needs to be specified using a <code>dim</code> argument.</p>
 A simple feature geometry column (<code>sfc</code>) is a list of <code>sfg</code> objects, which is additionally able to contain information about the coordinate reference system in use.
 For instance, to combine two simple features into one object with two features, we can use the <code>st_sfc()</code> function.
 This is important since <code>sfc</code> represents the geometry column in <strong>sf</strong> data frames:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="co"># sfc POINT</span></a>
-<a class="sourceLine" id="cb25-2" data-line-number="2">point1 =<span class="st"> </span><span class="kw">st_point</span>(<span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb25-3" data-line-number="3">point2 =<span class="st"> </span><span class="kw">st_point</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</a>
-<a class="sourceLine" id="cb25-4" data-line-number="4">points_sfc =<span class="st"> </span><span class="kw">st_sfc</span>(point1, point2)</a>
-<a class="sourceLine" id="cb25-5" data-line-number="5">points_sfc</a>
-<a class="sourceLine" id="cb25-6" data-line-number="6"><span class="co">#&gt; Geometry set for 2 features </span></a>
-<a class="sourceLine" id="cb25-7" data-line-number="7"><span class="co">#&gt; geometry type:  POINT</span></a>
-<a class="sourceLine" id="cb25-8" data-line-number="8"><span class="co">#&gt; dimension:      XY</span></a>
-<a class="sourceLine" id="cb25-9" data-line-number="9"><span class="co">#&gt; bbox:           xmin: 1 ymin: 2 xmax: 5 ymax: 3</span></a>
-<a class="sourceLine" id="cb25-10" data-line-number="10"><span class="co">#&gt; epsg (SRID):    NA</span></a>
-<a class="sourceLine" id="cb25-11" data-line-number="11"><span class="co">#&gt; proj4string:    NA</span></a>
-<a class="sourceLine" id="cb25-12" data-line-number="12"><span class="co">#&gt; POINT (5 2)</span></a>
-<a class="sourceLine" id="cb25-13" data-line-number="13"><span class="co">#&gt; POINT (1 3)</span></a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="co"># sfc POINT</span></a>
+<a class="sourceLine" id="cb26-2" data-line-number="2">point1 =<span class="st"> </span><span class="kw">st_point</span>(<span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb26-3" data-line-number="3">point2 =<span class="st"> </span><span class="kw">st_point</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb26-4" data-line-number="4">points_sfc =<span class="st"> </span><span class="kw">st_sfc</span>(point1, point2)</a>
+<a class="sourceLine" id="cb26-5" data-line-number="5">points_sfc</a>
+<a class="sourceLine" id="cb26-6" data-line-number="6"><span class="co">#&gt; Geometry set for 2 features </span></a>
+<a class="sourceLine" id="cb26-7" data-line-number="7"><span class="co">#&gt; geometry type:  POINT</span></a>
+<a class="sourceLine" id="cb26-8" data-line-number="8"><span class="co">#&gt; dimension:      XY</span></a>
+<a class="sourceLine" id="cb26-9" data-line-number="9"><span class="co">#&gt; bbox:           xmin: 1 ymin: 2 xmax: 5 ymax: 3</span></a>
+<a class="sourceLine" id="cb26-10" data-line-number="10"><span class="co">#&gt; epsg (SRID):    NA</span></a>
+<a class="sourceLine" id="cb26-11" data-line-number="11"><span class="co">#&gt; proj4string:    NA</span></a>
+<a class="sourceLine" id="cb26-12" data-line-number="12"><span class="co">#&gt; POINT (5 2)</span></a>
+<a class="sourceLine" id="cb26-13" data-line-number="13"><span class="co">#&gt; POINT (1 3)</span></a></code></pre></div>
 <p>In most cases, an <code>sfc</code> object contains objects of the same geometry type.
 Therefore, when we convert <code>sfg</code> objects of type polygon into a simple feature geometry column, we would also end up with an <code>sfc</code> object of type polygon, which can be verified with <code>st_geometry_type()</code>.
 Equally, a geometry column of multilinestrings would result in an <code>sfc</code> object of type multilinestring:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="co"># sfc POLYGON</span></a>
-<a class="sourceLine" id="cb26-2" data-line-number="2">polygon_list1 =<span class="st"> </span><span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>)))</a>
-<a class="sourceLine" id="cb26-3" data-line-number="3">polygon1 =<span class="st"> </span><span class="kw">st_polygon</span>(polygon_list1)</a>
-<a class="sourceLine" id="cb26-4" data-line-number="4">polygon_list2 =<span class="st"> </span><span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">2</span>)))</a>
-<a class="sourceLine" id="cb26-5" data-line-number="5">polygon2 =<span class="st"> </span><span class="kw">st_polygon</span>(polygon_list2)</a>
-<a class="sourceLine" id="cb26-6" data-line-number="6">polygon_sfc =<span class="st"> </span><span class="kw">st_sfc</span>(polygon1, polygon2)</a>
-<a class="sourceLine" id="cb26-7" data-line-number="7"><span class="kw">st_geometry_type</span>(polygon_sfc)</a>
-<a class="sourceLine" id="cb26-8" data-line-number="8"><span class="co">#&gt; [1] POLYGON POLYGON</span></a>
-<a class="sourceLine" id="cb26-9" data-line-number="9"><span class="co">#&gt; 18 Levels: GEOMETRY POINT LINESTRING POLYGON ... TRIANGLE</span></a></code></pre></div>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="co"># sfc MULTILINESTRING</span></a>
-<a class="sourceLine" id="cb27-2" data-line-number="2">multilinestring_list1 =<span class="st"> </span><span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>)), </a>
-<a class="sourceLine" id="cb27-3" data-line-number="3">                            <span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)))</a>
-<a class="sourceLine" id="cb27-4" data-line-number="4">multilinestring1 =<span class="st"> </span><span class="kw">st_multilinestring</span>((multilinestring_list1))</a>
-<a class="sourceLine" id="cb27-5" data-line-number="5">multilinestring_list2 =<span class="st"> </span><span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">9</span>), <span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">9</span>), <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">6</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">7</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">7</span>)), </a>
-<a class="sourceLine" id="cb27-6" data-line-number="6">                            <span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">7</span>), <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">8</span>)))</a>
-<a class="sourceLine" id="cb27-7" data-line-number="7">multilinestring2 =<span class="st"> </span><span class="kw">st_multilinestring</span>((multilinestring_list2))</a>
-<a class="sourceLine" id="cb27-8" data-line-number="8">multilinestring_sfc =<span class="st"> </span><span class="kw">st_sfc</span>(multilinestring1, multilinestring2)</a>
-<a class="sourceLine" id="cb27-9" data-line-number="9"><span class="kw">st_geometry_type</span>(multilinestring_sfc)</a>
-<a class="sourceLine" id="cb27-10" data-line-number="10"><span class="co">#&gt; [1] MULTILINESTRING MULTILINESTRING</span></a>
-<a class="sourceLine" id="cb27-11" data-line-number="11"><span class="co">#&gt; 18 Levels: GEOMETRY POINT LINESTRING POLYGON ... TRIANGLE</span></a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="co"># sfc POLYGON</span></a>
+<a class="sourceLine" id="cb27-2" data-line-number="2">polygon_list1 =<span class="st"> </span><span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>)))</a>
+<a class="sourceLine" id="cb27-3" data-line-number="3">polygon1 =<span class="st"> </span><span class="kw">st_polygon</span>(polygon_list1)</a>
+<a class="sourceLine" id="cb27-4" data-line-number="4">polygon_list2 =<span class="st"> </span><span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">2</span>)))</a>
+<a class="sourceLine" id="cb27-5" data-line-number="5">polygon2 =<span class="st"> </span><span class="kw">st_polygon</span>(polygon_list2)</a>
+<a class="sourceLine" id="cb27-6" data-line-number="6">polygon_sfc =<span class="st"> </span><span class="kw">st_sfc</span>(polygon1, polygon2)</a>
+<a class="sourceLine" id="cb27-7" data-line-number="7"><span class="kw">st_geometry_type</span>(polygon_sfc)</a>
+<a class="sourceLine" id="cb27-8" data-line-number="8"><span class="co">#&gt; [1] POLYGON POLYGON</span></a>
+<a class="sourceLine" id="cb27-9" data-line-number="9"><span class="co">#&gt; 18 Levels: GEOMETRY POINT LINESTRING POLYGON ... TRIANGLE</span></a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="co"># sfc MULTILINESTRING</span></a>
+<a class="sourceLine" id="cb28-2" data-line-number="2">multilinestring_list1 =<span class="st"> </span><span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>)), </a>
+<a class="sourceLine" id="cb28-3" data-line-number="3">                            <span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)))</a>
+<a class="sourceLine" id="cb28-4" data-line-number="4">multilinestring1 =<span class="st"> </span><span class="kw">st_multilinestring</span>((multilinestring_list1))</a>
+<a class="sourceLine" id="cb28-5" data-line-number="5">multilinestring_list2 =<span class="st"> </span><span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">9</span>), <span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">9</span>), <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">6</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">7</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">7</span>)), </a>
+<a class="sourceLine" id="cb28-6" data-line-number="6">                            <span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">7</span>), <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">8</span>)))</a>
+<a class="sourceLine" id="cb28-7" data-line-number="7">multilinestring2 =<span class="st"> </span><span class="kw">st_multilinestring</span>((multilinestring_list2))</a>
+<a class="sourceLine" id="cb28-8" data-line-number="8">multilinestring_sfc =<span class="st"> </span><span class="kw">st_sfc</span>(multilinestring1, multilinestring2)</a>
+<a class="sourceLine" id="cb28-9" data-line-number="9"><span class="kw">st_geometry_type</span>(multilinestring_sfc)</a>
+<a class="sourceLine" id="cb28-10" data-line-number="10"><span class="co">#&gt; [1] MULTILINESTRING MULTILINESTRING</span></a>
+<a class="sourceLine" id="cb28-11" data-line-number="11"><span class="co">#&gt; 18 Levels: GEOMETRY POINT LINESTRING POLYGON ... TRIANGLE</span></a></code></pre></div>
 <p>It is also possible to create an <code>sfc</code> object from <code>sfg</code> objects with different geometry types:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="co"># sfc GEOMETRY</span></a>
-<a class="sourceLine" id="cb28-2" data-line-number="2">point_multilinestring_sfc =<span class="st"> </span><span class="kw">st_sfc</span>(point1, multilinestring1)</a>
-<a class="sourceLine" id="cb28-3" data-line-number="3"><span class="kw">st_geometry_type</span>(point_multilinestring_sfc)</a>
-<a class="sourceLine" id="cb28-4" data-line-number="4"><span class="co">#&gt; [1] POINT           MULTILINESTRING</span></a>
-<a class="sourceLine" id="cb28-5" data-line-number="5"><span class="co">#&gt; 18 Levels: GEOMETRY POINT LINESTRING POLYGON ... TRIANGLE</span></a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="co"># sfc GEOMETRY</span></a>
+<a class="sourceLine" id="cb29-2" data-line-number="2">point_multilinestring_sfc =<span class="st"> </span><span class="kw">st_sfc</span>(point1, multilinestring1)</a>
+<a class="sourceLine" id="cb29-3" data-line-number="3"><span class="kw">st_geometry_type</span>(point_multilinestring_sfc)</a>
+<a class="sourceLine" id="cb29-4" data-line-number="4"><span class="co">#&gt; [1] POINT           MULTILINESTRING</span></a>
+<a class="sourceLine" id="cb29-5" data-line-number="5"><span class="co">#&gt; 18 Levels: GEOMETRY POINT LINESTRING POLYGON ... TRIANGLE</span></a></code></pre></div>
 <!-- if you want to use it - st_cast() to a proper geometry type -->
 <!-- or st_is to select only one geometry type -->
 <!-- http://r-spatial.org/r/2017/01/12/newssf.html -->
@@ -859,20 +864,20 @@ Equally, a geometry column of multilinestrings would result in an <code>sfc</cod
 <!-- What's CRS -->
 To specify a certain CRS, we can use the <code>epsg (SRID)</code> or <code>proj4string</code> attributes of an <code>sfc</code> object.
 The default value of <code>epsg (SRID)</code> and <code>proj4string</code> is <code>NA</code> (<em>Not Available</em>), as can be verified with <code>st_crs()</code>:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw">st_crs</span>(points_sfc)</a>
-<a class="sourceLine" id="cb29-2" data-line-number="2"><span class="co">#&gt; Coordinate Reference System: NA</span></a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">st_crs</span>(points_sfc)</a>
+<a class="sourceLine" id="cb30-2" data-line-number="2"><span class="co">#&gt; Coordinate Reference System: NA</span></a></code></pre></div>
 <p>All geometries in an <code>sfc</code> object must have the same CRS.
 We can add coordinate reference system as a <code>crs</code> argument of <code>st_sfc()</code>.
 This argument accepts an integer with the <code>epsg</code> code such as <code>4326</code>, which automatically adds the ‘proj4string’ (see section <a href="spatial-class.html#crs-intro">2.3</a>):</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="co"># EPSG definition</span></a>
-<a class="sourceLine" id="cb30-2" data-line-number="2">points_sfc_wgs =<span class="st"> </span><span class="kw">st_sfc</span>(point1, point2, <span class="dt">crs =</span> <span class="dv">4326</span>)</a>
-<a class="sourceLine" id="cb30-3" data-line-number="3"><span class="kw">st_crs</span>(points_sfc_wgs)</a>
-<a class="sourceLine" id="cb30-4" data-line-number="4"><span class="co">#&gt; Coordinate Reference System:</span></a>
-<a class="sourceLine" id="cb30-5" data-line-number="5"><span class="co">#&gt;   EPSG: 4326 </span></a>
-<a class="sourceLine" id="cb30-6" data-line-number="6"><span class="co">#&gt;   proj4string: &quot;+proj=longlat +datum=WGS84 +no_defs&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="co"># EPSG definition</span></a>
+<a class="sourceLine" id="cb31-2" data-line-number="2">points_sfc_wgs =<span class="st"> </span><span class="kw">st_sfc</span>(point1, point2, <span class="dt">crs =</span> <span class="dv">4326</span>)</a>
+<a class="sourceLine" id="cb31-3" data-line-number="3"><span class="kw">st_crs</span>(points_sfc_wgs)</a>
+<a class="sourceLine" id="cb31-4" data-line-number="4"><span class="co">#&gt; Coordinate Reference System:</span></a>
+<a class="sourceLine" id="cb31-5" data-line-number="5"><span class="co">#&gt;   EPSG: 4326 </span></a>
+<a class="sourceLine" id="cb31-6" data-line-number="6"><span class="co">#&gt;   proj4string: &quot;+proj=longlat +datum=WGS84 +no_defs&quot;</span></a></code></pre></div>
 <p>It also accepts a raw proj4string (result not shown):</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="co"># PROJ4STRING definition</span></a>
-<a class="sourceLine" id="cb31-2" data-line-number="2"><span class="kw">st_sfc</span>(point1, point2, <span class="dt">crs =</span> <span class="st">&quot;+proj=longlat +datum=WGS84 +no_defs&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="co"># PROJ4STRING definition</span></a>
+<a class="sourceLine" id="cb32-2" data-line-number="2"><span class="kw">st_sfc</span>(point1, point2, <span class="dt">crs =</span> <span class="st">&quot;+proj=longlat +datum=WGS84 +no_defs&quot;</span>)</a></code></pre></div>
 <!-- For example, we can set the UTM Zone 11N projection with `epsg` code `2955`: -->
 <!-- ```{r, eval=FALSE} -->
 <!-- st_sfc(point1, point2, crs = 2955) -->
@@ -906,25 +911,25 @@ The final building block is non-geographic attributes, representing the name of 
 This example contains a geometry (the coordinates), and three attributes with three different classes (place name, temperature and date).<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a>
 Objects of class <code>sf</code> represent such data by combining the attributes (<code>data.frame</code>) with the simple feature geometry column (<code>sfc</code>).
 They are created with <code>st_sf()</code> as illustrated below, which creates the London example described above:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">lnd_point =<span class="st"> </span><span class="kw">st_point</span>(<span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">51.5</span>))                 <span class="co"># sfg object</span></a>
-<a class="sourceLine" id="cb32-2" data-line-number="2">lnd_geom =<span class="st"> </span><span class="kw">st_sfc</span>(lnd_point, <span class="dt">crs =</span> <span class="dv">4326</span>)           <span class="co"># sfc object</span></a>
-<a class="sourceLine" id="cb32-3" data-line-number="3">lnd_attrib =<span class="st"> </span><span class="kw">data.frame</span>(                           <span class="co"># data.frame object</span></a>
-<a class="sourceLine" id="cb32-4" data-line-number="4">  <span class="dt">name =</span> <span class="st">&quot;London&quot;</span>,</a>
-<a class="sourceLine" id="cb32-5" data-line-number="5">  <span class="dt">temperature =</span> <span class="dv">25</span>,</a>
-<a class="sourceLine" id="cb32-6" data-line-number="6">  <span class="dt">date =</span> <span class="kw">as.Date</span>(<span class="st">&quot;2017-06-21&quot;</span>)</a>
-<a class="sourceLine" id="cb32-7" data-line-number="7">  )</a>
-<a class="sourceLine" id="cb32-8" data-line-number="8">lnd_sf =<span class="st"> </span><span class="kw">st_sf</span>(lnd_attrib, <span class="dt">geometry =</span> lnd_geom)    <span class="co"># sf object</span></a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">lnd_point =<span class="st"> </span><span class="kw">st_point</span>(<span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">51.5</span>))                 <span class="co"># sfg object</span></a>
+<a class="sourceLine" id="cb33-2" data-line-number="2">lnd_geom =<span class="st"> </span><span class="kw">st_sfc</span>(lnd_point, <span class="dt">crs =</span> <span class="dv">4326</span>)           <span class="co"># sfc object</span></a>
+<a class="sourceLine" id="cb33-3" data-line-number="3">lnd_attrib =<span class="st"> </span><span class="kw">data.frame</span>(                           <span class="co"># data.frame object</span></a>
+<a class="sourceLine" id="cb33-4" data-line-number="4">  <span class="dt">name =</span> <span class="st">&quot;London&quot;</span>,</a>
+<a class="sourceLine" id="cb33-5" data-line-number="5">  <span class="dt">temperature =</span> <span class="dv">25</span>,</a>
+<a class="sourceLine" id="cb33-6" data-line-number="6">  <span class="dt">date =</span> <span class="kw">as.Date</span>(<span class="st">&quot;2017-06-21&quot;</span>)</a>
+<a class="sourceLine" id="cb33-7" data-line-number="7">  )</a>
+<a class="sourceLine" id="cb33-8" data-line-number="8">lnd_sf =<span class="st"> </span><span class="kw">st_sf</span>(lnd_attrib, <span class="dt">geometry =</span> lnd_geom)    <span class="co"># sf object</span></a></code></pre></div>
 <p>What just happened? First, the coordinates were used to create the simple feature geometry (<code>sfg</code>).
 Second, the geometry was converted into a simple feature geometry column (<code>sfc</code>), with a CRS.
 Third, attributes were stored in a <code>data.frame</code>, which was combined with the <code>sfc</code> object with <code>st_sf()</code>.
 This results in an <code>sf</code> object, as demonstrated below (some output ommited):</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">lnd_sf</a>
-<a class="sourceLine" id="cb33-2" data-line-number="2"><span class="co">#&gt; Simple feature collection with 1 features and 3 fields</span></a>
-<a class="sourceLine" id="cb33-3" data-line-number="3"><span class="co">#&gt; ...</span></a>
-<a class="sourceLine" id="cb33-4" data-line-number="4"><span class="co">#&gt;     name temperature       date         geometry</span></a>
-<a class="sourceLine" id="cb33-5" data-line-number="5"><span class="co">#&gt; 1 London          25 2017-06-21 POINT (0.1 51.5)</span></a></code></pre></div>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="kw">class</span>(lnd_sf)</a>
-<a class="sourceLine" id="cb34-2" data-line-number="2"><span class="co">#&gt; [1] &quot;sf&quot;         &quot;data.frame&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">lnd_sf</a>
+<a class="sourceLine" id="cb34-2" data-line-number="2"><span class="co">#&gt; Simple feature collection with 1 features and 3 fields</span></a>
+<a class="sourceLine" id="cb34-3" data-line-number="3"><span class="co">#&gt; ...</span></a>
+<a class="sourceLine" id="cb34-4" data-line-number="4"><span class="co">#&gt;     name temperature       date         geometry</span></a>
+<a class="sourceLine" id="cb34-5" data-line-number="5"><span class="co">#&gt; 1 London          25 2017-06-21 POINT (0.1 51.5)</span></a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw">class</span>(lnd_sf)</a>
+<a class="sourceLine" id="cb35-2" data-line-number="2"><span class="co">#&gt; [1] &quot;sf&quot;         &quot;data.frame&quot;</span></a></code></pre></div>
 <p>The result shows that <code>sf</code> objects actually have two classes, <code>sf</code> and <code>data.frame</code>.
 Simple features are simply data frames (square tables), but with spatial attributes (usually stored in a special <code>geom</code> list-column in the data frame).
 This duality is central to the concept of simple features:
@@ -936,28 +941,28 @@ Simple features are, in essence, data frames with a spatial extension.</p>
 <div id="raster-data" class="section level2">
 <h2><span class="header-section-number">2.2</span> Raster data</h2>
 <p>The geographic raster data model usually consists of a raster header
-and a matrix (with rows and columns) representing equally spaced cells (often also called pixels; Figure <a href="spatial-class.html#fig:raster-intro-plot">2.9</a>:A).<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a>
+and a matrix (with rows and columns) representing equally spaced cells (often also called pixels; Figure <a href="spatial-class.html#fig:raster-intro-plot">2.10</a>:A).<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a>
 The raster header defines the coordinate reference system, the extent and the origin.
-The origin (or starting point) is frequently the coordinate of the lower-left corner of the matrix (the <strong>raster</strong> package, however, uses the upper left corner, by default (Figure <a href="spatial-class.html#fig:raster-intro-plot">2.9</a>:B)).
+The origin (or starting point) is frequently the coordinate of the lower-left corner of the matrix (the <strong>raster</strong> package, however, uses the upper left corner, by default (Figure <a href="spatial-class.html#fig:raster-intro-plot">2.10</a>:B)).
 The header defines the extent via the number of columns, the number of rows and the cell size resolution.
-Hence, starting from the origin, we can easily access and modify each single cell by either using the ID of a cell (Figure <a href="spatial-class.html#fig:raster-intro-plot">2.9</a>:B) or by explicitly specifying the rows and columns.
+Hence, starting from the origin, we can easily access and modify each single cell by either using the ID of a cell (Figure <a href="spatial-class.html#fig:raster-intro-plot">2.10</a>:B) or by explicitly specifying the rows and columns.
 This matrix representation avoids storing explicitly the coordinates for the four corner points (in fact it only stores one coordinate, namely the origin) of each cell corner as would be the case for rectangular vector polygons.
 This and map algebra makes raster processing much more efficient and faster than vector data processing.
 However, in contrast to vector data, the cell of one raster layer can only hold a single value.
-The value might be numeric or categorical (Figure <a href="spatial-class.html#fig:raster-intro-plot">2.9</a>:C).</p>
+The value might be numeric or categorical (Figure <a href="spatial-class.html#fig:raster-intro-plot">2.10</a>:C).</p>
 <div class="figure" style="text-align: center"><span id="fig:raster-intro-plot"></span>
 <img src="figures/raster-intro-plot-1.png" alt="Raster data: A - cell IDs; B - cell values; C - a colored raster map." width="576" />
 <p class="caption">
-Figure 2.9: Raster data: A - cell IDs; B - cell values; C - a colored raster map.
+Figure 2.10: Raster data: A - cell IDs; B - cell values; C - a colored raster map.
 </p>
 </div>
-<p>Raster maps usually represent continuous phenomena such as elevation, temperature, population density or spectral data (Figure <a href="spatial-class.html#fig:raster-intro-plot2">2.10</a>).
-Of course, we can represent discrete features such as soil or land-cover classes also with the help of a raster data model (Figure <a href="spatial-class.html#fig:raster-intro-plot2">2.10</a>).
+<p>Raster maps usually represent continuous phenomena such as elevation, temperature, population density or spectral data (Figure <a href="spatial-class.html#fig:raster-intro-plot2">2.11</a>).
+Of course, we can represent discrete features such as soil or land-cover classes also with the help of a raster data model (Figure <a href="spatial-class.html#fig:raster-intro-plot2">2.11</a>).
 Consequently, the discrete borders of these features become blurred, and depending on the spatial task a vector representation might be more suitable.</p>
 <div class="figure" style="text-align: center"><span id="fig:raster-intro-plot2"></span>
 <img src="figures/raster-intro-plot2-1.png" alt="Examples of continuous (left) and categorical (right) raster." width="576" />
 <p class="caption">
-Figure 2.10: Examples of continuous (left) and categorical (right) raster.
+Figure 2.11: Examples of continuous (left) and categorical (right) raster.
 </p>
 </div>
 <div id="an-introduction-to-raster" class="section level3">
@@ -971,18 +976,18 @@ In this case, <strong>raster</strong> provides the possibility to divide the ras
 It consists of a few raster and one vector datasets covering an area of the Zion National Park (Utah, USA).
 For example, <code>srtm.tif</code> is a digital elevation model of this area (for more details - see its documentation <code>?srtm</code>)
 First of all, we would like to create a <code>RasterLayer</code> object named <code>new_raster</code>:</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">raster_filepath =<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;raster/srtm.tif&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spDataLarge&quot;</span>)</a>
-<a class="sourceLine" id="cb35-2" data-line-number="2">new_raster =<span class="st"> </span><span class="kw">raster</span>(raster_filepath)</a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1">raster_filepath =<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;raster/srtm.tif&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spDataLarge&quot;</span>)</a>
+<a class="sourceLine" id="cb36-2" data-line-number="2">new_raster =<span class="st"> </span><span class="kw">raster</span>(raster_filepath)</a></code></pre></div>
 <p>Typing the name of the raster into the console, will print out the raster header (extent, dimensions, resolution, CRS) and some additional information (class, data source name, summary of the raster values):</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1">new_raster</a>
-<a class="sourceLine" id="cb36-2" data-line-number="2"><span class="co">#&gt; class       : RasterLayer </span></a>
-<a class="sourceLine" id="cb36-3" data-line-number="3"><span class="co">#&gt; dimensions  : 457, 465, 212505  (nrow, ncol, ncell)</span></a>
-<a class="sourceLine" id="cb36-4" data-line-number="4"><span class="co">#&gt; resolution  : 0.000833, 0.000833  (x, y)</span></a>
-<a class="sourceLine" id="cb36-5" data-line-number="5"><span class="co">#&gt; extent      : -113, -113, 37.1, 37.5  (xmin, xmax, ymin, ymax)</span></a>
-<a class="sourceLine" id="cb36-6" data-line-number="6"><span class="co">#&gt; coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 </span></a>
-<a class="sourceLine" id="cb36-7" data-line-number="7"><span class="co">#&gt; data source : /home/robin/R/x86_64-pc-linux../3.5/spDataLarge/raster/srtm.tif </span></a>
-<a class="sourceLine" id="cb36-8" data-line-number="8"><span class="co">#&gt; names       : srtm </span></a>
-<a class="sourceLine" id="cb36-9" data-line-number="9"><span class="co">#&gt; values      : 1024, 2892  (min, max)</span></a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">new_raster</a>
+<a class="sourceLine" id="cb37-2" data-line-number="2"><span class="co">#&gt; class       : RasterLayer </span></a>
+<a class="sourceLine" id="cb37-3" data-line-number="3"><span class="co">#&gt; dimensions  : 457, 465, 212505  (nrow, ncol, ncell)</span></a>
+<a class="sourceLine" id="cb37-4" data-line-number="4"><span class="co">#&gt; resolution  : 0.000833, 0.000833  (x, y)</span></a>
+<a class="sourceLine" id="cb37-5" data-line-number="5"><span class="co">#&gt; extent      : -113, -113, 37.1, 37.5  (xmin, xmax, ymin, ymax)</span></a>
+<a class="sourceLine" id="cb37-6" data-line-number="6"><span class="co">#&gt; coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 </span></a>
+<a class="sourceLine" id="cb37-7" data-line-number="7"><span class="co">#&gt; data source : /home/robin/R/x86_64-pc-linux../3.5/spDataLarge/raster/srtm.tif </span></a>
+<a class="sourceLine" id="cb37-8" data-line-number="8"><span class="co">#&gt; names       : srtm </span></a>
+<a class="sourceLine" id="cb37-9" data-line-number="9"><span class="co">#&gt; values      : 1024, 2892  (min, max)</span></a></code></pre></div>
 <p>Dedicated functions report each component: <code>dim(new_raster)</code> returns the number of rows, columns and layers; the <code>ncell()</code> function the number cells (pixels); <code>res()</code> the raster’s spatial resolution; <code>extent()</code> its spatial extent; and <code>crs()</code> its coordinate reference system (raster reprojection is covered in section <a href="reproj-geo-data.html#reprojecting-raster-geometries">6.6</a>).
 <code>inMemory()</code> reports whether the the raster data is stored in memory (the default) or on disk.</p>
 <!--CRSargs(CRS("+init=epsg:4326"))-->
@@ -1037,11 +1042,11 @@ We therefore suggest converting <code>sf</code> objects to an intermediate <code
 <div id="basic-map-raster" class="section level3">
 <h3><span class="header-section-number">2.2.2</span> Basic map making</h3>
 <p>Similar to the <strong>sf</strong> package, <strong>raster</strong> also provides <code>plot()</code> methods for its own classes.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="kw">plot</span>(new_raster)</a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="kw">plot</span>(new_raster)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:basic-new-raster-plot"></span>
 <img src="figures/basic-new-raster-plot-1.png" alt="Basic raster plot." width="576" />
 <p class="caption">
-Figure 2.11: Basic raster plot.
+Figure 2.12: Basic raster plot.
 </p>
 </div>
 <!-- Moreover, it is possible to plot a raster and overlay it with vector data. -->
@@ -1066,8 +1071,8 @@ Figure 2.11: Basic raster plot.
 <h3><span class="header-section-number">2.2.3</span> Raster classes</h3>
 <p>The <code>RasterLayer</code> class represents the simplest form of a raster object, and consists of only one layer.
 The easiest way to create a raster object in R is to read-in a raster file from disk or from a server.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1">raster_filepath =<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;raster/srtm.tif&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spDataLarge&quot;</span>)</a>
-<a class="sourceLine" id="cb38-2" data-line-number="2">new_raster =<span class="st"> </span><span class="kw">raster</span>(raster_filepath)</a></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1">raster_filepath =<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;raster/srtm.tif&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spDataLarge&quot;</span>)</a>
+<a class="sourceLine" id="cb39-2" data-line-number="2">new_raster =<span class="st"> </span><span class="kw">raster</span>(raster_filepath)</a></code></pre></div>
 <p>The <strong>raster</strong> package supports numerous drivers with the help of <strong>rgdal</strong>.
 To find out which drivers are available on your system, run <code>raster::writeFormats()</code> and <code>rgdal::gdalDrivers()</code>.</p>
 <p>Rasters can also be created from scratch using the <code>raster()</code> function.
@@ -1077,9 +1082,9 @@ The CRS is the default of raster objects: WGS84.
 This means the unit of the resolution is in degrees which we set to 0.5 (<code>res</code>).
 Values (<code>vals</code>) are assigned to each cell: 1 to cell 1, 2 to cell 2, and so on.
 Remember: <code>raster()</code> fills cells row-wise (unlike <code>matrix()</code>) starting at the upper left corner, meaning the top row contains the values 1 to 6, the second 7 to 12 etc.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1">new_raster2 =<span class="st"> </span><span class="kw">raster</span>(<span class="dt">nrows =</span> <span class="dv">6</span>, <span class="dt">ncols =</span> <span class="dv">6</span>, <span class="dt">res =</span> <span class="fl">0.5</span>, </a>
-<a class="sourceLine" id="cb39-2" data-line-number="2">                     <span class="dt">xmn =</span> <span class="fl">-1.5</span>, <span class="dt">xmx =</span> <span class="fl">1.5</span>, <span class="dt">ymn =</span> <span class="fl">-1.5</span>, <span class="dt">ymx =</span> <span class="fl">1.5</span>,</a>
-<a class="sourceLine" id="cb39-3" data-line-number="3">                     <span class="dt">vals =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">36</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1">new_raster2 =<span class="st"> </span><span class="kw">raster</span>(<span class="dt">nrows =</span> <span class="dv">6</span>, <span class="dt">ncols =</span> <span class="dv">6</span>, <span class="dt">res =</span> <span class="fl">0.5</span>, </a>
+<a class="sourceLine" id="cb40-2" data-line-number="2">                     <span class="dt">xmn =</span> <span class="fl">-1.5</span>, <span class="dt">xmx =</span> <span class="fl">1.5</span>, <span class="dt">ymn =</span> <span class="fl">-1.5</span>, <span class="dt">ymx =</span> <span class="fl">1.5</span>,</a>
+<a class="sourceLine" id="cb40-3" data-line-number="3">                     <span class="dt">vals =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">36</span>)</a></code></pre></div>
 <p>For still further ways of creating a raster object have a look at the help file - <code>?raster</code>.
 <!--
 There are several ways to add new values to the `Raster*` objects.
@@ -1108,39 +1113,39 @@ Both can handle multiple layers, but differ regarding the number of supported fi
 <p>A <code>RasterBrick</code> consists of multiple layers, which typically correspond to a single multispectral satellite file or a single multilayer object in memory.
 The <code>brick()</code> function creates a <code>RasterBrick</code> object.
 Usually, you provide it with a filename to a multilayer raster file but might also use another raster object and other spatial objects (see <code>?brick</code> for all supported formats).</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1">multi_raster_file =<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;raster/landsat.tif&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spDataLarge&quot;</span>)</a>
-<a class="sourceLine" id="cb40-2" data-line-number="2">r_brick =<span class="st"> </span><span class="kw">brick</span>(multi_raster_file)</a></code></pre></div>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1">r_brick</a>
-<a class="sourceLine" id="cb41-2" data-line-number="2"><span class="co">#&gt; class       : RasterBrick </span></a>
-<a class="sourceLine" id="cb41-3" data-line-number="3"><span class="co">#&gt; resolution  : 30, 30  (x, y)</span></a>
-<a class="sourceLine" id="cb41-4" data-line-number="4"><span class="co">#&gt; ...</span></a>
-<a class="sourceLine" id="cb41-5" data-line-number="5"><span class="co">#&gt; names       : landsat.1, landsat.2, landsat.3, landsat.4 </span></a>
-<a class="sourceLine" id="cb41-6" data-line-number="6"><span class="co">#&gt; min values  :      7550,      6404,      5678,      5252 </span></a>
-<a class="sourceLine" id="cb41-7" data-line-number="7"><span class="co">#&gt; max values  :     19071,     22051,     25780,     31961</span></a></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1">multi_raster_file =<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;raster/landsat.tif&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spDataLarge&quot;</span>)</a>
+<a class="sourceLine" id="cb41-2" data-line-number="2">r_brick =<span class="st"> </span><span class="kw">brick</span>(multi_raster_file)</a></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1">r_brick</a>
+<a class="sourceLine" id="cb42-2" data-line-number="2"><span class="co">#&gt; class       : RasterBrick </span></a>
+<a class="sourceLine" id="cb42-3" data-line-number="3"><span class="co">#&gt; resolution  : 30, 30  (x, y)</span></a>
+<a class="sourceLine" id="cb42-4" data-line-number="4"><span class="co">#&gt; ...</span></a>
+<a class="sourceLine" id="cb42-5" data-line-number="5"><span class="co">#&gt; names       : landsat.1, landsat.2, landsat.3, landsat.4 </span></a>
+<a class="sourceLine" id="cb42-6" data-line-number="6"><span class="co">#&gt; min values  :      7550,      6404,      5678,      5252 </span></a>
+<a class="sourceLine" id="cb42-7" data-line-number="7"><span class="co">#&gt; max values  :     19071,     22051,     25780,     31961</span></a></code></pre></div>
 <p><code>nlayers()</code> retrieves the number of layers stored in a <code>Raster*</code> object:</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="kw">nlayers</span>(r_brick)</a>
-<a class="sourceLine" id="cb42-2" data-line-number="2"><span class="co">#&gt; [1] 4</span></a></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="kw">nlayers</span>(r_brick)</a>
+<a class="sourceLine" id="cb43-2" data-line-number="2"><span class="co">#&gt; [1] 4</span></a></code></pre></div>
 <p>A <code>RasterStack</code> is similar to a <code>RasterBrick</code> in the sense that it consists also of multiple layers.
 However, in contrast to <code>RasterBrick</code>, <code>RasterStack</code> allows you to connect several raster objects stored in different files or multiply objects in memory.
 More specifically, a <code>RasterStack</code> is a list of <code>RasterLayer</code> objects with the same extent and resolution.
 Hence, one way to create it is with the help of spatial objects already existing in R’s global environment.
 And again, one can simply specify a path to a file stored on disk.
 <!-- The possibility to create a `RasterStack` from a file stored on disk and an object residing in R's global environment is one of the main differences compared to a `RasterBrick`. --></p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1">raster_on_disk =<span class="st"> </span><span class="kw">raster</span>(r_brick, <span class="dt">layer =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb43-2" data-line-number="2">raster_in_memory =<span class="st"> </span><span class="kw">raster</span>(<span class="dt">xmn =</span> <span class="dv">301905</span>, <span class="dt">xmx =</span> <span class="dv">335745</span>,</a>
-<a class="sourceLine" id="cb43-3" data-line-number="3">                          <span class="dt">ymn =</span> <span class="dv">4111245</span>, <span class="dt">ymx =</span> <span class="dv">4154085</span>, </a>
-<a class="sourceLine" id="cb43-4" data-line-number="4">                          <span class="dt">res =</span> <span class="dv">30</span>)</a>
-<a class="sourceLine" id="cb43-5" data-line-number="5"><span class="kw">values</span>(raster_in_memory) =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">seq_len</span>(<span class="kw">ncell</span>(raster_in_memory)))</a>
-<a class="sourceLine" id="cb43-6" data-line-number="6"><span class="kw">crs</span>(raster_in_memory) =<span class="st"> </span><span class="kw">crs</span>(raster_on_disk)</a></code></pre></div>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1">r_stack =<span class="st"> </span><span class="kw">stack</span>(raster_in_memory, raster_on_disk)</a>
-<a class="sourceLine" id="cb44-2" data-line-number="2">r_stack</a>
-<a class="sourceLine" id="cb44-3" data-line-number="3"><span class="co">#&gt; class : RasterStack</span></a>
-<a class="sourceLine" id="cb44-4" data-line-number="4"><span class="co">#&gt; dimensions : 1428, 1128, 1610784, 2</span></a>
-<a class="sourceLine" id="cb44-5" data-line-number="5"><span class="co">#&gt; resolution : 30, 30</span></a>
-<a class="sourceLine" id="cb44-6" data-line-number="6"><span class="co">#&gt; ...</span></a>
-<a class="sourceLine" id="cb44-7" data-line-number="7"><span class="co">#&gt; names       :   layer, landsat.1 </span></a>
-<a class="sourceLine" id="cb44-8" data-line-number="8"><span class="co">#&gt; min values  :       1,      7550 </span></a>
-<a class="sourceLine" id="cb44-9" data-line-number="9"><span class="co">#&gt; max values  : 1610784,     19071</span></a></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1">raster_on_disk =<span class="st"> </span><span class="kw">raster</span>(r_brick, <span class="dt">layer =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb44-2" data-line-number="2">raster_in_memory =<span class="st"> </span><span class="kw">raster</span>(<span class="dt">xmn =</span> <span class="dv">301905</span>, <span class="dt">xmx =</span> <span class="dv">335745</span>,</a>
+<a class="sourceLine" id="cb44-3" data-line-number="3">                          <span class="dt">ymn =</span> <span class="dv">4111245</span>, <span class="dt">ymx =</span> <span class="dv">4154085</span>, </a>
+<a class="sourceLine" id="cb44-4" data-line-number="4">                          <span class="dt">res =</span> <span class="dv">30</span>)</a>
+<a class="sourceLine" id="cb44-5" data-line-number="5"><span class="kw">values</span>(raster_in_memory) =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">seq_len</span>(<span class="kw">ncell</span>(raster_in_memory)))</a>
+<a class="sourceLine" id="cb44-6" data-line-number="6"><span class="kw">crs</span>(raster_in_memory) =<span class="st"> </span><span class="kw">crs</span>(raster_on_disk)</a></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1">r_stack =<span class="st"> </span><span class="kw">stack</span>(raster_in_memory, raster_on_disk)</a>
+<a class="sourceLine" id="cb45-2" data-line-number="2">r_stack</a>
+<a class="sourceLine" id="cb45-3" data-line-number="3"><span class="co">#&gt; class : RasterStack</span></a>
+<a class="sourceLine" id="cb45-4" data-line-number="4"><span class="co">#&gt; dimensions : 1428, 1128, 1610784, 2</span></a>
+<a class="sourceLine" id="cb45-5" data-line-number="5"><span class="co">#&gt; resolution : 30, 30</span></a>
+<a class="sourceLine" id="cb45-6" data-line-number="6"><span class="co">#&gt; ...</span></a>
+<a class="sourceLine" id="cb45-7" data-line-number="7"><span class="co">#&gt; names       :   layer, landsat.1 </span></a>
+<a class="sourceLine" id="cb45-8" data-line-number="8"><span class="co">#&gt; min values  :       1,      7550 </span></a>
+<a class="sourceLine" id="cb45-9" data-line-number="9"><span class="co">#&gt; max values  : 1610784,     19071</span></a></code></pre></div>
 <p>Another difference is that the processing time for <code>RasterBrick</code> objects is usually shorter than for <code>RasterStack</code> objects.</p>
 <p>Decision on which <code>Raster*</code> class should be used depends mostly on a character of input data.
 Processing of a single mulitilayer file or object is the most effective with <code>RasterBrick</code>, while <code>RasterStack</code> allows calculations based on many files, many <code>Raster*</code> objects, or both.</p>
@@ -1223,19 +1228,19 @@ This also makes the <code>proj4string</code> approach more complicated.
 Other than searching for EPSG codes online, another quick way to find out about available CRSs is via the <code>rgdal::make_EPSG()</code> function, which outputs a data frame of available projections.
 Before going into more detail, it’s worth learning how to view and filter them inside R, as this could save time trawling the internet.
 The following code will show available CRSs interactively, allowing you to filter ones of interest (try filtering for the OSGB CRSs for example):</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1">crs_data =<span class="st"> </span>rgdal<span class="op">::</span><span class="kw">make_EPSG</span>()</a>
-<a class="sourceLine" id="cb45-2" data-line-number="2"><span class="kw">View</span>(crs_data)</a></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1">crs_data =<span class="st"> </span>rgdal<span class="op">::</span><span class="kw">make_EPSG</span>()</a>
+<a class="sourceLine" id="cb46-2" data-line-number="2"><span class="kw">View</span>(crs_data)</a></code></pre></div>
 <p>In <strong>sf</strong> the CRS of an object can be retrieved using <code>st_crs()</code>.
 For this, we need to read-in a vector dataset:</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1">vector_filepath =<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;vector/zion.gpkg&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spDataLarge&quot;</span>)</a>
-<a class="sourceLine" id="cb46-2" data-line-number="2">new_vector =<span class="st"> </span><span class="kw">st_read</span>(vector_filepath)</a></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1">vector_filepath =<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;vector/zion.gpkg&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spDataLarge&quot;</span>)</a>
+<a class="sourceLine" id="cb47-2" data-line-number="2">new_vector =<span class="st"> </span><span class="kw">st_read</span>(vector_filepath)</a></code></pre></div>
 <p>Our new object, <code>new_vector</code>, is a polygon representing the borders of Zion National Park (<code>?zion</code>).</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="kw">st_crs</span>(new_vector) <span class="co"># get CRS</span></a>
-<a class="sourceLine" id="cb47-2" data-line-number="2"><span class="co">#&gt; Coordinate Reference System:</span></a>
-<a class="sourceLine" id="cb47-3" data-line-number="3"><span class="co">#&gt; No EPSG code</span></a>
-<a class="sourceLine" id="cb47-4" data-line-number="4"><span class="co">#&gt; proj4string: &quot;+proj=utm +zone=12 +ellps=GRS80 ... +units=m +no_defs&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="kw">st_crs</span>(new_vector) <span class="co"># get CRS</span></a>
+<a class="sourceLine" id="cb48-2" data-line-number="2"><span class="co">#&gt; Coordinate Reference System:</span></a>
+<a class="sourceLine" id="cb48-3" data-line-number="3"><span class="co">#&gt; No EPSG code</span></a>
+<a class="sourceLine" id="cb48-4" data-line-number="4"><span class="co">#&gt; proj4string: &quot;+proj=utm +zone=12 +ellps=GRS80 ... +units=m +no_defs&quot;</span></a></code></pre></div>
 <p>In cases when a coordinate reference system (CRS) is missing or the wrong CRS is set, the <code>st_set_crs()</code> function can be used:</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1">new_vector =<span class="st"> </span><span class="kw">st_set_crs</span>(new_vector, <span class="dv">26912</span>) <span class="co"># set CRS</span></a></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1">new_vector =<span class="st"> </span><span class="kw">st_set_crs</span>(new_vector, <span class="dv">26912</span>) <span class="co"># set CRS</span></a></code></pre></div>
 <p>The warning message informs us that the <code>st_set_crs()</code> function does not transform data from one CRS to another.</p>
 <pre><code>#&gt; Reading layer `zion&#39; from data source `/home/travis/R/Library/spDataLarge/vector/zion.gpkg&#39; using driver `GPKG&#39;
 #&gt; Simple feature collection with 1 feature and 11 fields
@@ -1247,20 +1252,20 @@ For this, we need to read-in a vector dataset:</p>
 <div class="figure" style="text-align: center"><span id="fig:vector-crs"></span>
 <img src="figures/vector-crs-1.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a vector data type." width="576" />
 <p class="caption">
-Figure 2.12: Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a vector data type.
+Figure 2.13: Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a vector data type.
 </p>
 </div>
 <p>The <code>projection()</code> function can be used to access CRS information from a <code>Raster*</code> object:</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw">projection</span>(new_raster) <span class="co"># get CRS</span></a>
-<a class="sourceLine" id="cb50-2" data-line-number="2"><span class="co">#&gt; [1] &quot;+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="kw">projection</span>(new_raster) <span class="co"># get CRS</span></a>
+<a class="sourceLine" id="cb51-2" data-line-number="2"><span class="co">#&gt; [1] &quot;+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0&quot;</span></a></code></pre></div>
 <p>The same function, <code>projection()</code>, is used to set a CRS for raster objects.
 The main difference, compared to vector data, is that raster objects only accept <code>proj4</code> definitions:</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="kw">projection</span>(new_raster) =<span class="st"> &quot;+proj=utm +zone=12 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 </span></a>
-<a class="sourceLine" id="cb51-2" data-line-number="2"><span class="st">                            +units=m +no_defs&quot;</span> <span class="co"># set CRS</span></a></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="kw">projection</span>(new_raster) =<span class="st"> &quot;+proj=utm +zone=12 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 </span></a>
+<a class="sourceLine" id="cb52-2" data-line-number="2"><span class="st">                            +units=m +no_defs&quot;</span> <span class="co"># set CRS</span></a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:raster-crs"></span>
 <img src="figures/raster-crs-1.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a raster data type." width="576" />
 <p class="caption">
-Figure 2.13: Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a raster data type.
+Figure 2.14: Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a raster data type.
 </p>
 </div>
 <p>We will expand on CRSs and how to project from one CRS to another in much more detail in chapter <a href="reproj-geo-data.html#reproj-geo-data">6</a>.
@@ -1280,31 +1285,31 @@ Likewise, it is important to formally specify the units in which the geometry da
 This means that distance, area and other geometric calculations in <strong>sf</strong> return values that come with a <code>units</code> attribute, defined by the <strong>units</strong> package <span class="citation">(Pebesma, Mailund, and Hiebert <a href="#ref-pebesma_measurement_2016">2016</a>)</span>.
 This is advantageous because it prevents confusion caused by the fact that different CRSs use different units (most use meters, some use feet).
 Furthermore, it also provides information on dimensionality, as illustrated by the following calculation which reports the area of Luxembourg:</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1">luxembourg =<span class="st"> </span>world[world<span class="op">$</span>name_long <span class="op">==</span><span class="st"> &quot;Luxembourg&quot;</span>, ]</a></code></pre></div>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="kw">st_area</span>(luxembourg)</a>
-<a class="sourceLine" id="cb53-2" data-line-number="2"><span class="co">#&gt; 2.41e+09 m^2</span></a></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1">luxembourg =<span class="st"> </span>world[world<span class="op">$</span>name_long <span class="op">==</span><span class="st"> &quot;Luxembourg&quot;</span>, ]</a></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="kw">st_area</span>(luxembourg)</a>
+<a class="sourceLine" id="cb54-2" data-line-number="2"><span class="co">#&gt; 2.41e+09 m^2</span></a></code></pre></div>
 <p>The result is in units of square meters (m<sup>2</sup>), showing that the result represents two-dimensional space.
 This information, stored as an attribute (which interested readers can discover with <code>attributes(st_area(luxembourg))</code>) is advantageous for many reasons, for example it could feed into subsequent calculations such as population density.
 Reporting units prevents confusion.
 To take the Luxembourg example, if the units remained unspecified, one could incorrectly assume that the units were in hectares.
 To translate the huge number into a more digestible size, it is tempting to divide the results by a million (the number of square meters in a square kilometer):</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="kw">st_area</span>(luxembourg) <span class="op">/</span><span class="st"> </span><span class="dv">1000000</span></a>
-<a class="sourceLine" id="cb54-2" data-line-number="2"><span class="co">#&gt; 2414 m^2</span></a></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="kw">st_area</span>(luxembourg) <span class="op">/</span><span class="st"> </span><span class="dv">1000000</span></a>
+<a class="sourceLine" id="cb55-2" data-line-number="2"><span class="co">#&gt; 2414 m^2</span></a></code></pre></div>
 <p>However, the result is incorrectly given again as square meters.
 The solution is to set the correct units with the <strong>units</strong> package:</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1">units<span class="op">::</span><span class="kw">set_units</span>(<span class="kw">st_area</span>(luxembourg), km<span class="op">^</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb55-2" data-line-number="2"><span class="co">#&gt; 2414 km^2</span></a></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1">units<span class="op">::</span><span class="kw">set_units</span>(<span class="kw">st_area</span>(luxembourg), km<span class="op">^</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb56-2" data-line-number="2"><span class="co">#&gt; 2414 km^2</span></a></code></pre></div>
 <!-- Is that right? I mean, the units DESCRIPTION says "Support for measurement units in R vectors, matrices and arrays". Since raster datasets are just matrices, units might be easily used with them?-->
 <p>Units are of equal importance in the case of raster data.
 However, so far <strong>sf</strong> is the only spatial package that supports units, meaning that people working on raster data should approach changes in the units of analysis (for example, converting pixel widths from imperial to decimal units) with care.
 The <code>new_raster</code> object (see above) uses a UTM projection with meters as units.
 Consequently, its resolution is also given in meters but you have to know it, since the <code>res()</code> function simply returns a numeric vector.</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="kw">res</span>(new_raster)</a>
-<a class="sourceLine" id="cb56-2" data-line-number="2"><span class="co">#&gt; [1] 0.000833 0.000833</span></a></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1"><span class="kw">res</span>(new_raster)</a>
+<a class="sourceLine" id="cb57-2" data-line-number="2"><span class="co">#&gt; [1] 0.000833 0.000833</span></a></code></pre></div>
 <p>If we used the WGS84 projection, the units would change.</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1">repr =<span class="st"> </span><span class="kw">projectRaster</span>(new_raster, <span class="dt">crs =</span> <span class="st">&quot;+init=epsg:4326&quot;</span>)</a>
-<a class="sourceLine" id="cb57-2" data-line-number="2"><span class="kw">res</span>(repr)</a>
-<a class="sourceLine" id="cb57-3" data-line-number="3"><span class="co">#&gt; [1] 0.000833 0.000833</span></a></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1">repr =<span class="st"> </span><span class="kw">projectRaster</span>(new_raster, <span class="dt">crs =</span> <span class="st">&quot;+init=epsg:4326&quot;</span>)</a>
+<a class="sourceLine" id="cb58-2" data-line-number="2"><span class="kw">res</span>(repr)</a>
+<a class="sourceLine" id="cb58-3" data-line-number="3"><span class="co">#&gt; [1] 0.000833 0.000833</span></a></code></pre></div>
 <p>Again, the <code>res()</code> command gives back a numeric vector without any unit, forcing us to know that the unit of the WGS84 projection is decimal degrees.</p>
 <!-- Something about when units are not set: -->
 <!-- ```{r} -->
