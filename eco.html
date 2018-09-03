@@ -327,7 +327,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="11" data-path="spatial-cv.html"><a href="spatial-cv.html"><i class="fa fa-check"></i><b>11</b> Statistical learning</a><ul>
 <li class="chapter" data-level="" data-path="spatial-cv.html"><a href="spatial-cv.html#prerequisites-9"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="11.1" data-path="spatial-cv.html"><a href="spatial-cv.html#intro-cv"><i class="fa fa-check"></i><b>11.1</b> Introduction</a></li>
+<li class="chapter" data-level="11.1" data-path="spatial-cv.html"><a href="spatial-cv.html#intro-cv1"><i class="fa fa-check"></i><b>11.1</b> Introduction</a></li>
 <li class="chapter" data-level="11.2" data-path="spatial-cv.html"><a href="spatial-cv.html#case-landslide"><i class="fa fa-check"></i><b>11.2</b> Case study: Landslide susceptibility</a></li>
 <li class="chapter" data-level="11.3" data-path="spatial-cv.html"><a href="spatial-cv.html#conventional-model"><i class="fa fa-check"></i><b>11.3</b> Conventional modeling approach in R</a></li>
 <li class="chapter" data-level="11.4" data-path="spatial-cv.html"><a href="spatial-cv.html#intro-cv"><i class="fa fa-check"></i><b>11.4</b> Introduction to (spatial) cross-validation</a></li>
@@ -623,7 +623,7 @@ Figure 14.4: Simple example of a decision tree with three internal nodes and fou
 The first internal node at the top of the tree assigns all observations which are below 328.5 m to the left and all other observations to the right branch.
 The observations falling into the left branch have a mean NMDS score of -1.198.
 Overall, we can interpret the tree as follows: the higher the elevation, the higher the NMDS score becomes.
-Decision trees have a tendency to overfit, that is they mirror too closely the input data including its noise which in turn leads to bad predictive performances <span class="citation">(section <a href="spatial-cv.html#intro-cv">11.1</a>; James et al. <a href="#ref-james_introduction_2013">2013</a>)</span>.
+Decision trees have a tendency to overfit, that is they mirror too closely the input data including its noise which in turn leads to bad predictive performances <span class="citation">(section <a href="spatial-cv.html#intro-cv">11.4</a>; James et al. <a href="#ref-james_introduction_2013">2013</a>)</span>.
 Bootstrap aggregation (bagging) is an ensemble technique and helps to overcome this problem.
 Ensemble techniques simply combine the predictions of multiple models.
 Thus, bagging takes repeated samples from the same input data and averages the predictions.
@@ -674,7 +674,7 @@ The learner is a random forest model implementation from the <strong>ranger</str
 <a class="sourceLine" id="cb453-4" data-line-number="4">lrn_rf =<span class="st"> </span><span class="kw">makeLearner</span>(<span class="dt">cl =</span> <span class="st">&quot;regr.ranger&quot;</span>, <span class="dt">predict.type =</span> <span class="st">&quot;response&quot;</span>)</a></code></pre></div>
 <p>As opposed to for example support vector machines (see section <a href="spatial-cv.html#svm">11.5.2</a>), random forests often already show good performances when used with the default values of their hyperparameters (which may be one reason for their popularity).
 Still, tuning often moderately improves model results, and thus is worth the effort <span class="citation">(Probst, Wright, and Boulesteix <a href="#ref-probst_hyperparameters_2018">2018</a>)</span>.
-Since we deal with geographic data, we will again make use of spatial cross-validation to tune the hyperparameters (see sections <a href="spatial-cv.html#intro-cv">11.1</a> and <a href="spatial-cv.html#spatial-cv-with-mlr">11.5</a>).
+Since we deal with geographic data, we will again make use of spatial cross-validation to tune the hyperparameters (see sections <a href="spatial-cv.html#intro-cv">11.4</a> and <a href="spatial-cv.html#spatial-cv-with-mlr">11.5</a>).
 Specifically, we will use a five-fold spatial partitioning with only one repetition (<code>makeResampleDesc()</code>).
 In each of these spatial partitions, we run 50 models (<code>makeTuneControlRandom</code>) to find the optimal hyperparameter combination.</p>
 <div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb454-1" data-line-number="1"><span class="co"># spatial partitioning</span></a>
