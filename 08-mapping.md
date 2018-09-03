@@ -995,6 +995,7 @@ We will also use `zion` and `nlcd` datasets from **spDataLarge**:
 
 ```r
 zion = st_read((system.file("vector/zion.gpkg", package = "spDataLarge")))
+data(nlcd, package = "spDataLarge")
 ```
 
 1. Create a map showing the geographic distribution of the Human Development Index (`HDI`) across Africa with 
@@ -1018,7 +1019,7 @@ Next, combine this map and the map created in the previous exercise into a singl
 
 1. Create facet maps of countries in Eastern Africa:
     - with one facet showing HDI and the other representing population growth (hint: using variables `HDI` and `pop_growth` respectively)
-    - with a 'small multiple' per country <!-- animated map, interactive map -->
+    - with a 'small multiple' per country
 
 1. Building on the previous facet map examples, create animated maps of East Africa:
     - showing first the spatial distribution of HDI scores then population growth

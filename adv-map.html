@@ -1230,7 +1230,8 @@ In terms of interactive mapping, <strong>leaflet.extras</strong> contains many f
 <a class="sourceLine" id="cb299-4" data-line-number="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(name, subregion, gdpPercap, HDI, pop_growth) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb299-5" data-line-number="5"><span class="st">  </span><span class="kw">st_transform</span>(<span class="st">&quot;+proj=aea +lat_1=20 +lat_2=-23 +lat_0=0 +lon_0=25&quot;</span>)</a></code></pre></div>
 <p>We will also use <code>zion</code> and <code>nlcd</code> datasets from <strong>spDataLarge</strong>:</p>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb300-1" data-line-number="1">zion =<span class="st"> </span><span class="kw">st_read</span>((<span class="kw">system.file</span>(<span class="st">&quot;vector/zion.gpkg&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spDataLarge&quot;</span>)))</a></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb300-1" data-line-number="1">zion =<span class="st"> </span><span class="kw">st_read</span>((<span class="kw">system.file</span>(<span class="st">&quot;vector/zion.gpkg&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spDataLarge&quot;</span>)))</a>
+<a class="sourceLine" id="cb300-2" data-line-number="2"><span class="kw">data</span>(nlcd, <span class="dt">package =</span> <span class="st">&quot;spDataLarge&quot;</span>)</a></code></pre></div>
 <ol style="list-style-type: decimal">
 <li>Create a map showing the geographic distribution of the Human Development Index (<code>HDI</code>) across Africa with
 -base graphics (hint: use <code>plot()</code>) and
@@ -1257,7 +1258,7 @@ Next, combine this map and the map created in the previous exercise into a singl
 <li>Create facet maps of countries in Eastern Africa:
 <ul>
 <li>with one facet showing HDI and the other representing population growth (hint: using variables <code>HDI</code> and <code>pop_growth</code> respectively)</li>
-<li>with a ‘small multiple’ per country <!-- animated map, interactive map --></li>
+<li>with a ‘small multiple’ per country</li>
 </ul></li>
 <li>Building on the previous facet map examples, create animated maps of East Africa:
 <ul>
