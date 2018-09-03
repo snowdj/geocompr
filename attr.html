@@ -549,7 +549,7 @@ To turn off this behavior, set the <code>drop</code> argument to <code>FALSE</co
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1"><span class="co"># create throw-away dataframe</span></a>
 <a class="sourceLine" id="cb73-2" data-line-number="2">d =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">pop =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">area =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</a>
 <a class="sourceLine" id="cb73-3" data-line-number="3"><span class="co"># return dataframe object when selecting a single column</span></a>
-<a class="sourceLine" id="cb73-4" data-line-number="4">d[, <span class="st">&quot;pop&quot;</span>, drop =<span class="st"> </span><span class="ot">FALSE</span>]</a>
+<a class="sourceLine" id="cb73-4" data-line-number="4">d[, <span class="st">&quot;pop&quot;</span>, drop =<span class="st"> </span><span class="ot">FALSE</span>] <span class="co"># equivalent to d[&quot;pop&quot;]</span></a>
 <a class="sourceLine" id="cb73-5" data-line-number="5"><span class="kw">select</span>(d, pop)</a>
 <a class="sourceLine" id="cb73-6" data-line-number="6"><span class="co"># return a vector when selecting a single column</span></a>
 <a class="sourceLine" id="cb73-7" data-line-number="7">d[, <span class="st">&quot;pop&quot;</span>]</a>
