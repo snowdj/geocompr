@@ -906,7 +906,8 @@ The packages **landsat** (`histmatch()`, `relnorm()`, `PIF()`), **satellite** (`
 
 ## Exercises
 <!-- vector exercises -->
-1. It was established in section \@ref(spatial-vec) that Canterbury was the region of New Zealand containing most of 100 highest points in the country. How many of these high points does Canterbury Region contain?
+1. It was established in section \@ref(spatial-vec) that Canterbury was the region of New Zealand containing most of 100 highest points in the country.
+How many of these high points does Canterbury Region contain?
 
 1. Which region has the second highest number of `nz_height` points in, and how many does it have?
 
