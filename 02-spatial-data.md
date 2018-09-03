@@ -1260,12 +1260,12 @@ Again, the `res()` command gives back a numeric vector without any unit, forcing
     - What is similar?
     - What has changed?
     - Bonus: play around with and research base plotting arguments to make your version of Figure \@ref(fig:contpop) more attractive. Which arguments were most useful?
-    - Advanced: try to reproduce the map presented in Figure \@ref(base-args). Copy-and-pasting is prohibited!
+    - Advanced: try to reproduce the map presented in section \@ref(base-args). Copy-and-pasting is prohibited!
 <!-- raster exercises -->
 1. Read the `raster/nlcd2011.tif` file from the **spDataLarge** package. 
 What kind of information can you get about the properties of this file?
 <!-- (crs, ncols, nrow, ncells, bbox, navalues) -->
-1. Create an empty `RasterLayer` object called `my_raster` with 10 columns and 10 rows and resolution of 10 units.
+1. Create an empty `RasterLayer` object called `my_raster` with 10 columns and 10 rows.
 Assign random values between 0 and 10 to the new raster and plot it.
 <!-- crs exercises -->
 <!-- 1. pros and cons of the projection types -->
