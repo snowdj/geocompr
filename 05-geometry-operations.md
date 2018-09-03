@@ -1121,8 +1121,8 @@ grain_poly2 = grain_poly %>%
 
 ## Exercises
 
-Some of the exercises will use a vector (`random_points`) and raster dataset (`ndvi`) from the **RQGIS** package.
-It also uses a polygonal 'convex hull' derived from the vector dataset (`ch`) to represent the area of interest:
+Some of the exercises use a vector (`random_points`) and raster dataset (`ndvi`) from the **RQGIS** package.
+They also use a polygonal 'convex hull' derived from the vector dataset (`ch`) to represent the area of interest:
 
 ```r
 library(RQGIS)
@@ -1136,9 +1136,11 @@ Experiment with different values of `keep` (ranging from 0.5 to 0.00005) for `ms
     - At what value does the form of the result start to break-down for each method, making New Zealand unrecognizable?
     - Advanced: What is different about the geometry type of the results from `st_simplify()` compared with the geometry type of `ms_simplify()`? What problems does this create and how can this be resolved?
 
-1. In the first exercise in Chapter \@ref(spatial-operations) it was established that Canterbury region had 61 of the 101 highest points in New Zealand. Using `st_buffer()`, how many points in `nz_height` are within 100 km of Canterbury?
+1. In the first exercise in Chapter \@ref(spatial-operations) it was established that Canterbury region had 70 of the 101 highest points in New Zealand. 
+Using `st_buffer()`, how many points in `nz_height` are within 100 km of Canterbury?
 
-1. Find the geographic centroid of New Zealand. How far is it from the geographic centroid of Canterbury?
+1. Find the geographic centroid of New Zealand. 
+How far is it from the geographic centroid of Canterbury?
 
 1. Most world maps have a north-up orientation.
 A world map with a south-up orientation could be created by a reflection (one of the affine transformations not mentioned in \@ref(affine-transformations)) of the `world` object's geometry.
@@ -1154,10 +1156,6 @@ Hint: you need to use a two-element vector for this transformation.
 Which state has the longest border and which has the shortest?
 Hint: The `st_length` function computes the length of a `LINESTRING` or `MULTILINESTRING` geometry.
 
-1. Aggregate the raster counting high points in New Zealand (created in the previous exercise), reduce its geographic resolution by half (so cells are 6 by 6 km) and plot the result.
-    - Resample the lower resolution raster back to a resolution of 3 km. How have the results changed?
-    - Name two advantages and disadvantages of reducing raster resolution.
-
 1. Crop the `ndvi` raster using (1) the `random_points` dataset and (2) the `ch` dataset.
 Are there any difference in the output maps?
 Next, mask `ndvi` using these two datasets.
@@ -1172,6 +1170,10 @@ When would extracting values by buffers be more suitable than by points alone?
 Using these objects:
     - Count numbers of the highest points in each grid cell.
     - Find the maximum elevation in each grid cell.
+
+1. Aggregate the raster counting high points in New Zealand (created in the previous exercise), reduce its geographic resolution by half (so cells are 6 by 6 km) and plot the result.
+    - Resample the lower resolution raster back to a resolution of 3 km. How have the results changed?
+    - Name two advantages and disadvantages of reducing raster resolution.
 
 1. Polygonize the `grain` dataset and filter all squares representing clay.
     - Name two advantages and disadvantages of vector data over raster data.

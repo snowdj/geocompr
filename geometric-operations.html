@@ -1285,8 +1285,8 @@ Figure 5.25: Illustration of vectorization of raster (left) into polygon (center
 </div>
 <div id="exercises-3" class="section level2">
 <h2><span class="header-section-number">5.5</span> Exercises</h2>
-<p>Some of the exercises will use a vector (<code>random_points</code>) and raster dataset (<code>ndvi</code>) from the <strong>RQGIS</strong> package.
-It also uses a polygonal ‘convex hull’ derived from the vector dataset (<code>ch</code>) to represent the area of interest:</p>
+<p>Some of the exercises use a vector (<code>random_points</code>) and raster dataset (<code>ndvi</code>) from the <strong>RQGIS</strong> package.
+They also use a polygonal ‘convex hull’ derived from the vector dataset (<code>ch</code>) to represent the area of interest:</p>
 <div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb207-1" data-line-number="1"><span class="kw">library</span>(RQGIS)</a>
 <a class="sourceLine" id="cb207-2" data-line-number="2"><span class="kw">data</span>(random_points)</a>
 <a class="sourceLine" id="cb207-3" data-line-number="3"><span class="kw">data</span>(ndvi)</a>
@@ -1299,8 +1299,10 @@ Experiment with different values of <code>keep</code> (ranging from 0.5 to 0.000
 <li>At what value does the form of the result start to break-down for each method, making New Zealand unrecognizable?</li>
 <li>Advanced: What is different about the geometry type of the results from <code>st_simplify()</code> compared with the geometry type of <code>ms_simplify()</code>? What problems does this create and how can this be resolved?</li>
 </ul></li>
-<li><p>In the first exercise in Chapter <a href="spatial-operations.html#spatial-operations">4</a> it was established that Canterbury region had 61 of the 101 highest points in New Zealand. Using <code>st_buffer()</code>, how many points in <code>nz_height</code> are within 100 km of Canterbury?</p></li>
-<li><p>Find the geographic centroid of New Zealand. How far is it from the geographic centroid of Canterbury?</p></li>
+<li><p>In the first exercise in Chapter <a href="spatial-operations.html#spatial-operations">4</a> it was established that Canterbury region had 70 of the 101 highest points in New Zealand.
+Using <code>st_buffer()</code>, how many points in <code>nz_height</code> are within 100 km of Canterbury?</p></li>
+<li><p>Find the geographic centroid of New Zealand.
+How far is it from the geographic centroid of Canterbury?</p></li>
 <li>Most world maps have a north-up orientation.
 A world map with a south-up orientation could be created by a reflection (one of the affine transformations not mentioned in <a href="geometric-operations.html#affine-transformations">5.2.4</a>) of the <code>world</code> object’s geometry.
 Write code to do so.
@@ -1316,11 +1318,6 @@ Hint: you need to use a two-element vector for this transformation.
 <li><p>Calculate the length of the boundary lines of US states in meters.
 Which state has the longest border and which has the shortest?
 Hint: The <code>st_length</code> function computes the length of a <code>LINESTRING</code> or <code>MULTILINESTRING</code> geometry.</p></li>
-<li>Aggregate the raster counting high points in New Zealand (created in the previous exercise), reduce its geographic resolution by half (so cells are 6 by 6 km) and plot the result.
-<ul>
-<li>Resample the lower resolution raster back to a resolution of 3 km. How have the results changed?</li>
-<li>Name two advantages and disadvantages of reducing raster resolution.</li>
-</ul></li>
 <li><p>Crop the <code>ndvi</code> raster using (1) the <code>random_points</code> dataset and (2) the <code>ch</code> dataset.
 Are there any difference in the output maps?
 Next, mask <code>ndvi</code> using these two datasets.
@@ -1334,6 +1331,11 @@ Using these objects:
 <ul>
 <li>Count numbers of the highest points in each grid cell.</li>
 <li>Find the maximum elevation in each grid cell.</li>
+</ul></li>
+<li>Aggregate the raster counting high points in New Zealand (created in the previous exercise), reduce its geographic resolution by half (so cells are 6 by 6 km) and plot the result.
+<ul>
+<li>Resample the lower resolution raster back to a resolution of 3 km. How have the results changed?</li>
+<li>Name two advantages and disadvantages of reducing raster resolution.</li>
 </ul></li>
 <li>Polygonize the <code>grain</code> dataset and filter all squares representing clay.
 <ul>
