@@ -374,7 +374,7 @@ plot(world_asia[0], add = TRUE)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="figures/china-1.png" alt="India in context, demonstrating how the expandBB argument can be used to control zoom in static plots." width="576" />
+<img src="figures/china-1.png" alt="India in context, demonstrating how the expandBB argument can be used to control zoom in static plots." width="50%" />
 <p class="caption">(\#fig:china)India in context, demonstrating how the expandBB argument can be used to control zoom in static plots.</p>
 </div>
 
