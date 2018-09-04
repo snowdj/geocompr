@@ -999,10 +999,10 @@ We recommend the following resources in this direction:</p>
 <ol style="list-style-type: decimal">
 <li>Compute the following terrain attributes from the <code>dem</code> datasets loaded with <code>data(&quot;landslides&quot;, package = &quot;RSAGA&quot;)</code> with the help of R-GIS bridges (see Chapter <a href="gis.html#gis">9</a>):
 <ul>
-<li>slope</li>
-<li>plan curvature</li>
-<li>profile curvature</li>
-<li>catchment area</li>
+<li>Slope</li>
+<li>Plan curvature</li>
+<li>Profile curvature</li>
+<li>Catchment area</li>
 </ul></li>
 <li>Extract the values from the corresponding output rasters to the <code>landslides</code> data frame (<code>data(landslides, package = &quot;RSAGA&quot;</code>) by adding new variables called <code>slope</code>, <code>cplan</code>, <code>cprof</code>, <code>elev</code> and <code>log_carea</code>. Keep all landslide initiation points and 175 randomly selected non-landslide points (see section <a href="spatial-cv.html#case-landslide">11.2</a> for details).</li>
 <li>Use the derived terrain attribute rasters in combination with a GLM to make a spatial prediction map similar to that shown in Figure <a href="spatial-cv.html#fig:lsl-susc">11.2</a>.
