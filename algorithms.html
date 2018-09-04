@@ -635,7 +635,7 @@ The code chunk below creates the function <code>poly_centroid()</code> to mimic 
 <div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb356-1" data-line-number="1">poly_centroid =<span class="st"> </span><span class="cf">function</span>(x) {</a>
 <a class="sourceLine" id="cb356-2" data-line-number="2">  i =<span class="st"> </span><span class="dv">2</span><span class="op">:</span>(<span class="kw">nrow</span>(x) <span class="op">-</span><span class="st"> </span><span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb356-3" data-line-number="3">  T_all =<span class="st"> </span>T_all =<span class="st"> </span><span class="kw">lapply</span>(i, <span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb356-4" data-line-number="4">    <span class="kw">rbind</span>(<span class="dv">0</span>, poly_mat[x<span class="op">:</span>(x <span class="op">+</span><span class="st"> </span><span class="dv">1</span>), ], <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb356-4" data-line-number="4">    <span class="kw">rbind</span>(O, poly_mat[x<span class="op">:</span>(x <span class="op">+</span><span class="st"> </span><span class="dv">1</span>), ], O)</a>
 <a class="sourceLine" id="cb356-5" data-line-number="5">  })</a>
 <a class="sourceLine" id="cb356-6" data-line-number="6">  C_list =<span class="st"> </span><span class="kw">lapply</span>(T_all, t_centroid)</a>
 <a class="sourceLine" id="cb356-7" data-line-number="7">  C =<span class="st"> </span><span class="kw">do.call</span>(rbind, C_list)</a>
@@ -643,7 +643,7 @@ The code chunk below creates the function <code>poly_centroid()</code> to mimic 
 <a class="sourceLine" id="cb356-9" data-line-number="9">  <span class="kw">c</span>(<span class="kw">weighted.mean</span>(C[, <span class="dv">1</span>], A), <span class="kw">weighted.mean</span>(C[, <span class="dv">2</span>], A))</a>
 <a class="sourceLine" id="cb356-10" data-line-number="10">}</a></code></pre></div>
 <div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb357-1" data-line-number="1"><span class="kw">poly_centroid</span>(poly_mat)</a>
-<a class="sourceLine" id="cb357-2" data-line-number="2"><span class="co">#&gt; [1]  8.31 11.08</span></a></code></pre></div>
+<a class="sourceLine" id="cb357-2" data-line-number="2"><span class="co">#&gt; [1] 8.83 9.22</span></a></code></pre></div>
 <p>Functions such as <code>poly_centroid()</code> can further be built-on to provide different types of output.
 To return the result as an object of class <code>sfg</code>, for example, a ‘wrapper’ function can be used to modify the output of <code>poly_centroid()</code> before returning the result:</p>
 <div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb358-1" data-line-number="1">poly_centroid_sfg =<span class="st"> </span><span class="cf">function</span>(x) {</a>
@@ -653,7 +653,7 @@ To return the result as an object of class <code>sfg</code>, for example, a ‘w
 <p>We can verify that the output is the same as the output from <code>sf::st_centroid()</code> as follows:</p>
 <div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb359-1" data-line-number="1">poly_sfc =<span class="st"> </span>sf<span class="op">::</span><span class="kw">st_polygon</span>(<span class="kw">list</span>(poly_mat))</a>
 <a class="sourceLine" id="cb359-2" data-line-number="2"><span class="kw">identical</span>(<span class="kw">poly_centroid_sfg</span>(poly_mat), sf<span class="op">::</span><span class="kw">st_centroid</span>(poly_sfc))</a>
-<a class="sourceLine" id="cb359-3" data-line-number="3"><span class="co">#&gt; [1] FALSE</span></a></code></pre></div>
+<a class="sourceLine" id="cb359-3" data-line-number="3"><span class="co">#&gt; [1] TRUE</span></a></code></pre></div>
 <!-- RL: I've commented-out the rest of this section as I think it distracts from the core content -->
 <!-- An important concept to consider when developing your own function is *type stability*. -->
 <!-- Functions are type stable if they always return objects of the same class and, generally, this means returning objects of the same type as the input object. -->
