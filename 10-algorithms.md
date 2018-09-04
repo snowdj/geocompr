@@ -336,7 +336,7 @@ The code chunk below creates the function `poly_centroid()` to mimic the behavio
 poly_centroid = function(x) {
   i = 2:(nrow(x) - 2)
   T_all = T_all = lapply(i, function(x) {
-    rbind(O, poly_mat[x:(x + 1), ], O)
+    rbind(0, poly_mat[x:(x + 1), ], 0)
   })
   C_list = lapply(T_all, t_centroid)
   C = do.call(rbind, C_list)
@@ -351,7 +351,7 @@ poly_centroid = function(x) {
 
 ```r
 poly_centroid(poly_mat)
-#> [1] 8.83 9.22
+#> [1]  8.31 11.08
 ```
 
 Functions such as `poly_centroid()` can further be built-on to provide different types of output.
@@ -371,7 +371,7 @@ We can verify that the output is the same as the output from `sf::st_centroid()`
 ```r
 poly_sfc = sf::st_polygon(list(poly_mat))
 identical(poly_centroid_sfg(poly_mat), sf::st_centroid(poly_sfc))
-#> [1] TRUE
+#> [1] FALSE
 ```
 
 <!-- RL: I've commented-out the rest of this section as I think it distracts from the core content -->
