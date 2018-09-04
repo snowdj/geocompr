@@ -155,11 +155,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a><ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#development"><i class="fa fa-check"></i>Development</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-contribute"><i class="fa fa-check"></i>How to contribute?</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#reproducibility"><i class="fa fa-check"></i>Reproducibility</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="0.1" data-path="preface.html"><a href="preface.html#who-this-book-is-for"><i class="fa fa-check"></i><b>0.1</b> Who this book is for</a></li>
+<li class="chapter" data-level="0.2" data-path="preface.html"><a href="preface.html#how-to-read-this-book"><i class="fa fa-check"></i><b>0.2</b> How to read this book</a></li>
+<li class="chapter" data-level="0.3" data-path="preface.html"><a href="preface.html#why-r"><i class="fa fa-check"></i><b>0.3</b> Why R?</a></li>
+<li class="chapter" data-level="0.4" data-path="preface.html"><a href="preface.html#real-world-impact"><i class="fa fa-check"></i><b>0.4</b> Real-world impact</a></li>
 <li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
@@ -412,21 +415,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="welcome" class="section level1 unnumbered">
 <h1>Welcome</h1>
-<p>This is the online home of <em>Geocomputation with R</em>, a forthcoming book with <a href="https://www.crcpress.com/Chapman--HallCRC-The-R-Series/book-series/CRCTHERSER">CRC Press</a>.</p>
-<div id="development" class="section level2 unnumbered">
-<h2>Development</h2>
-<p>Inspired by <a href="https://github.com/rstudio/bookdown"><strong>bookdown</strong></a> and the Free and Open Source Software for Geospatial (<a href="http://foss4g.org/">FOSS4G</a>) movement, this book is open source and publicly available.
-This approach encourages contributions, ensures reproducibility and provides access to the material worldwide.</p>
-<p>The book explains how to undertake a range of geographic techniques from R and is divided into the floowing parts:</p>
+<p>This is the online home of <em>Geocomputation with R</em>, a forthcoming book with <a href="https://www.crcpress.com/Chapman--HallCRC-The-R-Series/book-series/CRCTHERSER">CRC Press</a> on geographic data analysis, visualization and modeling with R.</p>
+<p>Inspired by <a href="https://github.com/rstudio/bookdown"><strong>bookdown</strong></a> and the Free and Open Source Software for Geospatial (<a href="http://foss4g.org/">FOSS4G</a>) movement, this book is open source.
+This ensures its contents are reproducible and publicly accessible or people worldwide.
+The book is divided into three parts:</p>
 <ol style="list-style-type: decimal">
 <li>Foundations, aimed at getting you up-to-speed with geographic data in R.</li>
 <li>Extensions, which covers advanced techniques.</li>
 <li>Applications, to real-world problems.</li>
 </ol>
-<p>The online version of the book is hosted at <a href="https://geocompr.robinlovelace.net">geocompr.robinlovelace.net</a> and kept up-to-date thanks to <a href="https://travis-ci.org/Robinlovelace/geocompr">Travis</a>, which provides information on its ‘build status’ as follows:</p>
+<p>The online version of the book is hosted at <a href="https://geocompr.robinlovelace.net">geocompr.robinlovelace.net</a> and kept up-to-date by <a href="https://travis-ci.org/Robinlovelace/geocompr">Travis</a>, which provides information on its ‘build status’ as follows:</p>
 <p><a href="https://travis-ci.org/Robinlovelace/geocompr"><img src="https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master" alt="Build Status" /></a></p>
 <p>The version of the book you are reading now was built on 2018-09-04 and was built on <a href="https://travis-ci.org/Robinlovelace/geocompr">Travis</a>.</p>
-</div>
 <div id="how-to-contribute" class="section level2 unnumbered">
 <h2>How to contribute?</h2>
 <p><strong>bookdown</strong> makes editing a book as easy as editing a wiki, provided you have a GitHub account (<a href="https://github.com/">sign-up at github.com</a>).
@@ -437,7 +437,8 @@ This will take you to an editable version of the the source <a href="http://rmar
 </div>
 <div id="reproducibility" class="section level2 unnumbered">
 <h2>Reproducibility</h2>
-<p>To reproduce the book, you need a recent version of <a href="https://cran.r-project.org/">R</a> and up-to-date packages, which can be installed with the following command (which requires <a href="https://github.com/hadley/devtools"><strong>devtools</strong></a>):</p>
+<p>To reproduce the code in the book, you need a recent version of <a href="https://cran.r-project.org/">R</a> and up-to-date packages.
+These can be installed with the following command (which requires <a href="https://github.com/hadley/devtools"><strong>devtools</strong></a>):</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;geocompr/geocompkg&quot;</span>)</a></code></pre></div>
 <p>To build the book locally, clone or <a href="https://github.com/Robinlovelace/geocompr/archive/master.zip">download</a> the <a href="https://github.com/Robinlovelace/geocompr/">geocompr repo</a>, load R in root directory (e.g. by opening <a href="https://github.com/Robinlovelace/geocompr/blob/master/geocompr.Rproj">geocompr.Rproj</a> in RStudio) and run the following lines:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">bookdown<span class="op">::</span><span class="kw">render_book</span>(<span class="st">&quot;index.Rmd&quot;</span>) <span class="co"># to build the book</span></a>
