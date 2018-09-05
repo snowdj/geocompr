@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-09-04">
+<meta name="date" content="2018-09-05">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -455,7 +455,7 @@ The other options performed attribute operations, which may be useful for subseq
 The range of options grows further when other R packages are considered: you could acheive the same result using the older <strong>sp</strong> package, for example.
 We recommend using <strong>sf</strong> and the other packages showcased in this book, for reasons outlined in Chapter <a href="spatial-class.html#spatial-class">2</a>, but it’s worth being aware of alternatives and being able to justify your choice of software.</p>
 <p>We deliberately covered both <strong>tidyverse</strong> and base R approaches to attribute data operations.
-Chapter <a href="attr.html#attr">3</a> showed how both <code>nz[&quot;Name&quot;]</code> and <code>nz %&gt;% select(Name)</code> can be used to acheive the same result, for example.
+Chapter <a href="attr.html#attr">3</a> showed how both <code>nz[&quot;Name&quot;]</code> and <code>nz %&gt;% select(Name)</code> can be used to achieve the same result, for example.
 The overlap is highlighted because each approach has advantages: the pipe syntax is popular and appealing to some, while base R is more stable, and is well-known to others.
 Choosing between them is therefore largely a matter of preference, but beware of pitfalls when using <strong>tidyverse</strong> functions to handle spatial data (see the supplementary article <code>spatial-tidyverse</code> at <a href="https://geocompr.github.io/">geocompr.github.io</a>).</p>
 <p>While commonly needed subsetting functions were covered in depth, in two packages, many others were omitted.
