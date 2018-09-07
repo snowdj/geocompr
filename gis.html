@@ -941,7 +941,7 @@ Additionally, <code>st_read()</code> needs to know which column represents the g
 <a class="sourceLine" id="cb338-4" data-line-number="4">  <span class="st">&quot;WHERE name = &#39;US Route 1&#39; AND state = &#39;MD&#39;;&quot;</span>)</a>
 <a class="sourceLine" id="cb338-5" data-line-number="5">us_route =<span class="st"> </span><span class="kw">st_read</span>(conn, <span class="dt">query =</span> query, <span class="dt">geom =</span> <span class="st">&quot;wkb_geometry&quot;</span>)</a></code></pre></div>
 <p>This results in an <strong>sf</strong>-object named <code>us_route</code> of type <code>sfc_MULTILINESTRING</code>.
-The next step is to add a 20-mile buffer around the selected highway (Figure <a href="gis.html#fig:postgis">9.4</a>).</p>
+The next step is to add a 20-mile buffer (corresponds to 1609 meters times 20) around the selected highway (Figure <a href="gis.html#fig:postgis">9.4</a>).</p>
 <div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb339-1" data-line-number="1">query =<span class="st"> </span><span class="kw">paste</span>(</a>
 <a class="sourceLine" id="cb339-2" data-line-number="2">  <span class="st">&quot;SELECT ST_Union(ST_Buffer(wkb_geometry, 1609 * 20))::geometry&quot;</span>,</a>
 <a class="sourceLine" id="cb339-3" data-line-number="3">  <span class="st">&quot;FROM highways&quot;</span>,</a>
