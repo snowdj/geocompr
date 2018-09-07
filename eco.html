@@ -802,12 +802,14 @@ However, this does not imply that the random forest model has given back the bes
 <li><p>Run a NMDS using the percentage data of the community matrix.
 Report the stress value and compare it to the stress value as retrieved from the NMDS using presence-absence data.
 What might explain the observed difference?</p></li>
-<li><p>Compute all the predictor rasters we have used in the chapter (catchment slope, catchment area), and put them in a raster stack.
+<li><p>Compute all the predictor rasters we have used in the chapter (catchment slope, catchment area), and put them into a raster stack.
 Add <code>dem</code> and <code>ndvi</code> to the raster stack.
-Next, compute profile and tangential curvature as additional predictor rasters and put them also in the raster stack (hint: <code>grass7:r.slope.aspect</code>).
+Next, compute profile and tangential curvature as additional predictor rasters and add them to the raster stack (hint: <code>grass7:r.slope.aspect</code>).
 Finally, construct a response-predictor matrix.
 The scores of the first NMDS axis (which were the result when using the presence-absence community matrix) rotated in accordance with elevation represent the response variable, and should be joined to <code>random_points</code> (use an inner join).
-Extract also the values of the environmental predictor raster stack to <code>random_points</code>.</p></li>
+To complete the response-predictor matrix, extract the values of the environmental predictor raster stack to <code>random_points</code>.</p></li>
+<li><p>Use the response-predictor matrix of the previous exercise to fit a random forest model.
+Find the optimal hyperparameters and use them for making a prediction map.</p></li>
 <li><p>Retrieve the bias-reduced RMSE of a random forest model using spatial cross-validation including the estimation of optimal hyperparameter combinations (random search with 50 iterations) in an inner tuning loop (see section <a href="spatial-cv.html#svm">11.5.2</a>).
 Parallelize the tuning level (see section <a href="spatial-cv.html#svm">11.5.2</a>).
 Report the mean RMSE and use a boxplot to visualize all retrieved RMSEs.</p></li>
