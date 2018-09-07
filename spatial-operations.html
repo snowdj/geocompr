@@ -1100,7 +1100,7 @@ How many of these high points does Canterbury Region contain?</p></li>
 <ol style="list-style-type: decimal">
 <li>Use <code>data(dem, package = &quot;RQGIS&quot;)</code>, and reclassify the elevation in three classes: low, medium and high.
 Secondly, compute the NDVI (<code>data(ndvi, package = &quot;RQGIS&quot;)</code>) and the mean elevation for each altitudinal class.</li>
-<li>Apply a line detection filter to <code>raster(&quot;https://www.r-project.org/logo/Rlogo.png&quot;)</code>.
+<li>Apply a line detection filter to <code>raster(system.file(&quot;external/rlogo.grd&quot;, package = &quot;raster&quot;))</code>.
 Plot the result.
 Hint: Read <code>?raster::focal()</code>.</li>
 <li>Calculate the NDVI of a Landsat image.
