@@ -803,7 +803,12 @@ However, this does not imply that the random forest model has given back the bes
 Report the stress value and compare it to the stress value as retrieved from the NMDS using presence-absence data.
 What might explain the observed difference?</li>
 <li>Compute catchment area and catchment slope using <strong>RSAGA</strong> (see section <a href="gis.html#rsaga">9.3</a>).</li>
-<li>Use profile and tangential curvature as additional predictors for the spatial prediction of the floristic gradient (hint: <code>grass7:r.slope.aspect</code>).</li>
+<li>Compute all the predictor rasters we have used in the chapter (catchment slope, catchment area), and put them in a raster stack.
+Add <code>dem</code> and <code>ndvi</code> to the raster stack.
+Next, compute profile and tangential curvature as additional predictor rasters and put them also in the raster stack (hint: <code>grass7:r.slope.aspect</code>).
+Finally, construct a response-predictor matrix.
+The scores of the first NMDS axis (which were the result when using the presence-absence community matrix) rotated in accordance with elevation represent the response variable, and should be joined to <code>random_points</code> (use an inner join).
+Extract also the values of the environmental predictor raster stack to <code>random_points</code>.</li>
 <li>Retrieve the bias-reduced RMSE of a random forest model using spatial cross-validation including the estimation of optimal hyperparameter combinations (random search with 50 iterations) in an inner tuning loop (see section <a href="spatial-cv.html#svm">11.5.2</a>).
 Parallelize the tuning level (see section <a href="spatial-cv.html#svm">11.5.2</a>).
 Report the mean RMSE and use a boxplot to visualize all retrieved RMSEs.</li>
