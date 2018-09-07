@@ -911,17 +911,6 @@ How many of these high points does Canterbury Region contain?
 
 1. Which region has the second highest number of `nz_height` points in, and how many does it have?
 
-```r
-nz_height_count = aggregate(nz_height, nz, length)
-nz_height_combined = cbind(nz, count = nz_height_count$elevation)
-nz_height_combined %>% 
-  st_set_geometry(NULL) %>% 
-  dplyr::select(Name, count) %>% 
-  arrange(desc(count)) %>% 
-  slice(2)
-#>         Name count
-#> 1 West Coast    22
-```
 1. Generalizing the question to all regions: how many of New Zealand's 16 regions contain points which belong to the top 100 highest points in the country? Which regions?
     - Bonus: create a table listing these regions in order of the number of points and their name.
 

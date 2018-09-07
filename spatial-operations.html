@@ -1091,17 +1091,6 @@ The packages <strong>landsat</strong> (<code>histmatch()</code>, <code>relnorm()
 <li><p>It was established in section <a href="spatial-operations.html#spatial-vec">4.2</a> that Canterbury was the region of New Zealand containing most of 100 highest points in the country.
 How many of these high points does Canterbury Region contain?</p></li>
 <li><p>Which region has the second highest number of <code>nz_height</code> points in, and how many does it have?</p></li>
-</ol>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" data-line-number="1">nz_height_count =<span class="st"> </span><span class="kw">aggregate</span>(nz_height, nz, length)</a>
-<a class="sourceLine" id="cb147-2" data-line-number="2">nz_height_combined =<span class="st"> </span><span class="kw">cbind</span>(nz, <span class="dt">count =</span> nz_height_count<span class="op">$</span>elevation)</a>
-<a class="sourceLine" id="cb147-3" data-line-number="3">nz_height_combined <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb147-4" data-line-number="4"><span class="st">  </span><span class="kw">st_set_geometry</span>(<span class="ot">NULL</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb147-5" data-line-number="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(Name, count) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb147-6" data-line-number="6"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(count)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb147-7" data-line-number="7"><span class="st">  </span><span class="kw">slice</span>(<span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb147-8" data-line-number="8"><span class="co">#&gt;         Name count</span></a>
-<a class="sourceLine" id="cb147-9" data-line-number="9"><span class="co">#&gt; 1 West Coast    22</span></a></code></pre></div>
-<ol style="list-style-type: decimal">
 <li>Generalizing the question to all regions: how many of New Zealand’s 16 regions contain points which belong to the top 100 highest points in the country? Which regions?
 <ul>
 <li>Bonus: create a table listing these regions in order of the number of points and their name.</li>
