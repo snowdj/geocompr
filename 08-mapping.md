@@ -923,12 +923,13 @@ They prepare cartograms, create line maps, transform polygons into regular or he
 
 Table: (\#tab:map-spkg)Selected specific-purpose mapping packages, with associated metrics.
 
-package     title                                                    
-----------  ---------------------------------------------------------
-cartogram   Create Cartograms with R                                 
-geogrid     Turn Geospatial Polygons into Regular or Hexagonal Grids 
-geofacet    'ggplot2' Faceting Utilities for Geographical Data       
-linemap     Line Maps                                                
+package     title                                                        
+----------  -------------------------------------------------------------
+cartogram   Create Cartograms with R                                     
+geogrid     Turn Geospatial Polygons into Regular or Hexagonal Grids     
+geofacet    'ggplot2' Faceting Utilities for Geographical Data           
+globe       Plot 2D and 3D Views of the Earth, Including Major Coastline 
+linemap     Line Maps                                                    
 
 All of the aforementioned packages, however, have different approaches for data preparation and map creation.
 In the next paragraph, we focus solely on the **cartogram** package.
