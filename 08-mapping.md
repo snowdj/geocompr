@@ -713,6 +713,102 @@ The **googleway** package, for example, provides an interactive mapping interfac
 The command `google_map(key = key) %>% add_polygons(st_transform(nz, 4326))` plots an interactive map of New Zealand (it assumes a Google API key is saved as `key`).
 Many other functions are provided by the package, providing an R interface to a wide range of mapping services including routing, traffic visualization and geocoding (see the [`googleway-vignette`](https://cran.r-project.org/web/packages/googleway/vignettes/googleway-vignette.html) for details).
 
+Another recent web mapping package is **[Mapdeck](https://github.com/SymbolixAU/mapdeck)**, which provides access to Uber's [Deck.gl](http://deck.gl/#/) framework, which in turn uses WebGL for rendering graphics. Since it's using WebGL it's well suited for visualising large datastes (up to millions of points), and quickly. 
+
+Mapdeck uses [Mapbox](https://www.mapbox.com/) as the map layer, so you need an [access](https://www.mapbox.com/help/how-access-tokens-work/) token to view the maps. 
+
+An advantage over some other mapping libraries in R is the 2.5d perspectives offered. That is, you can pan, zoom and rotate around the maps, and view the data 'extruded' from the map.
+
+This example is using a data set of road accidents in the UK. The height of the bars respresent higher numbers of accidents in that area. 
+
+
+```r
+
+library(mapdeck)
+
+set_token("MAPBOX_TOKEN")
+
+df <- read.csv(paste0(
+'https://raw.githubusercontent.com/uber-common/deck.gl-data/master/',
+'examples/3d-heatmap/heatmap-data.csv'
+))
+
+mapdeck( 
+  style = mapdeck_style('dark')
+  , pitch = 45 
+  , location = c(0, 52)
+  , zoom = 4
+  ) %>%
+add_grid(
+  data = df
+  , lat = "lat"
+  , lon = "lng"
+  , cell_size = 1000
+  , elevation_scale = 50
+  , layer_id = "grid_layer"
+  , colour_range = viridisLite::plasma(5)
+)
+
+```
+
+In the browser you can zoom in and out, drag the map, and hold Cmd/Ctrl and drag to rotate the map
+
+You can add multiple layers to a map by 'piping' them together with the `%>%` operator. 
+
+
+```r
+
+df <- capitals
+df$key <- 1L
+df_arcs <- merge(
+  df[df$country == "Australia", ]
+  , df[df$country != "Australia", ]
+  , by = "key"
+  )
+
+mapdeck(
+  style = mapdeck_style('dark')
+  , pitch = 45
+) %>%
+  add_arc(
+    data = df_arcs
+    , origin = c("lon.x","lat.x")
+    , destination = c("lon.y", "lat.y")
+    , stroke_from = "country.x"
+    , stroke_to = "country.y"
+  ) %>%
+  add_scatterplot(
+    data = capitals
+    , lon = "lon"
+    , lat = "lat"
+    , fill_colour = "country"
+    , radius = 5000
+  )
+
+```
+
+Mapdeck also supports `sf` objects
+
+
+```r
+library(sf)
+str(roads)
+
+
+mapdeck(
+  , style = mapdeck_style('dark')
+  , location = c(145, -37.8)
+  , zoom = 10
+  ) %>%
+  add_path(
+    data = roads
+    , stroke_colour = "RIGHT_LOC"
+    , layer_id = "path_layer"
+    , tooltip = "ROAD_NAME"
+    , auto_highlight = TRUE
+  )
+
+```
 
 
 Last but not least is **leaflet** which is the most mature and widely used interactive mapping package in R.
