@@ -446,7 +446,7 @@ based on the <strong>sf</strong> package to combine the 16 regions of New Zealan
 <a class="sourceLine" id="cb460-7" data-line-number="7"><span class="kw">identical</span>(nz_u1, nz_u3<span class="op">$</span>geom)</a>
 <a class="sourceLine" id="cb460-8" data-line-number="8"><span class="co">#&gt; [1] TRUE</span></a></code></pre></div>
 <p>Although the classes, attributes and column names of the resulting objects <code>nz_u1</code> to <code>nz_u3</code> differ, their geometries are identical.
-This is verified using the base R function <code>identical()</code>.<a href="#fn82" class="footnote-ref" id="fnref82"><sup>82</sup></a>
+This is verified using the base R function <code>identical()</code>.<a href="#fn83" class="footnote-ref" id="fnref83"><sup>83</sup></a>
 Which to use?
 It depends.
 The former only processes the geometry data contained in <code>nz</code> so is faster.
@@ -484,7 +484,7 @@ But there is already excellent material on these things such as <span class="cit
 Another topic which we barely touched is remote sensing though especially everything related to raster analysis is a good introduction to remote sensing with R.
 If you want to know more, you might find <span class="citation">Wegmann, Leutner, and Dech (<a href="#ref-wegmann_remote_2016">2016</a>)</span> interesting.</p>
 <p>Instead of providing the reader with spatial statistical modeling and inference, we mainly chose to present machine-learning algorithms (see Chapters <a href="spatial-cv.html#spatial-cv">11</a> and <a href="eco.html#eco">14</a>).
-Again, the reason was that there are already great books out there covering these topics, especially with ecological use cases <span class="citation">(among others, Zuur et al. <a href="#ref-zuur_mixed_2009">2009</a>, <span class="citation">@zuur_beginners_2017</span>)</span>.
+Again, the reason was that there are already great books out there covering these topics, especially with ecological use cases <span class="citation">(among others, Zuur et al. <a href="#ref-zuur_mixed_2009">2009</a>, <a href="#ref-zuur_beginners_2017">2017</a>)</span>.
 In case, you are more interested in spatial statistics using Bayesian modeling, check out also <span class="citation">Blangiardo and Cameletti (<a href="#ref-blangiardo_spatial_2015">2015</a>)</span>.
 <!-- @Robinlovelace, as far as I remember blangiardo also were using epidemiological use cases. Zuur et al. also agreed to write a book on spatial, and spatial-temporal models for medical, public health and epidemiological data analysis using R-INLA -> see highstat.com --></p>
 <!-- maybe, we should put this into the preface as well? -->
@@ -520,7 +520,7 @@ A next step in this direction is to deepen your knowledge of base R, for example
 <!-- maybe we should add info about places to learn more r-spatial stuff (aka github, twitter, ...?)? --></p>
 <!-- Many directions of travel could be taken after taking the geocomputational steps -->
 <p>Perhaps the most obvious direction for future learning is <strong>discovering geocomputation with other languages</strong>.
-There are good reasons for learning R as a language for geocomputation, as described in Chapter <a href="intro.html#intro">1</a>, but it is not the only option.<a href="#fn83" class="footnote-ref" id="fnref83"><sup>83</sup></a>
+There are good reasons for learning R as a language for geocomputation, as described in Chapter <a href="intro.html#intro">1</a>, but it is not the only option.<a href="#fn84" class="footnote-ref" id="fnref84"><sup>84</sup></a>
 It is possible to study <em>Geocomputation with Python</em>, <em>C++</em>, <em>JavaScript</em>, <em>Scala</em>, <em>Julia</em> or <em>Rust</em> in equal depth.
 Each of these is a promising language for geocomputation.
 <a href="https://github.com/Turfjs/turf"><strong>Turf.js</strong></a>, for example, provides many functions for geospatial analysis with implementations in JavaScript, Julia, and even Swift.
@@ -560,8 +560,8 @@ Reproducibility encourages geocomputation for social benefit because it makes ge
 <p>The benefits of reproducibility can be illustrated with the example of using geocomputation to increase sales of perfume.
 If the methods are hidden and cannot reproduced, few people can benefit (except for the perfume company who commissioned the work!).
 If the underlying code is made open and reproducible, by contrast, the methods can be re-purposed or improved (which would also benefit the perfume company).
-Reproducibility encourages socially but also economically beneficial collaboration.<a href="#fn84" class="footnote-ref" id="fnref84"><sup>84</sup></a>
-The importance of reproducibility, and other non-technical ingredients in the field of geocompuation, are further discussed in an open access article celebrating ‘21+ years of geocomputation’ <span class="citation">(Harris et al. <a href="#ref-harris_more_2017">2017</a>)</span>.</p>
+Reproducibility encourages socially but also economically beneficial collaboration.<a href="#fn85" class="footnote-ref" id="fnref85"><sup>85</sup></a>
+The importance of reproducibility, and other non-technical ingredients in the field of geocomputation, are further discussed in an open access article celebrating ‘21+ years of geocomputation’ <span class="citation">(Harris et al. <a href="#ref-harris_more_2017">2017</a>)</span>.</p>
 <!-- Like any worthwhile intellectual endeavor or nascent academic field, geocomputation is diverse and contested. -->
 
 </div>
@@ -579,6 +579,9 @@ The importance of reproducibility, and other non-technical ingredients in the fi
 </div>
 <div id="ref-zuur_mixed_2009">
 <p>Zuur, Alain, Elena N. Ieno, Neil Walker, Anatoly A. Saveliev, and Graham M. Smith. 2009. <em>Mixed Effects Models and Extensions in Ecology with R</em>. Statistics for Biology and Health. New York: Springer-Verlag.</p>
+</div>
+<div id="ref-zuur_beginners_2017">
+<p>Zuur, Alain F., Elena N. Ieno, Anatoly A. Saveliev, and Alain F. Zuur. 2017. <em>Beginner’s Guide to Spatial, Temporal and Spatial-Temporal Ecological Data Analysis with R-INLA</em>. Vol. Volume 1: Using GLM and GLMM. Newburgh, United Kingdom: Highland Statistics Ltd.</p>
 </div>
 <div id="ref-blangiardo_spatial_2015">
 <p>Blangiardo, Marta, and Michela Cameletti. 2015. <em>Spatial and Spatio-Temporal Bayesian Models with R-INLA</em>. Chichester, UK: John Wiley &amp; Sons, Ltd. <a href="https://doi.org/10.1002/9781118950203" class="uri">https://doi.org/10.1002/9781118950203</a>.</p>
@@ -601,17 +604,17 @@ The importance of reproducibility, and other non-technical ingredients in the fi
 </div>
 <div class="footnotes">
 <hr />
-<ol start="82">
-<li id="fn82"><p>
+<ol start="83">
+<li id="fn83"><p>
 The first operation, undertaken by the function <code>st_union()</code>, creates an object of class <code>sfc</code> (a simple feature column).
 The latter two operations create <code>sf</code> objects, each of which <em>contains</em> a simple feature column.
-Therefore it is the geometries contained in simple feature columns, not the objects themselves, that are identical.<a href="conclusion.html#fnref82" class="footnote-back">↩</a></p></li>
-<li id="fn83"><p>
+Therefore it is the geometries contained in simple feature columns, not the objects themselves, that are identical.<a href="conclusion.html#fnref83" class="footnote-back">↩</a></p></li>
+<li id="fn84"><p>
 R’s strengths relevant to our definition geocomputation include its emphasis on scientific reproducibility, widespread use in academic research and unparalleled support for statistical modeling of geographic data.
 Furthermore, we advocate learning one language (R) for geocomputation in depth before delving into other languages/frameworks because of the costs associated with context switching.
-It is preferable to have expertise in one language than basic knowledge of many.<a href="conclusion.html#fnref83" class="footnote-back">↩</a></p></li>
-<li id="fn84"><p>
-One accessible way to contribute upstream is creating a reprex (reproducible example) to highlight a bug in the package’s issue tracker, as outlined in section <a href="algorithms.html#scripts">10.2</a>.<a href="conclusion.html#fnref84" class="footnote-back">↩</a></p></li>
+It is preferable to have expertise in one language than basic knowledge of many.<a href="conclusion.html#fnref84" class="footnote-back">↩</a></p></li>
+<li id="fn85"><p>
+One accessible way to contribute upstream is creating a reprex (reproducible example) to highlight a bug in the package’s issue tracker, as outlined in section <a href="algorithms.html#scripts">10.2</a>.<a href="conclusion.html#fnref85" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 <script>
