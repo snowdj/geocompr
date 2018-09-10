@@ -452,7 +452,7 @@ It depends.
 The former only processes the geometry data contained in <code>nz</code> so is faster.
 The other options performed attribute operations, which may be useful for subsequent steps.</p>
 <p>The wider point is that there are often multiple options to choose from when working with geographic data in R, even within a single package.
-The range of options grows further when other R packages are considered: you could acheive the same result using the older <strong>sp</strong> package, for example.
+The range of options grows further when other R packages are considered: you could achieve the same result using the older <strong>sp</strong> package, for example.
 We recommend using <strong>sf</strong> and the other packages showcased in this book, for reasons outlined in Chapter <a href="spatial-class.html#spatial-class">2</a>, but it’s worth being aware of alternatives and being able to justify your choice of software.</p>
 <p>We deliberately covered both <strong>tidyverse</strong> and base R approaches to attribute data operations.
 Chapter <a href="attr.html#attr">3</a> showed how both <code>nz[, &quot;Name&quot;]</code> and <code>nz %&gt;% select(Name)</code> can be used to achieve the same result, for example.
@@ -491,7 +491,7 @@ In case, you are more interested in spatial statistics using Bayesian modeling, 
 <p>Finally, we have largely omitted big data analytics.
 This might seem surprising since especially geographic data can become big really fast.
 But the prerequisite for doing big data analytics is to know how to solve a problem on a small dataset.
-Once you have learned that you can apply the exact same techniques big data questions, though of course you need to expand your toolbox.
+Once you have learned that you can apply the exact same techniques on big data questions, though of course you need to expand your toolbox.
 The first thing to learn is to handle spatial data queries.
 This is because big data analytics often boil down to extracting a small amount of data from a database for a specific statistical analysis.
 For this, we have provided an introduction to spatial databases and how to use a GIS from within R in chapter <a href="gis.html#gis">9</a>.
@@ -515,7 +515,7 @@ This section points toward sensible next steps on your geocomputational journey,
 All the analyses are based on R classes, primarily <code>sf</code> and <code>raster</code>, which in turn build on the base R classes of <code>data.frame</code> and <code>matrix</code>.
 The wider point is the importance of <em>depth of understanding</em>.
 This observation suggests a direction of travel: <strong>improving your understanding of the R language</strong>.
-A next step in this direction is to deepen your knowledge of base R, for example by: studying R’s key documents (which can be found by entering <code>help.start()</code> in the console), reading and playing with the source code of useful functions, or reading comprehensive resources on the subject such those by <span class="citation">Wickham (<a href="#ref-wickham_advanced_2014">2014</a><a href="#ref-wickham_advanced_2014">a</a>)</span> and <span class="citation">Chambers (<a href="#ref-chambers_extending_2016">2016</a>)</span>.
+A next step in this direction is to deepen your knowledge of base R, for example by: studying R’s key documents (which can be found by entering <code>help.start()</code> in the console), reading and playing with the source code of useful functions, or reading comprehensive resources on the subject such as those by <span class="citation">Wickham (<a href="#ref-wickham_advanced_2014">2014</a><a href="#ref-wickham_advanced_2014">a</a>)</span> and <span class="citation">Chambers (<a href="#ref-chambers_extending_2016">2016</a>)</span>.
 <!-- creating and querying simple spatial in Chapter \ref(spatial-class) -->
 <!-- maybe we should add info about places to learn more r-spatial stuff (aka github, twitter, ...?)? --></p>
 <!-- Many directions of travel could be taken after taking the geocomputational steps -->
