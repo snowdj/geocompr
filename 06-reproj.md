@@ -587,3 +587,10 @@ How does it influence the results?
 What has changed?
 How does it influence the results?
 
+1. Create your own `proj4string`. 
+It should have the Lambert Azimuthal Equal Area (`laea`) projection, the WGS84 ellipsoid, the longitude of projection center of 95 degrees west, the latitude of projection center of 60 degrees north, and its units should be in meters.
+Next, subset Canada from the `world` object and transform it into the new projection. 
+Plot and compare a map before and after the transformation.
+
+
+

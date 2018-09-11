@@ -905,7 +905,7 @@ The packages **landsat** (`histmatch()`, `relnorm()`, `PIF()`), **satellite** (`
 <!-- changes classes; polygonize, etc-->
 
 ## Exercises
-<!-- vector exercises -->
+
 1. It was established in section \@ref(spatial-vec) that Canterbury was the region of New Zealand containing most of 100 highest points in the country.
 How many of these high points does Canterbury Region contain?
 
@@ -914,7 +914,6 @@ How many of these high points does Canterbury Region contain?
 1. Generalizing the question to all regions: how many of New Zealand's 16 regions contain points which belong to the top 100 highest points in the country? Which regions?
     - Bonus: create a table listing these regions in order of the number of points and their name.
 
-<!-- Raster exercises-->
 1. Use `data(dem, package = "RQGIS")`, and reclassify the elevation in three classes: low, medium and high.
 Secondly, compute the NDVI (`data(ndvi, package = "RQGIS")`) and the mean elevation for each altitudinal class.
 1. Apply a line detection filter to `raster(system.file("external/rlogo.grd", package = "raster"))`.
