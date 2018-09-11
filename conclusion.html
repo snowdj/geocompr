@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-09-10">
+<meta name="date" content="2018-09-11">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -469,10 +469,14 @@ Our advice in this context applies equally to other domains of knowledge: learn 
 Of course, some packages perform much better than others, making package selection an important decision.
 From this diversity, we have focussed on packages that are future-proof (they will work long into the future), high performance (relative to other R packages) and complimentary.
 But there is still overlap in the packages we have used, as illustrated by the diversity of packages for making maps, for example (see Chapter <a href="adv-map.html#adv-map">8</a>).</p>
-<p>Package overlap is not a bad thing.
-It increases resilience, drives performance (partly driven by friendly competition and mutual learning) and provides choice in the R-spatial ecosystem.
-Being able to choose between multiple options is a key feature of open source software.
-When using a particular ‘stack’, such as the <strong>sf</strong>/<strong>tidyverse</strong>/<strong>raster</strong> ecosystem advocated in this book, it is worth being aware of alternatives already developed (such as <strong>sp</strong>/<strong>rgdal</strong>/<strong>rgeos</strong>) and, where possible, promissing alternatives that are under development (such as <strong>stars</strong>).</p>
+<p>Package overlap is not necessarily a bad thing.
+It can increase resilience, performance (partly driven by friendly competition and mutual learning between developers) and choice, a key feature of open source software.
+In this context the decision to use a particular ‘stack’, such as the <strong>sf</strong>/<strong>tidyverse</strong>/<strong>raster</strong> ecosystem advocated in this book should be made with knowledge of alternatives.
+The <strong>sp</strong>/<strong>rgdal</strong>/<strong>rgeos</strong> ‘stack’, for example, can do many of the things covered in this book and used in more than 300 packages.<a href="#fn84" class="footnote-ref" id="fnref84"><sup>84</sup></a>
+It is also being aware of promising alternatives that are under development.
+The package <strong>stars</strong>, for example, provides a new class system for working with spatiotemporal data.
+If you are interested in this topic, you can check for updates on the package’s <a href="https://github.com/r-spatial/stars">source code</a> and the broader <a href="https://cran.r-project.org/web/views/SpatioTemporal.html">SpatialTemporal Task View</a>.
+The same principle applies to other domains: it is important to justify software choices and review software decisions based on up-to-date information.</p>
 <p>Anther consideration is gaps and overlaps in the topics covered in this book.
 We have been selective, emphasizing some topics while omitting others.
 We have tried to emphasize topics that are most commonly needed in real-world applications such as geographic data operations, projections, data read/write and visualization.
@@ -520,7 +524,7 @@ A next step in this direction is to deepen your knowledge of base R, for example
 <!-- maybe we should add info about places to learn more r-spatial stuff (aka github, twitter, ...?)? --></p>
 <!-- Many directions of travel could be taken after taking the geocomputational steps -->
 <p>Perhaps the most obvious direction for future learning is <strong>discovering geocomputation with other languages</strong>.
-There are good reasons for learning R as a language for geocomputation, as described in Chapter <a href="intro.html#intro">1</a>, but it is not the only option.<a href="#fn84" class="footnote-ref" id="fnref84"><sup>84</sup></a>
+There are good reasons for learning R as a language for geocomputation, as described in Chapter <a href="intro.html#intro">1</a>, but it is not the only option.<a href="#fn85" class="footnote-ref" id="fnref85"><sup>85</sup></a>
 It is possible to study <em>Geocomputation with Python</em>, <em>C++</em>, <em>JavaScript</em>, <em>Scala</em>, <em>Julia</em> or <em>Rust</em> in equal depth.
 Each of these is a promising language for geocomputation.
 <a href="https://github.com/Turfjs/turf"><strong>Turf.js</strong></a>, for example, provides many functions for geospatial analysis with implementations in JavaScript, Julia, and even Swift.
@@ -561,7 +565,7 @@ Reproducibility encourages geocomputation for social benefit because it makes ge
 <p>The benefits of reproducibility can be illustrated with the example of using geocomputation to increase sales of perfume.
 If the methods are hidden and cannot reproduced, few people can benefit (except for the perfume company who commissioned the work!).
 If the underlying code is made open and reproducible, by contrast, the methods can be re-purposed or improved (which would also benefit the perfume company).
-Reproducibility encourages socially but also economically beneficial collaboration.<a href="#fn85" class="footnote-ref" id="fnref85"><sup>85</sup></a>
+Reproducibility encourages socially but also economically beneficial collaboration.<a href="#fn86" class="footnote-ref" id="fnref86"><sup>86</sup></a>
 The importance of reproducibility, and other non-technical ingredients in the field of geocomputation, are further discussed in an open access article celebrating ‘21+ years of geocomputation’ <span class="citation">(Harris et al. <a href="#ref-harris_more_2017">2017</a>)</span>.</p>
 <!-- Like any worthwhile intellectual endeavor or nascent academic field, geocomputation is diverse and contested. -->
 
@@ -611,11 +615,14 @@ The first operation, undertaken by the function <code>st_union()</code>, creates
 The latter two operations create <code>sf</code> objects, each of which <em>contains</em> a simple feature column.
 Therefore it is the geometries contained in simple feature columns, not the objects themselves, that are identical.<a href="conclusion.html#fnref83" class="footnote-back">↩</a></p></li>
 <li id="fn84"><p>
+At the time of writing 450 package <code>Depend</code> or <code>Import</code> <strong>sp</strong>, showing that its data structures are widely used and have been extended in many directions.
+The equivalent number for <strong>sf</strong> was 60 in summer 2018; with the growing popularity of <strong>sf</strong>, this is set to grow.<a href="conclusion.html#fnref84" class="footnote-back">↩</a></p></li>
+<li id="fn85"><p>
 R’s strengths relevant to our definition geocomputation include its emphasis on scientific reproducibility, widespread use in academic research and unparalleled support for statistical modeling of geographic data.
 Furthermore, we advocate learning one language (R) for geocomputation in depth before delving into other languages/frameworks because of the costs associated with context switching.
-It is preferable to have expertise in one language than basic knowledge of many.<a href="conclusion.html#fnref84" class="footnote-back">↩</a></p></li>
-<li id="fn85"><p>
-One accessible way to contribute upstream is creating a reprex (reproducible example) to highlight a bug in the package’s issue tracker, as outlined in section <a href="algorithms.html#scripts">10.2</a>.<a href="conclusion.html#fnref85" class="footnote-back">↩</a></p></li>
+It is preferable to have expertise in one language than basic knowledge of many.<a href="conclusion.html#fnref85" class="footnote-back">↩</a></p></li>
+<li id="fn86"><p>
+One accessible way to contribute upstream is creating a reprex (reproducible example) to highlight a bug in the package’s issue tracker, as outlined in section <a href="algorithms.html#scripts">10.2</a>.<a href="conclusion.html#fnref86" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 <script>
