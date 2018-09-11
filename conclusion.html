@@ -512,25 +512,29 @@ We have progressed quickly.
 The jump from chapters <a href="spatial-class.html#spatial-class">2</a> to <a href="eco.html#eco">14</a> is large:
 the creation and manipulation of simple spatial objects in Part I may seem a world away from the analysis of large datasets covered in Part III.
 It is impossible to become an expert in any area by reading a single book, and skills must be practiced.
-This section points toward sensible next steps on your geocomputational journey, <strong>highlighted in bold below</strong>.
+This section points toward sensible next steps on your geocomputational journey, highlighted in <strong>bold</strong> below.
 <!-- and ordered by difficulty, beginning with continue to improve your knowledge of R. -->
 <!-- JM: the end of the last section is already giving pointers where to go next, maybe, we can marry the two sections, or at least the part on the stuff we have omitted? --></p>
-<p>The language of R is a shared thread connecting all the chapters.
-All the analyses are based on R classes, primarily <code>sf</code> and <code>raster</code>, which in turn build on the base R classes of <code>data.frame</code> and <code>matrix</code>.
-The wider point is the importance of <em>depth of understanding</em>.
-This observation suggests a direction of travel: <strong>improving your understanding of the R language</strong>.
+<p>The R language connects all the chapters.
+<strong>Becoming fluent in R</strong> and skilled at using its fundamental data classes such as <code>data.frame</code> and <code>matrix</code> — the foundations of <code>sf</code> and <code>raster</code> geographic classes respectively — is a logical direction of travel.
 A next step in this direction is to deepen your knowledge of base R, for example by: studying R’s key documents (which can be found by entering <code>help.start()</code> in the console), reading and playing with the source code of useful functions, or reading comprehensive resources on the subject such as those by <span class="citation">Wickham (<a href="#ref-wickham_advanced_2014">2014</a><a href="#ref-wickham_advanced_2014">a</a>)</span> and <span class="citation">Chambers (<a href="#ref-chambers_extending_2016">2016</a>)</span>.
 <!-- creating and querying simple spatial in Chapter \ref(spatial-class) -->
 <!-- maybe we should add info about places to learn more r-spatial stuff (aka github, twitter, ...?)? --></p>
 <!-- Many directions of travel could be taken after taking the geocomputational steps -->
-<p>Perhaps the most obvious direction for future learning is <strong>discovering geocomputation with other languages</strong>.
+<p>Another software-related direction for future learning is <strong>discovering geocomputation with other languages</strong>.
 There are good reasons for learning R as a language for geocomputation, as described in Chapter <a href="intro.html#intro">1</a>, but it is not the only option.<a href="#fn85" class="footnote-ref" id="fnref85"><sup>85</sup></a>
 It is possible to study <em>Geocomputation with Python</em>, <em>C++</em>, <em>JavaScript</em>, <em>Scala</em>, <em>Julia</em> or <em>Rust</em> in equal depth.
 Each of these is a promising language for geocomputation.
 <a href="https://github.com/Turfjs/turf"><strong>Turf.js</strong></a>, for example, provides many functions for geospatial analysis with implementations in JavaScript, Julia, and even Swift.
 <a href="https://github.com/mapbox/rasterio"><strong>rasterio</strong></a> is a Python package for raster offering a high-performance interface to GDAL for handling raster data.
 These and other tantalizing geospatial software projects can be found on the GitHub repo <a href="https://github.com/sacridini/Awesome-Geospatial">Awesome-Geospatial</a>.</p>
-<!-- One question: is any of these suggestions better than R? Or put differently, what would be the benefit of learning geocomputation with these additional programming languages, if one already has learned Geocomputation with R? -->
+<p>There is more to geocomputation than software, however.
+We can recommend <strong>exploring and learning new research topics and methods</strong> from academic and theoretical perspectives.
+Many (if not most) methods that have been written about have yet to be fully implemented in code.
+Learning about geographic methods and potential applications can therefore be rewarding, before writing any code.
+An example of geographic methods that have yet to be fully implemented in R is sampling strategies for scientific applications.
+A next step in this case is to read-up on relevant articles in the area such as <span class="citation">Brus (<a href="#ref-brus_sampling_2018">2018</a>)</span>, which is accompanied by reproducible code and tutorial content hosted at <a href="https://github.com/DickBrus/TutorialSampling4DSM">github.com/DickBrus/TutorialSampling4DSM</a>.
+<!-- One question: is any of these suggestions better than R? Or put differently, what would be the benefit of learning geocomputation with these additional programming languages, if one already has learned Geocomputation with R? --></p>
 <!-- misc ideas: -->
 <!-- - learning the geocomputation history (e.g. great papers by S. Openshaw) -->
 <!-- - learning about new geocomputation methods (not implemented) -->
@@ -599,6 +603,9 @@ The importance of reproducibility, and other non-technical ingredients in the fi
 </div>
 <div id="ref-chambers_extending_2016">
 <p>Chambers, John M. 2016. <em>Extending R</em>. CRC Press.</p>
+</div>
+<div id="ref-brus_sampling_2018">
+<p>Brus, D. J. 2018. “Sampling for Digital Soil Mapping: A Tutorial Supported by R Scripts.” <em>Geoderma</em>, August. <a href="https://doi.org/10.1016/j.geoderma.2018.07.036" class="uri">https://doi.org/10.1016/j.geoderma.2018.07.036</a>.</p>
 </div>
 <div id="ref-openshaw_geocomputation_2000">
 <p>Openshaw, Stan, and Robert J. Abrahart, eds. 2000. <em>Geocomputation</em>. 1 edition. London ; New York: CRC Press.</p>
