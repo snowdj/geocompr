@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-09-11">
+<meta name="date" content="2018-09-12">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -508,7 +508,7 @@ This creates a new object, <code>small_countries</code>, containing nations whos
 <a class="sourceLine" id="cb66-3" data-line-number="3"><span class="co">#&gt;    Mode   FALSE    TRUE </span></a>
 <a class="sourceLine" id="cb66-4" data-line-number="4"><span class="co">#&gt; logical     170       7</span></a>
 <a class="sourceLine" id="cb66-5" data-line-number="5">small_countries =<span class="st"> </span>world[sel_area, ]</a></code></pre></div>
-<p>The intermediary <code>sel_object</code> is a logical vector that shows that only seven countries match the query.
+<p>The intermediary <code>sel_area</code> is a logical vector that shows that only seven countries match the query.
 A more concise command, that omits the intermediary object, generates the same result:</p>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1">small_countries =<span class="st"> </span>world[world<span class="op">$</span>area_km2 <span class="op">&lt;</span><span class="st"> </span><span class="dv">10000</span>, ]</a></code></pre></div>
 <p>The base R function <code>subset()</code> provides yet another way to achieve the same result:</p>
