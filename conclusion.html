@@ -381,9 +381,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="15" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>15</b> Conclusion</a><ul>
 <li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html#prerequisites-13"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="15.1" data-path="conclusion.html"><a href="conclusion.html#gaps"><i class="fa fa-check"></i><b>15.1</b> Gaps and overlaps</a></li>
-<li class="chapter" data-level="15.2" data-path="conclusion.html"><a href="conclusion.html#next"><i class="fa fa-check"></i><b>15.2</b> Where next?</a></li>
-<li class="chapter" data-level="15.3" data-path="conclusion.html"><a href="conclusion.html#benefit"><i class="fa fa-check"></i><b>15.3</b> Geo* for social benefit</a></li>
+<li class="chapter" data-level="15.1" data-path="conclusion.html"><a href="conclusion.html#package-choice"><i class="fa fa-check"></i><b>15.1</b> Package choice</a></li>
+<li class="chapter" data-level="15.2" data-path="conclusion.html"><a href="conclusion.html#gaps"><i class="fa fa-check"></i><b>15.2</b> Gaps and overlaps</a></li>
+<li class="chapter" data-level="15.3" data-path="conclusion.html"><a href="conclusion.html#next"><i class="fa fa-check"></i><b>15.3</b> Where next?</a></li>
+<li class="chapter" data-level="15.4" data-path="conclusion.html"><a href="conclusion.html#benefit"><i class="fa fa-check"></i><b>15.4</b> Geo* for social benefit</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -424,14 +425,15 @@ It assumes that you have:</p>
 <!-- Section \@ref(concepts) reviews the content covered in the previous chapters but at a high level. -->
 <!-- Previous chapters focus on the details of packages, functions, and arguments needed for geocomputation with R. -->
 <!-- This chapter focuses on concepts that recur throughout the book and how they may be useful. -->
-Section <a href="conclusion.html#gaps">15.1</a> discusses gaps in the book’s contents and explains why some areas of research were deliberately omitted while others were emphasized.
-This discussion leads to the question (which is answered in section <a href="conclusion.html#next">15.2</a>): having read this book, where next?
-The final section (<a href="conclusion.html#benefit">15.3</a>) returns to the wider issues raised in Chapter <a href="intro.html#intro">1</a> and considers how geocomputation can be used for social benefit.</p>
+The next section (<a href="conclusion.html#package-choice">15.1</a>) discusses the wide range of packages for geographic data in R and how to decide between them.
+Section <a href="conclusion.html#gaps">15.2</a> describes gaps in the book’s contents and explains why some areas of research were deliberately omitted while others were emphasized.
+This discussion leads to the question (which is answered in section <a href="conclusion.html#next">15.3</a>): having read this book, where next?
+The final section (<a href="conclusion.html#benefit">15.4</a>) returns to the wider issues raised in Chapter <a href="intro.html#intro">1</a> and considers how geocomputation can be used for social benefit.</p>
 <!-- Section \@ref(next) -->
 <!-- ## Concepts for geocomputation {#concepts} -->
 </div>
-<div id="gaps" class="section level2">
-<h2><span class="header-section-number">15.1</span> Gaps and overlaps</h2>
+<div id="package-choice" class="section level2">
+<h2><span class="header-section-number">15.1</span> Package choice</h2>
 <p>A characteristic of R is that there are often multiple ways to achieve the same result.
 Geocomputation with R is no exception.
 The code chunk below illustrates this by using three functions covered in Chapters <a href="attr.html#attr">3</a> and <a href="geometric-operations.html#geometric-operations">5</a>
@@ -465,7 +467,7 @@ Although each package covered in this book has a different emphasis, there are o
 There are 176 packages in the Spatial <a href="https://cran.r-project.org/web/views/">Task View</a> alone (as of summer 2018); more packages and countless functions for geographic data are developed each year.
 It would be impossible to do justice to all of them in a single book.</p>
 <p>The volume and rate of evolution in R’s spatial ecosystem may seem overwhelming.
-Our advice in this context applies equally to other domains of knowledge: learn how to use one thing <em>in depth</em> but have a general understand of the <em>breadth</em> of options available to solve problems in your domain with other R packages (section <a href="conclusion.html#next">15.2</a> covers developments in other languages).
+Our advice in this context applies equally to other domains of knowledge: learn how to use one thing <em>in depth</em> but have a general understand of the <em>breadth</em> of options available to solve problems in your domain with other R packages (section <a href="conclusion.html#next">15.3</a> covers developments in other languages).
 Of course, some packages perform much better than others, making package selection an important decision.
 From this diversity, we have focused on packages that are future-proof (they will work long into the future), high performance (relative to other R packages) and complimentary.
 But there is still overlap in the packages we have used, as illustrated by the diversity of packages for making maps, for example (see Chapter <a href="adv-map.html#adv-map">8</a>).</p>
@@ -477,10 +479,16 @@ It is also being aware of promising alternatives that are under development.
 The package <strong>stars</strong>, for example, provides a new class system for working with spatiotemporal data.
 If you are interested in this topic, you can check for updates on the package’s <a href="https://github.com/r-spatial/stars">source code</a> and the broader <a href="https://cran.r-project.org/web/views/SpatioTemporal.html">SpatialTemporal Task View</a>.
 The same principle applies to other domains: it is important to justify software choices and review software decisions based on up-to-date information.</p>
-<p>Anther consideration is gaps and overlaps in the topics covered in this book.
+</div>
+<div id="gaps" class="section level2">
+<h2><span class="header-section-number">15.2</span> Gaps and overlaps</h2>
+<p>There are a number of gaps in, and some overlaps between, the topics covered in this book.
 We have been selective, emphasizing some topics while omitting others.
 We have tried to emphasize topics that are most commonly needed in real-world applications such as geographic data operations, projections, data read/write and visualization.
-On the other hand, we have omitted topics that are less commonly used, or which are well catered for in other resources.
+These topics appear repeatedly in the chapters, a substantial area of overlap designed to consolidate these essential skills for geocomputation.
+<!-- We could add more content to this paragraph, e.g. by linking to specific chapters -->
+<!-- and mentioning other areas of overlap --></p>
+<p>On the other hand, we have omitted topics that are less commonly used, or which are well catered for in other resources.
 Point pattern analysis, spatial interpolation (kriging) and spatial epidemiological modeling, for example, are important topics.
 But there is already excellent material on these things such as <span class="citation">Baddeley, Rubak, and Turner (<a href="#ref-baddeley_spatial_2015">2015</a>)</span> and <span class="citation">Bivand, Pebesma, and Gómez-Rubio (<a href="#ref-bivand_applied_2013">2013</a>)</span>.
 <!-- one could also add @brunsdon_introduction_2015 -->
@@ -506,7 +514,7 @@ But still, you are applying the same techniques and concepts you have used on sm
 <!-- More than 15 years ago, before most of the packages used in this book had been developed,  -->
 </div>
 <div id="next" class="section level2">
-<h2><span class="header-section-number">15.2</span> Where next?</h2>
+<h2><span class="header-section-number">15.3</span> Where next?</h2>
 <p>Learning geocomputation with R is challenging and there is much more to discover.
 We have progressed quickly.
 The jump from chapters <a href="spatial-class.html#spatial-class">2</a> to <a href="eco.html#eco">14</a> is large:
@@ -547,7 +555,7 @@ A next step in this case is to read-up on relevant articles in the area such as 
 <!-- - creating new methods (reference to ch 10) -->
 </div>
 <div id="benefit" class="section level2">
-<h2><span class="header-section-number">15.3</span> Geo* for social benefit</h2>
+<h2><span class="header-section-number">15.4</span> Geo* for social benefit</h2>
 <!-- What about: Advocating the open-source approach-->
 <p>This is a technical book so it makes sense for the next steps to also be technical.
 But there are many non-technical issues to consider, now you understand what is possible with geographic data in R.
