@@ -267,13 +267,30 @@ E02003034   E02003043    1177       281    711          100       7
 The resulting table provides a snapshot of Bristolian travel patterns in terms of commuting (travel to work).
 It demonstrates that walking is the most popular mode of transport among the top 5 origin-destination pairs, that zone `E02003043` is a popular destination (Bristol city center, the destination of all the top 5 OD pairs), and that the *intrazonal* trips, from one part of zone `E02003043` to another (first row of table \@ref(tab:od)), constitute the most traveled OD pair in the dataset.
 But from a policy perspective \@ref(tab:od) is of limited use:
-aside from the fact that it contains only a tiny portion of the 2,910 OD pairs, it tells us little about *where* policy measures are needed.
-What is needed is a way to plot this origin-destination data on the map.
+aside from the fact that it contains only a tiny portion of the 2,910 OD pairs, it tells us little about *where* policy measures are needed, or *what proportion* of trips are made by walking and cycling.
+The following command calculates the percentage of each desire line that is made by these active modes:
 
-The solution is to convert the non-geographic `bristol_od` dataset into geographical desire lines that can be plotted on a map.
-The geographic representation of the *interzonal* OD pairs (in which the destination is different from the origin) presented in Table \@ref(tab:od) are displayed as straight black lines in \@ref(fig:desire).
-These are clearly more useful from a policy perspective.
-The conversion from `data.frame` to `sf` class is done by the **stplanr** function `od2line()`, which matches the IDs in the first two columns of the `bristol_od` object to the `zone_code` ID column in the geographic `zones_od` object.^[
+
+```r
+bristol_od$Active = (bristol_od$bicycle + bristol_od$foot) /
+  bristol_od$all * 100
+```
+
+There are two main types of OD pair:
+*interzonal* and *intrazonal*.
+Interzonal OD pairs represent travel between zones in which the destination is different from the origin.
+Intrazonal OD pairs represent travel within the same zone (see the top row of Table \@ref(tab:od)).
+The following code chunk splits `od_bristol` into these two type:
+<!-- displayed as straight black lines in \@ref(fig:desire). -->
+
+
+```r
+od_intra = filter(bristol_od, o == d)
+od_inter = filter(bristol_od, o != d)
+```
+
+The next step is to convert the interzonal OD pairs into an `sf` object representing desire lines that can be plotted on a map with the **stplanr** function `od2line()`.^[
+`od2line()` works by matching the IDs in the first two columns of the `bristol_od` object to the `zone_code` ID column in the geographic `zones_od` object.
 Note that the operation emits a warning because `od2line()` works by allocating the start and end points of each origin-destination pair to the *centroid* of its zone of origin and destination.
 <!-- This represents a straight line between the centroid of zone `E02003047` and the centroid of `E02003043` for the second origin-destination pair represented in Table \@ref(tab:od), for example. -->
 For real-world use one would use centroid values generated from projected data or, preferably, use *population-weighted* centroids [@lovelace_propensity_2017].
@@ -281,13 +298,9 @@ For real-world use one would use centroid values generated from projected data o
 
 
 ```r
-od_intra = filter(bristol_od, o == d)
-od_inter = filter(bristol_od, o != d)
 desire_lines = od2line(od_inter, zones_od)
 ```
 
-The first two lines of the preceding code chunk split the `bristol_od` dataset into two mutually exclusive objects, `od_intra` (which only contains OD pairs representing intrazone trips) and `od_inter` (which represents interzonal travel).
-The third line generates a geographic object `desire_lines` (of class `sf`) that allows a subsequent geographic visualization of interzone trips.
 An illustration of the results is presented in Figure \@ref(fig:desire), a simplified version of which is created with the following command (see the code in `12-desire.R` to reproduce the figure exactly and Chapter \@ref(adv-map) for details on visualisation with **tmap**):
 
 
@@ -296,8 +309,8 @@ qtm(desire_lines, lines.lwd = "all")
 ```
 
 <div class="figure" style="text-align: center">
-<img src="figures/desire-1.png" alt="Desire lines representing trip patterns in the Bristol Travel to Work Area. The four black lines represent the object the top 5 desire lines illustrated in Table 7.1." width="576" />
-<p class="caption">(\#fig:desire)Desire lines representing trip patterns in the Bristol Travel to Work Area. The four black lines represent the object the top 5 desire lines illustrated in Table 7.1.</p>
+<img src="figures/desire-1.png" alt="Desire lines representing trip patterns in Bristol, with width representing number of trips and color representing the percentage of trips made by active modes (walking and cycling). The four black lines represent the interzonal OD pairs in Table 7.1." width="576" />
+<p class="caption">(\#fig:desire)Desire lines representing trip patterns in Bristol, with width representing number of trips and color representing the percentage of trips made by active modes (walking and cycling). The four black lines represent the interzonal OD pairs in Table 7.1.</p>
 </div>
 
 The map shows that the city center dominates transport patterns in the region, suggesting policies should be prioritized there, although a number of peripheral sub-centers can also be seen.
@@ -428,10 +441,10 @@ The output is the same as the input line, except it has new geometry columns rep
 
 ```r
 ncol(desire_rail)
-#> [1] 9
+#> [1] 10
 desire_rail = line_via(desire_rail, bristol_stations)
 ncol(desire_rail)
-#> [1] 12
+#> [1] 13
 ```
 
 As illustrated in Figure \@ref(fig:stations), the initial `desire_rail` lines now have three additional geometry list-columns representing travel from home to the origin station, from there to the destination, and finally from the destination station to the destination.
@@ -497,8 +510,8 @@ plot(ways_sln@sl$geometry, lwd = e / 500)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="figures/unnamed-chunk-23-1.png" alt="Illustration of a small route network, with segment thickness proportional to its betweeness, generated using the igraph package and described in the text." width="576" />
-<p class="caption">(\#fig:unnamed-chunk-23)Illustration of a small route network, with segment thickness proportional to its betweeness, generated using the igraph package and described in the text.</p>
+<img src="figures/unnamed-chunk-25-1.png" alt="Illustration of a small route network, with segment thickness proportional to its betweeness, generated using the igraph package and described in the text." width="576" />
+<p class="caption">(\#fig:unnamed-chunk-25)Illustration of a small route network, with segment thickness proportional to its betweeness, generated using the igraph package and described in the text.</p>
 </div>
 
 
