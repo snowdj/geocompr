@@ -843,9 +843,9 @@ The next step is new, however: to tune the hyperparameters.
 Using the same data for the performance assessment and the tuning would potentially lead to overoptimistic results <span class="citation">(Cawley and Talbot <a href="#ref-cawley_overfitting_2010">2010</a>)</span>.
 This can be avoided using nested spatial CV.</p>
 <div class="figure" style="text-align: center"><span id="fig:inner-outer"></span>
-<img src="figures/13_cv.png" alt="Visual representation of the hyperparameter tuning and performance estimation levels in spatial and non-spatial cross-validation. Permission for reusing the figure was kindly granted by Patrick Schratz [@schratz_performance_nodate]." width="500" />
+<img src="figures/13_cv.png" alt="Schematic of hyperparameter tuning and performance estimation levels in CV. Credit: Patrick Schratz." width="500" />
 <p class="caption">
-Figure 11.6: Visual representation of the hyperparameter tuning and performance estimation levels in spatial and non-spatial cross-validation. Permission for reusing the figure was kindly granted by Patrick Schratz <span class="citation">(Schratz et al. <a href="#ref-schratz_performance_nodate">2018</a>)</span>.
+Figure 11.6: Schematic of hyperparameter tuning and performance estimation levels in CV. Credit: Patrick Schratz.
 </p>
 </div>
 <p>This means that we split each fold again into five spatially disjoint subfolds which are used to determine the optimal hyperparameters (<code>tune_level</code> object in the code chunk below; see Figure <a href="spatial-cv.html#fig:inner-outer">11.6</a> for a visual representation).
