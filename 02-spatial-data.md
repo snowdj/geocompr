@@ -1131,7 +1131,7 @@ new_vector = st_set_crs(new_vector, 26912) # set CRS
 The warning message informs us that the `st_set_crs()` function does not transform data from one CRS to another.
 
 <div class="figure" style="text-align: center">
-<img src="figures/02_vector_crs.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a vector data type."  />
+<img src="figures/02_vector_crs.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a vector data type." width="475" />
 <p class="caption">(\#fig:vector-crs)Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a vector data type.</p>
 </div>
 
