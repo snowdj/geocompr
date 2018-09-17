@@ -1246,28 +1246,21 @@ For this, we need to read-in a vector dataset:</p>
 <p>In cases when a coordinate reference system (CRS) is missing or the wrong CRS is set, the <code>st_set_crs()</code> function can be used:</p>
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1">new_vector =<span class="st"> </span><span class="kw">st_set_crs</span>(new_vector, <span class="dv">26912</span>) <span class="co"># set CRS</span></a></code></pre></div>
 <p>The warning message informs us that the <code>st_set_crs()</code> function does not transform data from one CRS to another.</p>
-<pre><code>#&gt; Reading layer `zion&#39; from data source `/home/travis/R/Library/spDataLarge/vector/zion.gpkg&#39; using driver `GPKG&#39;
-#&gt; Simple feature collection with 1 feature and 11 fields
-#&gt; geometry type:  POLYGON
-#&gt; dimension:      XY
-#&gt; bbox:           xmin: 303000 ymin: 4110000 xmax: 335000 ymax: 4150000
-#&gt; epsg (SRID):    NA
-#&gt; proj4string:    +proj=utm +zone=12 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:vector-crs"></span>
-<img src="figures/vector-crs-1.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a vector data type." width="864" />
+<img src="figures/02_vector_crs.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a vector data type."  />
 <p class="caption">
 Figure 2.13: Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a vector data type.
 </p>
 </div>
 <p>The <code>projection()</code> function can be used to access CRS information from a <code>Raster*</code> object:</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="kw">projection</span>(new_raster) <span class="co"># get CRS</span></a>
-<a class="sourceLine" id="cb51-2" data-line-number="2"><span class="co">#&gt; [1] &quot;+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw">projection</span>(new_raster) <span class="co"># get CRS</span></a>
+<a class="sourceLine" id="cb50-2" data-line-number="2"><span class="co">#&gt; [1] &quot;+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0&quot;</span></a></code></pre></div>
 <p>The same function, <code>projection()</code>, is used to set a CRS for raster objects.
 The main difference, compared to vector data, is that raster objects only accept <code>proj4</code> definitions:</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="kw">projection</span>(new_raster) =<span class="st"> &quot;+proj=utm +zone=12 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 </span></a>
-<a class="sourceLine" id="cb52-2" data-line-number="2"><span class="st">                            +units=m +no_defs&quot;</span> <span class="co"># set CRS</span></a></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="kw">projection</span>(new_raster) =<span class="st"> &quot;+proj=utm +zone=12 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 </span></a>
+<a class="sourceLine" id="cb51-2" data-line-number="2"><span class="st">                            +units=m +no_defs&quot;</span> <span class="co"># set CRS</span></a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:raster-crs"></span>
-<img src="figures/raster-crs-1.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a raster data type." width="768" />
+<img src="figures/02_raster_crs.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a raster data type." width="475" />
 <p class="caption">
 Figure 2.14: Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a raster data type.
 </p>
@@ -1289,31 +1282,31 @@ Likewise, it is important to formally specify the units in which the geometry da
 This means that distance, area and other geometric calculations in <strong>sf</strong> return values that come with a <code>units</code> attribute, defined by the <strong>units</strong> package <span class="citation">(Pebesma, Mailund, and Hiebert <a href="#ref-pebesma_measurement_2016">2016</a>)</span>.
 This is advantageous because it prevents confusion caused by the fact that different CRSs use different units (most use meters, some use feet).
 Furthermore, it also provides information on dimensionality, as illustrated by the following calculation which reports the area of Luxembourg:</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1">luxembourg =<span class="st"> </span>world[world<span class="op">$</span>name_long <span class="op">==</span><span class="st"> &quot;Luxembourg&quot;</span>, ]</a></code></pre></div>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="kw">st_area</span>(luxembourg)</a>
-<a class="sourceLine" id="cb54-2" data-line-number="2"><span class="co">#&gt; 2.41e+09 m^2</span></a></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1">luxembourg =<span class="st"> </span>world[world<span class="op">$</span>name_long <span class="op">==</span><span class="st"> &quot;Luxembourg&quot;</span>, ]</a></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="kw">st_area</span>(luxembourg)</a>
+<a class="sourceLine" id="cb53-2" data-line-number="2"><span class="co">#&gt; 2.41e+09 m^2</span></a></code></pre></div>
 <p>The result is in units of square meters (m<sup>2</sup>), showing that the result represents two-dimensional space.
 This information, stored as an attribute (which interested readers can discover with <code>attributes(st_area(luxembourg))</code>) is advantageous for many reasons, for example it could feed into subsequent calculations such as population density.
 Reporting units prevents confusion.
 To take the Luxembourg example, if the units remained unspecified, one could incorrectly assume that the units were in hectares.
 To translate the huge number into a more digestible size, it is tempting to divide the results by a million (the number of square meters in a square kilometer):</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="kw">st_area</span>(luxembourg) <span class="op">/</span><span class="st"> </span><span class="dv">1000000</span></a>
-<a class="sourceLine" id="cb55-2" data-line-number="2"><span class="co">#&gt; 2414 m^2</span></a></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="kw">st_area</span>(luxembourg) <span class="op">/</span><span class="st"> </span><span class="dv">1000000</span></a>
+<a class="sourceLine" id="cb54-2" data-line-number="2"><span class="co">#&gt; 2414 m^2</span></a></code></pre></div>
 <p>However, the result is incorrectly given again as square meters.
 The solution is to set the correct units with the <strong>units</strong> package:</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1">units<span class="op">::</span><span class="kw">set_units</span>(<span class="kw">st_area</span>(luxembourg), km<span class="op">^</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb56-2" data-line-number="2"><span class="co">#&gt; 2414 km^2</span></a></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1">units<span class="op">::</span><span class="kw">set_units</span>(<span class="kw">st_area</span>(luxembourg), km<span class="op">^</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb55-2" data-line-number="2"><span class="co">#&gt; 2414 km^2</span></a></code></pre></div>
 <!-- Is that right? I mean, the units DESCRIPTION says "Support for measurement units in R vectors, matrices and arrays". Since raster datasets are just matrices, units might be easily used with them?-->
 <p>Units are of equal importance in the case of raster data.
 However, so far <strong>sf</strong> is the only spatial package that supports units, meaning that people working on raster data should approach changes in the units of analysis (for example, converting pixel widths from imperial to decimal units) with care.
 The <code>new_raster</code> object (see above) uses a UTM projection with meters as units.
 Consequently, its resolution is also given in meters but you have to know it, since the <code>res()</code> function simply returns a numeric vector.</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1"><span class="kw">res</span>(new_raster)</a>
-<a class="sourceLine" id="cb57-2" data-line-number="2"><span class="co">#&gt; [1] 0.000833 0.000833</span></a></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="kw">res</span>(new_raster)</a>
+<a class="sourceLine" id="cb56-2" data-line-number="2"><span class="co">#&gt; [1] 0.000833 0.000833</span></a></code></pre></div>
 <p>If we used the WGS84 projection, the units would change.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1">repr =<span class="st"> </span><span class="kw">projectRaster</span>(new_raster, <span class="dt">crs =</span> <span class="st">&quot;+init=epsg:4326&quot;</span>)</a>
-<a class="sourceLine" id="cb58-2" data-line-number="2"><span class="kw">res</span>(repr)</a>
-<a class="sourceLine" id="cb58-3" data-line-number="3"><span class="co">#&gt; [1] 0.000833 0.000833</span></a></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1">repr =<span class="st"> </span><span class="kw">projectRaster</span>(new_raster, <span class="dt">crs =</span> <span class="st">&quot;+init=epsg:4326&quot;</span>)</a>
+<a class="sourceLine" id="cb57-2" data-line-number="2"><span class="kw">res</span>(repr)</a>
+<a class="sourceLine" id="cb57-3" data-line-number="3"><span class="co">#&gt; [1] 7.47e-09 7.52e-09</span></a></code></pre></div>
 <p>Again, the <code>res()</code> command gives back a numeric vector without any unit, forcing us to know that the unit of the WGS84 projection is decimal degrees.</p>
 <!-- Something about when units are not set: -->
 <!-- ```{r} -->

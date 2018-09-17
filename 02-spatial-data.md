@@ -1130,19 +1130,8 @@ new_vector = st_set_crs(new_vector, 26912) # set CRS
 
 The warning message informs us that the `st_set_crs()` function does not transform data from one CRS to another.
 
-
-```
-#> Reading layer `zion' from data source `/home/travis/R/Library/spDataLarge/vector/zion.gpkg' using driver `GPKG'
-#> Simple feature collection with 1 feature and 11 fields
-#> geometry type:  POLYGON
-#> dimension:      XY
-#> bbox:           xmin: 303000 ymin: 4110000 xmax: 335000 ymax: 4150000
-#> epsg (SRID):    NA
-#> proj4string:    +proj=utm +zone=12 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs
-```
-
 <div class="figure" style="text-align: center">
-<img src="figures/vector-crs-1.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a vector data type." width="864" />
+<img src="figures/02_vector_crs.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a vector data type."  />
 <p class="caption">(\#fig:vector-crs)Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a vector data type.</p>
 </div>
 
@@ -1164,7 +1153,7 @@ projection(new_raster) = "+proj=utm +zone=12 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0
 ```
 
 <div class="figure" style="text-align: center">
-<img src="figures/raster-crs-1.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a raster data type." width="768" />
+<img src="figures/02_raster_crs.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a raster data type." width="475" />
 <p class="caption">(\#fig:raster-crs)Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a raster data type.</p>
 </div>
 
@@ -1236,7 +1225,7 @@ If we used the WGS84 projection, the units would change.
 ```r
 repr = projectRaster(new_raster, crs = "+init=epsg:4326")
 res(repr)
-#> [1] 0.000833 0.000833
+#> [1] 7.47e-09 7.52e-09
 ```
 
 Again, the `res()` command gives back a numeric vector without any unit, forcing us to know that the unit of the WGS84 projection is decimal degrees.
