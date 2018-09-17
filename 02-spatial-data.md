@@ -1142,7 +1142,7 @@ The warning message informs us that the `st_set_crs()` function does not transfo
 ```
 
 <div class="figure" style="text-align: center">
-<img src="figures/vector-crs-1.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a vector data type." width="576" />
+<img src="figures/vector-crs-1.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a vector data type." width="864" />
 <p class="caption">(\#fig:vector-crs)Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a vector data type.</p>
 </div>
 
@@ -1164,7 +1164,7 @@ projection(new_raster) = "+proj=utm +zone=12 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0
 ```
 
 <div class="figure" style="text-align: center">
-<img src="figures/raster-crs-1.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a raster data type." width="576" />
+<img src="figures/raster-crs-1.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a raster data type." width="768" />
 <p class="caption">(\#fig:raster-crs)Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a raster data type.</p>
 </div>
 

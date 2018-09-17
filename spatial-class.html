@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-09-16">
+<meta name="date" content="2018-09-17">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -1254,7 +1254,7 @@ For this, we need to read-in a vector dataset:</p>
 #&gt; epsg (SRID):    NA
 #&gt; proj4string:    +proj=utm +zone=12 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:vector-crs"></span>
-<img src="figures/vector-crs-1.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a vector data type." width="576" />
+<img src="figures/vector-crs-1.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a vector data type." width="864" />
 <p class="caption">
 Figure 2.13: Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a vector data type.
 </p>
@@ -1267,7 +1267,7 @@ The main difference, compared to vector data, is that raster objects only accept
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="kw">projection</span>(new_raster) =<span class="st"> &quot;+proj=utm +zone=12 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 </span></a>
 <a class="sourceLine" id="cb52-2" data-line-number="2"><span class="st">                            +units=m +no_defs&quot;</span> <span class="co"># set CRS</span></a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:raster-crs"></span>
-<img src="figures/raster-crs-1.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a raster data type." width="576" />
+<img src="figures/raster-crs-1.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a raster data type." width="768" />
 <p class="caption">
 Figure 2.14: Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a raster data type.
 </p>
