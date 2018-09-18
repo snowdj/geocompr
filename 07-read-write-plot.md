@@ -62,16 +62,24 @@ These provide interfaces to one or more spatial libraries or geoportals and aim 
 
 <!-- add sentinel2 package as soon as it is published on CRAN https://github.com/IVFL-BOKU/sentinel2-->
 
+```
+#> Warning in kableExtra::kable_styling(., latex_options = "scale_down"):
+#> Please specify format in kable. kableExtra can customize either HTML or
+#> LaTeX outputs. See https://haozhu233.github.io/kableExtra/ for details.
+```
+
+
+
 Table: (\#tab:datapackages)Selected R packages for spatial data retrieval.
 
-Package name    Description                                                                                                  
---------------  -------------------------------------------------------------------------------------------------------------
-getlandsat      Provides access to Landsat 8 data.                                                                           
-osmdata         Download and import of OpenStreetMap data.                                                                   
-raster          The `getData()` function downloads and imports administrative country, SRTM/ASTER elevation, WorldClim data. 
-rnaturalearth   Functions to download Natural Earth vector and raster data, including world country borders.                 
-rnoaa           An R interface to National Oceanic and Atmospheric Administration (NOAA) climate data.                       
-rWBclimate      An access to the World Bank climate data.                                                                    
+Package name    Description                                                                  
+--------------  -----------------------------------------------------------------------------
+getlandsat      Provides access to Landsat 8 data.                                           
+osmdata         Download and import of OpenStreetMap data.                                   
+raster          getData() imports administrative, elevation, WorldClim data.                 
+rnaturalearth   Access to Natural Earth vector and raster data.                              
+rnoaa           Imports National Oceanic and Atmospheric Administration (NOAA) climate data. 
+rWBclimate      Access World Bank climate data.                                              
 
 <!-- https://cdn.rawgit.com/Nowosad/Intro_to_spatial_analysis/05676e29/Intro_to_spatial_analysis.html#39 -->
 <!-- Maybe add a section to Data I/O on where and how to retrieve data (with a focus on free data): osmdata (OpenStreetMap; maybe mention TomTom, HERE), Landsat (wrspathrow), Sentinel (mention Python API), AVHRR, RapidEye rgbif, letsR, etc. Of course, point to Transforming science through open data project (https://www.ropensci.org) -->
@@ -165,29 +173,90 @@ GDAL provides access to more than 200 vector and raster data formats.
 Table \@ref(tab:formats) presents some basic information about selected and often used spatial file formats.
 
 <!-- simple features are missing from this table-->
-
-```
-#> Warning in kableExtra::column_spec(., 3, width = "15em"): Please specify
-#> format in kable. kableExtra can customize either HTML or LaTeX outputs. See
-#> https://haozhu233.github.io/kableExtra/ for details.
-```
-
-
-
-Table: (\#tab:formats)Selected spatial file formats.
-
-Name                Extension              Info                                                                                                                                                                                                                                                                                     Type                Model          
-------------------  ---------------------  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  ------------------  ---------------
-ESRI Shapefile      .shp (the main file)   One of the most popular vector file formats. Consists of at least three files. The main files size cannot exceed 2 GB. It lacks support for mixed type. Column names are limited to 10 characters, and number of columns are limited at 255. It has poor support for Unicode standard.   Vector              Partially open 
-GeoJSON             .geojson               Extends the JSON exchange format by including a subset of the simple feature representation.                                                                                                                                                                                             Vector              Open           
-KML                 .kml                   XML-based format for spatial visualization, developed for use with Google Earth. Zipped KML file forms the KMZ format.                                                                                                                                                                   Vector              Open           
-GPX                 .gpx                   XML schema created for exchange of GPS data.                                                                                                                                                                                                                                             Vector              Open           
-GeoTIFF             .tiff                  GeoTIFF is one of the most popular raster formats. Its structure is similar to the regular `.tif` format, however, additionally stores  the raster header.                                                                                                                               Raster              Open           
-Arc ASCII           .asc                   Text format where the first six lines represent the raster header, followed by the raster cell values arranged in rows and columns.                                                                                                                                                      Raster              Open           
-R-raster            .gri, .grd             Native raster format of the R-package raster.                                                                                                                                                                                                                                            Raster              Open           
-SQLite/SpatiaLite   .sqlite                SQLite is a standalone, relational database management system. It is used as a default database driver in GRASS GIS 7. SpatiaLite is the spatial extension of SQLite providing support for simple features.                                                                              Vector and raster   Open           
-ESRI FileGDB        .gdb                   Collection of spatial and nonspatial objects created in the ArcGIS software. It allows storage of multiple feature classes and enables use of topological definitions. Limited access to this format is provided by GDAL with the use of the OpenFileGDB and FileGDB drivers.            Vector and raster   Proprietary    
-GeoPackage          .gpkg                  Lightweight database container based on SQLite allowing an easy and platform-independent exchange of geodata                                                                                                                                                                             Vector and raster   Open           
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>(\#tab:formats)Selected spatial file formats.</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Name </th>
+   <th style="text-align:left;"> Extension </th>
+   <th style="text-align:left;"> Info </th>
+   <th style="text-align:left;"> Type </th>
+   <th style="text-align:left;"> Model </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> ESRI Shapefile </td>
+   <td style="text-align:left;"> .shp (the main file) </td>
+   <td style="text-align:left;"> Popular format consisting of at least three files. Cannot exceed 2 GB. No support for: mixed types; names &gt; 10 chars; cols &gt; 255. </td>
+   <td style="text-align:left;"> Vector </td>
+   <td style="text-align:left;"> Partially open </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> GeoJSON </td>
+   <td style="text-align:left;"> .geojson </td>
+   <td style="text-align:left;"> Extends the JSON exchange format by including a subset of the simple feature representation. </td>
+   <td style="text-align:left;"> Vector </td>
+   <td style="text-align:left;"> Open </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> KML </td>
+   <td style="text-align:left;"> .kml </td>
+   <td style="text-align:left;"> XML-based format for spatial visualization, developed for use with Google Earth. Zipped KML file forms the KMZ format. </td>
+   <td style="text-align:left;"> Vector </td>
+   <td style="text-align:left;"> Open </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> GPX </td>
+   <td style="text-align:left;"> .gpx </td>
+   <td style="text-align:left;"> XML schema created for exchange of GPS data. </td>
+   <td style="text-align:left;"> Vector </td>
+   <td style="text-align:left;"> Open </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> GeoTIFF </td>
+   <td style="text-align:left;"> .tiff </td>
+   <td style="text-align:left;"> GeoTIFF is one of the most popular raster formats. Its structure is similar to the regular `.tif` format, however, additionally stores  the raster header. </td>
+   <td style="text-align:left;"> Raster </td>
+   <td style="text-align:left;"> Open </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Arc ASCII </td>
+   <td style="text-align:left;"> .asc </td>
+   <td style="text-align:left;"> Text format where the first six lines represent the raster header, followed by the raster cell values arranged in rows and columns. </td>
+   <td style="text-align:left;"> Raster </td>
+   <td style="text-align:left;"> Open </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> R-raster </td>
+   <td style="text-align:left;"> .gri, .grd </td>
+   <td style="text-align:left;"> Native raster format of the R-package raster. </td>
+   <td style="text-align:left;"> Raster </td>
+   <td style="text-align:left;"> Open </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> SQLite/SpatiaLite </td>
+   <td style="text-align:left;"> .sqlite </td>
+   <td style="text-align:left;"> Standalone  relational database, SpatiaLite is the spatial extension of SQLite. </td>
+   <td style="text-align:left;"> Vector and raster </td>
+   <td style="text-align:left;"> Open </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> ESRI FileGDB </td>
+   <td style="text-align:left;"> .gdb </td>
+   <td style="text-align:left;"> Spatial and nonspatial objects created by ArcGIS. Allows: multiple feature classes; topology. Limited support from GDAL. </td>
+   <td style="text-align:left;"> Vector and raster </td>
+   <td style="text-align:left;"> Proprietary </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> GeoPackage </td>
+   <td style="text-align:left;"> .gpkg </td>
+   <td style="text-align:left;"> Lightweight database container based on SQLite allowing an easy and platform-independent exchange of geodata </td>
+   <td style="text-align:left;"> Vector and raster </td>
+   <td style="text-align:left;"> Open </td>
+  </tr>
+</tbody>
+</table>
 
 An important development ensuring the standardization and open-sourcing of file formats was the founding of the Open Geospatial Consortium ([OGC](http://www.opengeospatial.org/)) in 1994.
 Beyond defining the simple features data model (see section \@ref(intro-sf)), the OGC also coordinates the development of open standards, for example as used in file formats such as KML and GeoPackage.
