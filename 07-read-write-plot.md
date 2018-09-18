@@ -173,7 +173,7 @@ GDAL provides access to more than 200 vector and raster data formats.
 Table \@ref(tab:formats) presents some basic information about selected and often used spatial file formats.
 
 <!-- simple features are missing from this table-->
-<table class="table" style="margin-left: auto; margin-right: auto;">
+<table>
 <caption>(\#tab:formats)Selected spatial file formats.</caption>
  <thead>
   <tr>
@@ -188,70 +188,70 @@ Table \@ref(tab:formats) presents some basic information about selected and ofte
   <tr>
    <td style="text-align:left;"> ESRI Shapefile </td>
    <td style="text-align:left;"> .shp (the main file) </td>
-   <td style="text-align:left;"> Popular format consisting of at least three files. No support for: files &gt; 2GB;  mixed types; names &gt; 10 chars; cols &gt; 255. </td>
+   <td style="text-align:left;width: 30em; "> Popular format consisting of at least three files. No support for: files &gt; 2GB;  mixed types; names &gt; 10 chars; cols &gt; 255. </td>
    <td style="text-align:left;"> Vector </td>
    <td style="text-align:left;"> Partially open </td>
   </tr>
   <tr>
    <td style="text-align:left;"> GeoJSON </td>
    <td style="text-align:left;"> .geojson </td>
-   <td style="text-align:left;"> Extends the JSON exchange format by including a subset of the simple feature representation. </td>
+   <td style="text-align:left;width: 30em; "> Extends the JSON exchange format by including a subset of the simple feature representation. </td>
    <td style="text-align:left;"> Vector </td>
    <td style="text-align:left;"> Open </td>
   </tr>
   <tr>
    <td style="text-align:left;"> KML </td>
    <td style="text-align:left;"> .kml </td>
-   <td style="text-align:left;"> XML-based format for spatial visualization, developed for use with Google Earth. Zipped KML file forms the KMZ format. </td>
+   <td style="text-align:left;width: 30em; "> XML-based format for spatial visualization, developed for use with Google Earth. Zipped KML file forms the KMZ format. </td>
    <td style="text-align:left;"> Vector </td>
    <td style="text-align:left;"> Open </td>
   </tr>
   <tr>
    <td style="text-align:left;"> GPX </td>
    <td style="text-align:left;"> .gpx </td>
-   <td style="text-align:left;"> XML schema created for exchange of GPS data. </td>
+   <td style="text-align:left;width: 30em; "> XML schema created for exchange of GPS data. </td>
    <td style="text-align:left;"> Vector </td>
    <td style="text-align:left;"> Open </td>
   </tr>
   <tr>
    <td style="text-align:left;"> GeoTIFF </td>
    <td style="text-align:left;"> .tiff </td>
-   <td style="text-align:left;"> Popular raster format similar to `.tif` format but stores raster header. </td>
+   <td style="text-align:left;width: 30em; "> Popular raster format similar to `.tif` format but stores raster header. </td>
    <td style="text-align:left;"> Raster </td>
    <td style="text-align:left;"> Open </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Arc ASCII </td>
    <td style="text-align:left;"> .asc </td>
-   <td style="text-align:left;"> Text format where the first six lines represent the raster header, followed by the raster cell values arranged in rows and columns. </td>
+   <td style="text-align:left;width: 30em; "> Text format where the first six lines represent the raster header, followed by the raster cell values arranged in rows and columns. </td>
    <td style="text-align:left;"> Raster </td>
    <td style="text-align:left;"> Open </td>
   </tr>
   <tr>
    <td style="text-align:left;"> R-raster </td>
    <td style="text-align:left;"> .gri, .grd </td>
-   <td style="text-align:left;"> Native raster format of the R-package raster. </td>
+   <td style="text-align:left;width: 30em; "> Native raster format of the R-package raster. </td>
    <td style="text-align:left;"> Raster </td>
    <td style="text-align:left;"> Open </td>
   </tr>
   <tr>
    <td style="text-align:left;"> SQLite/SpatiaLite </td>
    <td style="text-align:left;"> .sqlite </td>
-   <td style="text-align:left;"> Standalone  relational database, SpatiaLite is the spatial extension of SQLite. </td>
+   <td style="text-align:left;width: 30em; "> Standalone  relational database, SpatiaLite is the spatial extension of SQLite. </td>
    <td style="text-align:left;"> Vector and raster </td>
    <td style="text-align:left;"> Open </td>
   </tr>
   <tr>
    <td style="text-align:left;"> ESRI FileGDB </td>
    <td style="text-align:left;"> .gdb </td>
-   <td style="text-align:left;"> Spatial and nonspatial objects created by ArcGIS. Allows: multiple feature classes; topology. Limited support from GDAL. </td>
+   <td style="text-align:left;width: 30em; "> Spatial and nonspatial objects created by ArcGIS. Allows: multiple feature classes; topology. Limited support from GDAL. </td>
    <td style="text-align:left;"> Vector and raster </td>
    <td style="text-align:left;"> Proprietary </td>
   </tr>
   <tr>
    <td style="text-align:left;"> GeoPackage </td>
    <td style="text-align:left;"> .gpkg </td>
-   <td style="text-align:left;"> Lightweight database container based on SQLite allowing an easy and platform-independent exchange of geodata </td>
+   <td style="text-align:left;width: 30em; "> Lightweight database container based on SQLite allowing an easy and platform-independent exchange of geodata </td>
    <td style="text-align:left;"> Vector and raster </td>
    <td style="text-align:left;"> Open </td>
   </tr>
