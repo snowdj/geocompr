@@ -188,7 +188,7 @@ Table \@ref(tab:formats) presents some basic information about selected and ofte
   <tr>
    <td style="text-align:left;"> ESRI Shapefile </td>
    <td style="text-align:left;"> .shp (the main file) </td>
-   <td style="text-align:left;"> Popular format consisting of at least three files. Cannot exceed 2 GB. No support for: mixed types; names &gt; 10 chars; cols &gt; 255. </td>
+   <td style="text-align:left;"> Popular format consisting of at least three files. No support for: files &gt; 2GB;  mixed types; names &gt; 10 chars; cols &gt; 255. </td>
    <td style="text-align:left;"> Vector </td>
    <td style="text-align:left;"> Partially open </td>
   </tr>
@@ -216,7 +216,7 @@ Table \@ref(tab:formats) presents some basic information about selected and ofte
   <tr>
    <td style="text-align:left;"> GeoTIFF </td>
    <td style="text-align:left;"> .tiff </td>
-   <td style="text-align:left;"> GeoTIFF is one of the most popular raster formats. Its structure is similar to the regular `.tif` format, however, additionally stores  the raster header. </td>
+   <td style="text-align:left;"> Popular raster format similar to `.tif` format but stores raster header. </td>
    <td style="text-align:left;"> Raster </td>
    <td style="text-align:left;"> Open </td>
   </tr>
