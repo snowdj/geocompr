@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-09-18'
+date: '2018-09-19'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: krantz
@@ -34,7 +34,7 @@ The online version of the book is hosted at [geocompr.robinlovelace.net](https:/
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-09-18 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-09-19 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -75,6 +75,10 @@ Further details can be found at [github.com/Robinlovelace/geocompr](https://gith
 <!-- - 'Starring' the Github repository -->
 <!-- - Reviewing it, e.g. on Amazon or Goodreads -->
 <!-- - Buying a copy -->
+
+<!-- # Foreword {-} -->
+
+<!-- Around a single page (does not need to fill it) on the book ready by the end of September (aiming for 1st October submission of final manuscript to CRC Press). -->
 
 # Preface {-}
 

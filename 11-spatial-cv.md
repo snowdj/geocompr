@@ -362,7 +362,7 @@ listLearners(task, warn.missing.packages = FALSE) %>%
 
 Table: (\#tab:lrns)Sample of available learners for binomial tasks in the mlr package.
 
-class                 name                       short.name    package 
+Class                 Name                       Short name    Package 
 --------------------  -------------------------  ------------  --------
 classif.binomial      Binomial Regression        binomial      stats   
 classif.featureless   Featureless classifier     featureless   mlr     

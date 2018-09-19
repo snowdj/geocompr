@@ -110,7 +110,7 @@ To complement the R-GIS bridges, the chapter ends with a very brief introduction
 
 Table: (\#tab:gis-comp)Comparison between three open-source GIS. Hybrid refers to the support of vector and raster operations.
 
-GIS     first release   no. functions   support 
+GIS     First release   No. functions   Support 
 ------  --------------  --------------  --------
 GRASS   1984            >500            hybrid  
 QGIS    2002            >1000           hybrid  

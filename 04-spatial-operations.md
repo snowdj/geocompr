@@ -157,11 +157,11 @@ It can also be answered by using the topological relation *intersects*, implemen
 
 ```r
 st_intersects(p, a)
-#> Sparse geometry binary predicate list of length 4, where the predicate was `intersects'
-#>  1: 1
-#>  2: 1
-#>  3: (empty)
-#>  4: (empty)
+#> Sparse geometry binary ..., where the predicate was `intersects'
+#> 1: 1
+#> 2: 1
+#> 3: (empty)
+#> 4: (empty)
 ```
 
 The contents of the result should be as you expected:

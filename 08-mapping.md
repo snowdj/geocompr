@@ -946,19 +946,29 @@ We have covered mapping with **sf**, **raster** and **ggplot2** packages first b
 Before we cover mapping packages for plotting a specific type of map (in the next paragraph), it is worth considering alternatives to the packages already covered for general-purpose mapping (Table \@ref(tab:map-gpkg)).
 
 
+```
+#> Warning: Unknown or uninitialised column: 'title'.
+#> Warning in kableExtra::column_spec(., 2, width = "5cm"): Please specify
+#> format in kable. kableExtra can customize either HTML or LaTeX outputs. See
+#> https://haozhu233.github.io/kableExtra/ for details.
+```
+
+
+
 Table: (\#tab:map-gpkg)Selected general-purpose mapping packages.
 
-package       title                                                            
-------------  -----------------------------------------------------------------
-cartography   Thematic Cartography                                             
-ggplot2       Create Elegant Data Visualisations Using the Grammar of Graphics 
-googleway     Accesses Google Maps APIs to Retrieve Data and Plot Maps         
-ggspatial     Spatial Data Framework for ggplot2                               
-leaflet       Create Interactive Web Maps with Leaflet                         
-mapview       Interactive Viewing of Spatial Data in R                         
-plotly        Create Interactive Web Graphics via 'plotly.js'                  
-rasterVis     Visualization Methods for Raster Data                            
-tmap          Thematic Maps                                                    
+Package       Title                                                               title                                    
+------------  ------------------------------------------------------------------  -----------------------------------------
+cartography   Thematic Cartography                                                NA                                       
+ggplot2       Create Elegant Data Visualisations Using the Grammar of Graphics    NA                                       
+googleway     Accesses Google Maps APIs to Retrieve Data and Plot Maps            NA                                       
+ggspatial     Spatial Data Framework for ggplot2                                  NA                                       
+leaflet       Create Interactive Web Maps with the JavaScript 'Leaflet'
+Library   Create Interactive Web Maps with Leaflet 
+mapview       Interactive Viewing of Spatial Data in R                            NA                                       
+plotly        Create Interactive Web Graphics via 'plotly.js'                     NA                                       
+rasterVis     Visualization Methods for Raster Data                               NA                                       
+tmap          Thematic Maps                                                       NA                                       
 
 Table \@ref(tab:map-gpkg) shows a range of mapping packages are available, and there are many others not listed in this table.
 Of note is **cartography**, which generates a range of unusual maps including choropleth, 'proportional symbol' and 'flow' maps, each of which is documented in the vignette [`cartography`](https://cran.r-project.org/web/packages/cartography/vignettes/cartography.html).
@@ -966,16 +976,37 @@ Of note is **cartography**, which generates a range of unusual maps including ch
 Several R packages also allows for plotting specific map types (Table \@ref(tab:map-spkg)).
 They prepare cartograms, create line maps, transform polygons into regular or hexagonal grids, and visualize complex data on grids representing geographic topologies.
 
-
-Table: (\#tab:map-spkg)Selected specific-purpose mapping packages, with associated metrics.
-
-package     title                                                        
-----------  -------------------------------------------------------------
-cartogram   Create Cartograms with R                                     
-geogrid     Turn Geospatial Polygons into Regular or Hexagonal Grids     
-geofacet    'ggplot2' Faceting Utilities for Geographical Data           
-globe       Plot 2D and 3D Views of the Earth, Including Major Coastline 
-linemap     Line Maps                                                    
+<table>
+<caption>(\#tab:map-spkg)Selected specific-purpose mapping packages, with associated metrics.</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Package </th>
+   <th style="text-align:left;"> Title </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> cartogram </td>
+   <td style="text-align:left;"> Create Cartograms with R </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> geogrid </td>
+   <td style="text-align:left;"> Turn Geospatial Polygons into Regular or Hexagonal Grids </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> geofacet </td>
+   <td style="text-align:left;"> 'ggplot2' Faceting Utilities for Geographical Data </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> globe </td>
+   <td style="text-align:left;"> Plot 2D and 3D Views of the Earth, Including Major Coastline </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> linemap </td>
+   <td style="text-align:left;"> Line Maps </td>
+  </tr>
+</tbody>
+</table>
 
 All of the aforementioned packages, however, have different approaches for data preparation and map creation.
 In the next paragraph, we focus solely on the **cartogram** package.
@@ -1063,18 +1094,18 @@ Next, combine this map and the map created in the previous exercise into a singl
     - Bonus: Add an inset map of the Zion National Park's location in the context of the Utah state. (Hint: an object representing Utah can be subsetted from the `us_states` dataset.) 
 
 1. Create facet maps of countries in Eastern Africa:
-    - with one facet showing HDI and the other representing population growth (hint: using variables `HDI` and `pop_growth` respectively)
-    - with a 'small multiple' per country
+    - With one facet showing HDI and the other representing population growth (hint: using variables `HDI` and `pop_growth` respectively)
+    - With a 'small multiple' per country
 
 1. Building on the previous facet map examples, create animated maps of East Africa:
-    - showing first the spatial distribution of HDI scores then population growth
-    - showing each country in order
+    - Showing first the spatial distribution of HDI scores then population growth
+    - Showing each country in order
 
 1. Create an interactive map of Africa:
-    - with **tmap**
-    - with **mapview**
-    - with **leaflet**
-    - bonus: for each approach add a legend (if not automatically provided) and a scale bar
+    - With **tmap**
+    - With **mapview**
+    - With **leaflet**
+    - Bonus: for each approach add a legend (if not automatically provided) and a scale bar
 1. Sketch on paper ideas for a web mapping app that could be used to make transport or land-use policies more evidence based:
     - In the city you live in, for a couple of users per day
     - In the country you live in, for dozens of users per day

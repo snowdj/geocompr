@@ -719,10 +719,10 @@ factorValues(grain, grain[c(1, 11, 35)])
 
 Raster subsetting is done with the base R operator `[`, which accepts a variety of inputs:
 
-- row-column indexing
-- cell IDs
-- coordinates
-- another raster object
+- Row-column indexing
+- Cell IDs
+- Coordinates
+- Another raster object
 
 Here, we only show the first two options since these can be considered non-spatial operations.
 If we need a spatial object to subset another or the output is a spatial object, we refer to this as spatial subsetting.
