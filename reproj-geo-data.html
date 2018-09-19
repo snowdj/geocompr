@@ -430,10 +430,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Section <a href="spatial-class.html#crs-intro">2.3</a> introduced coordinate reference systems (CRSs) and demonstrated their importance.
 This chapter goes further.
 It highlights issues that can arise when using inappropriate CRSs and how to <em>transform</em> data from one CRS to another.</p>
-<p>As illustrated in Figure <a href="spatial-class.html#fig:vectorplots">2.1</a>, there are two types of CRS: <em>geographic</em> (‘lon/lat’, with units in degrees longitude and latitude) and <em>projected</em> (typically in units of meters from a datum).
-This has consequences because many geometric operations require a <em>projected</em> CRS:
-many geometric operations in <strong>sf</strong>, for example, assume a projected CRS and generate warnings if the data is <em>geographic</em>, using the function <code>st_is_longlat()</code> (this is because under the hood GEOS assumes projected data).
-Unfortunately R does not always know the CRS of an object, as shown below using the example of London introduced in section <a href="spatial-class.html#vector-data">2.1</a>:</p>
+<p>As illustrated in Figure <a href="spatial-class.html#fig:vectorplots">2.1</a>, there are two types of CRS: <em>geographic</em> (‘lon/lat’, with units in degrees longitude and latitude) and <em>projected</em> (typically with units of meters from a datum).
+This has consequences.
+Many geometry operations in <strong>sf</strong>, for example, assume their inputs have a projected CRS, because the GEOS functions they are based on assume projected data.
+To deal with this issue <strong>sf</strong> provides the function <code>st_is_longlat()</code> to check.
+In some cases the CRS is unknown, as shown below using the example of London introduced in section <a href="spatial-class.html#vector-data">2.1</a>:</p>
 <!-- , which is created by *coercing* a `data.frame` into an `sf` object (the `coords` argument specifies the coordinates): -->
 <div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb209-1" data-line-number="1">london =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">lon =</span> <span class="fl">-0.1</span>, <span class="dt">lat =</span> <span class="fl">51.5</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb209-2" data-line-number="2"><span class="st">  </span><span class="kw">st_as_sf</span>(<span class="dt">coords =</span> <span class="kw">c</span>(<span class="st">&quot;lon&quot;</span>, <span class="st">&quot;lat&quot;</span>))</a>
