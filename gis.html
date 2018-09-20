@@ -527,7 +527,7 @@ Basically, functions <code>set_env()</code> and <code>open_app()</code> are doin
 Note that it is optional to run <code>set_env()</code> and <code>open_app()</code> since all functions depending on their output will run them automatically if needed.
 Before running <strong>RQGIS</strong> make sure you have installed QGIS and all its (third-party) dependencies such as SAGA and GRASS.
 To install <strong>RQGIS</strong> a number of dependencies are required, as described in the <a href="https://cran.r-project.org/web/packages/RQGIS/vignettes/install_guide.html"><code>install_guide</code></a> vignette, which covers installation on Windows, Linux and Mac.
-Please install the long-term release of QGIS, i.e. 2.18, since <strong>RQGIS</strong> so far does not support QGIS 3.</p>
+At the time of writing (autumn 2018) RQGIS only supports the <a href="https://qgis.org/en/site/getinvolved/development/roadmap.html">Long Term Release</a> (2.18) but support for QGIS 3 is in the pipeline.</p>
 <div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" data-line-number="1"><span class="kw">library</span>(RQGIS)</a>
 <a class="sourceLine" id="cb304-2" data-line-number="2"><span class="kw">set_env</span>(<span class="dt">dev =</span> <span class="ot">FALSE</span>)</a>
 <a class="sourceLine" id="cb304-3" data-line-number="3"><span class="co">#&gt; $`root`</span></a>
