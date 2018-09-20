@@ -441,8 +441,7 @@ That is the topic of section <a href="algorithms.html#functions">10.4</a>.
 <!-- nor entirely focused on implementations via a GUI or CLI in a particular sofware package (as the first part of this book is, with its focus on implementations in various R packages). -->
 <!-- The focus of this chapter is on understanding, using reproducible code and clear explanation. -->
 The example of finding the centroid of a polygon will be used to tie these concepts together.
-Of course, you already know how to do that with <code>st_centroid()</code> having read Chapter <a href="geometric-operations.html#geometric-operations">5</a>.
-We use this example because it highlights how seemingly simple operations are the result of comparatively complex code, affirming the following observation <span class="citation">(Wise <a href="#ref-wise_gis_2001">2001</a>)</span>:</p>
+Chapter <a href="geometric-operations.html#geometric-operations">5</a> already introduced a centroid function <code>st_centroid()</code>, but this example highlights how seemingly simple operations are the result of comparatively complex code, affirming the following observation <span class="citation">(Wise <a href="#ref-wise_gis_2001">2001</a>)</span>:</p>
 <blockquote>
 <p>One of the most intriguing things about spatial data problems is that things which appear to be trivially easy to a human being can be surprisingly difficult on a computer.</p>
 </blockquote>
@@ -763,7 +762,7 @@ Prior steps can be referred to with a comment or with an if statement such as <c
 This example shows that <code>source()</code> works with URLs (a shortened version is used here), assuming you have an internet connection.
 If you do not, the same script can be called with <code>source(&quot;code/10-centroid-alg.R&quot;)</code>, assuming you are running R from the root directory of the <code>geocompr</code> folder, which can downloaded from <a href="https://github.com/Robinlovelace/geocompr" class="uri">https://github.com/Robinlovelace/geocompr</a>.<a href="algorithms.html#fnref57" class="footnote-back">↩</a></p></li>
 <li id="fn58"><p>
-The algorithm will only work for <em>convex polygons</em>, which contain no internal angles greater than 180° — no star shapes allowed.<a href="algorithms.html#fnref58" class="footnote-back">↩</a></p></li>
+The algorithm will only work for <em>convex polygons</em>, which contain no internal angles greater than 180° — no star shapes allowed. See packages <strong>decido</strong> or <strong>sfdct</strong> for approaches to non-convex polygons using external libraries. <a href="algorithms.html#fnref58" class="footnote-back">↩</a></p></li>
 <li id="fn59"><p>
 The result can be verified using the formula for the area of a triangle whose base is horizontal, as is the case for T1 (see Figure <a href="algorithms.html#fig:polycent">10.3</a>):
 area is half of the base width times its height or <span class="math inline">\(A = B * H / 2\)</span>.
