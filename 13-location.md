@@ -225,9 +225,9 @@ Subsequently, `rasterToPolygons()` converts the raster object into spatial polyg
 
 ```r
 polys = pop_agg %>% 
-  clump %>%
-  rasterToPolygons %>%
-  st_as_sf
+  clump() %>%
+  rasterToPolygons() %>%
+  st_as_sf()
 ```
 
 `polys` now features a column named `clumps` which indicates to which metropolitan region each polygon belongs and which we will use to dissolve the polygons into coherent single regions (see also section \@ref(geometry-unions)):
@@ -236,7 +236,7 @@ polys = pop_agg %>%
 ```r
 metros = polys %>%
   group_by(clumps) %>%
-  summarize
+  summarize()
 ```
 
 Given no other column as input, `summarize()` only dissolves the geometry.

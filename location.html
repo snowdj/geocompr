@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-09-19">
+<meta name="date" content="2018-09-20">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -627,13 +627,13 @@ It would be nice if we could join all cells belonging to one region.
 <strong>raster</strong>’s <code>clump()</code> command does exactly that.
 Subsequently, <code>rasterToPolygons()</code> converts the raster object into spatial polygons, and <code>st_as_sf()</code> converts it into an <code>sf</code>-object.</p>
 <div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb429-1" data-line-number="1">polys =<span class="st"> </span>pop_agg <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb429-2" data-line-number="2"><span class="st">  </span>clump <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb429-3" data-line-number="3"><span class="st">  </span>rasterToPolygons <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb429-4" data-line-number="4"><span class="st">  </span>st_as_sf</a></code></pre></div>
+<a class="sourceLine" id="cb429-2" data-line-number="2"><span class="st">  </span><span class="kw">clump</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb429-3" data-line-number="3"><span class="st">  </span><span class="kw">rasterToPolygons</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb429-4" data-line-number="4"><span class="st">  </span><span class="kw">st_as_sf</span>()</a></code></pre></div>
 <p><code>polys</code> now features a column named <code>clumps</code> which indicates to which metropolitan region each polygon belongs and which we will use to dissolve the polygons into coherent single regions (see also section <a href="geometric-operations.html#geometry-unions">5.2.6</a>):</p>
 <div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb430-1" data-line-number="1">metros =<span class="st"> </span>polys <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb430-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(clumps) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb430-3" data-line-number="3"><span class="st">  </span>summarize</a></code></pre></div>
+<a class="sourceLine" id="cb430-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>()</a></code></pre></div>
 <p>Given no other column as input, <code>summarize()</code> only dissolves the geometry.</p>
 <!-- maybe a good if advanced exercise
 This requires finding the nearest neighbors (`st_intersects()`), and some additional processing.
