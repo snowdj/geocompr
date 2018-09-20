@@ -532,7 +532,7 @@ agg_aw$value
 ```
 
 In our case it is meaningful to sum up the values of the intersections falling into the aggregating zones since total income is a so-called spatially extensive variable.
-This would be different for spatially intensive variables as for example income per head.
+This would be different for spatially intensive variables, which are independent of the spatial units used, such as income per head or [percentages](http://ibis.geog.ubc.ca/courses/geob370/notes/intensive_extensive.htm).
 In this case it is more meaningful to apply an average function when doing the aggregation instead of a sum function.
 To do so, one would only have to set the `extensive` parameter to `FALSE`.
 
@@ -915,7 +915,7 @@ How many of these high points does Canterbury Region contain?
     - Bonus: create a table listing these regions in order of the number of points and their name.
 
 1. Use `data(dem, package = "RQGIS")`, and reclassify the elevation in three classes: low, medium and high.
-Secondly, compute the NDVI (`data(ndvi, package = "RQGIS")`) and the mean elevation for each altitudinal class.
+Secondly, attach the NDVI raster (`data(ndvi, package = "RQGIS")`) and compute the mean NDVI and the mean elevation for each altitudinal class.
 1. Apply a line detection filter to `raster(system.file("external/rlogo.grd", package = "raster"))`.
 Plot the result.
 Hint: Read `?raster::focal()`.

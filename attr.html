@@ -480,15 +480,17 @@ Let’s start by using base R functions to get a measure of the <code>world</cod
 <a class="sourceLine" id="cb63-4" data-line-number="4"><span class="co">#&gt; [1] 177</span></a>
 <a class="sourceLine" id="cb63-5" data-line-number="5"><span class="kw">ncol</span>(world) <span class="co"># how many columns?</span></a>
 <a class="sourceLine" id="cb63-6" data-line-number="6"><span class="co">#&gt; [1] 11</span></a></code></pre></div>
-<p>Our dataset contains ten non-geographic columns (and one geometry list-column) with almost 200 rows representing the world’s countries.</p>
-<p>Extracting the attribute data of an <code>sf</code> object is the same as removing its geometry:</p>
+<p>Our dataset contains ten non-geographic columns (and one geometry list-column) with almost 200 rows representing the world’s countries.
+Extracting the attribute data of an <code>sf</code> object is the same as removing its geometry:</p>
 <div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1">world_df =<span class="st"> </span><span class="kw">st_set_geometry</span>(world, <span class="ot">NULL</span>)</a>
 <a class="sourceLine" id="cb64-2" data-line-number="2"><span class="kw">class</span>(world_df)</a>
 <a class="sourceLine" id="cb64-3" data-line-number="3"><span class="co">#&gt; [1] &quot;data.frame&quot;</span></a></code></pre></div>
 <p>This can be useful if the geometry column causes problems, e.g. by occupying large amounts of RAM, or to focus the attention on the attribute data.
 For most cases, however, there is no harm in keeping the geometry column because non-spatial data operations on <code>sf</code> objects only change an object’s geometry when appropriate (e.g. by dissolving borders between adjacent polygons following aggregation).
-This means that proficiency with attribute data in <code>sf</code> objects equates to proficiency with data frames in R.
-For many applications, the tidyverse package <strong>dplyr</strong> offers the most effective and intuitive approach of working with data frames, hence the focus on this approach in this section.<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a></p>
+This means that proficiency with attribute data in <code>sf</code> objects equates to proficiency with data frames in R.</p>
+<p>For many applications, the tidyverse package <strong>dplyr</strong> offers the most effective and intuitive approach for working with data frames.
+Tidyverse compatibility is an advantage of <strong>sf</strong> over its predecessor <strong>sp</strong>, but there are some pitfalls to avoid (see the supplementary <code>tidyverse-pitfalls</code> vignette at <a href="https://geocompr.github.io/geocompkg/articles/tidyverse-pitfalls.html">geocompr.github.io</a> for details).
+<!-- (see [Section 6.7](https://csgillespie.github.io/efficientR/data-carpentry.html#data-processing-with-data.table) of @gillespie_efficient_2016),  --></p>
 <div id="vector-attribute-subsetting" class="section level3">
 <h3><span class="header-section-number">3.2.1</span> Vector attribute subsetting</h3>
 <p>Base R subsetting functions include <code>[</code>, <code>subset()</code> and <code>$</code>.
@@ -810,7 +812,7 @@ Fortunately non-spatial data frames with a geometry list column (like <code>coff
 </div>
 
 <p>This section covers the majority joining use cases.
-For more information we recommend <span class="citation">Grolemund and Wickham (<a href="#ref-grolemund_r_2016">2016</a>)</span>, the <a href="https://geocompr.github.io/geocompkg/articles/join.html">join vignette</a> in the <strong>geocompkg</strong> package that accompanies this book, and documentation of the <strong>data.table</strong> package.<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a>
+For more information we recommend <span class="citation">Grolemund and Wickham (<a href="#ref-grolemund_r_2016">2016</a>)</span>, the <a href="https://geocompr.github.io/geocompkg/articles/join.html">join vignette</a> in the <strong>geocompkg</strong> package that accompanies this book, and documentation of the <strong>data.table</strong> package.<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a>
 Another type of join is a spatial join, covered in the next chapter (section <a href="spatial-operations.html#spatial-joining">4.2.3</a>).</p>
 </div>
 <div id="vec-attr-creation" class="section level3">
@@ -851,7 +853,7 @@ This is illustrated below, which outputs the same <code>world</code> object, but
 As mentioned at the outset of the chapter, it can be useful to remove the geometry.
 To do this, you have to explicitly remove it because <code>sf</code> explicitly makes the geometry column sticky.
 This behavior ensures that data frame operations do not accidentally remove the geometry column.
-Hence, an approach such as <code>select(world, -geom)</code> will be unsuccessful and you should instead use <code>st_set_geometry()</code>.<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a></p>
+Hence, an approach such as <code>select(world, -geom)</code> will be unsuccessful and you should instead use <code>st_set_geometry()</code>.<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a></p>
 <div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1">world_data =<span class="st"> </span>world <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_set_geometry</span>(<span class="ot">NULL</span>)</a>
 <a class="sourceLine" id="cb100-2" data-line-number="2"><span class="kw">class</span>(world_data)</a>
 <a class="sourceLine" id="cb100-3" data-line-number="3"><span class="co">#&gt; [1] &quot;data.frame&quot;</span></a></code></pre></div>
@@ -1047,15 +1049,10 @@ Extract the values of the four corner cells.</li>
 <hr />
 <ol start="16">
 <li id="fn16"><p>
-Unlike objects of class <code>Spatial*</code> of the <strong>sp</strong> package, <code>sf</code> objects are also compatible with the <strong>tidyverse</strong> packages <strong>dplyr</strong> and <strong>ggplot2</strong>.
-The former provides fast and powerful functions for data manipulation
-<!-- (see [Section 6.7](https://csgillespie.github.io/efficientR/data-carpentry.html#data-processing-with-data.table) of @gillespie_efficient_2016),  -->
-and the latter provides powerful plotting capabilities.<a href="attr.html#fnref16" class="footnote-back">↩</a></p></li>
-<li id="fn17"><p>
 <strong>data.table</strong> is a high-performance data processing package.
-Its application to spatial data is covered in a blog post hosted at r-spatial.org/r/2017/11/13/perp-performance.html.<a href="attr.html#fnref17" class="footnote-back">↩</a></p></li>
-<li id="fn18"><p>
-<code>st_geometry(world_st) = NULL</code> also works to remove the geometry from <code>world</code> but overwrites the original object.<a href="attr.html#fnref18" class="footnote-back">↩</a></p></li>
+Its application to spatial data is covered in a blog post hosted at r-spatial.org/r/2017/11/13/perp-performance.html.<a href="attr.html#fnref16" class="footnote-back">↩</a></p></li>
+<li id="fn17"><p>
+<code>st_geometry(world_st) = NULL</code> also works to remove the geometry from <code>world</code> but overwrites the original object.<a href="attr.html#fnref17" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 <script>

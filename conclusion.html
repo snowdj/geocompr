@@ -449,7 +449,7 @@ based on the <strong>sf</strong> package to combine the 16 regions of New Zealan
 <a class="sourceLine" id="cb463-7" data-line-number="7"><span class="kw">identical</span>(nz_u1, nz_u3<span class="op">$</span>geom)</a>
 <a class="sourceLine" id="cb463-8" data-line-number="8"><span class="co">#&gt; [1] TRUE</span></a></code></pre></div>
 <p>Although the classes, attributes and column names of the resulting objects <code>nz_u1</code> to <code>nz_u3</code> differ, their geometries are identical.
-This is verified using the base R function <code>identical()</code>.<a href="#fn82" class="footnote-ref" id="fnref82"><sup>82</sup></a>
+This is verified using the base R function <code>identical()</code>.<a href="#fn81" class="footnote-ref" id="fnref81"><sup>81</sup></a>
 Which to use?
 It depends.
 The former only processes the geometry data contained in <code>nz</code> so is faster.
@@ -460,7 +460,7 @@ We recommend using <strong>sf</strong> and the other packages showcased in this 
 <p>We deliberately covered both <strong>tidyverse</strong> and base R approaches to attribute data operations.
 Chapter <a href="attr.html#attr">3</a> showed how both <code>nz[, &quot;Name&quot;]</code> and <code>nz %&gt;% select(Name)</code> can be used to achieve the same result, for example.
 The overlap is highlighted because each approach has advantages: the pipe syntax is popular and appealing to some, while base R is more stable, and is well-known to others.
-Choosing between them is therefore largely a matter of preference, but beware of pitfalls when using <strong>tidyverse</strong> functions to handle spatial data (see the supplementary article <code>spatial-tidyverse</code> at <a href="https://geocompr.github.io/">geocompr.github.io</a>).</p>
+Choosing between them is therefore largely a matter of preference, but beware of pitfalls when using <strong>tidyverse</strong> functions to handle spatial data (see the <code>spatial-tidyverse</code> vignette at <a href="https://geocompr.github.io/">geocompr.github.io</a>).</p>
 <!-- Not entirely sure, what you are referring to here. Which two packages? Which other functions were omitted? Maybe reference also the corresponding section.-->
 <p>While commonly needed subsetting functions were covered in depth, in two packages, many others were omitted.
 Chapter <a href="intro.html#intro">1</a> mentions 20+ influential spatial packages that have been developed over the years.
@@ -475,7 +475,7 @@ But there is still overlap in the packages we have used, as illustrated by the d
 <p>Package overlap is not necessarily a bad thing.
 It can increase resilience, performance (partly driven by friendly competition and mutual learning between developers) and choice, a key feature of open source software.
 In this context the decision to use a particular ‘stack’, such as the <strong>sf</strong>/<strong>tidyverse</strong>/<strong>raster</strong> ecosystem advocated in this book should be made with knowledge of alternatives.
-The <strong>sp</strong>/<strong>rgdal</strong>/<strong>rgeos</strong> ‘stack’, for example, can do many of the things covered in this book and used in more than 300 packages.<a href="#fn83" class="footnote-ref" id="fnref83"><sup>83</sup></a>
+The <strong>sp</strong>/<strong>rgdal</strong>/<strong>rgeos</strong> ‘stack’, for example, can do many of the things covered in this book and used in more than 300 packages.<a href="#fn82" class="footnote-ref" id="fnref82"><sup>82</sup></a>
 It is also being aware of promising alternatives that are under development.
 The package <strong>stars</strong>, for example, provides a new class system for working with spatiotemporal data.
 If you are interested in this topic, you can check for updates on the package’s <a href="https://github.com/r-spatial/stars">source code</a> and the broader <a href="https://cran.r-project.org/web/views/SpatioTemporal.html">SpatialTemporal Task View</a>.
@@ -531,7 +531,7 @@ A next step in this direction is to deepen your knowledge of base R, for example
 <!-- maybe we should add info about places to learn more r-spatial stuff (aka github, twitter, ...?)? --></p>
 <!-- Many directions of travel could be taken after taking the geocomputational steps -->
 <p>Another software-related direction for future learning is <strong>discovering geocomputation with other languages</strong>.
-There are good reasons for learning R as a language for geocomputation, as described in Chapter <a href="intro.html#intro">1</a>, but it is not the only option.<a href="#fn84" class="footnote-ref" id="fnref84"><sup>84</sup></a>
+There are good reasons for learning R as a language for geocomputation, as described in Chapter <a href="intro.html#intro">1</a>, but it is not the only option.<a href="#fn83" class="footnote-ref" id="fnref83"><sup>83</sup></a>
 It would be possible to study <em>Geocomputation with: Python</em>, <em>C++</em>, <em>JavaScript</em>, or <em>Scala</em> in equal depth.
 <a href="https://github.com/mapbox/rasterio"><strong>rasterio</strong></a>, for example, is a Python package
 <!-- for raster data offering a high-performance interface to GDAL -->
@@ -582,7 +582,7 @@ Reproducibility encourages geocomputation for social benefit because it makes ge
 <p>The benefits of reproducibility can be illustrated with the example of using geocomputation to increase sales of perfume.
 If the methods are hidden and cannot reproduced, few people can benefit (except for the perfume company who commissioned the work!).
 If the underlying code is made open and reproducible, by contrast, the methods can be re-purposed or improved (which would also benefit the perfume company).
-Reproducibility encourages socially but also economically beneficial collaboration.<a href="#fn85" class="footnote-ref" id="fnref85"><sup>85</sup></a>
+Reproducibility encourages socially but also economically beneficial collaboration.<a href="#fn84" class="footnote-ref" id="fnref84"><sup>84</sup></a>
 The importance of reproducibility, and other non-technical ingredients in the field of geocomputation, are further discussed in an open access article celebrating ‘21+ years of geocomputation’ <span class="citation">(Harris et al. <a href="#ref-harris_more_2017">2017</a>)</span>.</p>
 <!-- Like any worthwhile intellectual endeavor or nascent academic field, geocomputation is diverse and contested. -->
 
@@ -632,20 +632,20 @@ The importance of reproducibility, and other non-technical ingredients in the fi
 </div>
 <div class="footnotes">
 <hr />
-<ol start="82">
-<li id="fn82"><p>
+<ol start="81">
+<li id="fn81"><p>
 The first operation, undertaken by the function <code>st_union()</code>, creates an object of class <code>sfc</code> (a simple feature column).
 The latter two operations create <code>sf</code> objects, each of which <em>contains</em> a simple feature column.
-Therefore it is the geometries contained in simple feature columns, not the objects themselves, that are identical.<a href="conclusion.html#fnref82" class="footnote-back">↩</a></p></li>
-<li id="fn83"><p>
+Therefore it is the geometries contained in simple feature columns, not the objects themselves, that are identical.<a href="conclusion.html#fnref81" class="footnote-back">↩</a></p></li>
+<li id="fn82"><p>
 At the time of writing 450 package <code>Depend</code> or <code>Import</code> <strong>sp</strong>, showing that its data structures are widely used and have been extended in many directions.
-The equivalent number for <strong>sf</strong> was 60 in summer 2018; with the growing popularity of <strong>sf</strong>, this is set to grow.<a href="conclusion.html#fnref83" class="footnote-back">↩</a></p></li>
-<li id="fn84"><p>
+The equivalent number for <strong>sf</strong> was 60 in summer 2018; with the growing popularity of <strong>sf</strong>, this is set to grow.<a href="conclusion.html#fnref82" class="footnote-back">↩</a></p></li>
+<li id="fn83"><p>
 R’s strengths relevant to our definition geocomputation include its emphasis on scientific reproducibility, widespread use in academic research and unparalleled support for statistical modeling of geographic data.
 Furthermore, we advocate learning one language (R) for geocomputation in depth before delving into other languages/frameworks because of the costs associated with context switching.
-It is preferable to have expertise in one language than basic knowledge of many.<a href="conclusion.html#fnref84" class="footnote-back">↩</a></p></li>
-<li id="fn85"><p>
-One accessible way to contribute upstream is creating a reprex (reproducible example) to highlight a bug in the package’s issue tracker, as outlined in section <a href="algorithms.html#scripts">10.2</a>.<a href="conclusion.html#fnref85" class="footnote-back">↩</a></p></li>
+It is preferable to have expertise in one language than basic knowledge of many.<a href="conclusion.html#fnref83" class="footnote-back">↩</a></p></li>
+<li id="fn84"><p>
+One accessible way to contribute upstream is creating a reprex (reproducible example) to highlight a bug in the package’s issue tracker, as outlined in section <a href="algorithms.html#scripts">10.2</a>.<a href="conclusion.html#fnref84" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 <script>

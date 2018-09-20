@@ -466,7 +466,7 @@ To guarantee an optimal prediction, it is advisable to tune beforehand the hyper
 <div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb444-1" data-line-number="1"><span class="kw">data</span>(<span class="st">&quot;study_area&quot;</span>, <span class="st">&quot;random_points&quot;</span>, <span class="st">&quot;comm&quot;</span>, <span class="st">&quot;dem&quot;</span>, <span class="st">&quot;ndvi&quot;</span>)</a></code></pre></div>
 <p><code>study_area</code> is an sf polygon representing the outlines of the study area.
 <code>random_points</code> is an sf-object, and contains the 100 randomly chosen sites.
-<code>comm</code> is a community matrix of the wide data format <span class="citation">(Wickham <a href="#ref-wickham_tidy_2014">2014</a><a href="#ref-wickham_tidy_2014">b</a>)</span> where the rows represent the visited sites and the columns the observed species.<a href="#fn79" class="footnote-ref" id="fnref79"><sup>79</sup></a>
+<code>comm</code> is a community matrix of the wide data format <span class="citation">(Wickham <a href="#ref-wickham_tidy_2014">2014</a><a href="#ref-wickham_tidy_2014">b</a>)</span> where the rows represent the visited sites and the columns the observed species.<a href="#fn78" class="footnote-ref" id="fnref78"><sup>78</sup></a>
 The values represent species cover per site, and were recorded as the area covered by a species in proportion to the site area in percentage points.
 The rownames of <code>comm</code> correspond to the <code>id</code> column of <code>random_points</code>.
 Though <code>comm</code> only consists of 84 rows, we have in fact visited 100 sites in the field, however, in 16 of them no species were found.
@@ -481,7 +481,7 @@ Figure 14.2: Study mask (polygon), location of the sampling sites (black points)
 <p>The next step is to compute variables which we will predominantly need for the modeling and predictive mapping (see section <a href="eco.html#predictive-mapping">14.4.2</a>) but also for aligning the NMDS axes with the main gradient, altitude and humidity, respectively, in the study area (see section <a href="eco.html#nmds">14.3</a>).</p>
 <p>Specifically, we will compute catchment slope and catchment area from a digital elevation model using R-GIS bridges (see Chapter <a href="gis.html#gis">9</a>).
 Curvatures might also represent valuable predictors, in the exercise section you can find out how they would change the modeling result.</p>
-<p>To compute catchment area and catchment slope, we will make use of the <code>saga:sagawetnessindex</code> function.<a href="#fn80" class="footnote-ref" id="fnref80"><sup>80</sup></a>
+<p>To compute catchment area and catchment slope, we will make use of the <code>saga:sagawetnessindex</code> function.<a href="#fn79" class="footnote-ref" id="fnref79"><sup>79</sup></a>
 <code>get_usage()</code> returns all function parameters and default values of a specific geoalgorithm.
 Here, we present only a selection of the complete output.</p>
 <div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb445-1" data-line-number="1"><span class="kw">get_usage</span>(<span class="st">&quot;saga:sagawetnessindex&quot;</span>)</a>
@@ -558,7 +558,7 @@ As input it expects a community matrix with the sites as rows and the species as
 <code>decostand()</code> converts numerical observations into presences and absences with 1 indicating the occurrence of a species and 0 the absence of a species.</p>
 <div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb451-1" data-line-number="1">pa =<span class="st"> </span><span class="kw">decostand</span>(comm, <span class="st">&quot;pa&quot;</span>)</a></code></pre></div>
 <p>The resulting output matrix serves as input for the NMDS.
-<code>k</code> specifies the number of output axes, here, set to 4.<a href="#fn81" class="footnote-ref" id="fnref81"><sup>81</sup></a>
+<code>k</code> specifies the number of output axes, here, set to 4.<a href="#fn80" class="footnote-ref" id="fnref80"><sup>80</sup></a>
 NMDS is an iterative procedure trying to make the ordinated space more similar to the input matrix in each step.
 To make sure that the algorithm converges, we set the number of steps to 500 (<code>try</code> parameter).</p>
 <div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb452-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">25072018</span>)</a>
@@ -868,10 +868,10 @@ Compare the result to the result of the random forest model by making RMSE boxpl
 </div>
 <div class="footnotes">
 <hr />
-<ol start="79">
-<li id="fn79"><p>In statistics this is also called a contingency or cross-table.<a href="eco.html#fnref79" class="footnote-back">↩</a></p></li>
-<li id="fn80"><p>Admittedly, it is a bit unsatisfying, that the only way of knowing that <code>sagawetnessindex</code> computes the desired terrain attributes, is to be familiar with SAGA and/or google for “SAGA catchment slope”.<a href="eco.html#fnref80" class="footnote-back">↩</a></p></li>
-<li id="fn81"><p>One way of choosing <code>k</code> is to try <code>k</code> values between 1 and 6 and then using the result which yields the best stress value <span class="citation">(McCune, Grace, and Urban <a href="#ref-mccune_analysis_2002">2002</a>)</span>.<a href="eco.html#fnref81" class="footnote-back">↩</a></p></li>
+<ol start="78">
+<li id="fn78"><p>In statistics this is also called a contingency or cross-table.<a href="eco.html#fnref78" class="footnote-back">↩</a></p></li>
+<li id="fn79"><p>Admittedly, it is a bit unsatisfying, that the only way of knowing that <code>sagawetnessindex</code> computes the desired terrain attributes, is to be familiar with SAGA and/or google for “SAGA catchment slope”.<a href="eco.html#fnref79" class="footnote-back">↩</a></p></li>
+<li id="fn80"><p>One way of choosing <code>k</code> is to try <code>k</code> values between 1 and 6 and then using the result which yields the best stress value <span class="citation">(McCune, Grace, and Urban <a href="#ref-mccune_analysis_2002">2002</a>)</span>.<a href="eco.html#fnref80" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 <script>
