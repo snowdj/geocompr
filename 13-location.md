@@ -327,11 +327,6 @@ metros_wgs = st_transform(metros, 4326)
 coords = st_centroid(metros_wgs) %>%
   st_coordinates() %>%
   round(4)
-#> Warning in st_centroid.sf(metros_wgs): st_centroid assumes attributes are
-#> constant over geometries of x
-#> Warning in st_centroid.sfc(st_geometry(x), of_largest_polygon =
-#> of_largest_polygon): st_centroid does not give correct centroids for
-#> longitude/latitude data
 ```
 
 It is a great feature of `revgeo::revgeo()` that it accepts also more than one coordinate pair as input (parameters `longitude` and `latitude`), which spares us the need for writing a loop.

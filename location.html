@@ -717,12 +717,7 @@ By default, it uses the Photon API.
 <div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb430-1" data-line-number="1">metros_wgs =<span class="st"> </span><span class="kw">st_transform</span>(metros, <span class="dv">4326</span>)</a>
 <a class="sourceLine" id="cb430-2" data-line-number="2">coords =<span class="st"> </span><span class="kw">st_centroid</span>(metros_wgs) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb430-3" data-line-number="3"><span class="st">  </span><span class="kw">st_coordinates</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb430-4" data-line-number="4"><span class="st">  </span><span class="kw">round</span>(<span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb430-5" data-line-number="5"><span class="co">#&gt; Warning in st_centroid.sf(metros_wgs): st_centroid assumes attributes are</span></a>
-<a class="sourceLine" id="cb430-6" data-line-number="6"><span class="co">#&gt; constant over geometries of x</span></a>
-<a class="sourceLine" id="cb430-7" data-line-number="7"><span class="co">#&gt; Warning in st_centroid.sfc(st_geometry(x), of_largest_polygon =</span></a>
-<a class="sourceLine" id="cb430-8" data-line-number="8"><span class="co">#&gt; of_largest_polygon): st_centroid does not give correct centroids for</span></a>
-<a class="sourceLine" id="cb430-9" data-line-number="9"><span class="co">#&gt; longitude/latitude data</span></a></code></pre></div>
+<a class="sourceLine" id="cb430-4" data-line-number="4"><span class="st">  </span><span class="kw">round</span>(<span class="dv">4</span>)</a></code></pre></div>
 <p>It is a great feature of <code>revgeo::revgeo()</code> that it accepts also more than one coordinate pair as input (parameters <code>longitude</code> and <code>latitude</code>), which spares us the need for writing a loop.</p>
 <p>Choosing <code>frame</code> as <code>revgeocode()</code>’s <code>output</code> option will give back a <code>data.frame</code> with several columns referring to the location including the street name, house number and city.</p>
 <div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb431-1" data-line-number="1"><span class="kw">library</span>(revgeo)</a>
