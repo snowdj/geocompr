@@ -415,7 +415,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="prerequisites-11" class="section level2 unnumbered">
 <h2>Prerequisites</h2>
 <ul>
-<li>This chapter requires the following packages (<strong>ggmap</strong> must also be installed):</li>
+<li>This chapter requires the following packages (<strong>revgeo</strong> must also be installed):</li>
 </ul>
 <div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb417-1" data-line-number="1"><span class="kw">library</span>(sf)</a>
 <a class="sourceLine" id="cb417-2" data-line-number="2"><span class="kw">library</span>(raster)</a>
@@ -711,8 +711,9 @@ Figure 13.2: The aggregated population raster (resolution: 20 km) with the ident
 A reverse geocoding approach can settle this problem.
 Given a coordinate, reverse geocoding finds the corresponding address.
 Consequently, extracting the centroid coordinate of each metropolitan area can serve as an input for a reverse geocoding API.
-The <strong>ggmap</strong> package makes use of the one provided by Google.<a href="#fn75" class="footnote-ref" id="fnref75"><sup>75</sup></a>
-<code>ggmap::revgeocode()</code> only accepts geographical coordinates (latitude/longitude), therefore, the first requirement is to bring the metropolitan polygons into an appropriate coordinate reference system (Chapter <a href="reproj-geo-data.html#reproj-geo-data">6</a>).</p>
+The <strong>revgeo</strong> package provides access to the open source Photon geocoder for OpenStreetMap, Google Maps and Bing.
+By default, it uses the Photon API.
+<code>revgeo::revgeo()</code> only accepts geographical coordinates (latitude/longitude), therefore, the first requirement is to bring the metropolitan polygons into an appropriate coordinate reference system (Chapter <a href="reproj-geo-data.html#reproj-geo-data">6</a>).</p>
 <div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb430-1" data-line-number="1">metros_wgs =<span class="st"> </span><span class="kw">st_transform</span>(metros, <span class="dv">4326</span>)</a>
 <a class="sourceLine" id="cb430-2" data-line-number="2">coords =<span class="st"> </span><span class="kw">st_centroid</span>(metros_wgs) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb430-3" data-line-number="3"><span class="st">  </span><span class="kw">st_coordinates</span>() <span class="op">%&gt;%</span></a>
@@ -722,29 +723,12 @@ The <strong>ggmap</strong> package makes use of the one provided by Google.<a hr
 <a class="sourceLine" id="cb430-7" data-line-number="7"><span class="co">#&gt; Warning in st_centroid.sfc(st_geometry(x), of_largest_polygon =</span></a>
 <a class="sourceLine" id="cb430-8" data-line-number="8"><span class="co">#&gt; of_largest_polygon): st_centroid does not give correct centroids for</span></a>
 <a class="sourceLine" id="cb430-9" data-line-number="9"><span class="co">#&gt; longitude/latitude data</span></a></code></pre></div>
-<p>Additionally, <code>ggmap::revgeocode()</code> only accepts one coordinate at a time, which is why we iterate over each coordinate of <code>coords</code> via a loop (<code>map_dfr()</code>).
-<code>map_dfr()</code> does exactly the same as <code>lapply()</code> except for returning a <code>data.frame</code> instead of a <code>list</code>.<a href="#fn76" class="footnote-ref" id="fnref76"><sup>76</sup></a>
-Sometimes, Google’s reverse geocoding API is unable to find an address returning <code>NA</code>.
-Usually, trying the same coordinate again returns an address at the second or third attempt (see <code>while()-loop</code>).
-However, if ten attempts have already failed, this is a good indication that the requested information is indeed unavailable.
-Since we aim to be good cyberspace citizens, we try not to overburden the server with too many queries within a short amount of time by letting the loop sleep between one and four seconds after each iteration before accessing the reverse geocoding API again.
-Choosing <code>more</code> as <code>revgeocode()</code>’s <code>output</code> option will give back a <code>data.frame</code> with several columns referring to the location including the address, locality and various administrative levels.</p>
-<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb431-1" data-line-number="1"><span class="co"># reverse geocoding to find out the names of the metropolitan areas</span></a>
-<a class="sourceLine" id="cb431-2" data-line-number="2">metro_names =<span class="st"> </span><span class="kw">map_dfr</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(coords), <span class="cf">function</span>(i) {</a>
-<a class="sourceLine" id="cb431-3" data-line-number="3">  add =<span class="st"> </span>ggmap<span class="op">::</span><span class="kw">revgeocode</span>(coords[i, ], <span class="dt">output =</span> <span class="st">&quot;more&quot;</span>)</a>
-<a class="sourceLine" id="cb431-4" data-line-number="4">  x =<span class="st"> </span><span class="dv">9</span></a>
-<a class="sourceLine" id="cb431-5" data-line-number="5">  <span class="cf">while</span> (<span class="kw">is.na</span>(add<span class="op">$</span>address) <span class="op">&amp;</span><span class="st"> </span>x <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) {</a>
-<a class="sourceLine" id="cb431-6" data-line-number="6">    add =<span class="st"> </span>ggmap<span class="op">::</span><span class="kw">revgeocode</span>(coords[i, ], <span class="dt">output =</span> <span class="st">&quot;more&quot;</span>)</a>
-<a class="sourceLine" id="cb431-7" data-line-number="7">    <span class="co"># just try three times</span></a>
-<a class="sourceLine" id="cb431-8" data-line-number="8">    x =<span class="st"> </span>x <span class="op">-</span><span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb431-9" data-line-number="9">  }</a>
-<a class="sourceLine" id="cb431-10" data-line-number="10">  <span class="co"># give the server a bit time</span></a>
-<a class="sourceLine" id="cb431-11" data-line-number="11">  <span class="kw">Sys.sleep</span>(<span class="kw">sample</span>(<span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="fl">0.1</span>), <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb431-12" data-line-number="12">  <span class="co"># return the result</span></a>
-<a class="sourceLine" id="cb431-13" data-line-number="13">  add</a>
-<a class="sourceLine" id="cb431-14" data-line-number="14">})</a></code></pre></div>
-<p>Though the <code>while</code>-loop helps to make the reverse geocoding more successful, it sometimes might still fail or even give back results slightly differing from those we here have produced here.
-Therefore, to make sure that the reader uses the exact same results, we have put them into <strong>spDataLarge</strong>:</p>
+<p>It is a great feature of <code>revgeo::revgeo()</code> that it accepts also more than one coordinate pair as input (parameters <code>longitude</code> and <code>latitude</code>), which spares us the need for writing a loop.</p>
+<p>Choosing <code>frame</code> as <code>revgeocode()</code>’s <code>output</code> option will give back a <code>data.frame</code> with several columns referring to the location including the street name, house number and city.</p>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb431-1" data-line-number="1"><span class="kw">library</span>(revgeo)</a>
+<a class="sourceLine" id="cb431-2" data-line-number="2">metro_names =<span class="st"> </span><span class="kw">revgeo</span>(<span class="dt">longitude =</span> coords[, <span class="dv">1</span>], <span class="dt">latitude =</span> coords[, <span class="dv">2</span>], </a>
+<a class="sourceLine" id="cb431-3" data-line-number="3">                     <span class="dt">output =</span> <span class="st">&quot;frame&quot;</span>)</a></code></pre></div>
+<p>To make sure that the reader uses the exact same results, we have put them into <strong>spDataLarge</strong>:</p>
 <div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb432-1" data-line-number="1"><span class="co"># attach metro_names from spDataLarge</span></a>
 <a class="sourceLine" id="cb432-2" data-line-number="2"><span class="kw">data</span>(<span class="st">&quot;metro_names&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spDataLarge&quot;</span>)</a></code></pre></div>
 <table>
@@ -790,9 +774,18 @@ Therefore, to make sure that the reader uses the exact same results, we have put
 </tr>
 </tbody>
 </table>
-<p>Overall, we are satisfied with the <code>locality</code> column serving as metropolitan names (Table <a href="location.html#tab:metro-names">13.2</a>) apart from one exception, namely Wülfrath.
-Hence, we replace Wülfrath with the corresponding name in the <code>administrative_area_level_2</code> column, that is Düsseldorf (Fig. <a href="location.html#fig:metro-areas">13.2</a>).
-Umlauts like <code>ü</code> might lead to trouble further on, for example when determining the bounding box of a metropolitan area with <code>opq()</code> (see further below), which is why we replace them.</p>
+<p>Overall, we are satisfied with the <code>city</code> column serving as metropolitan names (Table <a href="location.html#tab:metro-names">13.2</a>) apart from one exception, namely Wülfrath which belongs to the greater region of Düsseldorf.
+Hence, we replace Wülfrath with Duesseldorf (Fig. <a href="location.html#fig:metro-areas">13.2</a>).
+Umlauts like <code>ü</code> might lead to trouble further on, for example when determining the bounding box of a metropolitan area with <code>opq()</code> (see further below), which is why we avoid them.</p>
+<!--
+Include as soon as Jakub has accepted the PR
+
+```r
+metro_names = dplyr::pull(metro_names, city) %>% 
+  as.character %>% 
+  ifelse(. == "Wülfrath", "Duesseldorf", .)
+```
+-->
 <div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb433-1" data-line-number="1">metro_names =<span class="st"> </span></a>
 <a class="sourceLine" id="cb433-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(metro_names, locality, administrative_area_level_<span class="dv">2</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb433-3" data-line-number="3"><span class="st">  </span><span class="co"># replace Wülfrath and umlaut ü</span></a>
@@ -812,7 +805,7 @@ The subsequent code chunk does this using a number of functions including:</p>
 <!-- Alternatively, we could have provided the bounding box in the form of coordinates ourselves. --></li>
 <li><code>add_osm_feature()</code> to specify OSM elements with a key value of <code>shop</code> (see <a href="http://wiki.openstreetmap.org/wiki/Map_Features">wiki.openstreetmap.org</a> for a list of common key:value pairs).</li>
 <li><code>osmdata_sf()</code>, which converts the the OSM data into spatial objects (of class <code>sf</code>).</li>
-<li><code>while()</code>, which tries repeatedly (three times in this case) to download the data if it fails first time.<a href="#fn77" class="footnote-ref" id="fnref77"><sup>77</sup></a>
+<li><code>while()</code>, which tries repeatedly (three times in this case) to download the data if it fails first time.<a href="#fn75" class="footnote-ref" id="fnref75"><sup>75</sup></a>
 Before running this code: please consider it will download almost 2GB of data.
 To save time and resources we have output into <strong>spDataLarge</strong> and should already be available in your environment as an object called <code>shops</code>.</li>
 </ul>
@@ -990,11 +983,7 @@ Change the age raster accordingly, repeat the remaining analyses and compare the
 <li id="fn74"><p>
 The potential error introduced during this reclassification stage will be explored in the exercises.<a href="location.html#fnref74" class="footnote-back">↩</a></p></li>
 <li id="fn75"><p>
-Google allows each user to access its services on a free basis for a maximum of 2500 queries a day.<a href="location.html#fnref75" class="footnote-back">↩</a></p></li>
-<li id="fn76"><p>
-For more on <code>lapply()</code> see <span class="citation">Grolemund and Wickham (<a href="#ref-grolemund_r_2016">2016</a>)</span> and <span class="citation">Wickham (<a href="#ref-wickham_splitapplycombine_2011">2011</a>)</span>.<a href="location.html#fnref76" class="footnote-back">↩</a></p></li>
-<li id="fn77"><p>
-As with Google’s reverse geocode API, the OSM-download will sometimes fail at the first attempt.<a href="location.html#fnref77" class="footnote-back">↩</a></p></li>
+As with Google’s reverse geocode API, the OSM-download will sometimes fail at the first attempt.<a href="location.html#fnref75" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 <script>
