@@ -106,15 +106,16 @@ In this case 1 is the greatest possible value but for more complex operations on
 \BeginKnitrBlock{rmdnote}<div class="rmdnote">Note: another way to return a logical output is by setting `sparse = FALSE` (meaning 'return a dense matrix not a sparse one') in operators such as `st_intersects()`. The command `st_intersects(x = nz_height, y = canterbury, sparse = FALSE)[, 1]`, for example, would return an output identical `sel_logical`.
 Note: the solution involving `sgbp` objects is more generalisable though, as it works for many-to-many operations and has lower memory requirements.</div>\EndKnitrBlock{rmdnote}
 
-It should be noted that the logical selection object can also be used with `filter()` as follows:
+It should be noted that a logical  can also be used with `filter()` as follows (sparse = FALSE` is explained in section \@ref(topological-relations)):
 
 
 ```r
-canterbury_height3 = nz_height %>% filter(sel_logical)
+canterbury_height3 = nz_height %>%
+  filter(st_intersects(x = ., y = canterbury, sparse = FALSE))
 ```
 
 At this point there are three versions of `canterbury_height`, one created with spatial subsetting directly and the other two via intermediary selection objects.
-To explore these objects in more detail and understand spatial subsetting in more depth see the supplementary vignette [Spatial Joins Extended](https://geocompr.github.io/geocompkg/articles/subsetting.html).
+To explore these objects and spatial subsetting in more detail, see the supplementary vignettes on `subsetting` and [`tidverse-pitfalls`](https://geocompr.github.io/geocompkg/articles/).
 
 ### Topological relations
 

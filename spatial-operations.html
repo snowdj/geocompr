@@ -502,10 +502,11 @@ Note: another way to return a logical output is by setting <code>sparse = FALSE<
 Note: the solution involving <code>sgbp</code> objects is more generalisable though, as it works for many-to-many operations and has lower memory requirements.
 </div>
 
-<p>It should be noted that the logical selection object can also be used with <code>filter()</code> as follows:</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1">canterbury_height3 =<span class="st"> </span>nz_height <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(sel_logical)</a></code></pre></div>
+<p>It should be noted that a logical can also be used with <code>filter()</code> as follows (sparse = FALSE` is explained in section <a href="spatial-operations.html#topological-relations">4.2.2</a>):</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1">canterbury_height3 =<span class="st"> </span>nz_height <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb115-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">st_intersects</span>(<span class="dt">x =</span> ., <span class="dt">y =</span> canterbury, <span class="dt">sparse =</span> <span class="ot">FALSE</span>))</a></code></pre></div>
 <p>At this point there are three versions of <code>canterbury_height</code>, one created with spatial subsetting directly and the other two via intermediary selection objects.
-To explore these objects in more detail and understand spatial subsetting in more depth see the supplementary vignette <a href="https://geocompr.github.io/geocompkg/articles/subsetting.html">Spatial Joins Extended</a>.</p>
+To explore these objects and spatial subsetting in more detail, see the supplementary vignettes on <code>subsetting</code> and <a href="https://geocompr.github.io/geocompkg/articles/"><code>tidverse-pitfalls</code></a>.</p>
 </div>
 <div id="topological-relations" class="section level3">
 <h3><span class="header-section-number">4.2.2</span> Topological relations</h3>
