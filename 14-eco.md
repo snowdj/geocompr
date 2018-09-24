@@ -84,7 +84,6 @@ Visualizing the data helps to get more familiar with it:
 <p class="caption">(\#fig:unnamed-chunk-5)Study mask (polygon), location of the sampling sites (black points) and DEM in the background.</p>
 </div>
 
-
 The next step is to compute variables which we will predominantly need for the modeling and predictive mapping (see section \@ref(predictive-mapping)) but also for aligning the NMDS axes with the main gradient, altitude and humidity, respectively, in the study area (see section \@ref(nmds)).
 
 Specifically, we will compute catchment slope and catchment area from a digital elevation model using R-GIS bridges (see Chapter \@ref(gis)).
@@ -206,10 +205,15 @@ comm[35:40, 1:5]
 
 Often ordinations using presence-absence data yield better results (in terms of explained variance) though the prize is, of course, a less informative input matrix (see also exercises).
 `decostand()` converts numerical observations into presences and absences with 1 indicating the occurrence of a species and 0 the absence of a species.
+Ordination techniques such as NMDS require at least one observation per site.
+Hence, we need to dismiss all sites in which no species were found.
 
 
 ```r
+# presence-absence matrix
 pa = decostand(comm, "pa")
+# keep only sites in which at least one species was found
+pa = pa[rowSums(pa) != 0, ]  # 84 rows, 69 columns
 ```
 
 The resulting output matrix serves as input for the NMDS.
@@ -261,6 +265,9 @@ plot(y = sc[, 1], x = elev, xlab = "elevation in m",
 <img src="figures/xy-nmds-1.png" alt="Plotting the first NMDS axis against altitude." width="60%" />
 <p class="caption">(\#fig:xy-nmds)Plotting the first NMDS axis against altitude.</p>
 </div>
+
+
+
 
 The scores of the first NMDS axis represent the different vegetation formations, i.e. the floristic gradient, appearing along the slope of Mt. Mongón.
 To spatially visualize them, we can model the NMDS scores with the previously created predictors (section \@ref(data-and-data-preparation)), and use the resulting model for predictive mapping (see next section).

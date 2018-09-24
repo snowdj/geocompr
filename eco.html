@@ -557,8 +557,13 @@ As input it expects a community matrix with the sites as rows and the species as
 <a class="sourceLine" id="cb449-9" data-line-number="9"><span class="co">#&gt; 39         0         0         0       0.0     2.000</span></a>
 <a class="sourceLine" id="cb449-10" data-line-number="10"><span class="co">#&gt; 40         0         0         0       0.2     0.125</span></a></code></pre></div>
 <p>Often ordinations using presence-absence data yield better results (in terms of explained variance) though the prize is, of course, a less informative input matrix (see also exercises).
-<code>decostand()</code> converts numerical observations into presences and absences with 1 indicating the occurrence of a species and 0 the absence of a species.</p>
-<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb450-1" data-line-number="1">pa =<span class="st"> </span><span class="kw">decostand</span>(comm, <span class="st">&quot;pa&quot;</span>)</a></code></pre></div>
+<code>decostand()</code> converts numerical observations into presences and absences with 1 indicating the occurrence of a species and 0 the absence of a species.
+Ordination techniques such as NMDS require at least one observation per site.
+Hence, we need to dismiss all sites in which no species were found.</p>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb450-1" data-line-number="1"><span class="co"># presence-absence matrix</span></a>
+<a class="sourceLine" id="cb450-2" data-line-number="2">pa =<span class="st"> </span><span class="kw">decostand</span>(comm, <span class="st">&quot;pa&quot;</span>)</a>
+<a class="sourceLine" id="cb450-3" data-line-number="3"><span class="co"># keep only sites in which at least one species was found</span></a>
+<a class="sourceLine" id="cb450-4" data-line-number="4">pa =<span class="st"> </span>pa[<span class="kw">rowSums</span>(pa) <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>, ]  <span class="co"># 84 rows, 69 columns</span></a></code></pre></div>
 <p>The resulting output matrix serves as input for the NMDS.
 <code>k</code> specifies the number of output axes, here, set to 4.<a href="#fn78" class="footnote-ref" id="fnref78"><sup>78</sup></a>
 NMDS is an iterative procedure trying to make the ordinated space more similar to the input matrix in each step.
