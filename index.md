@@ -2,7 +2,7 @@
 --- 
 title: 'Geocomputation with R'
 author: 'Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
-date: '2018-09-21'
+date: '2018-09-24'
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 documentclass: krantz
@@ -34,7 +34,7 @@ The online version of the book is hosted at [geocompr.robinlovelace.net](https:/
 
 [![Build Status](https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master)](https://travis-ci.org/Robinlovelace/geocompr)
 
-The version of the book you are reading now was built on 2018-09-21 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
+The version of the book you are reading now was built on 2018-09-24 and was built on [Travis](https://travis-ci.org/Robinlovelace/geocompr).
 
 ## How to contribute? {-}
 
@@ -175,7 +175,7 @@ On the other hand, we embed the shown methods into the bigger field of GIScience
 
 
 
-Many thanks to all the people who contributed to the book via GitHub: [katygregg](https://github.com/katygregg), [erstearns](https://github.com/erstearns), [eyesofbambi](https://github.com/eyesofbambi), [rsbivand](https://github.com/rsbivand), [pat-s](https://github.com/pat-s), [gisma](https://github.com/gisma), [ateucher](https://github.com/ateucher), [annakrystalli](https://github.com/annakrystalli), [gavinsimpson](https://github.com/gavinsimpson), [Himanshuteli](https://github.com/Himanshuteli), [yutannihilation](https://github.com/yutannihilation), [katiejolly](https://github.com/katiejolly), [layik](https://github.com/layik), [mvl22](https://github.com/mvl22), [nickbearman](https://github.com/nickbearman), [richfitz](https://github.com/richfitz), [SymbolixAU](https://github.com/SymbolixAU), [wdearden](https://github.com/wdearden), [yihui](https://github.com/yihui), [chihinl](https://github.com/chihinl), [gregor-d](https://github.com/gregor-d), [p-kono](https://github.com/p-kono), [pokyah](https://github.com/pokyah), [schuetzingit](https://github.com/schuetzingit), [tim-salabim](https://github.com/tim-salabim).
+Many thanks to all the people who contributed to the book via GitHub: [katygregg](https://github.com/katygregg), [erstearns](https://github.com/erstearns), [eyesofbambi](https://github.com/eyesofbambi), [mdsumner](https://github.com/mdsumner), [rsbivand](https://github.com/rsbivand), [marcosci](https://github.com/marcosci), [pat-s](https://github.com/pat-s), [gisma](https://github.com/gisma), [ateucher](https://github.com/ateucher), [annakrystalli](https://github.com/annakrystalli), [gavinsimpson](https://github.com/gavinsimpson), [Himanshuteli](https://github.com/Himanshuteli), [yutannihilation](https://github.com/yutannihilation), [katiejolly](https://github.com/katiejolly), [layik](https://github.com/layik), [mvl22](https://github.com/mvl22), [nickbearman](https://github.com/nickbearman), [richfitz](https://github.com/richfitz), [SymbolixAU](https://github.com/SymbolixAU), [wdearden](https://github.com/wdearden), [yihui](https://github.com/yihui), [chihinl](https://github.com/chihinl), [gregor-d](https://github.com/gregor-d), [p-kono](https://github.com/p-kono), [pokyah](https://github.com/pokyah), [schuetzingit](https://github.com/schuetzingit), [tim-salabim](https://github.com/tim-salabim).
 
 
 We thank Patrick Schratz (University of Jena) for fruitful discussions on **mlr** and for providing code input (Chapters \@ref(spatial-cv) & \@ref(eco)).

@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-09-21">
+<meta name="date" content="2018-09-24">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -528,10 +528,9 @@ This can feel like breaking free from the metaphorical ‘glass ceiling’ impos
 Furthermore R facilitates access to other languages:
 the packages <strong>Rcpp</strong> and <strong>reticulate</strong> enable access to C++ and Python code, for example.
 This means R can be used as a ‘bridge’ to a wide range of geospatial programs (see section <a href="intro.html#software-for-geocomputation">1.3</a>).</p>
-<p>An example showing R’s flexibility and evolving geographic capabilities is <strong>leaflet</strong> <span class="citation">(Cheng, Karambelkar, and Xie <a href="#ref-R-leaflet">2018</a>)</span>.
-We’ll see in Chapter <a href="adv-map.html#adv-map">8</a> how this interactive mapping package has been extended: there are now many ways to generate interactive geographic data visualizations from the R command line.
-Thanks to these developments the statement that R has “limited interactive [plotting] facilities” <span class="citation">(Bivand, Pebesma, and Gómez-Rubio <a href="#ref-bivand_applied_2013">2013</a>)</span> is no longer true.
-This is demonstrated by the following code chunk (which creates Figure <a href="intro.html#fig:interactive">1.1</a>).</p>
+<p>Another example showing R’s flexibility and evolving geographic capabilities is interactive map making.
+As we’ll see in Chapter <a href="adv-map.html#adv-map">8</a>, the statement that R has “limited interactive [plotting] facilities” <span class="citation">(Bivand, Pebesma, and Gómez-Rubio <a href="#ref-bivand_applied_2013">2013</a>)</span> is no longer true.
+This is demonstrated by the following code chunk, which creates Figure <a href="intro.html#fig:interactive">1.1</a> (the functions that generate the plot are covered in section <a href="adv-map.html#interactive-maps">8.4</a>).</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(leaflet)</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">popup =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Robin&quot;</span>, <span class="st">&quot;Jakub&quot;</span>, <span class="st">&quot;Jannes&quot;</span>)</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">leaflet</span>() <span class="op">%&gt;%</span></a>
@@ -630,33 +629,33 @@ This has led to a demand for ‘tidy spatial data’ which has been partly met b
 An obvious feature of the <strong>tidyverse</strong> is the tendency for packages to work in harmony.
 There is no equivalent <strong>geoverse</strong> but there are attempts at harmonization between packages hosted on in the <a href="https://github.com/r-spatial/discuss/issues/11">r-spatial</a> organisation and a growing number of packages use <strong>sf</strong> (Table <a href="intro.html#tab:revdep">1.2</a>).</p>
 <table>
-<caption><span id="tab:revdep">Table 1.2: </span>The top 5 most downloaded packages that depend on sf, in terms of average number of downloads per day over the previous month. As of 2018-09-15 there are 101 packages which import sf.</caption>
+<caption><span id="tab:revdep">Table 1.2: </span>The top 5 most downloaded packages that depend on sf, in terms of average number of downloads per day over the previous month. As of 2018-09-22 there are 102 packages which import sf.</caption>
 <thead>
 <tr class="header">
-<th align="left">Package</th>
+<th align="left">package</th>
 <th align="right">Downloads</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">ggplot2</td>
-<td align="right">17099</td>
+<td align="right">19364</td>
 </tr>
 <tr class="even">
 <td align="left">plotly</td>
-<td align="right">2123</td>
+<td align="right">2345</td>
 </tr>
 <tr class="odd">
 <td align="left">spData</td>
-<td align="right">1603</td>
+<td align="right">1876</td>
 </tr>
 <tr class="even">
 <td align="left">raster</td>
-<td align="right">1456</td>
+<td align="right">1621</td>
 </tr>
 <tr class="odd">
 <td align="left">leaflet</td>
-<td align="right">950</td>
+<td align="right">1070</td>
 </tr>
 </tbody>
 </table>
@@ -794,9 +793,6 @@ As of 2018 map making in R is a hot topic with dedicated packages such as <stron
 </div>
 <div id="ref-chambers_extending_2016">
 <p>Chambers, John M. 2016. <em>Extending R</em>. CRC Press.</p>
-</div>
-<div id="ref-R-leaflet">
-<p>Cheng, Joe, Bhaskar Karambelkar, and Yihui Xie. 2018. <em>Leaflet: Create Interactive Web Maps with the Javascript ’Leaflet’ Library</em>. <a href="https://CRAN.R-project.org/package=leaflet" class="uri">https://CRAN.R-project.org/package=leaflet</a>.</p>
 </div>
 <div id="ref-brzustowicz_data_2017">
 <p>Brzustowicz, Michael R. 2017. <em>Data Science with Java: [Practical Methods for Scientists and Engineers]</em>. First edition. Beijing Boston Farnham: OReilly.</p>

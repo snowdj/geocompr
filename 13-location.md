@@ -351,43 +351,28 @@ data("metro_names", package = "spDataLarge")
 
 Table: (\#tab:metro-names)Result of the reverse geocoding.
 
-locality            administrative_area_level_1 
-------------------  ----------------------------
-Hamburg             Hamburg                     
-Berlin              Berlin                      
-Wülfrath            Nordrhein-Westfalen         
-Leipzig             Sachsen                     
-Frankfurt am Main   Hessen                      
-Nürnberg            Bayern                      
-Stuttgart           Baden-Württemberg           
-München             Bayern                      
+city                state                  
+------------------  -----------------------
+Hamburg             Hamburg                
+Berlin              Berlin                 
+Wülfrath            North Rhine-Westphalia 
+Leipzig             Saxony                 
+Frankfurt am Main   Hesse                  
+Nuremberg           Bavaria                
+Stuttgart           Baden-Württemberg      
+Munich              Bavaria                
 
 Overall, we are satisfied with the `city` column serving as metropolitan names (Table \@ref(tab:metro-names)) apart from one exception, namely Wülfrath which belongs to the greater region of Düsseldorf.
 Hence, we replace Wülfrath with Duesseldorf (Fig. \@ref(fig:metro-areas)).
 Umlauts like `ü` might lead to trouble further on, for example when determining the bounding box of a metropolitan area with `opq()` (see further below), which is why we avoid them.
 
-<!--
-Include as soon as Jakub has accepted the PR
 
 ```r
 metro_names = dplyr::pull(metro_names, city) %>% 
   as.character %>% 
   ifelse(. == "Wülfrath", "Duesseldorf", .)
 ```
--->
 
-
-
-```r
-metro_names = 
-  dplyr::select(metro_names, locality, administrative_area_level_2) %>%
-  # replace Wülfrath and umlaut ü
-  mutate(locality = ifelse(locality == "Wülfrath",
-                           administrative_area_level_2,
-                           locality),
-         locality = gsub("ü", "ue", locality)) %>%
-  pull(locality)
-```
 
 ## Points of interest
 

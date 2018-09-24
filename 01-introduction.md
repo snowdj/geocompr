@@ -118,10 +118,9 @@ Furthermore R facilitates access to other languages:
 the packages **Rcpp** and **reticulate** enable access to C++ and Python code, for example.
 This means R can be used as a 'bridge' to a wide range of geospatial programs (see section \@ref(software-for-geocomputation)).
 
-An example showing R's flexibility and evolving geographic capabilities is **leaflet** [@R-leaflet].
-We'll see in Chapter \@ref(adv-map) how this interactive mapping package has been extended: there are now many ways to generate interactive geographic data visualizations from the R command line.
-Thanks to these developments the statement that R has "limited interactive [plotting] facilities" [@bivand_applied_2013] is no longer true.
-This is demonstrated by the following code chunk (which creates Figure \@ref(fig:interactive)).
+Another example showing R's flexibility and evolving geographic capabilities is interactive map making.
+As we'll see in Chapter \@ref(adv-map), the statement that R has "limited interactive [plotting] facilities" [@bivand_applied_2013] is no longer true.
+This is demonstrated by the following code chunk, which creates Figure \@ref(fig:interactive) (the functions that generate the plot are covered in section \@ref(interactive-maps)).
 
 
 
@@ -246,15 +245,15 @@ An obvious feature of the **tidyverse** is the tendency for packages to work in 
 There is no equivalent **geoverse** but there are attempts at harmonization between packages hosted on in the [r-spatial](https://github.com/r-spatial/discuss/issues/11) organisation and a growing number of packages use **sf** (Table \@ref(tab:revdep)). 
 
 
-Table: (\#tab:revdep)The top 5 most downloaded packages that depend on sf, in terms of average number of downloads per day over the previous month. As of 2018-09-15 there are 101 packages which import sf.
+Table: (\#tab:revdep)The top 5 most downloaded packages that depend on sf, in terms of average number of downloads per day over the previous month. As of 2018-09-22 there are 102 packages which import sf.
 
-Package    Downloads
+package    Downloads
 --------  ----------
-ggplot2        17099
-plotly          2123
-spData          1603
-raster          1456
-leaflet          950
+ggplot2        19364
+plotly          2345
+spData          1876
+raster          1621
+leaflet         1070
 
 ## The history of R-spatial
 
