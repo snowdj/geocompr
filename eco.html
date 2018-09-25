@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-09-24">
+<meta name="date" content="2018-09-25">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -466,14 +466,23 @@ To guarantee an optimal prediction, it is advisable to tune beforehand the hyper
 <div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb442-1" data-line-number="1"><span class="kw">data</span>(<span class="st">&quot;study_area&quot;</span>, <span class="st">&quot;random_points&quot;</span>, <span class="st">&quot;comm&quot;</span>, <span class="st">&quot;dem&quot;</span>, <span class="st">&quot;ndvi&quot;</span>)</a></code></pre></div>
 <p><code>study_area</code> is an sf polygon representing the outlines of the study area.
 <code>random_points</code> is an sf-object, and contains the 100 randomly chosen sites.
-<code>comm</code> is a community matrix of the wide data format <span class="citation">(Wickham <a href="#ref-wickham_tidy_2014">2014</a><a href="#ref-wickham_tidy_2014">b</a>)</span> where the rows represent the visited sites in the field and the columns the observed species.<a href="#fn76" class="footnote-ref" id="fnref76"><sup>76</sup></a>
-The values represent species cover per site, and were recorded as the area covered by a species in proportion to the site area in percentage points (%; please note that one site can have &gt;100% due to overlapping cover between individual plants).
+<code>comm</code> is a community matrix of the wide data format <span class="citation">(Wickham <a href="#ref-wickham_tidy_2014">2014</a><a href="#ref-wickham_tidy_2014">b</a>)</span> where the rows represent the visited sites in the field and the columns the observed species.<a href="#fn76" class="footnote-ref" id="fnref76"><sup>76</sup></a></p>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb443-1" data-line-number="1"><span class="co"># sites 35 to 40 and corresponding occurrences of the first five species in the</span></a>
+<a class="sourceLine" id="cb443-2" data-line-number="2"><span class="co"># community matrix</span></a>
+<a class="sourceLine" id="cb443-3" data-line-number="3">comm[<span class="dv">35</span><span class="op">:</span><span class="dv">40</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a>
+<a class="sourceLine" id="cb443-4" data-line-number="4"><span class="co">#&gt;    Alon_meri Alst_line Alte_hali Alte_porr Anth_eccr</span></a>
+<a class="sourceLine" id="cb443-5" data-line-number="5"><span class="co">#&gt; 35         0         0         0       0.0     1.000</span></a>
+<a class="sourceLine" id="cb443-6" data-line-number="6"><span class="co">#&gt; 36         0         0         1       0.0     0.500</span></a>
+<a class="sourceLine" id="cb443-7" data-line-number="7"><span class="co">#&gt; 37         0         0         0       0.0     0.125</span></a>
+<a class="sourceLine" id="cb443-8" data-line-number="8"><span class="co">#&gt; 38         0         0         0       0.0     3.000</span></a>
+<a class="sourceLine" id="cb443-9" data-line-number="9"><span class="co">#&gt; 39         0         0         0       0.0     2.000</span></a>
+<a class="sourceLine" id="cb443-10" data-line-number="10"><span class="co">#&gt; 40         0         0         0       0.2     0.125</span></a></code></pre></div>
+<p>The values represent species cover per site, and were recorded as the area covered by a species in proportion to the site area in percentage points (%; please note that one site can have &gt;100% due to overlapping cover between individual plants).
 The rownames of <code>comm</code> correspond to the <code>id</code> column of <code>random_points</code>.
-Though <code>comm</code> only consists of 84 rows, we have in fact visited 100 sites in the field, however, in 16 of them no species were found.
 <code>dem</code> is the digital elevation model for the study area, and <code>ndvi</code> is the Normalized Difference Vegetation Index (NDVI) computed from the red and near-infrared channels of a Landsat scene (see section <a href="spatial-operations.html#local-operations">4.3.3</a> and <code>?ndvi</code>).
 Visualizing the data helps to get more familiar with it:</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-5"></span>
-<img src="figures/unnamed-chunk-5-1.png" alt="Study mask (polygon), location of the sampling sites (black points) and DEM in the background." width="576" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-6"></span>
+<img src="figures/unnamed-chunk-6-1.png" alt="Study mask (polygon), location of the sampling sites (black points) and DEM in the background." width="576" />
 <p class="caption">
 Figure 14.2: Study mask (polygon), location of the sampling sites (black points) and DEM in the background.
 </p>
@@ -484,46 +493,46 @@ Curvatures might also represent valuable predictors, in the exercise section you
 <p>To compute catchment area and catchment slope, we will make use of the <code>saga:sagawetnessindex</code> function.<a href="#fn77" class="footnote-ref" id="fnref77"><sup>77</sup></a>
 <code>get_usage()</code> returns all function parameters and default values of a specific geoalgorithm.
 Here, we present only a selection of the complete output.</p>
-<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb443-1" data-line-number="1"><span class="kw">get_usage</span>(<span class="st">&quot;saga:sagawetnessindex&quot;</span>)</a>
-<a class="sourceLine" id="cb443-2" data-line-number="2"><span class="co">#&gt;ALGORITHM: Saga wetness index</span></a>
-<a class="sourceLine" id="cb443-3" data-line-number="3"><span class="co">#&gt;  DEM &lt;ParameterRaster&gt;</span></a>
-<a class="sourceLine" id="cb443-4" data-line-number="4"><span class="co">#&gt;  ...</span></a>
-<a class="sourceLine" id="cb443-5" data-line-number="5"><span class="co">#&gt;  SLOPE_TYPE &lt;ParameterSelection&gt;</span></a>
-<a class="sourceLine" id="cb443-6" data-line-number="6"><span class="co">#&gt;  ...</span></a>
-<a class="sourceLine" id="cb443-7" data-line-number="7"><span class="co">#&gt;  AREA &lt;OutputRaster&gt;</span></a>
-<a class="sourceLine" id="cb443-8" data-line-number="8"><span class="co">#&gt;  SLOPE &lt;OutputRaster&gt;</span></a>
-<a class="sourceLine" id="cb443-9" data-line-number="9"><span class="co">#&gt;  AREA_MOD &lt;OutputRaster&gt;</span></a>
-<a class="sourceLine" id="cb443-10" data-line-number="10"><span class="co">#&gt;  TWI &lt;OutputRaster&gt;</span></a>
-<a class="sourceLine" id="cb443-11" data-line-number="11"><span class="co">#&gt; ...</span></a>
-<a class="sourceLine" id="cb443-12" data-line-number="12"><span class="co">#&gt;SLOPE_TYPE(Type of Slope)</span></a>
-<a class="sourceLine" id="cb443-13" data-line-number="13"><span class="co">#&gt;  0 - [0] local slope</span></a>
-<a class="sourceLine" id="cb443-14" data-line-number="14"><span class="co">#&gt;  1 - [1] catchment slope</span></a>
-<a class="sourceLine" id="cb443-15" data-line-number="15"><span class="co">#&gt; ...</span></a></code></pre></div>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb444-1" data-line-number="1"><span class="kw">get_usage</span>(<span class="st">&quot;saga:sagawetnessindex&quot;</span>)</a>
+<a class="sourceLine" id="cb444-2" data-line-number="2"><span class="co">#&gt;ALGORITHM: Saga wetness index</span></a>
+<a class="sourceLine" id="cb444-3" data-line-number="3"><span class="co">#&gt;  DEM &lt;ParameterRaster&gt;</span></a>
+<a class="sourceLine" id="cb444-4" data-line-number="4"><span class="co">#&gt;  ...</span></a>
+<a class="sourceLine" id="cb444-5" data-line-number="5"><span class="co">#&gt;  SLOPE_TYPE &lt;ParameterSelection&gt;</span></a>
+<a class="sourceLine" id="cb444-6" data-line-number="6"><span class="co">#&gt;  ...</span></a>
+<a class="sourceLine" id="cb444-7" data-line-number="7"><span class="co">#&gt;  AREA &lt;OutputRaster&gt;</span></a>
+<a class="sourceLine" id="cb444-8" data-line-number="8"><span class="co">#&gt;  SLOPE &lt;OutputRaster&gt;</span></a>
+<a class="sourceLine" id="cb444-9" data-line-number="9"><span class="co">#&gt;  AREA_MOD &lt;OutputRaster&gt;</span></a>
+<a class="sourceLine" id="cb444-10" data-line-number="10"><span class="co">#&gt;  TWI &lt;OutputRaster&gt;</span></a>
+<a class="sourceLine" id="cb444-11" data-line-number="11"><span class="co">#&gt; ...</span></a>
+<a class="sourceLine" id="cb444-12" data-line-number="12"><span class="co">#&gt;SLOPE_TYPE(Type of Slope)</span></a>
+<a class="sourceLine" id="cb444-13" data-line-number="13"><span class="co">#&gt;  0 - [0] local slope</span></a>
+<a class="sourceLine" id="cb444-14" data-line-number="14"><span class="co">#&gt;  1 - [1] catchment slope</span></a>
+<a class="sourceLine" id="cb444-15" data-line-number="15"><span class="co">#&gt; ...</span></a></code></pre></div>
 <p>Subsequently, we can specify the needed parameters using R named arguments (see section <a href="gis.html#rqgis">9.2</a>).
 Remember that we can use a <code>RasterLayer</code> living in R’s global environment to specify the input raster <code>DEM</code> (see section <a href="gis.html#rqgis">9.2</a>).
 Specifying 1 as the <code>SLOPE_TYPE</code> makes sure that the algorithm will return the catchment slope.
 The resulting output rasters should be saved to temporary files with an <code>.sdat</code> extension which is a SAGA raster format.
 Setting <code>load_output</code> to <code>TRUE</code> ensures that the resulting rasters will be imported into R.</p>
-<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb444-1" data-line-number="1"><span class="co"># environmental predictors: catchment slope and catchment area</span></a>
-<a class="sourceLine" id="cb444-2" data-line-number="2">ep =<span class="st"> </span><span class="kw">run_qgis</span>(<span class="dt">alg =</span> <span class="st">&quot;saga:sagawetnessindex&quot;</span>,</a>
-<a class="sourceLine" id="cb444-3" data-line-number="3">              <span class="dt">DEM =</span> dem,</a>
-<a class="sourceLine" id="cb444-4" data-line-number="4">              <span class="dt">SLOPE_TYPE =</span> <span class="dv">1</span>, </a>
-<a class="sourceLine" id="cb444-5" data-line-number="5">              <span class="dt">SLOPE =</span> <span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.sdat&quot;</span>),</a>
-<a class="sourceLine" id="cb444-6" data-line-number="6">              <span class="dt">AREA =</span> <span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.sdat&quot;</span>),</a>
-<a class="sourceLine" id="cb444-7" data-line-number="7">              <span class="dt">load_output =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb444-8" data-line-number="8">              <span class="dt">show_output_paths =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb445-1" data-line-number="1"><span class="co"># environmental predictors: catchment slope and catchment area</span></a>
+<a class="sourceLine" id="cb445-2" data-line-number="2">ep =<span class="st"> </span><span class="kw">run_qgis</span>(<span class="dt">alg =</span> <span class="st">&quot;saga:sagawetnessindex&quot;</span>,</a>
+<a class="sourceLine" id="cb445-3" data-line-number="3">              <span class="dt">DEM =</span> dem,</a>
+<a class="sourceLine" id="cb445-4" data-line-number="4">              <span class="dt">SLOPE_TYPE =</span> <span class="dv">1</span>, </a>
+<a class="sourceLine" id="cb445-5" data-line-number="5">              <span class="dt">SLOPE =</span> <span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.sdat&quot;</span>),</a>
+<a class="sourceLine" id="cb445-6" data-line-number="6">              <span class="dt">AREA =</span> <span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.sdat&quot;</span>),</a>
+<a class="sourceLine" id="cb445-7" data-line-number="7">              <span class="dt">load_output =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb445-8" data-line-number="8">              <span class="dt">show_output_paths =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <p>This returns a list named <code>ep</code> consisting of two elements: <code>AREA</code> and <code>SLOPE</code>.
 Let us add two more raster objects to the list, namely <code>dem</code> and <code>ndvi</code>, and convert it into a raster stack (see section <a href="spatial-class.html#raster-classes">2.2.3</a>), .</p>
-<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb445-1" data-line-number="1">ep =<span class="st"> </span><span class="kw">c</span>(dem, ndvi, ep) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb445-2" data-line-number="2"><span class="st">  </span><span class="kw">stack</span>()</a>
-<a class="sourceLine" id="cb445-3" data-line-number="3"><span class="kw">names</span>(ep) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;dem&quot;</span>, <span class="st">&quot;ndvi&quot;</span>, <span class="st">&quot;carea&quot;</span>, <span class="st">&quot;cslope&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb446-1" data-line-number="1">ep =<span class="st"> </span><span class="kw">c</span>(dem, ndvi, ep) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb446-2" data-line-number="2"><span class="st">  </span><span class="kw">stack</span>()</a>
+<a class="sourceLine" id="cb446-3" data-line-number="3"><span class="kw">names</span>(ep) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;dem&quot;</span>, <span class="st">&quot;ndvi&quot;</span>, <span class="st">&quot;carea&quot;</span>, <span class="st">&quot;cslope&quot;</span>)</a></code></pre></div>
 <p>Additionally, the catchment area values are highly skewed to the right (<code>hist(ep$carea)</code>).
 A log10-transformation makes the distribution more normal.</p>
-<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb446-1" data-line-number="1">ep<span class="op">$</span>carea =<span class="st"> </span><span class="kw">log10</span>(ep<span class="op">$</span>carea)</a></code></pre></div>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb447-1" data-line-number="1">ep<span class="op">$</span>carea =<span class="st"> </span><span class="kw">log10</span>(ep<span class="op">$</span>carea)</a></code></pre></div>
 <p>As a convenience to the reader we have added <code>ep</code> to <strong>spDataLarge</strong>:</p>
-<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb447-1" data-line-number="1"><span class="kw">data</span>(<span class="st">&quot;ep&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spDataLarge&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb448-1" data-line-number="1"><span class="kw">data</span>(<span class="st">&quot;ep&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spDataLarge&quot;</span>)</a></code></pre></div>
 <p>Finally, we can extract the terrain attributes to our field observations (see also section <a href="geometric-operations.html#raster-extraction">5.4.2</a>).</p>
-<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb448-1" data-line-number="1">random_points[, <span class="kw">names</span>(ep)] =<span class="st"> </span>raster<span class="op">::</span><span class="kw">extract</span>(ep, <span class="kw">as</span>(random_points, <span class="st">&quot;Spatial&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb449-1" data-line-number="1">random_points[, <span class="kw">names</span>(ep)] =<span class="st"> </span>raster<span class="op">::</span><span class="kw">extract</span>(ep, <span class="kw">as</span>(random_points, <span class="st">&quot;Spatial&quot;</span>))</a></code></pre></div>
 </div>
 <div id="nmds" class="section level2">
 <h2><span class="header-section-number">14.3</span> Reducing dimensionality</h2>
@@ -545,23 +554,13 @@ The difference is expressed as stress.
 The lower the stress value, the better the ordination, i.e. the low-dimensional representation of the original matrix.
 Stress values lower than 10 represent an excellent fit, stress values of around 15 are still good, and values greater than 20 represent a poor fit <span class="citation">(McCune, Grace, and Urban <a href="#ref-mccune_analysis_2002">2002</a>)</span>.
 In R, <code>metaMDS()</code> of the <strong>vegan</strong> package can execute a NMDS.
-As input it expects a community matrix with the sites as rows and the species as columns, e.g.:</p>
-<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb449-1" data-line-number="1"><span class="co"># sites 35 to 40 and corresponding occurrences of the first five species in the</span></a>
-<a class="sourceLine" id="cb449-2" data-line-number="2"><span class="co"># table</span></a>
-<a class="sourceLine" id="cb449-3" data-line-number="3">comm[<span class="dv">35</span><span class="op">:</span><span class="dv">40</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a>
-<a class="sourceLine" id="cb449-4" data-line-number="4"><span class="co">#&gt;    Alon_meri Alst_line Alte_hali Alte_porr Anth_eccr</span></a>
-<a class="sourceLine" id="cb449-5" data-line-number="5"><span class="co">#&gt; 35         0         0         0       0.0     1.000</span></a>
-<a class="sourceLine" id="cb449-6" data-line-number="6"><span class="co">#&gt; 36         0         0         1       0.0     0.500</span></a>
-<a class="sourceLine" id="cb449-7" data-line-number="7"><span class="co">#&gt; 37         0         0         0       0.0     0.125</span></a>
-<a class="sourceLine" id="cb449-8" data-line-number="8"><span class="co">#&gt; 38         0         0         0       0.0     3.000</span></a>
-<a class="sourceLine" id="cb449-9" data-line-number="9"><span class="co">#&gt; 39         0         0         0       0.0     2.000</span></a>
-<a class="sourceLine" id="cb449-10" data-line-number="10"><span class="co">#&gt; 40         0         0         0       0.2     0.125</span></a></code></pre></div>
-<p>Often ordinations using presence-absence data yield better results (in terms of explained variance) though the prize is, of course, a less informative input matrix (see also exercises).
+As input it expects a community matrix with the sites as rows and the species as columns.
+Often ordinations using presence-absence data yield better results (in terms of explained variance) though the prize is, of course, a less informative input matrix (see also exercises).
 <code>decostand()</code> converts numerical observations into presences and absences with 1 indicating the occurrence of a species and 0 the absence of a species.
 Ordination techniques such as NMDS require at least one observation per site.
 Hence, we need to dismiss all sites in which no species were found.</p>
 <div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb450-1" data-line-number="1"><span class="co"># presence-absence matrix</span></a>
-<a class="sourceLine" id="cb450-2" data-line-number="2">pa =<span class="st"> </span><span class="kw">decostand</span>(comm, <span class="st">&quot;pa&quot;</span>)</a>
+<a class="sourceLine" id="cb450-2" data-line-number="2">pa =<span class="st"> </span><span class="kw">decostand</span>(comm, <span class="st">&quot;pa&quot;</span>)  <span class="co"># 100 rows (sites), 69 columns (species)</span></a>
 <a class="sourceLine" id="cb450-3" data-line-number="3"><span class="co"># keep only sites in which at least one species was found</span></a>
 <a class="sourceLine" id="cb450-4" data-line-number="4">pa =<span class="st"> </span>pa[<span class="kw">rowSums</span>(pa) <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>, ]  <span class="co"># 84 rows, 69 columns</span></a></code></pre></div>
 <p>The resulting output matrix serves as input for the NMDS.
@@ -584,7 +583,7 @@ To make sure that the algorithm converges, we set the number of steps to 500 (<c
 Overall, NMDS puts objects that are more similar (in terms of species composition) closer together in ordination space.
 However, as opposed to most other ordination techniques, the axes are arbitrary and not necessarily ordered by importance <span class="citation">(Borcard, Gillet, and Legendre <a href="#ref-borcard_numerical_2011">2011</a>)</span>.
 However, we already know that humidity represents the main gradient in the study area <span class="citation">(J. Muenchow, Bräuning, et al. <a href="#ref-muenchow_predictive_2013">2013</a>; Muenchow, Schratz, and Brenning <a href="#ref-muenchow_rqgis:_2017">2017</a>)</span>.
-Since humidity is highly correlated with elevation, we rotate the NMDS in accordance with elevation.
+Since humidity is highly correlated with elevation, we rotate the NMDS in accordance with elevation (see also <code>?MDSrotate</code> for more details on rotating NMDS axes).
 Plotting the result reveals that the first axis is, as intended, clearly associated with altitude (Figure <a href="eco.html#fig:xy-nmds">14.3</a>).</p>
 <div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb452-1" data-line-number="1">elev =<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(random_points, id <span class="op">%in%</span><span class="st"> </span><span class="kw">rownames</span>(pa)) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb452-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">pull</span>(dem)</a>
@@ -623,7 +622,7 @@ To illustrate this, we apply a decision tree to our data using the scores of the
 <div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb454-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;tree&quot;</span>)</a>
 <a class="sourceLine" id="cb454-2" data-line-number="2">tree_mo =<span class="st"> </span><span class="kw">tree</span>(sc <span class="op">~</span><span class="st"> </span>dem, <span class="dt">data =</span> rp)</a>
 <a class="sourceLine" id="cb454-3" data-line-number="3"><span class="kw">plot</span>(tree_mo)</a>
-<a class="sourceLine" id="cb454-4" data-line-number="4"><span class="kw">text</span>(tree_mo, <span class="dt">pretty =</span> <span class="dv">0</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb454-4" data-line-number="4"><span class="kw">text</span>(tree_mo, <span class="dt">pretty =</span> <span class="dv">2</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:tree"></span>
 <img src="figures/tree-1.png" alt="Simple example of a decision tree with three internal nodes and four terminal nodes." width="576" />
 <p class="caption">

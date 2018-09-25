@@ -71,17 +71,31 @@ data("study_area", "random_points", "comm", "dem", "ndvi")
 `random_points` is an sf-object, and contains the 100 randomly chosen sites.
 `comm` is a community matrix of the wide data format [@wickham_tidy_2014] where the rows represent the visited sites in the field and the columns the observed species.
 ^[In statistics this is also called a contingency or cross-table.]
+
+
+```r
+# sites 35 to 40 and corresponding occurrences of the first five species in the
+# community matrix
+comm[35:40, 1:5]
+#>    Alon_meri Alst_line Alte_hali Alte_porr Anth_eccr
+#> 35         0         0         0       0.0     1.000
+#> 36         0         0         1       0.0     0.500
+#> 37         0         0         0       0.0     0.125
+#> 38         0         0         0       0.0     3.000
+#> 39         0         0         0       0.0     2.000
+#> 40         0         0         0       0.2     0.125
+```
+
 The values represent species cover per site, and were recorded as the area covered by a species in proportion to the site area in percentage points (%; please note that one site can have >100% due to overlapping cover between individual plants).
 The rownames of `comm` correspond to the `id` column of `random_points`.
-Though `comm` only consists of 84 rows, we have in fact visited 100 sites in the field, however, in 16 of them no species were found.
 `dem` is the digital elevation model for the study area, and `ndvi` is the Normalized Difference Vegetation Index (NDVI) computed from the red and near-infrared channels of a Landsat scene (see section \@ref(local-operations) and `?ndvi`).
 Visualizing the data helps to get more familiar with it:
 
 
 
 <div class="figure" style="text-align: center">
-<img src="figures/unnamed-chunk-5-1.png" alt="Study mask (polygon), location of the sampling sites (black points) and DEM in the background." width="576" />
-<p class="caption">(\#fig:unnamed-chunk-5)Study mask (polygon), location of the sampling sites (black points) and DEM in the background.</p>
+<img src="figures/unnamed-chunk-6-1.png" alt="Study mask (polygon), location of the sampling sites (black points) and DEM in the background." width="576" />
+<p class="caption">(\#fig:unnamed-chunk-6)Study mask (polygon), location of the sampling sites (black points) and DEM in the background.</p>
 </div>
 
 The next step is to compute variables which we will predominantly need for the modeling and predictive mapping (see section \@ref(predictive-mapping)) but also for aligning the NMDS axes with the main gradient, altitude and humidity, respectively, in the study area (see section \@ref(nmds)).
@@ -187,22 +201,7 @@ The difference is expressed as stress.
 The lower the stress value, the better the ordination, i.e. the low-dimensional representation of the original matrix.
 Stress values lower than 10 represent an excellent fit, stress values of around 15 are still good, and values greater than 20 represent a poor fit [@mccune_analysis_2002].
 In R, `metaMDS()` of the **vegan** package can execute a NMDS.
-As input it expects a community matrix with the sites as rows and the species as columns, e.g.:
-
-
-```r
-# sites 35 to 40 and corresponding occurrences of the first five species in the
-# table
-comm[35:40, 1:5]
-#>    Alon_meri Alst_line Alte_hali Alte_porr Anth_eccr
-#> 35         0         0         0       0.0     1.000
-#> 36         0         0         1       0.0     0.500
-#> 37         0         0         0       0.0     0.125
-#> 38         0         0         0       0.0     3.000
-#> 39         0         0         0       0.0     2.000
-#> 40         0         0         0       0.2     0.125
-```
-
+As input it expects a community matrix with the sites as rows and the species as columns.
 Often ordinations using presence-absence data yield better results (in terms of explained variance) though the prize is, of course, a less informative input matrix (see also exercises).
 `decostand()` converts numerical observations into presences and absences with 1 indicating the occurrence of a species and 0 the absence of a species.
 Ordination techniques such as NMDS require at least one observation per site.
@@ -211,7 +210,7 @@ Hence, we need to dismiss all sites in which no species were found.
 
 ```r
 # presence-absence matrix
-pa = decostand(comm, "pa")
+pa = decostand(comm, "pa")  # 100 rows (sites), 69 columns (species)
 # keep only sites in which at least one species was found
 pa = pa[rowSums(pa) != 0, ]  # 84 rows, 69 columns
 ```
@@ -245,7 +244,7 @@ A stress value of 9 represents a very good result, which means that the reduced 
 Overall, NMDS puts objects that are more similar (in terms of species composition) closer together in ordination space.
 However, as opposed to most other ordination techniques, the axes are arbitrary and not necessarily ordered by importance [@borcard_numerical_2011].
 However, we already know that humidity represents the main gradient in the study area [@muenchow_predictive_2013;@muenchow_rqgis:_2017].
-Since humidity is highly correlated with elevation, we rotate the NMDS in accordance with elevation.
+Since humidity is highly correlated with elevation, we rotate the NMDS in accordance with elevation (see also `?MDSrotate` for more details on rotating NMDS axes).
 Plotting the result reveals that the first axis is, as intended, clearly associated with altitude (Figure \@ref(fig:xy-nmds)).
 
 
@@ -265,7 +264,6 @@ plot(y = sc[, 1], x = elev, xlab = "elevation in m",
 <img src="figures/xy-nmds-1.png" alt="Plotting the first NMDS axis against altitude." width="60%" />
 <p class="caption">(\#fig:xy-nmds)Plotting the first NMDS axis against altitude.</p>
 </div>
-
 
 
 
@@ -300,7 +298,7 @@ To illustrate this, we apply a decision tree to our data using the scores of the
 library("tree")
 tree_mo = tree(sc ~ dem, data = rp)
 plot(tree_mo)
-text(tree_mo, pretty = 0)
+text(tree_mo, pretty = 2)
 ```
 
 <div class="figure" style="text-align: center">
