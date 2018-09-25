@@ -310,7 +310,6 @@ text(tree_mo, pretty = 0)
 <p class="caption">(\#fig:tree)Simple example of a decision tree with three internal nodes and four terminal nodes.</p>
 </div>
 
-
 The resulting tree consists of three internal nodes and four terminal nodes (Figure \@ref(fig:tree)).
 The first internal node at the top of the tree assigns all observations which are below 328.5 m to the left and all other observations to the right branch.
 The observations falling into the left branch have a mean NMDS score of -1.198.
