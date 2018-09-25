@@ -298,14 +298,18 @@ To illustrate this, we apply a decision tree to our data using the scores of the
 library("tree")
 tree_mo = tree(sc ~ dem, data = rp)
 plot(tree_mo)
-text(tree_mo, pretty = 2)
+text(tree_mo, pretty = 0)
 ```
 
+
+
+
+
 <div class="figure" style="text-align: center">
-<img src="figures/tree-1.png" alt="Simple example of a decision tree with three internal nodes and four terminal nodes." width="576" />
+<img src="figures/14_tree.png" alt="Simple example of a decision tree with three internal nodes and four terminal nodes."  />
 <p class="caption">(\#fig:tree)Simple example of a decision tree with three internal nodes and four terminal nodes.</p>
 </div>
-<!-- JM: rounding is wrong in the online figure output, ok, save the figure as png and include it separately -->
+
 
 The resulting tree consists of three internal nodes and four terminal nodes (Figure \@ref(fig:tree)).
 The first internal node at the top of the tree assigns all observations which are below 328.5 m to the left and all other observations to the right branch.
