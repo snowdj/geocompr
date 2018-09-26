@@ -173,7 +173,7 @@ Use `as.numeric()` to coerce the result into a regular number.
 
 ```r
 st_distance(london2, london_proj)
-#> Units: m
+#> Units: [m]
 #>      [,1]
 #> [1,] 2018
 ```

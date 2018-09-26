@@ -819,7 +819,7 @@ This is illustrated in the code chunk below, which finds the distance between th
 <div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" data-line-number="1">nz_heighest =<span class="st"> </span>nz_height <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">top_n</span>(<span class="dt">n =</span> <span class="dv">1</span>, <span class="dt">wt =</span> elevation)</a>
 <a class="sourceLine" id="cb133-2" data-line-number="2">canterbury_centroid =<span class="st"> </span><span class="kw">st_centroid</span>(canterbury)</a>
 <a class="sourceLine" id="cb133-3" data-line-number="3"><span class="kw">st_distance</span>(nz_heighest, canterbury_centroid)</a>
-<a class="sourceLine" id="cb133-4" data-line-number="4"><span class="co">#&gt; Units: m</span></a>
+<a class="sourceLine" id="cb133-4" data-line-number="4"><span class="co">#&gt; Units: [m]</span></a>
 <a class="sourceLine" id="cb133-5" data-line-number="5"><span class="co">#&gt;        [,1]</span></a>
 <a class="sourceLine" id="cb133-6" data-line-number="6"><span class="co">#&gt; [1,] 115540</span></a></code></pre></div>
 <p>There are two potentially surprising things about the result:</p>
@@ -831,7 +831,7 @@ This is illustrated in the code chunk below, which finds the distance between th
 This is illustrated in the command below, which finds the distances between the first three features in <code>nz_height</code> and the Otago and Canterbury regions of New Zealand represented by the object <code>co</code>.</p>
 <div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" data-line-number="1">co =<span class="st"> </span><span class="kw">filter</span>(nz, <span class="kw">grepl</span>(<span class="st">&quot;Canter|Otag&quot;</span>, Name))</a>
 <a class="sourceLine" id="cb134-2" data-line-number="2"><span class="kw">st_distance</span>(nz_height[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, ], co)</a>
-<a class="sourceLine" id="cb134-3" data-line-number="3"><span class="co">#&gt; Units: m</span></a>
+<a class="sourceLine" id="cb134-3" data-line-number="3"><span class="co">#&gt; Units: [m]</span></a>
 <a class="sourceLine" id="cb134-4" data-line-number="4"><span class="co">#&gt;        [,1]  [,2]</span></a>
 <a class="sourceLine" id="cb134-5" data-line-number="5"><span class="co">#&gt; [1,] 123537 15498</span></a>
 <a class="sourceLine" id="cb134-6" data-line-number="6"><span class="co">#&gt; [2,]  94283     0</span></a>

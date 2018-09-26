@@ -554,7 +554,7 @@ This is illustrated in the code chunk below, which finds the distance between th
 nz_heighest = nz_height %>% top_n(n = 1, wt = elevation)
 canterbury_centroid = st_centroid(canterbury)
 st_distance(nz_heighest, canterbury_centroid)
-#> Units: m
+#> Units: [m]
 #>        [,1]
 #> [1,] 115540
 ```
@@ -571,7 +571,7 @@ This is illustrated in the command below, which finds the distances between the 
 ```r
 co = filter(nz, grepl("Canter|Otag", Name))
 st_distance(nz_height[1:3, ], co)
-#> Units: m
+#> Units: [m]
 #>        [,1]  [,2]
 #> [1,] 123537 15498
 #> [2,]  94283     0

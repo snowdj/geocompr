@@ -524,7 +524,7 @@ The answer is usually ‘to the projected CRS’, which in this case is the Brit
 <p>Now that a transformed version of <code>london</code> has been created, using the <strong>sf</strong> function <code>st_transform()</code>, the distance between the two representations of London can be found.
 It may come as a surprise that <code>london</code> and <code>london2</code> are just over 2 km apart!<a href="#fn27" class="footnote-ref" id="fnref27"><sup>27</sup></a></p>
 <div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb215-1" data-line-number="1"><span class="kw">st_distance</span>(london2, london_proj)</a>
-<a class="sourceLine" id="cb215-2" data-line-number="2"><span class="co">#&gt; Units: m</span></a>
+<a class="sourceLine" id="cb215-2" data-line-number="2"><span class="co">#&gt; Units: [m]</span></a>
 <a class="sourceLine" id="cb215-3" data-line-number="3"><span class="co">#&gt;      [,1]</span></a>
 <a class="sourceLine" id="cb215-4" data-line-number="4"><span class="co">#&gt; [1,] 2018</span></a></code></pre></div>
 </div>
