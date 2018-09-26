@@ -518,7 +518,7 @@ This section introduces <strong>sf</strong> classes in preparation for subsequen
 <h3><span class="header-section-number">2.1.1</span> An introduction to simple features</h3>
 <p>Simple features is an <a href="http://portal.opengeospatial.org/files/?artifact_id=25355">open standard</a> developed and endorsed by the Open Geospatial Consortium (OGC), a not-for-profit organization whose activities we will revisit in a later chapter (in section <a href="read-write.html#file-formats">7.4</a>).
 Simple Features is a hierarchical data model that represents a wide range of geometry types.
-Of 68 geometry types supported by the specification, only 7 are used in the vast majority of geographic research (see Figure <a href="spatial-class.html#fig:sf-ogc">2.2</a>);
+Of 17 geometry types supported by the specification, only 7 are used in the vast majority of geographic research (see Figure <a href="spatial-class.html#fig:sf-ogc">2.2</a>);
 these core geometry types are fully supported by R package <strong>sf</strong> <span class="citation">(E. Pebesma <a href="#ref-pebesma_simple_2018">2018</a>)</span>.<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a></p>
 <div class="figure" style="text-align: center"><span id="fig:sf-ogc"></span>
 <img src="figures/sf-classes.png" alt="The subset of the Simple Features class hierarchy supported by sf." width="60%" />
@@ -619,11 +619,11 @@ A major advantage of this is that using the data model ensures your work is cros
 <p>A more specific question from an R perspective is “why use the <strong>sf</strong> package when <strong>sp</strong> is already tried and tested”?
 There are many reasons (linked to the advantages of the simple features model) including:</p>
 <ul>
-<li>Fast reading and writing of data</li>
-<li>Enhanced plotting performance</li>
-<li><strong>sf</strong> objects can be treated as data frames in most operations</li>
-<li><strong>sf</strong> functions can be combined using <code>%&gt;%</code> operator and works well with the <a href="http://tidyverse.org/">tidyverse</a> collection of R packages</li>
-<li><strong>sf</strong> function names are relatively consistent and intuitive (all begin with <code>st_</code>)</li>
+<li>Fast reading and writing of data.</li>
+<li>Enhanced plotting performance.</li>
+<li><strong>sf</strong> objects can be treated as data frames in most operations.</li>
+<li><strong>sf</strong> functions can be combined using <code>%&gt;%</code> operator and works well with the <a href="http://tidyverse.org/">tidyverse</a> collection of R packages.</li>
+<li><strong>sf</strong> function names are relatively consistent and intuitive (all begin with <code>st_</code>).</li>
 </ul>
 <p>Due to such advantages some spatial packages (including <strong>tmap</strong>, <strong>mapview</strong> and <strong>tidycensus</strong>) have added support for <strong>sf</strong>.
 However, it will take many years for most packages to transition and some will never switch.
@@ -664,7 +664,7 @@ For more advanced map making we recommend using dedicated visualization packages
 <div id="base-args" class="section level3">
 <h3><span class="header-section-number">2.1.4</span> Base plot arguments</h3>
 <p>There are various ways to modify maps with <strong>sf</strong>’s <code>plot()</code> method.
-Because <strong>sf</strong> extends base R plotting methods <code>plot()</code>’s arguments such as <code>main =</code> — which specifies the title of the map — work with <code>sf</code> objects (see <code>?graphics::plot</code> and <code>?par</code>).<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a></p>
+Because <strong>sf</strong> extends base R plotting methods <code>plot()</code>’s arguments such as <code>main =</code> (which specifies the title of the map) work with <code>sf</code> objects (see <code>?graphics::plot</code> and <code>?par</code>).<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a></p>
 <p>Figure <a href="spatial-class.html#fig:contpop">2.5</a> illustrates this flexibility by overlaying circles, whose diameters (set with <code>cex =</code>) represent country populations, on a map of the world.
 A basic version of the map can be created with the following commands (see exercises at the end of this chapter and the script <a href="https://github.com/Robinlovelace/geocompr/blob/master/code/02-contpop.R"><code>02-contplot.R</code></a> to create Figure <a href="spatial-class.html#fig:contpop">2.5</a>):</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">plot</span>(world[<span class="st">&quot;continent&quot;</span>], <span class="dt">reset =</span> <span class="ot">FALSE</span>)</a>
@@ -679,7 +679,7 @@ Figure 2.5: Country continents (represented by fill color) and 2015 populations 
 </div>
 <p>The code above uses the function <code>st_centroid()</code> to convert one geometry type (polygons) to another (points) (see Chapter <a href="geometric-operations.html#geometric-operations">5</a>), the aesthetics of which are varied with the <code>cex</code> argument.</p>
 <p><strong>sf</strong>’s plot method also has arguments specific to geographic data. <code>expandBB</code>, for example, can be used plot an <code>sf</code> object in context:
-it takes a numeric vector of length 4 that expands the bounding box of the plot relative to zero in the following order: bottom, left, top, right.
+it takes a numeric vector of length four that expands the bounding box of the plot relative to zero in the following order: bottom, left, top, right.
 This is used to plot India in the context of its giant Asian neighbors, with an emphasis on China to the East, in the following code chunk, which generates Figure <a href="spatial-class.html#fig:china">2.6</a> (see exercises below on adding text to plots):</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">india =<span class="st"> </span>world[world<span class="op">$</span>name_long <span class="op">==</span><span class="st"> &quot;India&quot;</span>, ]</a>
 <a class="sourceLine" id="cb17-2" data-line-number="2"><span class="kw">plot</span>(<span class="kw">st_geometry</span>(india), <span class="dt">expandBB =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.2</span>, <span class="fl">0.1</span>, <span class="dv">1</span>), <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>, <span class="dt">lwd =</span> <span class="dv">3</span>)</a>
@@ -751,7 +751,7 @@ Figure 2.9: Illustration of geometry collection.
 </div>
 <div id="sfg" class="section level3">
 <h3><span class="header-section-number">2.1.6</span> Simple feature geometries (sfg)</h3>
-<p>The <code>sfg</code> class represents the different simple feature geometry types: point, linestring, polygon (and their ‘multi’ equivalents, such as multipoints) or geometry collection.</p>
+<p>The <code>sfg</code> class represents the different simple feature geometry types in R: point, linestring, polygon (and their ‘multi’ equivalents, such as multipoints) or geometry collection.</p>
 <p>Usually you are spared the tedious task of creating geometries on your own since you can simply import an already existing spatial file.
 However, there are a set of functions to create simple feature geometry objects (<code>sfg</code>) from scratch if needed.
 The names of these functions are simple and consistent, as they all start with the <code>st_</code> prefix and end with the name of the geometry type in lowercase letters:</p>
@@ -949,7 +949,7 @@ This results in an <code>sf</code> object, as demonstrated below (some output om
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="kw">class</span>(lnd_sf)</a>
 <a class="sourceLine" id="cb34-2" data-line-number="2"><span class="co">#&gt; [1] &quot;sf&quot;         &quot;data.frame&quot;</span></a></code></pre></div>
 <p>The result shows that <code>sf</code> objects actually have two classes, <code>sf</code> and <code>data.frame</code>.
-Simple features are simply data frames (square tables), but with spatial attributes (usually stored in a special <code>geom</code> list-column in the data frame).
+Simple features are simply data frames (square tables), but with spatial attributes (usually stored in a special <code>geometry</code> list-column in the data frame).
 This duality is central to the concept of simple features:
 most of the time a <code>sf</code> can be treated as and behaves like a <code>data.frame</code>.
 Simple features are, in essence, data frames with a spatial extension.</p>
@@ -1195,8 +1195,8 @@ Spherical models have the advantage of simplicity but are rarely used because th
 Ellipsoidal models are defined by two parameters: the equatorial radius and the polar radius.
 These are suitable because the Earth is compressed: the equatorial radius is around 11.5 km longer than the polar radius <span class="citation">(Maling <a href="#ref-maling_coordinate_1992">1992</a>)</span>.<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a></p>
 <p>Ellipsoids are part of a wider component of CRSs: the <em>datum</em>.
-This contains information on what ellipsoid to use (with the <code>ellps</code> parameter in the proj4 CRS library) and the precise relationship between the Cartesian coordinates and location on the Earth’s surface.
-These additional details are stored in the <code>towgs84</code> argument of <a href="https://proj4.org/operations/conversions/latlon.html?highlight=towgs#cmdoption-arg-towgs84">proj4</a> notation (see <a href="https://proj4.org/usage/projections.html">proj4.org/parameters.html</a> for details).
+This contains information on what ellipsoid to use (with the <code>ellps</code> parameter in the PROJ CRS library) and the precise relationship between the Cartesian coordinates and location on the Earth’s surface.
+These additional details are stored in the <code>towgs84</code> argument of <a href="https://proj4.org/operations/conversions/latlon.html?highlight=towgs#cmdoption-arg-towgs84">proj4string</a> notation (see <a href="https://proj4.org/usage/projections.html">proj4.org/parameters.html</a> for details).
 These allow local variations in Earth’s surface, e.g. due to large mountain ranges, to be accounted for in a local CRS.
 There are two types of datum — local and geocentric.
 In a <em>local datum</em> such as <code>NAD83</code> the ellipsoidal surface is shifted to align with the surface at a particular location.
@@ -1242,7 +1242,7 @@ This way you can specify many different projections, and modify existing ones.
 This also makes the <code>proj4string</code> approach more complicated.
 <!-- ^[In the background, `sf` and `raster` use the [PROJ](http://proj4.org/) software, which enables transformations between different projections]. -->
 <code>epsg</code> points to exactly one particular CRS.</p>
-<p>Spatial R packages support a wide range of CRSs and they use the long-established <a href="http://proj4.org/">proj4</a> library.
+<p>Spatial R packages support a wide range of CRSs and they use the long-established <a href="http://proj4.org/">PROJ</a> library.
 Other than searching for EPSG codes online, another quick way to find out about available CRSs is via the <code>rgdal::make_EPSG()</code> function, which outputs a data frame of available projections.
 Before going into more detail, it’s worth learning how to view and filter them inside R, as this could save time trawling the internet.
 The following code will show available CRSs interactively, allowing you to filter ones of interest (try filtering for the OSGB CRSs for example):</p>
@@ -1313,15 +1313,15 @@ The solution is to set the correct units with the <strong>units</strong> package
 <!-- Is that right? I mean, the units DESCRIPTION says "Support for measurement units in R vectors, matrices and arrays". Since raster datasets are just matrices, units might be easily used with them?-->
 <p>Units are of equal importance in the case of raster data.
 However, so far <strong>sf</strong> is the only spatial package that supports units, meaning that people working on raster data should approach changes in the units of analysis (for example, converting pixel widths from imperial to decimal units) with care.
-The <code>new_raster</code> object (see above) uses a UTM projection with meters as units.
-Consequently, its resolution is also given in meters but you have to know it, since the <code>res()</code> function simply returns a numeric vector.</p>
+The <code>new_raster</code> object (see above) uses a WGS84 projection with decimal degrees as units.
+Consequently, its resolution is also given in decimal degrees but you have to know it, since the <code>res()</code> function simply returns a numeric vector.</p>
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="kw">res</span>(new_raster)</a>
 <a class="sourceLine" id="cb55-2" data-line-number="2"><span class="co">#&gt; [1] 0.000833 0.000833</span></a></code></pre></div>
-<p>If we used the WGS84 projection, the units would change.</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1">repr =<span class="st"> </span><span class="kw">projectRaster</span>(new_raster, <span class="dt">crs =</span> <span class="st">&quot;+init=epsg:4326&quot;</span>)</a>
+<p>If we used the UTM projection, the units would change.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1">repr =<span class="st"> </span><span class="kw">projectRaster</span>(new_raster, <span class="dt">crs =</span> <span class="st">&quot;+init=epsg:26912&quot;</span>)</a>
 <a class="sourceLine" id="cb56-2" data-line-number="2"><span class="kw">res</span>(repr)</a>
-<a class="sourceLine" id="cb56-3" data-line-number="3"><span class="co">#&gt; [1] 7.47e-09 7.52e-09</span></a></code></pre></div>
-<p>Again, the <code>res()</code> command gives back a numeric vector without any unit, forcing us to know that the unit of the WGS84 projection is decimal degrees.</p>
+<a class="sourceLine" id="cb56-3" data-line-number="3"><span class="co">#&gt; [1] 0.000833 0.000833</span></a></code></pre></div>
+<p>Again, the <code>res()</code> command gives back a numeric vector without any unit, forcing us to know that the unit of the UTM projection is meters.</p>
 <!-- Something about when units are not set: -->
 <!-- ```{r} -->
 <!-- st_distance(sf_point1, sf_point2) -->
@@ -1404,7 +1404,7 @@ This was selected by the Ordnance Survey to be roughly in the center of the Brit
 <!-- This was selected by the [Ordnance Survey](https://www.ordnancesurvey.co.uk/support/the-national-grid.html) to be roughly in the center of the British landmass longitudinally. --><a href="spatial-class.html#fnref6" class="footnote-back">↩</a></p></li>
 <li id="fn7"><p>
 The full OGC standard includes rather exotic geometry types including ‘surface’ and ‘curve’ geometry types, which currently have limited application in real world applications.
-All 68 types can be represented with the <strong>sf</strong> package, although (as of summer 2018) plotting only works for the ‘core 7’.<a href="spatial-class.html#fnref7" class="footnote-back">↩</a></p></li>
+All 17 types can be represented with the <strong>sf</strong> package, although (as of summer 2018) plotting only works for the ‘core 7’.<a href="spatial-class.html#fnref7" class="footnote-back">↩</a></p></li>
 <li id="fn8"><p>The
 development version, which may contain new features, can be installed with <code>devtools::install_github(&quot;r-spatial/sf&quot;).</code><a href="spatial-class.html#fnref8" class="footnote-back">↩</a></p></li>
 <li id="fn9"><p>
