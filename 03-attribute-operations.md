@@ -69,7 +69,7 @@ methods(class = "sf") # methods for sf objects, first 12 shown
 
 
 Many of these functions, including `rbind()` (for binding rows of data together) and `$<-` (for creating new columns) were developed for data frames.
-A key feature of `sf` objects is that they store spatial and non-spatial data in the same way, as columns in a `data.frame` (the geometry column is typically called `geometry`).
+A key feature of `sf` objects is that they store spatial and non-spatial data in the same way, as columns in a `data.frame`.
 
 \BeginKnitrBlock{rmdnote}<div class="rmdnote">The geometry column of `sf` objects is typically called `geometry` but any name can be used.
 The following command, for example, creates a geometry column named g:
@@ -284,7 +284,7 @@ Symbol      Name
 
 **dplyr** works well with the ['pipe'](http://r4ds.had.co.nz/pipes.html) operator `%>%`, which takes its name from the Unix pipe `|` [@grolemund_r_2016].
 It enables expressive code: the output of a previous becomes the first argument of the next function, enabling *chaining*.
-This is illustrated below, in which the `world` dataset is subset by columns (`name_long` and `continent`) and the first five rows (result not shown).
+This is illustrated below, in which only countries from Asia are filtered from the `world` dataset, next the object is subset by columns (`name_long` and `continent`) and the first five rows (result not shown).
 
 
 ```r
@@ -440,7 +440,7 @@ class(world_coffee)
 #> [1] "sf"         "data.frame"
 ```
 
-The resulting simple features object is the same as the orignal `world` object but has two new variables (with column indeces 11 and 12) reporting coffee production by year.
+The resulting simple features object is the same as the orignal `world` object but has two new variables (with column indices 11 and 12) reporting coffee production by year.
 This can be plotted as a map, as illustrated in Figure \@ref(fig:coffeemap), generated with the `plot()` function below:
 
 
@@ -644,7 +644,7 @@ class(world_data)
 ## Manipulating raster objects
 
 In contrast to the vector data model underlying simple features (which represents points, lines and polygons as discrete entities in space), raster data represent continuous surfaces.
-This section shows how raster objects work, by creating them *from scratch*, building on section \@ref(an-introduction-to-raster).
+This section shows how raster objects work by creating them *from scratch*, building on section \@ref(an-introduction-to-raster).
 Because of their unique structure, subsetting and other operations on raster datasets work in a different way, as demonstrated in section \@ref(raster-subsetting).
 
 The following code recreates the raster dataset used in section \@ref(raster-classes), the result of which is illustrated in Figure \@ref(fig:cont-raster).
@@ -696,7 +696,7 @@ levels(grain)
 ```
 
 This behavior demonstrates that raster cells can only possess one value, an identifier which can be used to look up the attributes in the corresponding attribute table (stored in a slot named `attributes`).
-This is illustrated in command below, which returns the grain size and wetness of cell IDs 1, 11 and 35, we can run:
+This is illustrated in command below, which returns the grain size and wetness of cell IDs 1, 11 and 35:
 
 
 ```r
@@ -783,7 +783,7 @@ Further summary operations such as the standard deviation (see below) or custom 
 cellStats(elev, sd)
 ```
 
-\BeginKnitrBlock{rmdnote}<div class="rmdnote">If you provide the `summary()` and `cellStats()` functions with a raster stack or brick object, they will summarize each layer separately, as can be illustrated by running: `summary(brick(elev, grain))`</div>\EndKnitrBlock{rmdnote}
+\BeginKnitrBlock{rmdnote}<div class="rmdnote">If you provide the `summary()` and `cellStats()` functions with a raster stack or brick object, they will summarize each layer separately, as can be illustrated by running: `summary(brick(elev, grain))`.</div>\EndKnitrBlock{rmdnote}
 
 Raster value statistics can be visualized in a variety of ways.
 Specific functions such as `boxplot()`, `density()`, `hist()` and `pairs()` work also with raster objects, as demonstrated in the histogram created with the command below (not shown):

@@ -81,7 +81,7 @@ nz_height[canterbury, , op = st_disjoint]
 
 \BeginKnitrBlock{rmdnote}<div class="rmdnote">Note the empty argument --- donoted with `, ,` --- in the preceding code chunk is included to highlight `op`, the third argument in `[` for `sf` objects.
 One can use this to change the subsetting operation in many ways.
-`nz_height[canterbury, 2, op = st_disjoint]`, for example, returns the same rows but only includes the second attribute column (see `` sf:::`[.sf` `` and the `?sf` for details)</div>\EndKnitrBlock{rmdnote}
+`nz_height[canterbury, 2, op = st_disjoint]`, for example, returns the same rows but only includes the second attribute column (see `` sf:::`[.sf` `` and the `?sf` for details).</div>\EndKnitrBlock{rmdnote}
 
 For many applications this is all you'll need to know about spatial subsetting for vector data.
 In this case, you can safely skip to the next section (\@ref(topological-relations)).
@@ -106,7 +106,7 @@ In this case 1 is the greatest possible value but for more complex operations on
 \BeginKnitrBlock{rmdnote}<div class="rmdnote">Note: another way to return a logical output is by setting `sparse = FALSE` (meaning 'return a dense matrix not a sparse one') in operators such as `st_intersects()`. The command `st_intersects(x = nz_height, y = canterbury, sparse = FALSE)[, 1]`, for example, would return an output identical `sel_logical`.
 Note: the solution involving `sgbp` objects is more generalisable though, as it works for many-to-many operations and has lower memory requirements.</div>\EndKnitrBlock{rmdnote}
 
-It should be noted that a logical  can also be used with `filter()` as follows (sparse = FALSE` is explained in section \@ref(topological-relations)):
+It should be noted that a logical  can also be used with `filter()` as follows (`sparse = FALSE` is explained in section \@ref(topological-relations)):
 
 
 ```r
@@ -329,7 +329,7 @@ Spatial data joining applies the same concept, but instead relies on shared area
 As with attribute data, joining adds a new column to the target object (the argument `x` in joining functions), from a source object (`y`).
 
 The process can be illustrated by an example.
-Imagine you have 10 points randomly distributed across the Earth's surface.
+Imagine you have ten points randomly distributed across the Earth's surface.
 Of the points that are on land, which countries are they in?
 Random points to demonstrate spatial joining are created as follows:
 
@@ -350,8 +350,8 @@ random_points = random_df %>%
 
 <!-- This may seem a trivial question but if you consider being placed somewhere at random it would surely take some time to discover where you were and you'd probably have to ask someone. **comment - removed as it's too long-winded (RL)** -->
 The scenario is illustrated in Figure \@ref(fig:spatial-join).
-The `random_points` object (left) has no attribute data, while the `world` (middle) does.
-The spatial join operation is done by `st_join()`, which adds the `name_long` variable to the points, resulting in `random_joined` which is illustrated in Figure \@ref(fig:spatial-join) (right --- see [`04-spatial-join.R`](https://github.com/Robinlovelace/geocompr/blob/master/code/04-spatial-join.R)).
+The `random_points` object (top left) has no attribute data, while the `world` (top right) does.
+The spatial join operation is done by `st_join()`, which adds the `name_long` variable to the points, resulting in `random_joined` which is illustrated in Figure \@ref(fig:spatial-join) (bottom left --- see [`04-spatial-join.R`](https://github.com/Robinlovelace/geocompr/blob/master/code/04-spatial-join.R)).
 
 
 ```r
@@ -472,7 +472,7 @@ This is illustrated using the base `aggregate()` function below:
 
 
 ```r
-nz_avheight = aggregate(x = nz_height, nz, FUN = mean)
+nz_avheight = aggregate(x = nz_height, by = nz, FUN = mean)
 ```
 
 The result of the previous command is an `sf` object with the same geometry as the (spatial) aggregating object (`nz`).^[
@@ -513,7 +513,7 @@ A number of algorithms have been developed for areal interpolation, including ar
 <p class="caption">(\#fig:areal-example)Illustration of congruent (left) and incongruent (right) areal units with respect to larger aggregating zones (translucent blue borders).</p>
 </div>
 
-The **spData** package contains a dataset named `incongruent` (colored polygons with black borders in the right panel of Figure \@ref(fig:areal-example)) and a dataset named aggregating_zones (the two polygons with the translucent blue border in the right panel of Figure \@ref(fig:areal-example)).
+The **spData** package contains a dataset named `incongruent` (colored polygons with black borders in the right panel of Figure \@ref(fig:areal-example)) and a dataset named `aggregating_zones` (the two polygons with the translucent blue border in the right panel of Figure \@ref(fig:areal-example)).
 Let us assume that the `value` column of `incongruent` refers to the total regional income in million Euros.
 How can we transfer the values of the underlying nine spatial polygons into the two polygons of `aggregating_zones`?
 The simplest useful method for this is *area weighted* spatial interpolation.
@@ -802,7 +802,7 @@ This kind of operation is also known as *zonal statistics* in the GIS world.
 
 ```r
 z = zonal(elev, grain, fun = "mean") %>%
-  as.data.frame
+  as.data.frame()
 z
 #>   zone mean
 #> 1    1 17.8

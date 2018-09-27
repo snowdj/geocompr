@@ -77,7 +77,7 @@ object.size(seine_simp)
 
 Simplification is also applicable for polygons.
 This is illustrated using `us_states`, representing the contiguous United States.
-As we showed in section \@ref(reproj-geo-data), GEOS assumes that the data is in a projected CRS and this could lead to unexpected results when using a geographic CRS.
+As we show in chapter \@ref(reproj-geo-data), GEOS assumes that the data is in a projected CRS and this could lead to unexpected results when using a geographic CRS.
 Therefore, the first step is to project the data into some adequate projected CRS, such as US National Atlas Equal Area (epsg = 2163) (on the left in Figure \@ref(fig:us-simp)):
 
 
@@ -121,7 +121,7 @@ Finally, the visual comparison of the original dataset and the two simplified ve
 
 Centroid operations identify the center of geographic objects.
 Like statistical measures of central tendency (including mean and median definitions of 'average'), there are many ways to define the geographic center of an object.
-All of create single point representations of more complex vector objects.
+All of them create single point representations of more complex vector objects.
 
 The most commonly used centroid operation is the *geographic centroid*.
 This type of centroid operation (often referred to as 'the centroid') represents the center of mass in a spatial object (think of balancing a plate on your finger).
@@ -164,7 +164,7 @@ How many points are within a given distance of this line?
 Which demographic groups are within travel distance of this new shop?
 These kinds of questions can be answered and visualized by creating buffers around the geographic entities of interest.
 
-Figure \@ref(fig:buffs) illustrates buffers of different sizes (5 and 20 km) surrounding the river Seine and tributaries.
+Figure \@ref(fig:buffs) illustrates buffers of different sizes (5 and 50 km) surrounding the river Seine and tributaries.
 These buffers were created with commands below, which show that the command `st_buffer()` requires at least two arguments: an input geometry and a distance, provided in the units of the CRS (in this case meters):
 
 
@@ -240,7 +240,7 @@ R =
 $$
 
 It rotates points in a counterclockwise direction.
-The rotation matrix could be implemented in R as:
+The rotation matrix can be implemented in R as:
 <!-- https://r-spatial.github.io/sf/articles/sf3.html#affine-transformations -->
 
 ```r
@@ -288,9 +288,8 @@ two overlapping circles with a center point one unit away from each other and a 
 ```r
 b = st_sfc(st_point(c(0, 1)), st_point(c(1, 1))) # create 2 points
 b = st_buffer(b, dist = 1) # convert points to circles
-l = c("x", "y")
 plot(b)
-text(x = c(-0.5, 1.5), y = 1, labels = l) # add text
+text(x = c(-0.5, 1.5), y = 1, labels = c("x", "y")) # add text
 ```
 
 <div class="figure" style="text-align: center">
@@ -330,15 +329,14 @@ Some points will be inside just one circle, some will be inside both and some wi
 
 ```r
 bb = st_bbox(st_union(x, y))
-pmat = matrix(c(bb[c(1, 2, 3, 2, 3, 4, 1, 4, 1, 2)]), ncol = 2, byrow = TRUE)
-box = st_polygon(list(pmat))
+box = st_as_sfc(bb)
 set.seed(2017)
 p = st_sample(x = box, size = 10)
 plot(box)
 plot(x, add = TRUE)
 plot(y, add = TRUE)
 plot(p, add = TRUE)
-text(x = c(-0.5, 1.5), y = 1, labels = l)
+text(x = c(-0.5, 1.5), y = 1, labels = c("x", "y"))
 ```
 
 <div class="figure" style="text-align: center">
@@ -404,8 +402,8 @@ texas_union = st_union(us_west_union, texas)
 
 ### Type transformations {#type-trans}
 
-Geometry casting is a powerful operation which enables transformation of the geometry type.
-It is implemented in the `st_cast` function from the `sf` package.
+Geometry casting is a powerful operation that enables transformation of the geometry type.
+It is implemented in the `st_cast` function from the **sf** package.
 Importantly, `st_cast` behaves differently on single simple feature geometry (`sfg`) objects, simple feature geometry column (`sfc`) and simple features objects.
 
 Let's create a multipoint to illustrate how geometry casting works on simple feature geometry (`sfg`) objects:
@@ -674,15 +672,6 @@ data("dem", package = "RQGIS")
 dem_agg = aggregate(dem, fact = 5, fun = mean)
 ```
 
-
-```r
-p_ar1 = tm_shape(dem) + tm_raster(style = "cont", legend.show = FALSE) +
-  tm_layout(main.title = "Original", frame = FALSE)
-p_ar2 = tm_shape(dem_agg) + tm_raster(style = "cont", legend.show = FALSE) +
-  tm_layout(main.title = "Aggregated", frame = FALSE)
-tmap_arrange(p_ar1, p_ar2, ncol = 2)
-```
-
 <div class="figure" style="text-align: center">
 <img src="figures/aggregate-example-1.png" alt="Original raster (left). Aggregated raster (right)." width="576" />
 <p class="caption">(\#fig:aggregate-example)Original raster (left). Aggregated raster (right).</p>
@@ -776,7 +765,7 @@ We will use `crop()` from the **raster** package to crop the `srtm` raster.
 srtm_cropped = crop(srtm, as(zion, "Spatial"))
 ```
 
-Related to `crop()` is the **raster** function `mask()`, which sets values outside of the bounds a the object passed to its second argument to `NA`.
+Related to `crop()` is the **raster** function `mask()`, which sets values outside of the bounds of the object passed to its second argument to `NA`.
 The following command therefore masks every cell outside of the the Zion National Park boundaries (Figure \@ref(fig:cropmask):C):
 
 
@@ -785,8 +774,8 @@ srtm_masked = mask(srtm, as(zion, "Spatial"))
 ```
 
 Changing the settings of `mask()` yields in different results.
-Setting `maskvalue = 0`, for example, would set all pixels outside the national park to 0.
-Setting `inverse = TRUE` would mask everything *inside* the bounds of the park (see `?mask` for details) (Figure \@ref(fig:cropmask):D).
+Setting `maskvalue = 0`, for example, will set all pixels outside the national park to 0.
+Setting `inverse = TRUE` will mask everything *inside* the bounds of the park (see `?mask` for details) (Figure \@ref(fig:cropmask):D).
 
 
 ```r
@@ -849,7 +838,7 @@ transect = raster::extract(srtm, as(zion_transect, "Spatial"),
 Note the use of `along = TRUE` and `cellnumbers = TRUE` arguments to return cell IDs *along* the path. 
 The result is a list containing a matrix of cell IDs in the first column and elevation values in the second.
 The number of list elements is equal to the number of lines or polygons from which we are extracting values.
-The subsequent code chunk first converts this tricky matrix-in-a-list object into a simple data frame, returns the coordinates associated with each extracted cell and finds the associated distances along the transect (see `?geosphere::distm()` for details):
+The subsequent code chunk first converts this tricky matrix-in-a-list object into a simple data frame, returns the coordinates associated with each extracted cell and finds the associated distances along the transect (see `?geosphere::distGeo()` for details):
 
 
 ```r
@@ -876,7 +865,7 @@ This is demonstrated in the command below, which results in a data frame with co
 zion_srtm_values = raster::extract(x = srtm, y = as(zion, "Spatial"), df = TRUE)
 ```
 
-Such results can be used to generate summary statistics for raster values per polygon, for example to  to characterize a single region or to compare many regions.
+Such results can be used to generate summary statistics for raster values per polygon, for example to characterize a single region or to compare many regions.
 The generation of summary statistics is demonstrated the code below, which creates the object `zion_srtm_df` containing summary statistics for elevation values in Zion National Park (see \@ref(fig:polyextr):A):
 
 
@@ -918,7 +907,7 @@ dplyr::select(zion_nlcd, ID, levels) %>%
 </div>
 
 So far we have seen how `raster::extract()` is a flexible way of extracting raster cell values from a range of input geographic objects.
-An issue with the function, however, is that it is slow.
+An issue with the function, however, is that it is relatively slow.
 If this is a problem it is useful to know about alternatives and work-arounds, three of which are presented below.
 
 - **Parallelization**: this approach works when using many geographic vector selector objects by splitting them into groups and extracting cell values independently for each group (see `?raster::clusterR()` for details of this approach).
@@ -987,8 +976,8 @@ ch_raster3 = rasterize(cycle_hire_osm_projected, raster_template,
 <p class="caption">(\#fig:vector-rasterization1)Examples of point's rasterization.</p>
 </div>
 
-Another dataset based on California's polygons and borders (created below) illustrates raterization of lines.
-After casting the polygon objects into a multilinestring, a template raster is created, with a resolution of a 0.5 degree:
+Another dataset based on California's polygons and borders (created below) illustrates rasterization of lines.
+After casting the polygon objects into a multilinestring, a template raster is created with a resolution of a 0.5 degree:
 
 
 ```r
@@ -1065,14 +1054,13 @@ elev_point = rasterToPoints(elev, spatial = TRUE) %>%
 Another common type of spatial vectorization is the creation of contour lines representing lines of continuous height or temperatures (isotherms) for example.
 We will use a real-world digital elevation model (DEM) because the artificial raster `elev` produces parallel lines (task: verify this and explain why this happens).
 <!-- because when creating it we made the upper left corner the lowest and the lower right corner the highest value while increasing cell values by one from left to right. -->
-Contour lines can be created with the **raster** function `rasterToContour()`, which is itself a wrapper around `contourLines()`, as demonstrated below:
+Contour lines can be created with the **raster** function `rasterToContour()`, which is itself a wrapper around `contourLines()`, as demonstrated below (not shown):
 
 
 ```r
-# not shown
 data(dem, package = "RQGIS")
-plot(dem, axes = FALSE)
 cl = rasterToContour(dem)
+plot(dem, axes = FALSE)
 plot(cl, add = TRUE)
 ```
 
@@ -1081,7 +1069,6 @@ As illustrated in Figure \@ref(fig:contour-tmap), isolines can be labelled.
 
 
 ```r
-data("dem", package = "RQGIS")
 # create hillshade
 hs = hillShade(slope = terrain(dem, "slope"), aspect = terrain(dem, "aspect"))
 plot(hs, col = gray(0:100 / 100), legend = FALSE)

@@ -461,7 +461,7 @@ In Chapter <a href="spatial-class.html#spatial-class">2</a> we saw how to perfor
 <a class="sourceLine" id="cb60-3" data-line-number="3"><span class="co">#&gt;  [7] print                 rbind                 [                    </span></a>
 <a class="sourceLine" id="cb60-4" data-line-number="4"><span class="co">#&gt; [10] [[&lt;-                  $&lt;-                   show                 </span></a></code></pre></div>
 <p>Many of these functions, including <code>rbind()</code> (for binding rows of data together) and <code>$&lt;-</code> (for creating new columns) were developed for data frames.
-A key feature of <code>sf</code> objects is that they store spatial and non-spatial data in the same way, as columns in a <code>data.frame</code> (the geometry column is typically called <code>geometry</code>).</p>
+A key feature of <code>sf</code> objects is that they store spatial and non-spatial data in the same way, as columns in a <code>data.frame</code>.</p>
 
 <div class="rmdnote">
 <p>The geometry column of <code>sf</code> objects is typically called <code>geometry</code> but any name can be used.
@@ -612,7 +612,7 @@ It keeps only rows matching given criteria, e.g. only countries with a very hig
 <!-- add info about combination of &, |, ! -->
 <p><strong>dplyr</strong> works well with the <a href="http://r4ds.had.co.nz/pipes.html">‘pipe’</a> operator <code>%&gt;%</code>, which takes its name from the Unix pipe <code>|</code> <span class="citation">(Grolemund and Wickham <a href="#ref-grolemund_r_2016">2016</a>)</span>.
 It enables expressive code: the output of a previous becomes the first argument of the next function, enabling <em>chaining</em>.
-This is illustrated below, in which the <code>world</code> dataset is subset by columns (<code>name_long</code> and <code>continent</code>) and the first five rows (result not shown).</p>
+This is illustrated below, in which only countries from Asia are filtered from the <code>world</code> dataset, next the object is subset by columns (<code>name_long</code> and <code>continent</code>) and the first five rows (result not shown).</p>
 <div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1">world7 =<span class="st"> </span>world <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb76-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Asia&quot;</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb76-3" data-line-number="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(name_long, continent) <span class="op">%&gt;%</span></a>
@@ -740,7 +740,7 @@ The result of the code chunk below is a new <code>sf</code> object.</p>
 <a class="sourceLine" id="cb83-2" data-line-number="2"><span class="co">#&gt; Joining, by = &quot;name_long&quot;</span></a>
 <a class="sourceLine" id="cb83-3" data-line-number="3"><span class="kw">class</span>(world_coffee)</a>
 <a class="sourceLine" id="cb83-4" data-line-number="4"><span class="co">#&gt; [1] &quot;sf&quot;         &quot;data.frame&quot;</span></a></code></pre></div>
-<p>The resulting simple features object is the same as the orignal <code>world</code> object but has two new variables (with column indeces 11 and 12) reporting coffee production by year.
+<p>The resulting simple features object is the same as the orignal <code>world</code> object but has two new variables (with column indices 11 and 12) reporting coffee production by year.
 This can be plotted as a map, as illustrated in Figure <a href="attr.html#fig:coffeemap">3.1</a>, generated with the <code>plot()</code> function below:</p>
 <div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" data-line-number="1"><span class="kw">names</span>(world_coffee)</a>
 <a class="sourceLine" id="cb84-2" data-line-number="2"><span class="co">#&gt;  [1] &quot;iso_a2&quot;                 &quot;name_long&quot;             </span></a>
@@ -862,7 +862,7 @@ Hence, an approach such as <code>select(world, -geom)</code> will be unsuccessfu
 <div id="manipulating-raster-objects" class="section level2">
 <h2><span class="header-section-number">3.3</span> Manipulating raster objects</h2>
 <p>In contrast to the vector data model underlying simple features (which represents points, lines and polygons as discrete entities in space), raster data represent continuous surfaces.
-This section shows how raster objects work, by creating them <em>from scratch</em>, building on section <a href="spatial-class.html#an-introduction-to-raster">2.2.1</a>.
+This section shows how raster objects work by creating them <em>from scratch</em>, building on section <a href="spatial-class.html#an-introduction-to-raster">2.2.1</a>.
 Because of their unique structure, subsetting and other operations on raster datasets work in a different way, as demonstrated in section <a href="attr.html#raster-subsetting">3.3.1</a>.</p>
 <p>The following code recreates the raster dataset used in section <a href="spatial-class.html#raster-classes">2.2.3</a>, the result of which is illustrated in Figure <a href="attr.html#fig:cont-raster">3.2</a>.
 This demonstrates how the <code>raster()</code> function works to create an example raster named <code>elev</code> (representing elevations).</p>
@@ -899,7 +899,7 @@ Use the function <code>levels()</code> for retrieving and adding new factor leve
 <a class="sourceLine" id="cb101-6" data-line-number="6"><span class="co">#&gt; 2  2  silt   moist</span></a>
 <a class="sourceLine" id="cb101-7" data-line-number="7"><span class="co">#&gt; 3  3  sand     dry</span></a></code></pre></div>
 <p>This behavior demonstrates that raster cells can only possess one value, an identifier which can be used to look up the attributes in the corresponding attribute table (stored in a slot named <code>attributes</code>).
-This is illustrated in command below, which returns the grain size and wetness of cell IDs 1, 11 and 35, we can run:</p>
+This is illustrated in command below, which returns the grain size and wetness of cell IDs 1, 11 and 35:</p>
 <div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1"><span class="kw">factorValues</span>(grain, grain[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">11</span>, <span class="dv">35</span>)])</a>
 <a class="sourceLine" id="cb102-2" data-line-number="2"><span class="co">#&gt;   VALUE wetness</span></a>
 <a class="sourceLine" id="cb102-3" data-line-number="3"><span class="co">#&gt; 1  sand     dry</span></a>
@@ -959,7 +959,7 @@ Further summary operations such as the standard deviation (see below) or custom 
 <div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1"><span class="kw">cellStats</span>(elev, sd)</a></code></pre></div>
 
 <div class="rmdnote">
-If you provide the <code>summary()</code> and <code>cellStats()</code> functions with a raster stack or brick object, they will summarize each layer separately, as can be illustrated by running: <code>summary(brick(elev, grain))</code>
+If you provide the <code>summary()</code> and <code>cellStats()</code> functions with a raster stack or brick object, they will summarize each layer separately, as can be illustrated by running: <code>summary(brick(elev, grain))</code>.
 </div>
 
 <p>Raster value statistics can be visualized in a variety of ways.
