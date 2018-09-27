@@ -730,17 +730,17 @@ These function names follow conventions used in the database language <a href="h
 <strong>dplyr</strong> join functions work the same on data frames and <code>sf</code> objects, the only important difference being the <code>geometry</code> list column.
 The result of data joins can be either an <code>sf</code> or <code>data.frame</code> object.
 The most common type of attribute join on spatial data takes an <code>sf</code> object as the first argument and adds columns to it from a <code>data.frame</code> specified as the second argument.</p>
-<p>To illustrate the utility of joins, imagine that you are researching global coffee production.
-You have managed to extract data hidden-away in a PDF document supplied by the International Coffee Organization (ICO).
-The results are stored in a data frame called <code>coffee_data</code> which has 3 columns:
-one (<code>name_long</code>) containing the names of coffee-producing nations and the other two reporting coffee production statistics for 2016 and 2017 (see <code>?coffee_data</code> for further information).
-We will use a ‘left join’ (meaning the left-hand dataset is kept intact) to merge this dataset with the pre-existing <code>world</code> dataset.
-The result of the code chunk below is a new <code>sf</code> object.</p>
+<p>To demonstrate joins, we will combine data on coffee production with the <code>world</code> dataset.
+The coffee data is in a data frame called <code>coffee_data</code> from the <strong>spData</strong> package (see <code>?coffee_data</code> for details).
+It has 3 columns:
+<code>name_long</code> names major coffee-producing nations and <code>coffee_production_2016</code> and <code>coffee_production_2017</code> contain estimated values for coffee production in units of 60 kg bags in each year.
+A ‘left join’, which preserves the first dataset, merges <code>world</code> with <code>coffee_data</code>:</p>
 <div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" data-line-number="1">world_coffee =<span class="st"> </span><span class="kw">left_join</span>(world, coffee_data)</a>
 <a class="sourceLine" id="cb83-2" data-line-number="2"><span class="co">#&gt; Joining, by = &quot;name_long&quot;</span></a>
 <a class="sourceLine" id="cb83-3" data-line-number="3"><span class="kw">class</span>(world_coffee)</a>
 <a class="sourceLine" id="cb83-4" data-line-number="4"><span class="co">#&gt; [1] &quot;sf&quot;         &quot;data.frame&quot;</span></a></code></pre></div>
-<p>The resulting simple features object is the same as the orignal <code>world</code> object but has two new variables (with column indices 11 and 12) reporting coffee production by year.
+<p>Because the input datasets share a ‘key variable’ (<code>name_long</code>) the join worked without using the <code>by</code> argument (see <code>?left_join</code> for details).
+The result is an <code>sf</code> object identical to the orignal <code>world</code> object but with two new variables (with column indices 11 and 12) on coffee production.
 This can be plotted as a map, as illustrated in Figure <a href="attr.html#fig:coffeemap">3.1</a>, generated with the <code>plot()</code> function below:</p>
 <div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" data-line-number="1"><span class="kw">names</span>(world_coffee)</a>
 <a class="sourceLine" id="cb84-2" data-line-number="2"><span class="co">#&gt;  [1] &quot;iso_a2&quot;                 &quot;name_long&quot;             </span></a>
