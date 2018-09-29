@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-09-28">
+<meta name="date" content="2018-09-29">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -423,24 +423,22 @@ It assumes that you have:</p>
 <li>Grasped the diversity of methods that build on these foundations, by following the code and prose in Part 2 (Extensions).</li>
 <li>Considered how you can use geocomputation to solve real-world problems, at work and beyond, after engaging with Part 3 (Applications).</li>
 </ul>
-<p>The aim is to consolidate knowledge and skills for geocomputation and inspire future directions of application and development.
+<p>The aim is to synthesize the contents, with reference to recurring themes/concepts, and to inspire future directions of application and development.
 <!-- Section \@ref(concepts) reviews the content covered in the previous chapters but at a high level. -->
 <!-- Previous chapters focus on the details of packages, functions, and arguments needed for geocomputation with R. -->
 <!-- This chapter focuses on concepts that recur throughout the book and how they may be useful. -->
-The next section (<a href="conclusion.html#package-choice">15.1</a>) discusses the wide range of packages for geographic data in R and how to decide between them.
+Section <a href="conclusion.html#package-choice">15.1</a> discusses the wide range of options for handling geographic data in R.
+Choice is a key feature of open source software; the section provides guidance on choosing between the various options.
 Section <a href="conclusion.html#gaps">15.2</a> describes gaps in the book’s contents and explains why some areas of research were deliberately omitted while others were emphasized.
 This discussion leads to the question (which is answered in section <a href="conclusion.html#next">15.3</a>): having read this book, where next?
-The final section (<a href="conclusion.html#benefit">15.4</a>) returns to the wider issues raised in Chapter <a href="intro.html#intro">1</a> and considers how geocomputation can be used for social benefit.</p>
+The final section (<a href="conclusion.html#benefit">15.4</a>) returns to the wider issues raised in Chapter <a href="intro.html#intro">1</a> and considers how geographic methods can have a positive impact on the world.</p>
 <!-- Section \@ref(next) -->
 <!-- ## Concepts for geocomputation {#concepts} -->
 </div>
 <div id="package-choice" class="section level2">
 <h2><span class="header-section-number">15.1</span> Package choice</h2>
-<p>A characteristic of R is that there are often multiple ways to achieve the same result.
-Geocomputation with R is no exception.
-The code chunk below illustrates this by using three functions covered in Chapters <a href="attr.html#attr">3</a> and <a href="geometric-operations.html#geometric-operations">5</a>
-<!-- from 3 packages (**sf**, base R's **stats** and tidyverse's **dplyr**) -->
-based on the <strong>sf</strong> package to combine the 16 regions of New Zealand into a single geometry:</p>
+<p>A characteristic of R is that there are often multiple ways to achieve the result.
+The code chunk below illustrates this by using three functions, covered in Chapters <a href="attr.html#attr">3</a> and <a href="geometric-operations.html#geometric-operations">5</a>, to combine the 16 regions of New Zealand into a single geometry:</p>
 <div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb460-1" data-line-number="1"><span class="kw">library</span>(spData)</a>
 <a class="sourceLine" id="cb460-2" data-line-number="2">nz_u1 =<span class="st"> </span>sf<span class="op">::</span><span class="kw">st_union</span>(nz)</a>
 <a class="sourceLine" id="cb460-3" data-line-number="3">nz_u2 =<span class="st"> </span><span class="kw">aggregate</span>(nz[<span class="st">&quot;Population&quot;</span>], <span class="kw">list</span>(<span class="kw">rep</span>(<span class="dv">1</span>, <span class="kw">nrow</span>(nz))), sum)</a>
@@ -452,22 +450,30 @@ based on the <strong>sf</strong> package to combine the 16 regions of New Zealan
 <p>Although the classes, attributes and column names of the resulting objects <code>nz_u1</code> to <code>nz_u3</code> differ, their geometries are identical.
 This is verified using the base R function <code>identical()</code>.<a href="#fn79" class="footnote-ref" id="fnref79"><sup>79</sup></a>
 Which to use?
-It depends.
-The former only processes the geometry data contained in <code>nz</code> so is faster.
-The other options performed attribute operations, which may be useful for subsequent steps.</p>
+It depends: the former only processes the geometry data contained in <code>nz</code> so is faster, while the other options performed attribute operations, which may be useful for subsequent steps.</p>
 <p>The wider point is that there are often multiple options to choose from when working with geographic data in R, even within a single package.
-The range of options grows further when other R packages are considered: you could achieve the same result using the older <strong>sp</strong> package, for example.
+The range of options grows further when more R packages are considered: you could achieve the same result using the older <strong>sp</strong> package, for example.
 We recommend using <strong>sf</strong> and the other packages showcased in this book, for reasons outlined in Chapter <a href="spatial-class.html#spatial-class">2</a>, but it’s worth being aware of alternatives and being able to justify your choice of software.</p>
-<p>We deliberately covered both <strong>tidyverse</strong> and base R approaches to attribute data operations.
-Chapter <a href="attr.html#attr">3</a> showed how both <code>nz[, &quot;Name&quot;]</code> and <code>nz %&gt;% select(Name)</code> can be used to achieve the same result, for example.
-The overlap is highlighted because each approach has advantages: the pipe syntax is popular and appealing to some, while base R is more stable, and is well-known to others.
-Choosing between them is therefore largely a matter of preference, but beware of pitfalls when using <strong>tidyverse</strong> functions to handle spatial data (see the <code>Spatial data and the tidyverse: pitfalls to avoid</code> vignette at <a href="https://geocompr.github.io/">geocompr.github.io</a>).</p>
+<p>A common (and sometimes controversial) choice is between <strong>tidyverse</strong> and base R approaches.
+We cover both and encourage you to try both before deciding which is more appropriate for different tasks.
+The following code chunk, described in Chapter <a href="attr.html#attr">3</a>, shows how attribute data subsetting works in each approach, using the base R operator <code>[</code> and the <code>select()</code> function from the <strong>tidyverse</strong> package <strong>dplyr</strong>.
+The syntax differs but the results are (in essence) the same:</p>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb461-1" data-line-number="1"><span class="kw">library</span>(dplyr)                   <span class="co"># attach tidyverse package</span></a>
+<a class="sourceLine" id="cb461-2" data-line-number="2">nz_name1 =<span class="st"> </span>nz[<span class="st">&quot;Name&quot;</span>]          <span class="co"># base R approach</span></a>
+<a class="sourceLine" id="cb461-3" data-line-number="3">nz_name2 =<span class="st"> </span>nz <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Name)   <span class="co"># tidyverse approach</span></a>
+<a class="sourceLine" id="cb461-4" data-line-number="4"><span class="kw">identical</span>(nz_name1<span class="op">$</span>Name, nz_name2<span class="op">$</span>Name)</a>
+<a class="sourceLine" id="cb461-5" data-line-number="5"><span class="co">#&gt; [1] TRUE</span></a></code></pre></div>
+<p>Again the question arises: which to use?
+Again the answer is: it depends.
+Each approach has advantages: the pipe syntax is popular and appealing to some, while base R is more stable, and is well-known to others.
+Choosing between them is therefore largely a matter of preference.
+However, if you do choose to use <strong>tidyverse</strong> functions to handle spatial data, beware of a number of pitfalls (see the <code>Spatial data and the tidyverse: pitfalls to avoid</code> vignette at <a href="https://geocompr.github.io/">geocompr.github.io</a>).</p>
 <!-- Not entirely sure, what you are referring to here. Which two packages? Which other functions were omitted? Maybe reference also the corresponding section.-->
-<p>While commonly needed subsetting functions were covered in depth, in two packages, many others were omitted.
-Chapter <a href="intro.html#intro">1</a> mentions 20+ influential spatial packages that have been developed over the years.
-Although each package covered in this book has a different emphasis, there are overlaps between them and it is important to remember that there are dozens of packages for geographic data <em>not</em> covered in this book.
-There are 176 packages in the Spatial <a href="https://cran.r-project.org/web/views/">Task View</a> alone (as of summer 2018); more packages and countless functions for geographic data are developed each year.
-It would be impossible to do justice to all of them in a single book.</p>
+<p>While commonly needed operators/functions (<code>[</code>/<code>select()</code> for example) were covered in depth, there are hundreds of other other functions for working with spatial data which have not been mentioned, let alone demonstrated, in the book.
+Chapter <a href="intro.html#intro">1</a> mentions 20+ influential packages for working with geographic data, and only a handful of these are demonstrated in subsequent chapters.
+There are hundreds more.
+176 packages are mentioned in the Spatial <a href="https://cran.r-project.org/web/views/">Task View</a> alone (as of summer 2018);
+more packages and countless functions for geographic data are developed each year, making it impractical to do justice to all of them in a single book.</p>
 <p>The volume and rate of evolution in R’s spatial ecosystem may seem overwhelming.
 Our advice in this context applies equally to other domains of knowledge: learn how to use one thing <em>in depth</em> but have a general understand of the <em>breadth</em> of options available to solve problems in your domain with other R packages (section <a href="conclusion.html#next">15.3</a> covers developments in other languages).
 Of course, some packages perform much better than others, making package selection an important decision.
