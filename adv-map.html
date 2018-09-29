@@ -434,7 +434,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="introduction-5" class="section level2">
 <h2><span class="header-section-number">8.1</span> Introduction</h2>
 <p>A satisfying and important aspect of geographic research is producing and communicating the results in the form of maps.
-Map making — the art of Cartography — is an ancient skill that involves precision, consideration of the map-reader and often an element of creativity.
+Map making — the art of cartography — is an ancient skill that involves precision, consideration of the map-reader and often an element of creativity.
 Basic plotting of geographic data is straightforward in R with <code>plot()</code> (see section <a href="spatial-class.html#basic-map">2.2.3</a>), and it is possible to create advanced maps using base R methods <span class="citation">(Murrell <a href="#ref-murrell_r_2016">2016</a>)</span>.</p>
 <p>This chapter focuses on dedicated map-making packages, especially <strong>tmap</strong>, for reasons that are explained in section <a href="adv-map.html#static-maps">8.2</a>.
 There are a multitude of options but when learning a new skill (in this case map making), it makes sense to gain depth-of-knowledge in one package before branching out, a concept that also applies to the choice of programming language as we saw in Chapter <a href="intro.html#intro">1</a>.
@@ -501,8 +501,7 @@ Figure 8.1: New Zealand’s shape plotted with fill (left), border (middle) and 
 Layers are added to represent <code>nz</code> visually, with <code>tm_fill()</code> and <code>tm_borders()</code> creating shaded areas (left panel) and border outlines (middle panel) in Figure <a href="adv-map.html#fig:tmshape">8.1</a>, respectively.</p>
 <p>This is an intuitive approach to map making:
 the common task of <em>adding</em> new layers is undertaken by the addition operator <code>+</code>, followed by <code>tm_*()</code>.
-The asterisk (*) refers to a wide range of layer types which have self-explanatory names including <code>fill</code>, <code>borders</code> (demonstrated above), <code>bubbles</code>, <code>text</code> and <code>raster</code>
-(see <a href="https://www.rdocumentation.org/packages/tmap/versions/2.0/topics/tmap-element"><code>help(&quot;tmap-element&quot;)</code></a> for a full list).
+The asterisk (*) refers to a wide range of layer types which have self-explanatory names including <code>fill</code>, <code>borders</code> (demonstrated above), <code>bubbles</code>, <code>text</code> and <code>raster</code> (see <code>help(&quot;tmap-element&quot;</code> for a full list).
 This layering is illustrated in the right panel of Figure <a href="adv-map.html#fig:tmshape">8.1</a>, the result of adding a border <em>on top of</em> the fill layer.</p>
 
 <div class="rmdnote">
@@ -528,7 +527,7 @@ When a new shape is added in this way all subsequent aesthetic functions refer t
 This syntax allows the creation of maps with multiple shapes and layers, as illustrated in the next code chunk which uses the function <code>tm_raster()</code> to plot a raster layer (with <code>alpha</code> set to make the layer semi-transparent):</p>
 <div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" data-line-number="1">map_nz1 =<span class="st"> </span>map_nz <span class="op">+</span></a>
 <a class="sourceLine" id="cb260-2" data-line-number="2"><span class="st">  </span><span class="kw">tm_shape</span>(nz_elev) <span class="op">+</span><span class="st"> </span><span class="kw">tm_raster</span>(<span class="dt">alpha =</span> <span class="fl">0.7</span>)</a></code></pre></div>
-<p>Building on the previously created <code>map_nz</code> object, the preceding code creates a new map object <code>map_nz1</code> that contains another shape (<code>nz_eleve</code>) representing average elevation across New Zealand (see Figure <a href="adv-map.html#fig:tmlayers">8.2</a>, left).
+<p>Building on the previously created <code>map_nz</code> object, the preceding code creates a new map object <code>map_nz1</code> that contains another shape (<code>nz_elev</code>) representing average elevation across New Zealand (see Figure <a href="adv-map.html#fig:tmlayers">8.2</a>, left).
 More shapes and layers can be added, as illustrated in the code chunk below which creates <code>nz_water</code>, representing New Zealand’s <a href="https://en.wikipedia.org/wiki/Territorial_waters">territorial waters</a>, and adds the resulting lines to an existing map object.</p>
 <div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" data-line-number="1">nz_water =<span class="st"> </span><span class="kw">st_union</span>(nz) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_buffer</span>(<span class="dv">22200</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb261-2" data-line-number="2"><span class="st">  </span><span class="kw">st_cast</span>(<span class="dt">to =</span> <span class="st">&quot;LINESTRING&quot;</span>)</a>
@@ -602,16 +601,16 @@ The following code chunk demonstrates this functionality by providing a more att
 They can have a major impact on how spatial variability is portrayed as illustrated in Figure <a href="adv-map.html#fig:tmpal">8.5</a>.
 This shows four ways of coloring regions in New Zealand depending on median income, from left to right (and demonstrated in the code chunk below):</p>
 <ul>
-<li>The default setting uses ‘pretty’ breaks, described in the next paragraph</li>
-<li><code>breaks</code> which allows you to manually set the breaks</li>
-<li><code>n</code> which sets the number of bins into which numeric variables are categorized</li>
-<li><code>palette</code> which defines the color scheme, for example <code>RdBu</code></li>
+<li>The default setting uses ‘pretty’ breaks, described in the next paragraph.</li>
+<li><code>breaks</code> which allows you to manually set the breaks.</li>
+<li><code>n</code> which sets the number of bins into which numeric variables are categorized.</li>
+<li><code>palette</code> which defines the color scheme, for example <code>BuGn</code>.</li>
 </ul>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb268-1" data-line-number="1">breaks =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>) <span class="op">*</span><span class="st"> </span><span class="dv">10000</span></a>
-<a class="sourceLine" id="cb268-2" data-line-number="2"><span class="kw">tm_shape</span>(nz) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="dt">col =</span> <span class="st">&quot;Median_income&quot;</span>)</a>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb268-1" data-line-number="1"><span class="kw">tm_shape</span>(nz) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="dt">col =</span> <span class="st">&quot;Median_income&quot;</span>)</a>
+<a class="sourceLine" id="cb268-2" data-line-number="2">breaks =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>) <span class="op">*</span><span class="st"> </span><span class="dv">10000</span></a>
 <a class="sourceLine" id="cb268-3" data-line-number="3"><span class="kw">tm_shape</span>(nz) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="dt">col =</span> <span class="st">&quot;Median_income&quot;</span>, <span class="dt">breaks =</span> breaks)</a>
 <a class="sourceLine" id="cb268-4" data-line-number="4"><span class="kw">tm_shape</span>(nz) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="dt">col =</span> <span class="st">&quot;Median_income&quot;</span>, <span class="dt">n =</span> <span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb268-5" data-line-number="5"><span class="kw">tm_shape</span>(nz) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="dt">col =</span> <span class="st">&quot;Median_income&quot;</span>, <span class="dt">palette =</span> <span class="st">&quot;RdBu&quot;</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb268-5" data-line-number="5"><span class="kw">tm_shape</span>(nz) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="dt">col =</span> <span class="st">&quot;Median_income&quot;</span>, <span class="dt">palette =</span> <span class="st">&quot;BuGn&quot;</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:tmpal"></span>
 <img src="figures/tmpal-1.png" alt="Illustration of settings that affect color settings. The results show (from left to right): default settings, manual breaks, n breaks, and the impact of changing the palette." width="576" />
 <p class="caption">
@@ -622,12 +621,12 @@ Figure 8.5: Illustration of settings that affect color settings. The results sho
 In addition to manually setting <code>breaks</code> <strong>tmap</strong> allows users to specify algorithms to automatically create breaks with the <code>style</code> argument.
 Six of the most useful break styles are illustrated in Figure <a href="adv-map.html#fig:break-styles">8.6</a> and described in the bullet points below:</p>
 <ul>
-<li><code>style = pretty</code>, the default setting, rounds breaks into whole numbers where possible and spaces them evenly</li>
-<li><code>style = equal</code> divides input values into bins of equal range, and is appropriate for variables with a uniform distribution (not recommended for variables with a skewed distribution as the resulting map may end-up having little color diversity)</li>
-<li><code>style = quantile</code> ensures the same number of observations fall into each category (with the potential down side that bin ranges can vary widely)</li>
-<li><code>style = jenks</code> identifies groups of similar values in the data and maximizes the differences between categories</li>
-<li><code>style = cont</code> (and <code>order</code>) present a large number of colors over continuous color field, and are particularly suited for continuous rasters (<code>order</code> can help visualize skewed distributions)</li>
-<li><code>style = cat</code> was designed to represent categorical values and assures that each category receives a unique color</li>
+<li><code>style = pretty</code>, the default setting, rounds breaks into whole numbers where possible and spaces them evenly.</li>
+<li><code>style = equal</code> divides input values into bins of equal range, and is appropriate for variables with a uniform distribution (not recommended for variables with a skewed distribution as the resulting map may end-up having little color diversity).</li>
+<li><code>style = quantile</code> ensures the same number of observations fall into each category (with the potential down side that bin ranges can vary widely).</li>
+<li><code>style = jenks</code> identifies groups of similar values in the data and maximizes the differences between categories.</li>
+<li><code>style = cont</code> (and <code>order</code>) present a large number of colors over continuous color field, and are particularly suited for continuous rasters (<code>order</code> can help visualize skewed distributions).</li>
+<li><code>style = cat</code> was designed to represent categorical values and assures that each category receives a unique color.</li>
 </ul>
 <div class="figure" style="text-align: center"><span id="fig:break-styles"></span>
 <img src="figures/break-styles-1.png" alt="Illustration of different binning methods set using the style argument in tmap." width="576" />
