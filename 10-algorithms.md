@@ -163,9 +163,10 @@ The code below shows how this can be done by creating a single triangle (`T1`), 
 
 
 ```r
-O = poly_mat[1, ] # create a point representing the origin
-T1 = rbind(O, poly_mat[2:3, ], O) # create 'triangle matrix'
-C1 = (T1[1, ] + T1[2, ] + T1[3, ]) / 3 # find centroid
+Origin = poly_mat[1, ] # create a point representing the origin
+T1 = rbind(Origin, poly_mat[2:3, ], Origin) # create 'triangle matrix'
+# find centroid (drop = FALSE preserves classes, resulting in a matrix):
+C1 = (T1[1, ,drop = F] + T1[2, , drop = F] + T1[3, ,drop = F]) / 3
 ```
 
 <div class="figure" style="text-align: center">
@@ -214,7 +215,7 @@ it coerces the list elements into a single matrix.
 ```r
 i = 2:(nrow(poly_mat) - 2)
 T_all = lapply(i, function(x) {
-  rbind(O, poly_mat[x:(x + 1), ], O)
+  rbind(Origin, poly_mat[x:(x + 1), ], Origin)
 })
 
 C_list = lapply(T_all,  function(x) (x[1, ] + x[2, ] + x[3, ]) / 3)
@@ -335,7 +336,7 @@ The code chunk below creates the function `poly_centroid()` to mimic the behavio
 poly_centroid = function(x) {
   i = 2:(nrow(x) - 2)
   T_all = T_all = lapply(i, function(x) {
-    rbind(O, poly_mat[x:(x + 1), ], O)
+    rbind(Origin, poly_mat[x:(x + 1), ], Origin)
   })
   C_list = lapply(T_all, t_centroid)
   C = do.call(rbind, C_list)
