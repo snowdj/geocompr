@@ -785,12 +785,12 @@ Our inset map will show where the main map is in relation to the whole New Zeala
 The first step is to define the area of interest, which can be done by creating a new spatial object, <code>nz_region</code>.
 <!--# mapview::mapview(nz_height, native.crs = TRUE) or mapedit??--></p>
 <div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb274-1" data-line-number="1">nz_region =<span class="st"> </span><span class="kw">st_bbox</span>(<span class="kw">c</span>(<span class="dt">xmin =</span> <span class="dv">1340000</span>, <span class="dt">xmax =</span> <span class="dv">1450000</span>,</a>
-<a class="sourceLine" id="cb274-2" data-line-number="2">                      <span class="dt">ymin =</span> <span class="dv">5130000</span>, <span class="dt">ymax =</span> <span class="dv">5210000</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb274-3" data-line-number="3"><span class="st">  </span><span class="kw">st_as_sfc</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb274-4" data-line-number="4"><span class="st">  </span><span class="kw">st_set_crs</span>(<span class="kw">st_crs</span>(nz_height))</a></code></pre></div>
+<a class="sourceLine" id="cb274-2" data-line-number="2">                      <span class="dt">ymin =</span> <span class="dv">5130000</span>, <span class="dt">ymax =</span> <span class="dv">5210000</span>),</a>
+<a class="sourceLine" id="cb274-3" data-line-number="3">                    <span class="dt">crs =</span> <span class="kw">st_crs</span>(nz_height)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb274-4" data-line-number="4"><span class="st">  </span><span class="kw">st_as_sfc</span>()</a></code></pre></div>
 <p>In the second step, we create a base map showing the New Zealand’s Southern Alps area.
 This is a place where the most important message is stated.</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb275-1" data-line-number="1">nz_height_map =<span class="st"> </span><span class="kw">tm_shape</span>(nz_elev, <span class="dt">bbox =</span> tmaptools<span class="op">::</span><span class="kw">bb</span>(nz_region)) <span class="op">+</span></a>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb275-1" data-line-number="1">nz_height_map =<span class="st"> </span><span class="kw">tm_shape</span>(nz_elev, <span class="dt">bbox =</span> nz_region) <span class="op">+</span></a>
 <a class="sourceLine" id="cb275-2" data-line-number="2"><span class="st">  </span><span class="kw">tm_raster</span>(<span class="dt">style =</span> <span class="st">&quot;cont&quot;</span>, <span class="dt">palette =</span> <span class="st">&quot;YlGn&quot;</span>, <span class="dt">legend.show =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb275-3" data-line-number="3"><span class="st">  </span><span class="kw">tm_shape</span>(nz_height) <span class="op">+</span><span class="st"> </span><span class="kw">tm_symbols</span>(<span class="dt">shape =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb275-4" data-line-number="4"><span class="st">  </span><span class="kw">tm_scale_bar</span>(<span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</a></code></pre></div>
@@ -862,7 +862,7 @@ Figure 8.16: Animated map showing the top 30 largest ‘urban agglomerations’ 
 <p>The animated map illustrated in Figure <a href="adv-map.html#fig:urban-animated">8.16</a> can be created using the same <strong>tmap</strong> techniques that generates faceted maps, demonstrated in section <a href="adv-map.html#faceted-maps">8.2.6</a>.
 There are two differences, however, related to arguments in <code>tm_facets()</code>:</p>
 <ul>
-<li><code>along = &quot;year&quot;</code> is used instead of <code>by = &quot;year&quot;</code></li>
+<li><code>along = &quot;year&quot;</code> is used instead of <code>by = &quot;year&quot;</code>.</li>
 <li><code>free.coords = FALSE</code>, which maintains the map extent for each map iteration.</li>
 </ul>
 <p>These additional arguments are demonstrated in the subsequent code chunk:</p>
@@ -906,9 +906,7 @@ Figure 8.18: Interactive map of New Zealand created with tmap in view mode. Inte
 </div>
 <p>Now that the interactive mode has been ‘turned on’, all maps produced with <strong>tmap</strong> will launch (another way to create interactive maps is with the <code>tmap_leaflet</code> function) .
 Notable features of this interactive mode include the ability to specify the basemap with <code>tm_basemap()</code> (or <code>tmap_options()</code>) as demonstrated below (result not shown):</p>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb284-1" data-line-number="1">basemap =<span class="st"> </span>leaflet<span class="op">::</span>providers<span class="op">$</span>OpenTopoMap</a>
-<a class="sourceLine" id="cb284-2" data-line-number="2">map_nz <span class="op">+</span></a>
-<a class="sourceLine" id="cb284-3" data-line-number="3"><span class="st">  </span><span class="kw">tm_basemap</span>(<span class="dt">server =</span> basemap)</a></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb284-1" data-line-number="1">map_nz <span class="op">+</span><span class="st"> </span><span class="kw">tm_basemap</span>(<span class="dt">server =</span> <span class="st">&quot;OpenTopoMap&quot;</span>)</a></code></pre></div>
 <p>An impressive and little-known feature of <strong>tmap</strong>’s view mode is that it also works with faceted plots.
 The argument <code>sync</code> in <code>tm_facets()</code> can be used in this case to produce multiple maps with synchronized zoom and pan settings, as illustrated in Figure <a href="adv-map.html#fig:sync">8.19</a> which was produced by the following code:</p>
 <div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb285-1" data-line-number="1">world_coffee =<span class="st"> </span><span class="kw">left_join</span>(world, coffee_data, <span class="dt">by =</span> <span class="st">&quot;name_long&quot;</span>)</a>

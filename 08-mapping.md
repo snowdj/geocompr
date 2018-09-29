@@ -463,9 +463,9 @@ The first step is to define the area of interest, which can be done by creating 
 
 ```r
 nz_region = st_bbox(c(xmin = 1340000, xmax = 1450000,
-                      ymin = 5130000, ymax = 5210000)) %>% 
-  st_as_sfc() %>% 
-  st_set_crs(st_crs(nz_height))
+                      ymin = 5130000, ymax = 5210000),
+                    crs = st_crs(nz_height)) %>% 
+  st_as_sfc()
 ```
 
 In the second step, we create a base map showing the New Zealand's Southern Alps area. 
@@ -473,7 +473,7 @@ This is a place where the most important message is stated.
 
 
 ```r
-nz_height_map = tm_shape(nz_elev, bbox = tmaptools::bb(nz_region)) +
+nz_height_map = tm_shape(nz_elev, bbox = nz_region) +
   tm_raster(style = "cont", palette = "YlGn", legend.show = TRUE) +
   tm_shape(nz_height) + tm_symbols(shape = 2, col = "red", size = 1) +
   tm_scale_bar(position = c("left", "bottom"))
@@ -575,7 +575,7 @@ Unlike the faceted plot it does not squeeze multiple maps into a single screen a
 The animated map illustrated in Figure \@ref(fig:urban-animated) can be created using the same **tmap** techniques that generates faceted maps, demonstrated in section \@ref(faceted-maps).
 There are two differences, however, related to arguments in `tm_facets()`:
 
-- `along = "year"` is used instead of `by = "year"`
+- `along = "year"` is used instead of `by = "year"`.
 - `free.coords = FALSE`, which maintains the map extent for each map iteration.
 
 These additional arguments are demonstrated in the subsequent code chunk:
@@ -642,9 +642,7 @@ Notable features of this interactive mode include the ability to specify the bas
 
 
 ```r
-basemap = leaflet::providers$OpenTopoMap
-map_nz +
-  tm_basemap(server = basemap)
+map_nz + tm_basemap(server = "OpenTopoMap")
 ```
 
 An impressive and little-known feature of **tmap**'s view mode is that it also works with faceted plots.
