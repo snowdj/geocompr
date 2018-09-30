@@ -477,7 +477,7 @@ However, if you do choose to use <strong>tidyverse</strong> functions to handle 
 <p>While commonly needed operators/functions (<code>[</code>/<code>select()</code> for example) were covered in depth, there are hundreds of other other functions for working with spatial data which have not been mentioned, let alone demonstrated, in the book.
 Chapter <a href="intro.html#intro">1</a> mentions 20+ influential packages for working with geographic data, and only a handful of these are demonstrated in subsequent chapters.
 There are hundreds more.
-176 packages are mentioned in the Spatial <a href="https://cran.r-project.org/web/views/">Task View</a> alone (as of summer 2018);
+176 packages are mentioned in the Spatial <a href="https://cran.r-project.org/web/views/">Task View</a> alone (as of autumn 2018);
 more packages and countless functions for geographic data are developed each year, making it impractical to do justice to all of them in a single book.</p>
 <p>The rate of evolution in R’s spatial ecosystem may seem overwhelming but there are strategies to deal with the wide range of options.
 Our advice is to start by learning one approach <em>in depth</em> but to have a general understand of the <em>breadth</em> of options available.
@@ -489,7 +489,7 @@ But there is still overlap in the packages we have used, as illustrated by the d
 <p>Package overlap is not necessarily a bad thing.
 It can increase resilience, performance (partly driven by friendly competition and mutual learning between developers) and choice, a key feature of open source software.
 In this context the decision to use a particular approach, such as the <strong>sf</strong>/<strong>tidyverse</strong>/<strong>raster</strong> ecosystem advocated in this book should be made with knowledge of alternatives.
-The <strong>sp</strong>/<strong>rgdal</strong>/<strong>rgeos</strong> ‘stack’, for example, can do many of the things covered in this book and used in more than 300 packages.<a href="#fn79" class="footnote-ref" id="fnref79"><sup>79</sup></a></p>
+The <strong>sp</strong>/<strong>rgdal</strong>/<strong>rgeos</strong> ‘stack’, for example, can do many of the things covered in this book and used in more than 400 packages.<a href="#fn79" class="footnote-ref" id="fnref79"><sup>79</sup></a></p>
 <p>It is also being aware of promising alternatives that are under development.
 The package <strong>stars</strong>, for example, provides a new class system for working with spatiotemporal data.
 If you are interested in this topic, you can check for updates on the package’s <a href="https://github.com/r-spatial/stars">source code</a> and the broader <a href="https://cran.r-project.org/web/views/SpatioTemporal.html">SpatialTemporal Task View</a>.
@@ -530,7 +530,7 @@ But still, you are applying the same techniques and concepts you have used on sm
 </div>
 <div id="next" class="section level2">
 <h2><span class="header-section-number">15.4</span> Where next?</h2>
-<p>As indicated in the previous sections, the book has covered only a small fraction of the R’s geographic ecosystem, and there is much more to discover.
+<p>As indicated in the previous sections, the book has covered only a fraction of the R’s geographic ecosystem, and there is much more to discover.
 We have progressed quickly, from geographic data models in Chapter <a href="spatial-class.html#spatial-class">2</a>, to advanced applications in Chapter <a href="eco.html#eco">14</a>.
 Consolidation of skills learned, discovery of new packages and approaches for handling geographic data, and application of the methods to new datasets and domains are suggested future directions.
 <!-- It is impossible to become an expert in any area by reading a single book, and skills must be practiced. -->
@@ -576,11 +576,11 @@ A next step in this case is to read-up on relevant articles in the area such as 
 <p>This is a technical book so it makes sense for the next steps, outlined in the previous section, to also be technical.
 However there are wider issues worth considering in this final section, which returns to our definition of geocomputation.
 One of elements of the term introduced in Chapter <a href="intro.html#intro">1</a> was that geographic methods should have a positive impact.
-<!-- This section is based on the premise that the key ingredients that make-up 'geocomputation', and maximise its ability to have a positive impact, depend on a wider . -->
+<!-- This section is based on the premise that the key ingredients that make-up 'geocomputation', and maximize its ability to have a positive impact, depend on a wider . -->
 Of course, how to define and measure ‘positive’ is a subjective, philosophical question, beyond the scope of this book.
 Regardless of your worldview, consideration the impacts of geocomputational work is a useful exercise:
 the potential for positive impacts can provide a powerful motivation for future learning and, conversely, new methods can open-up many possible fields of application.
-These considerations lead to the conclusion that geocompuation is part of a wider ‘open source approach’, engagement with which can lead to tangible benefits for the people and organisations doing geocomputation and the wider community.
+These considerations lead to the conclusion that geocompuation is part of a wider ‘open source approach’, engagement with which can lead to tangible benefits for the people and organizations doing geocomputation and the wider community.
 <!-- Consideration of real-world impacts leads to the conclusion that  --></p>
 <p>As we saw in section <a href="intro.html#what-is-geocomputation">1.1</a>, other terms, including geographic information systems (GIS) and geographic data science (GDS), capture the range of possibilities opened-up by geospatial software.
 But geocomputation has advantages: it concisely captures the ‘computational’ way of working with geographic data advocated in this book — implemented in code and therefore encouraging reproducibility — and builds on desirable ingredients of its early definition <span class="citation">(Openshaw and Abrahart <a href="#ref-openshaw_geocomputation_2000">2000</a>)</span>:</p>
@@ -607,19 +607,19 @@ This brings us to the ‘open source approach’, which has three main component
 </ul>
 <p>Like the term geocomputation, the open source approach is more than a technical entity.
 It is a community composed of people interacting daily with shared aims: to produce high performance tools, free from commercial or legal restrictions, that are accessible for anyone to use.
-The open source approach to working with geographic data has advantages that transcend the technicalities of how the software works, encouraging learning, collaboration and an efficient division of labour.</p>
+The open source approach to working with geographic data has advantages that transcend the technicalities of how the software works, encouraging learning, collaboration and an efficient division of labor.</p>
 <p>There are many ways to engage in this community, especially with the emergence of code hosting sites such as GitHub, which encourage communication and collaboration.
 A good place to start is simply browsing through some of the source code, ‘issues’ and ‘commits’ in a geographic package of interest.
-A quick glance at the <code>r-spatial/sf</code> GitHub repository which hosts the code underlying the <strong>sf</strong> package, for example, shows that it has 40+ ‘contributors’ (people who have commited code improving the package) and dozens more people contributing by raising issues on its ‘<a href="https://github.com/r-spatial/sf/issues">issue tracker</a>’.
+A quick glance at the <code>r-spatial/sf</code> GitHub repository which hosts the code underlying the <strong>sf</strong> package, for example, shows that it has 40+ ‘contributors’ (people who have committed code improving the package) and dozens more people contributing by raising issues on its ‘<a href="https://github.com/r-spatial/sf/issues">issue tracker</a>’.
 More than 600 issues have been closed, documenting a huge amount of work that has gone into making the package faster, more stable and user-friendly.
 Considering that <strong>sf</strong> is only one (relatively small) component in the wider R-spatial community provides a sense of the scale of the intellectual operation underway to make geocomputation with R possible at all, and continuously evolving.
 <!-- This is what we mean by the open source approach: collaboration between people with shared aims. --></p>
-<p>It is fun and instructive watch the incessant developement activity happen in public fora such as GitHub but it is even more rewarding to become an active participant.
+<p>It is fun and instructive watch the incessant development activity happen in public fora such as GitHub but it is even more rewarding to become an active participant.
 This is one of the greatest features of the open source approach: it encourages people to get involved.
 This book itself is a result of the open source approach:
 it was motivated by the amazing developments in R’s geographic capabilities over the last two decades, but made practically possible by dialogue and code sharing on platforms for collaboration.
 We hope that in addition to disseminating useful methods for working with geographic data, this book inspires you to take a more open source approach.
-Whether it’s raising a constructive issue alerting developers to problems in their package; making the work done by you and the organisations you work for open; or simply helping other people by passing on the knowledge you’ve learned, getting involved can be a rewarding experience.
+Whether it’s raising a constructive issue alerting developers to problems in their package; making the work done by you and the organizations you work for open; or simply helping other people by passing on the knowledge you’ve learned, getting involved can be a rewarding experience.
 <!-- The benefits of reproducibility can be illustrated with the example of using geocomputation to increase sales of perfume. -->
 <!-- If the methods are hidden and cannot reproduced, few people can benefit (except for the perfume company who commissioned the work!). -->
 <!-- If the underlying code is made open and reproducible, by contrast, the methods can be re-purposed or improved (which would also benefit the perfume company). -->
@@ -677,8 +677,8 @@ The first operation, undertaken by the function <code>st_union()</code>, creates
 The latter two operations create <code>sf</code> objects, each of which <em>contains</em> a simple feature column.
 Therefore it is the geometries contained in simple feature columns, not the objects themselves, that are identical.<a href="conclusion.html#fnref78" class="footnote-back">↩</a></p></li>
 <li id="fn79"><p>
-At the time of writing 450 package <code>Depend</code> or <code>Import</code> <strong>sp</strong>, showing that its data structures are widely used and have been extended in many directions.
-The equivalent number for <strong>sf</strong> was 60 in summer 2018; with the growing popularity of <strong>sf</strong>, this is set to grow.<a href="conclusion.html#fnref79" class="footnote-back">↩</a></p></li>
+At the time of writing 452 package <code>Depend</code> or <code>Import</code> <strong>sp</strong>, showing that its data structures are widely used and have been extended in many directions.
+The equivalent number for <strong>sf</strong> was 69 in autumn 2018; with the growing popularity of <strong>sf</strong>, this is set to grow.<a href="conclusion.html#fnref79" class="footnote-back">↩</a></p></li>
 <li id="fn80"><p>
 R’s strengths relevant to our definition geocomputation include its emphasis on scientific reproducibility, widespread use in academic research and unparalleled support for statistical modeling of geographic data.
 Furthermore, we advocate learning one language (R) for geocomputation in depth before delving into other languages/frameworks because of the costs associated with context switching.
