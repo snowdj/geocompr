@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-09-29">
+<meta name="date" content="2018-09-30">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -386,7 +386,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.1" data-path="conclusion.html"><a href="conclusion.html#package-choice"><i class="fa fa-check"></i><b>15.1</b> Package choice</a></li>
 <li class="chapter" data-level="15.2" data-path="conclusion.html"><a href="conclusion.html#gaps"><i class="fa fa-check"></i><b>15.2</b> Gaps and overlaps</a></li>
 <li class="chapter" data-level="15.3" data-path="conclusion.html"><a href="conclusion.html#next"><i class="fa fa-check"></i><b>15.3</b> Where next?</a></li>
-<li class="chapter" data-level="15.4" data-path="conclusion.html"><a href="conclusion.html#benefit"><i class="fa fa-check"></i><b>15.4</b> Geo* for social benefit</a></li>
+<li class="chapter" data-level="15.4" data-path="conclusion.html"><a href="conclusion.html#benefit"><i class="fa fa-check"></i><b>15.4</b> The open source approach</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -458,32 +458,33 @@ We recommend using <strong>sf</strong> and the other packages showcased in this 
 We cover both and encourage you to try both before deciding which is more appropriate for different tasks.
 The following code chunk, described in Chapter <a href="attr.html#attr">3</a>, shows how attribute data subsetting works in each approach, using the base R operator <code>[</code> and the <code>select()</code> function from the <strong>tidyverse</strong> package <strong>dplyr</strong>.
 The syntax differs but the results are (in essence) the same:</p>
-<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb460-1" data-line-number="1"><span class="kw">library</span>(dplyr)                   <span class="co"># attach tidyverse package</span></a>
-<a class="sourceLine" id="cb460-2" data-line-number="2">nz_name1 =<span class="st"> </span>nz[<span class="st">&quot;Name&quot;</span>]          <span class="co"># base R approach</span></a>
-<a class="sourceLine" id="cb460-3" data-line-number="3">nz_name2 =<span class="st"> </span>nz <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Name)   <span class="co"># tidyverse approach</span></a>
-<a class="sourceLine" id="cb460-4" data-line-number="4"><span class="kw">identical</span>(nz_name1<span class="op">$</span>Name, nz_name2<span class="op">$</span>Name)</a>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb460-1" data-line-number="1"><span class="kw">library</span>(dplyr)                          <span class="co"># attach tidyverse package</span></a>
+<a class="sourceLine" id="cb460-2" data-line-number="2">nz_name1 =<span class="st"> </span>nz[<span class="st">&quot;Name&quot;</span>]                   <span class="co"># base R approach</span></a>
+<a class="sourceLine" id="cb460-3" data-line-number="3">nz_name2 =<span class="st"> </span>nz <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Name)          <span class="co"># tidyverse approach</span></a>
+<a class="sourceLine" id="cb460-4" data-line-number="4"><span class="kw">identical</span>(nz_name1<span class="op">$</span>Name, nz_name2<span class="op">$</span>Name) <span class="co"># check results</span></a>
 <a class="sourceLine" id="cb460-5" data-line-number="5"><span class="co">#&gt; [1] TRUE</span></a></code></pre></div>
 <p>Again the question arises: which to use?
 Again the answer is: it depends.
 Each approach has advantages: the pipe syntax is popular and appealing to some, while base R is more stable, and is well-known to others.
 Choosing between them is therefore largely a matter of preference.
 However, if you do choose to use <strong>tidyverse</strong> functions to handle spatial data, beware of a number of pitfalls (see the <code>Spatial data and the tidyverse: pitfalls to avoid</code> vignette at <a href="https://geocompr.github.io/">geocompr.github.io</a>).</p>
-<!-- Not entirely sure, what you are referring to here. Which two packages? Which other functions were omitted? Maybe reference also the corresponding section.-->
 <p>While commonly needed operators/functions (<code>[</code>/<code>select()</code> for example) were covered in depth, there are hundreds of other other functions for working with spatial data which have not been mentioned, let alone demonstrated, in the book.
 Chapter <a href="intro.html#intro">1</a> mentions 20+ influential packages for working with geographic data, and only a handful of these are demonstrated in subsequent chapters.
 There are hundreds more.
 176 packages are mentioned in the Spatial <a href="https://cran.r-project.org/web/views/">Task View</a> alone (as of summer 2018);
 more packages and countless functions for geographic data are developed each year, making it impractical to do justice to all of them in a single book.</p>
-<p>The volume and rate of evolution in R’s spatial ecosystem may seem overwhelming.
-Our advice in this context applies equally to other domains of knowledge: learn how to use one thing <em>in depth</em> but have a general understand of the <em>breadth</em> of options available to solve problems in your domain with other R packages (section <a href="conclusion.html#next">15.3</a> covers developments in other languages).
-Of course, some packages perform much better than others, making package selection an important decision.
+<p>The rate of evolution in R’s spatial ecosystem may seem overwhelming but there are strategies to deal with the wide range of options.
+Our advice is to start by learning one approach <em>in depth</em> but to have a general understand of the <em>breadth</em> of options available.
+<!-- In other words, don't become 'a Jack of all trades, master of none' but 'master of (at least) one geographic package/approach and knowledgeable of many'. -->
+This advice applies equally to solving geographic problems in R (section <a href="conclusion.html#next">15.3</a> covers developments in other languages) as it does to other fields of knowledge and application.</p>
+<p>Of course, some packages perform much better than others, making package selection an important decision.
 From this diversity, we have focused on packages that are future-proof (they will work long into the future), high performance (relative to other R packages) and complimentary.
 But there is still overlap in the packages we have used, as illustrated by the diversity of packages for making maps, for example (see Chapter <a href="adv-map.html#adv-map">8</a>).</p>
 <p>Package overlap is not necessarily a bad thing.
 It can increase resilience, performance (partly driven by friendly competition and mutual learning between developers) and choice, a key feature of open source software.
-In this context the decision to use a particular ‘stack’, such as the <strong>sf</strong>/<strong>tidyverse</strong>/<strong>raster</strong> ecosystem advocated in this book should be made with knowledge of alternatives.
-The <strong>sp</strong>/<strong>rgdal</strong>/<strong>rgeos</strong> ‘stack’, for example, can do many of the things covered in this book and used in more than 300 packages.<a href="#fn80" class="footnote-ref" id="fnref80"><sup>80</sup></a>
-It is also being aware of promising alternatives that are under development.
+In this context the decision to use a particular approach, such as the <strong>sf</strong>/<strong>tidyverse</strong>/<strong>raster</strong> ecosystem advocated in this book should be made with knowledge of alternatives.
+The <strong>sp</strong>/<strong>rgdal</strong>/<strong>rgeos</strong> ‘stack’, for example, can do many of the things covered in this book and used in more than 300 packages.<a href="#fn80" class="footnote-ref" id="fnref80"><sup>80</sup></a></p>
+<p>It is also being aware of promising alternatives that are under development.
 The package <strong>stars</strong>, for example, provides a new class system for working with spatiotemporal data.
 If you are interested in this topic, you can check for updates on the package’s <a href="https://github.com/r-spatial/stars">source code</a> and the broader <a href="https://cran.r-project.org/web/views/SpatioTemporal.html">SpatialTemporal Task View</a>.
 The same principle applies to other domains: it is important to justify software choices and review software decisions based on up-to-date information.</p>
@@ -523,12 +524,11 @@ But still, you are applying the same techniques and concepts you have used on sm
 </div>
 <div id="next" class="section level2">
 <h2><span class="header-section-number">15.3</span> Where next?</h2>
-<p>Learning geocomputation with R is challenging and there is much more to discover.
-We have progressed quickly.
-The jump from chapters <a href="spatial-class.html#spatial-class">2</a> to <a href="eco.html#eco">14</a> is large:
-the creation and manipulation of simple spatial objects in Part I may seem a world away from the analysis of large datasets covered in Part III.
-It is impossible to become an expert in any area by reading a single book, and skills must be practiced.
-This section points toward sensible next steps on your geocomputational journey, highlighted in <strong>bold</strong> below.
+<p>As indicated in the previous sections, the book has covered only a small fraction of the R’s geographic ecosystem, and there is much more to discover.
+We have progressed quickly, from geographic data models in Chapter <a href="spatial-class.html#spatial-class">2</a>, to advanced applications in Chapter <a href="eco.html#eco">14</a>.
+Consolidation of skills learned, discovery of new packages and approaches for handling geographic data, and application of the methods to new datasets and domains are suggested future directions.
+<!-- It is impossible to become an expert in any area by reading a single book, and skills must be practiced. -->
+This section expands on this general advice by suggesting specific ‘next steps’, highlighted in <strong>bold</strong> below.
 <!-- and ordered by difficulty, beginning with continue to improve your knowledge of R. -->
 <!-- JM: the end of the last section is already giving pointers where to go next, maybe, we can marry the two sections, or at least the part on the stuff we have omitted? --></p>
 <p>The R language connects all the chapters.
@@ -564,34 +564,63 @@ A next step in this case is to read-up on relevant articles in the area such as 
 <!-- - creating new methods (reference to ch 10) -->
 </div>
 <div id="benefit" class="section level2">
-<h2><span class="header-section-number">15.4</span> Geo* for social benefit</h2>
+<h2><span class="header-section-number">15.4</span> The open source approach</h2>
 <!-- What about: Advocating the open-source approach-->
-<p>This is a technical book so it makes sense for the next steps to also be technical.
-But there are many non-technical issues to consider, now you understand what is possible with geographic data in R.
-This section returns to the definition of geocomputation and wider issues covered in Chapter <a href="intro.html#intro">1</a>.
-It argues for the methods to be used to tackle some of the planet’s most pressing problems.
-The use of geo* rather than geocomputation is deliberate.
-Many terms, including geographic data science, geographic information systems and geoinformatics, capture the range of possibilities opened-up by geospatial software and knowledge of data.
-But geocomputation has advantages: a concise term that defines a field with with three main ingredients:</p>
+<!-- I think we want to be broader than that: being open source *enables* positive impact (RL) -->
+<p>This is a technical book so it makes sense for the next steps, outlined in the previous section, to also be technical.
+However there are wider issues worth considering in this final section, which returns to our definition of geocomputation.
+One of elements of the term introduced in Chapter <a href="intro.html#intro">1</a> was that geographic methods should have a positive impact.
+<!-- This section is based on the premise that the key ingredients that make-up 'geocomputation', and maximise its ability to have a positive impact, depend on a wider . -->
+Of course, how to define and measure ‘positive’ subjective:
+it is a personal and philosophical beyond the scope of this book.
+Regardless of your worldview, however, consideration the impacts of geocomputational work is a useful exercise:
+the potential for positive impacts can provide a powerful motivation for future learning and, conversely, new methods can open-up many possible fields of application.
+These considerations lead to the conclusion that geocompuation is part of a wider ‘open source approach’, engagement with which can lead to tangible benefits for the people and organisations doing geocomputation and the wider community.
+<!-- Consideration of real-world impacts leads to the conclusion that  --></p>
+<p>As we saw in section <a href="intro.html#what-is-geocomputation">1.1</a>, other terms, including geographic information systems (GIS) and geographic data science (GDS), capture the range of possibilities opened-up by geospatial software.
+But geocomputation has advantages: it concisely captures the ‘computational’ way of working with geographic data advocated in this book — implemented in code and therefore encouraging reproducibility — and builds on desirable ingredients of its early definition <span class="citation">(Openshaw and Abrahart <a href="#ref-openshaw_geocomputation_2000">2000</a>)</span>:</p>
 <ul>
 <li>The <em>creative</em> use of geographic data.</li>
-<li>Application to <em>real-world problems</em> for social benefit.</li>
-<li>Building tools using a ‘scientific’ approach <span class="citation">(Openshaw and Abrahart <a href="#ref-openshaw_geocomputation_2000">2000</a>)</span>.</li>
+<li>Application to <em>real-world problems</em>.</li>
+<li>Building ‘scientific’ tools.</li>
+<li>Reproducibility.</li>
 </ul>
-<p>Only one of these ingredients is technical.
-We believe the broader non-technical aims are what make geospatial work so rewarding, and this is an asset of geocomputation: its application to solve important problems.
+<!-- It is noteworthy that only the last of these ingredients is predominantly technical. -->
 <!-- What is the point of building a new geographic method (tool) if its only purpose is to increase sales of perfume? -->
-<!-- BOOM! None. --></p>
+<!-- BOOM! None. -->
 <!-- A bit of a rapid jump to reproducibility, I suggest another paragraph goes before this one (RL) -->
-<p>Reproducibility is an additional ingredient that can ensure geo* work is socially beneficial, or at least benign.
-It supports <em>creativity</em>, encouraging the focus of methods to shift away from the basics (which are readily available through shared code, avoiding many people ‘reinventing the wheel’) and towards applications.
+<p>We added the final ingredient: reproducibility was barely mentioned in early work on geocompuation, yet a strong case can be made for it being a vital component of the first two ingredients.
+Reproducibility supports <em>creativity</em>, encouraging the focus of methods to shift away from the basics (which are readily available through shared code, avoiding many people ‘reinventing the wheel’) and towards applications.
 <!-- that nobody has yet thought of. -->
-Reproducibility encourages geocomputation for social benefit because it makes geographic data analysis publicly accessible and transparent.</p>
-<p>The benefits of reproducibility can be illustrated with the example of using geocomputation to increase sales of perfume.
-If the methods are hidden and cannot reproduced, few people can benefit (except for the perfume company who commissioned the work!).
-If the underlying code is made open and reproducible, by contrast, the methods can be re-purposed or improved (which would also benefit the perfume company).
-Reproducibility encourages socially but also economically beneficial collaboration.<a href="#fn82" class="footnote-ref" id="fnref82"><sup>82</sup></a>
-The importance of reproducibility, and other non-technical ingredients in the field of geocomputation, are further discussed in an open access article celebrating ‘21+ years of geocomputation’ <span class="citation">(Harris et al. <a href="#ref-harris_more_2017">2017</a>)</span>.</p>
+And reproducibility encourages real world applications because it ensures that methods developed for one purpose (perhaps purely academic) can be used for practical applications.</p>
+<p>If reproducibility is the defining feature of geocomputation (or command-line GIS, code-driven spatial data analysis, or any other synonym for the same thing) it is worth considering what makes it reproducible.
+This brings us to the ‘open source approach’, which has three main components:</p>
+<ul>
+<li>A command-line interface (CLI), encouraging scripts recording geographic work to be shared and reproduced.</li>
+<li>Open source software, which can be inspected and potentially improved by anyone in the world.</li>
+<li>An active developer community, which collaborates and self-organizes to build complimentary and modular tools.</li>
+</ul>
+<p>Like the term geocomputation, the open source approach is more than a technical entity.
+It is a community composed of people interacting daily with shared aims: to produce high performance tools, free from commercial or legal restrictions, that are accessible for anyone to use.
+The open source approach to working with geographic data has advantages that transcend the technicalities of how the software works, encouraging learning, collaboration and an efficient division of labour.
+There are many ways to engage in this community, especially with the emergence of code hosting sites such as GitHub, which encourage communication and collaboration.
+A good place to start is simply browsing through some of the source code, ‘issues’ and ‘commits’ in a geographic package of interest.
+A quick glance at the <code>r-spatial/sf</code> GitHub repository which hosts the code underlying the <strong>sf</strong> package, for example, shows that it has 42 ‘contributors’ (people who have commited code improving the package) and dozens more people contributing by raising issues on its ‘<a href="https://github.com/r-spatial/sf/issues">issue tracker</a>’.
+More than 600 issues have been closed, documenting a huge amount of work that has gone into making the package faster, more stable and user-friendly.
+Considering that <strong>sf</strong> is only one (relatively small) component in the wider R-spatial community provides a sense of the scale of the intellectual operation underway to make geocomputation with R possible and moving forward.
+<!-- This is what we mean by the open source approach: collaboration between people with shared aims. --></p>
+<p>It is fun and instructive watch the incessant developement activity happen in public fora such as GitHub but it is even more rewarding to become an active participant.
+This is one of the greatest features of the open source approach: it encourages people to get involved.
+This book itself is a result of the open source approach:
+it was motivated by the amazing developments in R’s geographic capabilities over the last two decades, but made practically possible by dialogue and code sharing on platforms for collaboration.
+We hope that in addition to disseminating useful methods for working with geographic data, this book inspires you to take a more open source approach.
+Whether it’s raising a constructive issue alerting developers to problems in their package; making the done by you and the organisations you work open; or simply helping out other people by passing on the knowledge you’ve learned, getting involved can be a rewarding experience.
+<!-- The benefits of reproducibility can be illustrated with the example of using geocomputation to increase sales of perfume. -->
+<!-- If the methods are hidden and cannot reproduced, few people can benefit (except for the perfume company who commissioned the work!). -->
+<!-- If the underlying code is made open and reproducible, by contrast, the methods can be re-purposed or improved (which would also benefit the perfume company). -->
+<!-- Reproducibility encourages socially but also economically beneficial collaboration.^[ -->
+<!-- One accessible way to contribute upstream is creating a reprex (reproducible example) to highlight a bug in the package's issue tracker, as outlined in section \@ref(scripts). -->
+<!-- ] --></p>
 <!-- Like any worthwhile intellectual endeavor or nascent academic field, geocomputation is diverse and contested. -->
 
 </div>
@@ -634,9 +663,6 @@ The importance of reproducibility, and other non-technical ingredients in the fi
 <div id="ref-openshaw_geocomputation_2000">
 <p>Openshaw, Stan, and Robert J. Abrahart, eds. 2000. <em>Geocomputation</em>. 1 edition. London ; New York: CRC Press.</p>
 </div>
-<div id="ref-harris_more_2017">
-<p>Harris, Richard, David O’Sullivan, Mark Gahegan, Martin Charlton, Lex Comber, Paul Longley, Chris Brunsdon, et al. 2017. “More Bark Than Bytes? Reflections on 21+ Years of Geocomputation.” <em>Environment and Planning B: Urban Analytics and City Science</em>, July. <a href="https://doi.org/10.1177/2399808317710132" class="uri">https://doi.org/10.1177/2399808317710132</a>.</p>
-</div>
 </div>
 <div class="footnotes">
 <hr />
@@ -652,8 +678,6 @@ The equivalent number for <strong>sf</strong> was 60 in summer 2018; with the gr
 R’s strengths relevant to our definition geocomputation include its emphasis on scientific reproducibility, widespread use in academic research and unparalleled support for statistical modeling of geographic data.
 Furthermore, we advocate learning one language (R) for geocomputation in depth before delving into other languages/frameworks because of the costs associated with context switching.
 It is preferable to have expertise in one language than basic knowledge of many.<a href="conclusion.html#fnref81" class="footnote-back">↩</a></p></li>
-<li id="fn82"><p>
-One accessible way to contribute upstream is creating a reprex (reproducible example) to highlight a bug in the package’s issue tracker, as outlined in section <a href="algorithms.html#scripts">10.2</a>.<a href="conclusion.html#fnref82" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 <script>
