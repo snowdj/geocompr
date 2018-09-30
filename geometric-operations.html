@@ -539,9 +539,9 @@ These buffers were created with commands below, which show that the command <cod
 <div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" data-line-number="1">seine_buff_5km =<span class="st"> </span><span class="kw">st_buffer</span>(seine, <span class="dt">dist =</span> <span class="dv">5000</span>)</a>
 <a class="sourceLine" id="cb153-2" data-line-number="2">seine_buff_50km =<span class="st"> </span><span class="kw">st_buffer</span>(seine, <span class="dt">dist =</span> <span class="dv">50000</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:buffs"></span>
-<img src="figures/buffs-1.png" alt="Buffers around the `seine` datasets of 5km (left) and 50km (right). Note the colors, which reflect the fact that one buffer is created per geometry feature." width="75%" />
+<img src="figures/buffs-1.png" alt="Buffers around the `seine` dataset of 5km (left) and 50km (right). Note the colors, which reflect the fact that one buffer is created per geometry feature." width="75%" />
 <p class="caption">
-Figure 5.4: Buffers around the <code>seine</code> datasets of 5km (left) and 50km (right). Note the colors, which reflect the fact that one buffer is created per geometry feature.
+Figure 5.4: Buffers around the <code>seine</code> dataset of 5km (left) and 50km (right). Note the colors, which reflect the fact that one buffer is created per geometry feature.
 </p>
 </div>
 
@@ -955,9 +955,9 @@ Looking at figure <a href="geometric-operations.html#fig:origin-example">5.14</a
 <a class="sourceLine" id="cb178-4" data-line-number="4"><span class="co"># and add the original raster</span></a>
 <a class="sourceLine" id="cb178-5" data-line-number="5"><span class="kw">plot</span>(elev, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:origin-example"></span>
-<img src="figures/origin-example-1.png" alt="Plotting rasters with the same values but different origins." width="576" />
+<img src="figures/origin-example-1.png" alt="Rasters with identical values but different origins." width="576" />
 <p class="caption">
-Figure 5.14: Plotting rasters with the same values but different origins.
+Figure 5.14: Rasters with identical values but different origins.
 </p>
 </div>
 <p>Note that changing the resolution frequently (next section) also changes the origin.</p>
@@ -985,9 +985,9 @@ The first (nearest neighbor, <code>method = &quot;&quot;</code>) simply gives al
 <a class="sourceLine" id="cb180-2" data-line-number="2"><span class="kw">identical</span>(dem, dem_disagg)</a>
 <a class="sourceLine" id="cb180-3" data-line-number="3"><span class="co">#&gt; [1] FALSE</span></a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:bilinear"></span>
-<img src="figures/bilinear-1.png" alt="The distance-weighted average of the four closest input cells determine the output when using the bilinear method for disaggregation." width="768" />
+<img src="figures/bilinear-1.png" alt="Bilinear disaggregation in action." width="768" />
 <p class="caption">
-Figure 5.16: The distance-weighted average of the four closest input cells determine the output when using the bilinear method for disaggregation.
+Figure 5.16: Bilinear disaggregation in action.
 </p>
 </div>
 <p>Comparing the values of <code>dem</code> and <code>dem_disagg</code> tells us that they are not identical (you can also use <code>compareRaster()</code> or <code>all.equal()</code>).
@@ -1179,9 +1179,9 @@ To calculate that we must <code>sum</code> the field (<code>&quot;capacity&quot;
 <div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb196-1" data-line-number="1">ch_raster3 =<span class="st"> </span><span class="kw">rasterize</span>(cycle_hire_osm_projected, raster_template, </a>
 <a class="sourceLine" id="cb196-2" data-line-number="2">                       <span class="dt">field =</span> <span class="st">&quot;capacity&quot;</span>, <span class="dt">fun =</span> sum)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:vector-rasterization1"></span>
-<img src="figures/vector-rasterization1-1.png" alt="Examples of point's rasterization." width="576" />
+<img src="figures/vector-rasterization1-1.png" alt="Examples of point rasterization." width="576" />
 <p class="caption">
-Figure 5.21: Examples of point’s rasterization.
+Figure 5.21: Examples of point rasterization.
 </p>
 </div>
 <p>Another dataset based on California’s polygons and borders (created below) illustrates rasterization of lines.
@@ -1257,9 +1257,9 @@ As illustrated in Figure <a href="geometric-operations.html#fig:contour-tmap">5.
 <a class="sourceLine" id="cb202-6" data-line-number="6"><span class="co"># add contour lines</span></a>
 <a class="sourceLine" id="cb202-7" data-line-number="7"><span class="kw">contour</span>(dem, <span class="dt">col =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:contour-tmap"></span>
-<img src="figures/contour-tmap-1.png" alt="DEM hillshade of the southern flank of Mt. Mongón overlaid with contour lines." width="576" />
+<img src="figures/contour-tmap-1.png" alt="DEM hillshade of the southern flank of Mt. Mongón overlaid by contour lines." width="576" />
 <p class="caption">
-Figure 5.24: DEM hillshade of the southern flank of Mt. Mongón overlaid with contour lines.
+Figure 5.24: DEM hillshade of the southern flank of Mt. Mongón overlaid by contour lines.
 </p>
 </div>
 <p>The final type of vectorization involves conversion of rasters to polygons.

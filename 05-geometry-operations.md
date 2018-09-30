@@ -174,8 +174,8 @@ seine_buff_50km = st_buffer(seine, dist = 50000)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="figures/buffs-1.png" alt="Buffers around the `seine` datasets of 5km (left) and 50km (right). Note the colors, which reflect the fact that one buffer is created per geometry feature." width="75%" />
-<p class="caption">(\#fig:buffs)Buffers around the `seine` datasets of 5km (left) and 50km (right). Note the colors, which reflect the fact that one buffer is created per geometry feature.</p>
+<img src="figures/buffs-1.png" alt="Buffers around the `seine` dataset of 5km (left) and 50km (right). Note the colors, which reflect the fact that one buffer is created per geometry feature." width="75%" />
+<p class="caption">(\#fig:buffs)Buffers around the `seine` dataset of 5km (left) and 50km (right). Note the colors, which reflect the fact that one buffer is created per geometry feature.</p>
 </div>
 
 \BeginKnitrBlock{rmdnote}<div class="rmdnote">The third and final argument of `st_buffer()` is `nQuadSegs`, which means 'number of segments per quadrant' and is set by default to 30 (meaning circles created by buffers are composed of $4 \times 30 = 120$ lines).
@@ -649,8 +649,8 @@ plot(elev, add = TRUE)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="figures/origin-example-1.png" alt="Plotting rasters with the same values but different origins." width="576" />
-<p class="caption">(\#fig:origin-example)Plotting rasters with the same values but different origins.</p>
+<img src="figures/origin-example-1.png" alt="Rasters with identical values but different origins." width="576" />
+<p class="caption">(\#fig:origin-example)Rasters with identical values but different origins.</p>
 </div>
 
 Note that changing the resolution frequently (next section) also changes the origin.
@@ -692,8 +692,8 @@ identical(dem, dem_disagg)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="figures/bilinear-1.png" alt="The distance-weighted average of the four closest input cells determine the output when using the bilinear method for disaggregation." width="768" />
-<p class="caption">(\#fig:bilinear)The distance-weighted average of the four closest input cells determine the output when using the bilinear method for disaggregation.</p>
+<img src="figures/bilinear-1.png" alt="Bilinear disaggregation in action." width="768" />
+<p class="caption">(\#fig:bilinear)Bilinear disaggregation in action.</p>
 </div>
 
 Comparing the values of `dem` and `dem_disagg` tells us that they are not identical (you can also use `compareRaster()` or `all.equal()`).
@@ -972,8 +972,8 @@ ch_raster3 = rasterize(cycle_hire_osm_projected, raster_template,
 ```
 
 <div class="figure" style="text-align: center">
-<img src="figures/vector-rasterization1-1.png" alt="Examples of point's rasterization." width="576" />
-<p class="caption">(\#fig:vector-rasterization1)Examples of point's rasterization.</p>
+<img src="figures/vector-rasterization1-1.png" alt="Examples of point rasterization." width="576" />
+<p class="caption">(\#fig:vector-rasterization1)Examples of point rasterization.</p>
 </div>
 
 Another dataset based on California's polygons and borders (created below) illustrates rasterization of lines.
@@ -1079,8 +1079,8 @@ contour(dem, col = "white", add = TRUE)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="figures/contour-tmap-1.png" alt="DEM hillshade of the southern flank of Mt. Mongón overlaid with contour lines." width="576" />
-<p class="caption">(\#fig:contour-tmap)DEM hillshade of the southern flank of Mt. Mongón overlaid with contour lines.</p>
+<img src="figures/contour-tmap-1.png" alt="DEM hillshade of the southern flank of Mt. Mongón overlaid by contour lines." width="576" />
+<p class="caption">(\#fig:contour-tmap)DEM hillshade of the southern flank of Mt. Mongón overlaid by contour lines.</p>
 </div>
 
 The final type of vectorization involves conversion of rasters to polygons.

@@ -521,7 +521,7 @@ To explore these objects and spatial subsetting in more detail, see the suppleme
 <!-- ?geos_binary_pred -->
 <!-- Distance relations -->
 <!-- Subset (1) points in polygons <-> (2) -->
-<p>Topological relations define the spatial relationships between objects.
+<p>Topological relations describe the spatial relationships between objects.
 To understand them, it helps to have some simple test data to work with.
 Figure <a href="spatial-operations.html#fig:relation-objects">4.2</a> contains a polygon (<code>a</code>), a line (<code>l</code>) and some points (<code>p</code>), which are created in the code below.</p>
 <div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1"><span class="co"># create a polygon</span></a>
@@ -535,14 +535,15 @@ Figure <a href="spatial-operations.html#fig:relation-objects">4.2</a> contains a
 <a class="sourceLine" id="cb115-9" data-line-number="9">p_multi =<span class="st"> </span><span class="kw">st_multipoint</span>(<span class="dt">x =</span> p_matrix)</a>
 <a class="sourceLine" id="cb115-10" data-line-number="10">p =<span class="st"> </span><span class="kw">st_cast</span>(<span class="kw">st_sfc</span>(p_multi), <span class="st">&quot;POINT&quot;</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:relation-objects"></span>
-<img src="figures/relation-objects-1.png" alt="Points (p 1 to 4), line and polygon objects arranged to demonstrate spatial relations." width="50%" />
+<img src="figures/relation-objects-1.png" alt="Points (p 1 to 4), line and polygon objects arranged to illustrate topological relations." width="50%" />
 <p class="caption">
-Figure 4.2: Points (p 1 to 4), line and polygon objects arranged to demonstrate spatial relations.
+Figure 4.2: Points (p 1 to 4), line and polygon objects arranged to illustrate topological relations.
 </p>
 </div>
 <p>A simple query is: which of the points in <code>p</code> intersect in some way with polygon <code>a</code>?
 The question can be answered by inspection (points 1 and 2 are over or touch the triangle).
-It can also be answered by using the topological relation <em>intersects</em>, implemented in <strong>sf</strong> as follows:</p>
+It can also be answered by using a <em>spatial predicate</em> such as <em>do the objects intersect</em>?
+This is implemented in <strong>sf</strong> as follows:</p>
 <div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1"><span class="kw">st_intersects</span>(p, a)</a>
 <a class="sourceLine" id="cb116-2" data-line-number="2"><span class="co">#&gt; Sparse geometry binary ..., where the predicate was `intersects&#39;</span></a>
 <a class="sourceLine" id="cb116-3" data-line-number="3"><span class="co">#&gt; 1: 1</span></a>

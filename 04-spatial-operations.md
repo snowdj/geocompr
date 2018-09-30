@@ -128,7 +128,7 @@ To explore these objects and spatial subsetting in more detail, see the suppleme
 <!-- ?geos_binary_pred -->
 <!-- Distance relations -->
 <!-- Subset (1) points in polygons <-> (2) -->
-Topological relations define the spatial relationships between objects.
+Topological relations describe the spatial relationships between objects.
 To understand them, it helps to have some simple test data to work with.
 Figure \@ref(fig:relation-objects) contains a polygon (`a`), a line (`l`) and some points (`p`), which are created in the code below.
 
@@ -147,13 +147,14 @@ p = st_cast(st_sfc(p_multi), "POINT")
 ```
 
 <div class="figure" style="text-align: center">
-<img src="figures/relation-objects-1.png" alt="Points (p 1 to 4), line and polygon objects arranged to demonstrate spatial relations." width="50%" />
-<p class="caption">(\#fig:relation-objects)Points (p 1 to 4), line and polygon objects arranged to demonstrate spatial relations.</p>
+<img src="figures/relation-objects-1.png" alt="Points (p 1 to 4), line and polygon objects arranged to illustrate topological relations." width="50%" />
+<p class="caption">(\#fig:relation-objects)Points (p 1 to 4), line and polygon objects arranged to illustrate topological relations.</p>
 </div>
 
 A simple query is: which of the points in `p` intersect in some way with polygon `a`?
 The question can be answered by inspection (points 1 and 2 are over or touch the triangle).
-It can also be answered by using the topological relation *intersects*, implemented in **sf** as follows:
+It can also be answered by using a *spatial predicate* such as *do the objects intersect*?
+This is implemented in **sf** as follows:
 
 
 ```r
