@@ -118,6 +118,12 @@ dem = raster(
   )
 ```
 
+
+<div class="figure" style="text-align: center">
+<img src="figures/lsl-map-1.png" alt="Landslide initiation points (red) and points unaffected by landsliding (blue) in Southern Ecuador." width="576" />
+<p class="caption">(\#fig:lsl-map)Landslide initiation points (red) and points unaffected by landsliding (blue) in Southern Ecuador.</p>
+</div>
+
 To model landslide susceptibility, we need some predictors.
 Terrain attributes are frequently associated with landsliding [@muenchow_geomorphic_2012], and these can be computed from the digital elevation model (`dem`) using R-GIS bridges (see Chapter \@ref(gis)).
 We leave it as an exercise to the reader to compute the following terrain attribute rasters and extract the corresponding values to our landslide/non-landslide dataframe (see exercises; we also provide the resulting dataframe via the **spDataLarge** package, see further below):
@@ -139,24 +145,16 @@ data("lsl", package = "spDataLarge")
 data("ta", package = "spDataLarge")
 ```
 
-The first three rows of `lsl` look like this (rounded to two significant digits):
+The first three rows of `lsl`, rounded to two significant digits, look like this (Table \@ref(tab:lslsummary)):
 
 
-```r
-lsl %>%
-  mutate_at(vars(-one_of("x", "y", "lslpts")), funs(signif(., 2))) %>%
-  head(3)
-#>        x       y lslpts slope  cplan  cprof elev log10_carea
-#> 1 715078 9558647  FALSE    37  0.021 0.0087 2500         2.6
-#> 2 713748 9558047  FALSE    42 -0.024 0.0068 2500         3.1
-#> 3 712508 9558887  FALSE    20  0.039 0.0150 2100         2.3
-```
+Table: (\#tab:lslsummary)Structure of the lsl dataset.
 
-
-<div class="figure" style="text-align: center">
-<img src="figures/lsl-map-1.png" alt="Landslide initiation points (red) and points unaffected by landsliding (blue) in Southern Ecuador." width="576" />
-<p class="caption">(\#fig:lsl-map)Landslide initiation points (red) and points unaffected by landsliding (blue) in Southern Ecuador.</p>
-</div>
+      x         y  lslpts    slope    cplan   cprof   elev   log10_carea
+-------  --------  -------  ------  -------  ------  -----  ------------
+ 715078   9558647  FALSE        37    0.021   0.009   2500           2.6
+ 713748   9558047  FALSE        42   -0.024   0.007   2500           3.1
+ 712508   9558887  FALSE        20    0.039   0.015   2100           2.3
 
 ## Conventional modeling approach in R {#conventional-model}
 
@@ -221,12 +219,9 @@ In addition to a model object (`fit`), this function also expects a raster stack
 
 
 ```r
-# attaching ta, a raster brick containing the predictors
-data("ta", "lsl", package = "spDataLarge")
 # making the prediction
 pred = raster::predict(ta, model = fit, type = "response")
 ```
-
 
 <div class="figure" style="text-align: center">
 <img src="figures/lsl-susc-1.png" alt="Spatial prediction of landslide susceptibility using a GLM." width="576" />
@@ -261,7 +256,6 @@ The follow code chunk computes the AUROC of the model with `roc()`, which takes 
 ```r
 pROC::auc(pROC::roc(lsl$lslpts, fitted(fit)))
 #> Area under the curve: 0.826
-#> Area under the curve: 0.8264
 ```
 
 An AUROC of  represents a good fit.
@@ -329,7 +323,7 @@ Third, the **resampling** approach assesses the predictive performance of the mo
 ### Generalized linear model {#glm}
 
 To implement a GLM in **mlr** we must create a **task** containing the landslide data.
-Since the response is binary (two-category variable) we create a classification task with `makeClassifTask()` (for regression tasks use `makeRegrTask()`, see `?makeClassifTask` for other task types).
+Since the response is binary (two-category variable) we create a classification task with `makeClassifTask()` (for regression tasks use `makeRegrTask()`, see `?makeRegrTask` for other task types).
 The first essential argument of these `make*()` functions is `data`.
 The `target` argument expects the name of a response variable and `positive` determines which of the two factor levels of the response variable indicate the landslide initiation point (in our case this is `TRUE`).
 All other variables of the `lsl` dataset will serve as predictors except for the coordinates (see the result of `getTaskFormula(task)` for the model formula).
@@ -342,7 +336,6 @@ library(mlr)
 coords = lsl[, c("x", "y")]
 # select response and predictors to use in the modeling
 data = dplyr::select(lsl, -x, -y)
-coords = lsl[, c("x", "y")]
 # create task
 task = makeClassifTask(data = data, target = "lslpts",
                        positive = "TRUE", coordinates = coords)
@@ -360,17 +353,55 @@ listLearners(task, warn.missing.packages = FALSE) %>%
   head
 ```
 
-
-Table: (\#tab:lrns)Sample of available learners for binomial tasks in the mlr package.
-
-Class                 Name                       Short name    Package 
---------------------  -------------------------  ------------  --------
-classif.binomial      Binomial Regression        binomial      stats   
-classif.featureless   Featureless classifier     featureless   mlr     
-classif.fnn           Fast k-Nearest Neighbour   fnn           FNN     
-classif.gausspr       Gaussian Processes         gausspr       kernlab 
-classif.knn           k-Nearest Neighbor         knn           class   
-classif.ksvm          Support Vector Machines    ksvm          kernlab 
+<table>
+<caption>(\#tab:lrns)Sample of available learners for binomial tasks in the mlr package.</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Class </th>
+   <th style="text-align:left;"> Name </th>
+   <th style="text-align:left;"> Short name </th>
+   <th style="text-align:left;"> Package </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> classif.binomial </td>
+   <td style="text-align:left;"> Binomial Regression </td>
+   <td style="text-align:left;"> binomial </td>
+   <td style="text-align:left;"> stats </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> classif.featureless </td>
+   <td style="text-align:left;"> Featureless classifier </td>
+   <td style="text-align:left;"> featureless </td>
+   <td style="text-align:left;"> mlr </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> classif.fnn </td>
+   <td style="text-align:left;"> Fast k-Nearest Neighbour </td>
+   <td style="text-align:left;"> fnn </td>
+   <td style="text-align:left;"> FNN </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> classif.gausspr </td>
+   <td style="text-align:left;"> Gaussian Processes </td>
+   <td style="text-align:left;"> gausspr </td>
+   <td style="text-align:left;"> kernlab </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> classif.knn </td>
+   <td style="text-align:left;"> k-Nearest Neighbor </td>
+   <td style="text-align:left;"> knn </td>
+   <td style="text-align:left;"> class </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> classif.ksvm </td>
+   <td style="text-align:left;"> Support Vector Machines </td>
+   <td style="text-align:left;"> ksvm </td>
+   <td style="text-align:left;"> kernlab </td>
+  </tr>
+</tbody>
+</table>
 
 This yields all learners able to model two-class problems (landslide yes or no).
 We opt for the binomial classification method used in section \@ref(conventional-model) and implemented as `classif.binomial` in **mlr**.
@@ -433,7 +464,7 @@ perf_level = makeResampleDesc(method = "SpRepCV", folds = 5, reps = 100)
 
 To execute the spatial resampling, we run `resample()` using the specified learner, task, resampling strategy and of course the performance measure, here the AUROC.
 This takes some time (around 10 seconds on a modern laptop) because it computes the AUROC for 500 models. 
-Setting a seed ensures the reprocubility of the obtained result and will ensure the same spatial partitioning when re-running the code.
+Setting a seed ensures the reproducibility of the obtained result and will ensure the same spatial partitioning when re-running the code.
 
 <!-- I just thought it might be worth showing the differences between an error on the fold level and repetition level but aggregating to the rep level is not a one-liner in mlr -->
 
@@ -714,8 +745,8 @@ The following command shows the best hyperparameter combination of the first fol
 
 
 ```r
-# winning hyperparameters of tuning step, i.e. the best combination out of 50 *
-# 5 models
+# winning hyperparameters of tuning step, 
+# i.e. the best combination out of 50 * 5 models
 result$extract[[1]]$x
 #> $C
 #> [1] 0.458

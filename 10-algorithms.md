@@ -78,8 +78,8 @@ It is hard to enforce reproducibility in R scripts, but there are tools that can
 By default RStudio 'code-checks' R scripts and underlines faulty code with a red wavy line, as illustrated below:
 
 <div class="figure" style="text-align: center">
-<img src="figures/codecheck.png" alt="Illustration of 'code checking' in RStudio. This example, from the script 10-centroid-alg.R, highlights an unclosed curly bracket on line 11." width="772" />
-<p class="caption">(\#fig:codecheck)Illustration of 'code checking' in RStudio. This example, from the script 10-centroid-alg.R, highlights an unclosed curly bracket on line 11.</p>
+<img src="figures/codecheck.png" alt="Illustration of 'code checking' in RStudio. This example, from the script 10-centroid-alg.R, highlights an unclosed curly bracket on line 19." width="370" />
+<p class="caption">(\#fig:codecheck)Illustration of 'code checking' in RStudio. This example, from the script 10-centroid-alg.R, highlights an unclosed curly bracket on line 19.</p>
 </div>
 
 
@@ -114,7 +114,7 @@ source("https://git.io/10-centroid-alg.R") # short url
 ## Geographic algorithms
 
 Algorithms can be understood as the computing equivalent of a cooking recipe.
-They are a complete set of instructions which, when undertaken on the input (ingredients)<!-- does that make sense? -->, result in useful (tasty) outputs.
+They are a complete set of instructions which, when undertaken on the input (ingredients), result in useful (tasty) outputs.
 Before diving into a concrete case study, a brief history will show how they relate to scripts (covered in section \@ref(scripts)) and functions (which can be used to generalize algorithms, as we'll see in section \@ref(functions)).
 
 The word algorithm originated in 9^th^ Century Baghdad with the publication of *Hisab al-jabr w’al-muqabala*, an early maths textbook.

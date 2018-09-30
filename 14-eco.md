@@ -67,8 +67,8 @@ All the data needed for the subsequent analyses is available via the **RQGIS** p
 data("study_area", "random_points", "comm", "dem", "ndvi")
 ```
 
-`study_area` is an sf polygon representing the outlines of the study area.
-`random_points` is an sf-object, and contains the 100 randomly chosen sites.
+`study_area` is an `sf` polygon representing the outlines of the study area.
+`random_points` is an `sf` object, and contains the 100 randomly chosen sites.
 `comm` is a community matrix of the wide data format [@wickham_tidy_2014] where the rows represent the visited sites in the field and the columns the observed species.
 ^[In statistics this is also called a contingency or cross-table.]
 
@@ -150,8 +150,7 @@ Let us add two more raster objects to the list, namely `dem` and `ndvi`, and con
 
 
 ```r
-ep = c(dem, ndvi, ep) %>%
-  stack()
+ep = stack(c(dem, ndvi, ep))
 names(ep) = c("dem", "ndvi", "carea", "cslope")
 ```
 
@@ -284,8 +283,7 @@ We will also use the resulting dataframe for the **mlr** modeling later on.
 ```r
 # construct response-predictor matrix
 # id- and response variable
-rp = data.frame(id = as.numeric(rownames(sc)),
-                sc = sc[, 1])
+rp = data.frame(id = as.numeric(rownames(sc)), sc = sc[, 1])
 # join the predictors (dem, ndvi and terrain attributes)
 rp = inner_join(random_points, rp, by = "id")
 ```
@@ -306,7 +304,7 @@ text(tree_mo, pretty = 0)
 
 
 <div class="figure" style="text-align: center">
-<img src="figures/tree-1.png" alt="Simple example of a decision tree with three internal nodes and four terminal nodes." width="576" />
+<img src="figures/14_tree.png" alt="Simple example of a decision tree with three internal nodes and four terminal nodes." width="550" />
 <p class="caption">(\#fig:tree)Simple example of a decision tree with three internal nodes and four terminal nodes.</p>
 </div>
 
@@ -492,7 +490,7 @@ pred[] = pred_rf$data$response
 The predictive mapping clearly reveals distinct vegetation belts (Figure \@ref(fig:rf-pred)).
 Please refer to @muenchow_soil_2013 for a detailed descriptions of vegetation belts on **lomas** mountains.
 The blue color tones represent the so-called *Tillandsia*-belt.
-`Tillandsia` is a highly adapted genus especially found in high quantities at the sandy and quite desertic foot of *lomas* mountains.
+*Tillandsia* is a highly adapted genus especially found in high quantities at the sandy and quite desertic foot of *lomas* mountains.
 The yellow color tones refer to a herbaceous vegetation belt with a much higher plant cover compared to the *Tillandsia*-belt.
 The orange colors represent the bromeliad belt, which features the highest species richness and plant cover.
 It can be found directly beneath the temperature inversion (ca. 750-850 m asl) where humidity due to fog is highest.
