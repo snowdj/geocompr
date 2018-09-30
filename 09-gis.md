@@ -19,7 +19,7 @@ library(rgrass7)
 ## Introduction
 
 A defining feature of R is the way you interact with it:
-you type commands and hit `Enter` (or `Ctl+Enter` if writing code in the source editor in RStudio) to execute them interactively.
+you type commands and hit `Enter` (or `Ctrl+Enter` if writing code in the source editor in RStudio) to execute them interactively.
 This way of interacting with the computer is called a command-line interface (CLI) (see definition in the note below).
 CLIs are not unique to R.^[
 Other 'command-lines' include terminals for interacting with the operating system and other interpreted languages such as Python.
@@ -58,7 +58,7 @@ A good CLI:
 - Enables transparency and reproducibility, the backbone of good scientific practice and data science.
 - Encourages software development by providing tools to modify existing functions and implement new ones.
 - Helps develop future-proof programming skills which are in high demand in many disciplines and industries.
-- Is user-friendly and fast, allowing an efficient work-flow.
+- Is user-friendly and fast, allowing an efficient workflow.
 
 On the other hand, GUI-based GIS systems (particularly QGIS) are also advantageous.
 A good GIS GUI:
@@ -388,11 +388,6 @@ rsaga.wetness.index(in.dem = file.path(tempdir(), "dem"),
 Of course, we would like to inspect our result visually (Figure \@ref(fig:saga-twi)). 
 To load and plot the SAGA output file, we use the **raster** package. 
 
-<div class="figure" style="text-align: center">
-<img src="figures/09_twi.png" alt="SAGA wetness index of Mount Mongón, Peru." width="50%" />
-<p class="caption">(\#fig:saga-twi)SAGA wetness index of Mount Mongón, Peru.</p>
-</div>
-
 
 ```r
 library(raster)
@@ -400,6 +395,11 @@ twi = raster::raster(file.path(tempdir(), "twi.sdat"))
 # shown is a version using tmap
 plot(twi, col = RColorBrewer::brewer.pal(n = 9, name = "Blues"))
 ```
+
+<div class="figure" style="text-align: center">
+<img src="figures/09_twi.png" alt="SAGA wetness index of Mount Mongón, Peru." width="50%" />
+<p class="caption">(\#fig:saga-twi)SAGA wetness index of Mount Mongón, Peru.</p>
+</div>
 
 
 
@@ -441,9 +441,8 @@ Remember that the geometry column is sticky, hence, even though we are just sele
 
 
 ```r
-library(sf)
 library(osmdata)
-b_box = sf::st_bbox(points)
+b_box = st_bbox(points)
 london_streets = opq(b_box) %>%
   add_osm_feature(key = "highway") %>%
   osmdata_sf() %>%
@@ -468,7 +467,7 @@ In order to share spatial data with all users of a project, the database owner c
 Please refer to @neteler_open_2008 and the [GRASS GIS quick start](https://grass.osgeo.org/grass75/manuals/helptext.html) for more information on the GRASS geodatabase system.
 
 You have to set up a location and a mapset if you want to use GRASS from within R.
-First of all, we need to find out if and where GRASS7 is installed on the computer.
+First of all, we need to find out if and where GRASS 7 is installed on the computer.
 
 
 ```r
@@ -477,15 +476,15 @@ link = findGRASS()
 ```
 
 `link` is a `data.frame` which contains in its rows the GRASS 7 installations on your computer. 
-Here, we will use a GRASS7 installation.
-If you have not installed GRASS7 on your computer, we recommend that you do so now.
+Here, we will use a GRASS 7 installation.
+If you have not installed GRASS 7 on your computer, we recommend that you do so now.
 Assuming that we have found a working installation on your computer, we use the corresponding path in `initGRASS`. 
 Additionally, we specify where to store the geodatabase (gisDbase), name the location `london`, and use the PERMANENT mapset.
 
 
 ```r
 library(rgrass7)
-# find a GRASS7 installation, and use the first one
+# find a GRASS 7 installation, and use the first one
 ind = grep("7", link$version)[1]
 # next line of code only necessary if we want to use GRASS as installed by 
 # OSGeo4W. Among others, this adds some paths to PATH, which are also needed
@@ -508,8 +507,8 @@ Subsequently, we define the projection, the extent and the resolution.
 
 ```r
 execGRASS("g.proj", flags = c("c", "quiet"), 
-          proj4 = sf::st_crs(london_streets)$proj4string)
-b_box = sf::st_bbox(london_streets) 
+          proj4 = st_crs(london_streets)$proj4string)
+b_box = st_bbox(london_streets) 
 execGRASS("g.region", flags = c("quiet"), 
           n = as.character(b_box["ymax"]), s = as.character(b_box["ymin"]), 
           e = as.character(b_box["xmax"]), w = as.character(b_box["xmin"]), 
@@ -522,7 +521,7 @@ The only thing you need to provide is a spatial object which determines the proj
 First, `linkGRASS7()` finds all GRASS installations on your computer.
 Since we have set `ver_select` to `TRUE`, we can interactively choose one of the found GRASS-installations.
 If there is just one installation, the `linkGRASS7()` automatically chooses this one.
-Secondly, `linkGRASS7()` establishes a connection to GRASS7.
+Secondly, `linkGRASS7()` establishes a connection to GRASS 7.
  
 
 ```r
@@ -629,7 +628,7 @@ By all means, there are use cases when you certainly should use one of the other
 Though QGIS is the only GIS providing a unified interface to several GIS software packages, it only provides access to a subset of the corresponding third-party geoalgorithms (for more information please refer to @muenchow_rqgis:_2017).
 Therefore, to use the complete set of SAGA and GRASS functions, stick with **RSAGA** and **rgrass7**. 
 When doing so, take advantage of **RSAGA**'s numerous user-friendly functions.
-Note also, that **RSAGA** offers native R functions for geocomputation such as `multi.local.function`, `pick.from.grid` and many more.
+Note also, that **RSAGA** offers native R functions for geocomputation such as `multi.local.function()`, `pick.from.grid()` and many more.
 **RSAGA** supports much more SAGA versions than (R)QGIS.
 Finally, if you need topological correct data and/or geodatabase-management functionality such as multi-user access, we recommend the usage of GRASS. 
 In addition, if you would like to run simulations with the help of a geodatabase [@krug_clearing_2010], use **rgrass7** directly since **RQGIS** always starts a new GRASS session for each call.
@@ -690,7 +689,7 @@ Furthermore, **sf** brings most of the power provided by GDAL, GEOS and PROJ to 
 ### Bridges to spatial databases {#postgis}
 
 Spatial database management systems (spatial DBMS) store spatial and non-spatial data in a structured way.
-They can organise large collections of data into related tables (entities) via unique identifiers (primary and foreign keys) and implicitly via space (think for instance of a spatial join). 
+They can organize large collections of data into related tables (entities) via unique identifiers (primary and foreign keys) and implicitly via space (think for instance of a spatial join). 
 This is useful because geographic datasets tend to become big and messy quite quickly.
 Databases enable storing and querying large datasets efficiently based on spatial and non-spatial fields, and provide multi-user access and topology support.
 
