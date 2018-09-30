@@ -997,6 +997,10 @@ We choose the first layer <code>Placemarks</code> and say so with the help of th
 <a class="sourceLine" id="cb241-14" data-line-number="14"><span class="co">#&gt; 9       Extruded Polygon                      1     11</span></a>
 <a class="sourceLine" id="cb241-15" data-line-number="15"><span class="co">#&gt; 10 Absolute and Relative                      4     11</span></a>
 <a class="sourceLine" id="cb241-16" data-line-number="16">kml =<span class="st"> </span><span class="kw">read_sf</span>(url, <span class="dt">layer =</span> <span class="st">&quot;Placemarks&quot;</span>)</a></code></pre></div>
+<p>All the examples presented in this section so far have used the <strong>sf</strong> package for geographic data import.
+It is fast and flexible but it may be worth looking at other packages for specific file formats.
+An example is the <strong>geojsonsf</strong> package.
+A <a href="https://github.com/ATFutures/geobench">benchmark</a> suggests it is around 10 times faster than the <strong>sf</strong> package for reading <code>.geojson</code>.</p>
 </div>
 <div id="raster-data-1" class="section level3">
 <h3><span class="header-section-number">7.5.2</span> Raster data</h3>
