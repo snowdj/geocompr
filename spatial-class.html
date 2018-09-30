@@ -526,9 +526,9 @@ Simple Features is a hierarchical data model that represents a wide range of geo
 Of 17 geometry types supported by the specification, only 7 are used in the vast majority of geographic research (see Figure <a href="spatial-class.html#fig:sf-ogc">2.2</a>);
 these core geometry types are fully supported by R package <strong>sf</strong> <span class="citation">(E. Pebesma <a href="#ref-pebesma_simple_2018">2018</a>)</span>.<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a></p>
 <div class="figure" style="text-align: center"><span id="fig:sf-ogc"></span>
-<img src="figures/sf-classes.png" alt="The subset of the Simple Features class hierarchy supported by sf." width="60%" />
+<img src="figures/sf-classes.png" alt="Simple feature types fully supported by sf." width="60%" />
 <p class="caption">
-Figure 2.2: The subset of the Simple Features class hierarchy supported by sf.
+Figure 2.2: Simple feature types fully supported by sf.
 </p>
 </div>
 <p><strong>sf</strong> can represent all common vector geometry types (raster data classes are not supported by <strong>sf</strong>): points, lines, polygons and their respective ‘multi’ versions (which group together features of the same type into a single feature).
@@ -690,9 +690,9 @@ This is used to plot India in the context of its giant Asian neighbors, with an 
 <a class="sourceLine" id="cb17-2" data-line-number="2"><span class="kw">plot</span>(<span class="kw">st_geometry</span>(india), <span class="dt">expandBB =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.2</span>, <span class="fl">0.1</span>, <span class="dv">1</span>), <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>, <span class="dt">lwd =</span> <span class="dv">3</span>)</a>
 <a class="sourceLine" id="cb17-3" data-line-number="3"><span class="kw">plot</span>(world_asia[<span class="dv">0</span>], <span class="dt">add =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:china"></span>
-<img src="figures/china-1.png" alt="India in context, demonstrating how the expandBB argument can be used to control zoom in static plots." width="50%" />
+<img src="figures/china-1.png" alt="India in context, demonstrating the expandBB argument." width="50%" />
 <p class="caption">
-Figure 2.6: India in context, demonstrating how the expandBB argument can be used to control zoom in static plots.
+Figure 2.6: India in context, demonstrating the expandBB argument.
 </p>
 </div>
 <p>Note the use of <code>[0]</code> to keep only the geometry column and <code>lwd</code> to emphasize India.
@@ -738,9 +738,9 @@ However, <strong>sf</strong> also allows multiple geometries to exist within a s
 <li>Multipolygon - <code>MULTIPOLYGON (((1 5, 2 2, 4 1, 4 4, 1 5), (0 2, 1 2, 1 3, 0 3, 0 2)))</code></li>
 </ul>
 <div class="figure" style="text-align: center"><span id="fig:multis"></span>
-<img src="figures/multis-1.png" alt="Illustration of multipoint, mutlilinestring and multipolygon geometries." width="576" />
+<img src="figures/multis-1.png" alt="Illustration of multi* geometries." width="576" />
 <p class="caption">
-Figure 2.8: Illustration of multipoint, mutlilinestring and multipolygon geometries.
+Figure 2.8: Illustration of multi* geometries.
 </p>
 </div>
 <p>Finally, a geometrycollection might contain any combination of geometries including (multi)points and linestrings (see Figure <a href="spatial-class.html#fig:geomcollection">2.9</a>):</p>
@@ -748,9 +748,9 @@ Figure 2.8: Illustration of multipoint, mutlilinestring and multipolygon geometr
 <li>Geometry collection - <code>GEOMETRYCOLLECTION (MULTIPOINT (5 2, 1 3, 3 4, 3 2), LINESTRING (1 5, 4 4, 4 1, 2 2, 3 2))</code></li>
 </ul>
 <div class="figure" style="text-align: center"><span id="fig:geomcollection"></span>
-<img src="figures/geomcollection-1.png" alt="Illustration of geometry collection." width="33%" />
+<img src="figures/geomcollection-1.png" alt="Illustration of a geometry collection." width="33%" />
 <p class="caption">
-Figure 2.9: Illustration of geometry collection.
+Figure 2.9: Illustration of a geometry collection.
 </p>
 </div>
 </div>
@@ -974,18 +974,18 @@ This and map algebra makes raster processing much more efficient and faster than
 However, in contrast to vector data, the cell of one raster layer can only hold a single value.
 The value might be numeric or categorical (Figure <a href="spatial-class.html#fig:raster-intro-plot">2.10</a>:C).</p>
 <div class="figure" style="text-align: center"><span id="fig:raster-intro-plot"></span>
-<img src="figures/raster-intro-plot-1.png" alt="Raster data: A - cell IDs; B - cell values; C - a colored raster map." width="576" />
+<img src="figures/raster-intro-plot-1.png" alt="Raster data types (cell IDs, cell values, a colored raster map, from left to right)." width="576" />
 <p class="caption">
-Figure 2.10: Raster data: A - cell IDs; B - cell values; C - a colored raster map.
+Figure 2.10: Raster data types (cell IDs, cell values, a colored raster map, from left to right).
 </p>
 </div>
 <p>Raster maps usually represent continuous phenomena such as elevation, temperature, population density or spectral data (Figure <a href="spatial-class.html#fig:raster-intro-plot2">2.11</a>).
 Of course, we can represent discrete features such as soil or land-cover classes also with the help of a raster data model (Figure <a href="spatial-class.html#fig:raster-intro-plot2">2.11</a>).
 Consequently, the discrete borders of these features become blurred, and depending on the spatial task a vector representation might be more suitable.</p>
 <div class="figure" style="text-align: center"><span id="fig:raster-intro-plot2"></span>
-<img src="figures/raster-intro-plot2-1.png" alt="Examples of continuous (left) and categorical (right) raster." width="576" />
+<img src="figures/raster-intro-plot2-1.png" alt="Examples of continuous (left) and categorical (right) rasters." width="576" />
 <p class="caption">
-Figure 2.11: Examples of continuous (left) and categorical (right) raster.
+Figure 2.11: Examples of continuous (left) and categorical (right) rasters.
 </p>
 </div>
 <div id="an-introduction-to-raster" class="section level3">
@@ -1266,9 +1266,9 @@ For this, we need to read-in a vector dataset:</p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1">new_vector =<span class="st"> </span><span class="kw">st_set_crs</span>(new_vector, <span class="dv">26912</span>) <span class="co"># set CRS</span></a></code></pre></div>
 <p>The warning message informs us that the <code>st_set_crs()</code> function does not transform data from one CRS to another.</p>
 <div class="figure" style="text-align: center"><span id="fig:vector-crs"></span>
-<img src="figures/02_vector_crs.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a vector data type." width="475" />
+<img src="figures/02_vector_crs.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) coordinate systems for a vector data type." width="475" />
 <p class="caption">
-Figure 2.13: Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a vector data type.
+Figure 2.13: Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) coordinate systems for a vector data type.
 </p>
 </div>
 <p>The <code>projection()</code> function can be used to access CRS information from a <code>Raster*</code> object:</p>
@@ -1279,9 +1279,9 @@ The main difference, compared to vector data, is that raster objects only accept
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw">projection</span>(new_raster) =<span class="st"> &quot;+proj=utm +zone=12 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 </span></a>
 <a class="sourceLine" id="cb50-2" data-line-number="2"><span class="st">                            +units=m +no_defs&quot;</span> <span class="co"># set CRS</span></a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:raster-crs"></span>
-<img src="figures/02_raster_crs.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a raster data type." width="475" />
+<img src="figures/02_raster_crs.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) coordinate systems for raster data." width="475" />
 <p class="caption">
-Figure 2.14: Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a raster data type.
+Figure 2.14: Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) coordinate systems for raster data.
 </p>
 </div>
 <p>We will expand on CRSs and how to project from one CRS to another in much more detail in chapter <a href="reproj-geo-data.html#reproj-geo-data">6</a>.

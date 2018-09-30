@@ -150,8 +150,8 @@ All 17 types can be represented with the **sf** package, although (as of summer 
 ]
 
 <div class="figure" style="text-align: center">
-<img src="figures/sf-classes.png" alt="The subset of the Simple Features class hierarchy supported by sf." width="60%" />
-<p class="caption">(\#fig:sf-ogc)The subset of the Simple Features class hierarchy supported by sf.</p>
+<img src="figures/sf-classes.png" alt="Simple feature types fully supported by sf." width="60%" />
+<p class="caption">(\#fig:sf-ogc)Simple feature types fully supported by sf.</p>
 </div>
 
 **sf** can represent all common vector geometry types (raster data classes are not supported by **sf**): points, lines, polygons and their respective 'multi' versions (which group together features of the same type into a single feature).
@@ -380,8 +380,8 @@ plot(world_asia[0], add = TRUE)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="figures/china-1.png" alt="India in context, demonstrating how the expandBB argument can be used to control zoom in static plots." width="50%" />
-<p class="caption">(\#fig:china)India in context, demonstrating how the expandBB argument can be used to control zoom in static plots.</p>
+<img src="figures/china-1.png" alt="India in context, demonstrating the expandBB argument." width="50%" />
+<p class="caption">(\#fig:china)India in context, demonstrating the expandBB argument.</p>
 </div>
 
 Note the use of `[0]` to keep only the geometry column and `lwd` to emphasize India.
@@ -434,8 +434,8 @@ However, **sf** also allows multiple geometries to exist within a single feature
 - Multipolygon - `MULTIPOLYGON (((1 5, 2 2, 4 1, 4 4, 1 5), (0 2, 1 2, 1 3, 0 3, 0 2)))`
 
 <div class="figure" style="text-align: center">
-<img src="figures/multis-1.png" alt="Illustration of multipoint, mutlilinestring and multipolygon geometries." width="576" />
-<p class="caption">(\#fig:multis)Illustration of multipoint, mutlilinestring and multipolygon geometries.</p>
+<img src="figures/multis-1.png" alt="Illustration of multi* geometries." width="576" />
+<p class="caption">(\#fig:multis)Illustration of multi* geometries.</p>
 </div>
 
 Finally, a geometrycollection might contain any combination of geometries including (multi)points and linestrings (see Figure \@ref(fig:geomcollection)):
@@ -443,8 +443,8 @@ Finally, a geometrycollection might contain any combination of geometries includ
 - Geometry collection - `GEOMETRYCOLLECTION (MULTIPOINT (5 2, 1 3, 3 4, 3 2), LINESTRING (1 5, 4 4, 4 1, 2 2, 3 2))`
 
 <div class="figure" style="text-align: center">
-<img src="figures/geomcollection-1.png" alt="Illustration of geometry collection." width="33%" />
-<p class="caption">(\#fig:geomcollection)Illustration of geometry collection.</p>
+<img src="figures/geomcollection-1.png" alt="Illustration of a geometry collection." width="33%" />
+<p class="caption">(\#fig:geomcollection)Illustration of a geometry collection.</p>
 </div>
 
 ### Simple feature geometries (sfg) {#sfg}
@@ -760,8 +760,8 @@ However, in contrast to vector data, the cell of one raster layer can only hold 
 The value might be numeric or categorical (Figure  \@ref(fig:raster-intro-plot):C).
 
 <div class="figure" style="text-align: center">
-<img src="figures/raster-intro-plot-1.png" alt="Raster data: A - cell IDs; B - cell values; C - a colored raster map." width="576" />
-<p class="caption">(\#fig:raster-intro-plot)Raster data: A - cell IDs; B - cell values; C - a colored raster map.</p>
+<img src="figures/raster-intro-plot-1.png" alt="Raster data types (cell IDs, cell values, a colored raster map, from left to right)." width="576" />
+<p class="caption">(\#fig:raster-intro-plot)Raster data types (cell IDs, cell values, a colored raster map, from left to right).</p>
 </div>
 
 Raster maps usually represent continuous phenomena such as elevation, temperature, population density or spectral data (Figure \@ref(fig:raster-intro-plot2)).
@@ -769,8 +769,8 @@ Of course, we can represent discrete features such as soil or land-cover classes
 Consequently, the discrete borders of these features become blurred, and depending on the spatial task a vector representation might be more suitable.
 
 <div class="figure" style="text-align: center">
-<img src="figures/raster-intro-plot2-1.png" alt="Examples of continuous (left) and categorical (right) raster." width="576" />
-<p class="caption">(\#fig:raster-intro-plot2)Examples of continuous (left) and categorical (right) raster.</p>
+<img src="figures/raster-intro-plot2-1.png" alt="Examples of continuous (left) and categorical (right) rasters." width="576" />
+<p class="caption">(\#fig:raster-intro-plot2)Examples of continuous (left) and categorical (right) rasters.</p>
 </div>
 
 ### An introduction to raster
@@ -1137,8 +1137,8 @@ new_vector = st_set_crs(new_vector, 26912) # set CRS
 The warning message informs us that the `st_set_crs()` function does not transform data from one CRS to another.
 
 <div class="figure" style="text-align: center">
-<img src="figures/02_vector_crs.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a vector data type." width="475" />
-<p class="caption">(\#fig:vector-crs)Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a vector data type.</p>
+<img src="figures/02_vector_crs.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) coordinate systems for a vector data type." width="475" />
+<p class="caption">(\#fig:vector-crs)Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) coordinate systems for a vector data type.</p>
 </div>
 
 The `projection()` function can be used to access CRS information from a `Raster*` object: 
@@ -1159,8 +1159,8 @@ projection(new_raster) = "+proj=utm +zone=12 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0
 ```
 
 <div class="figure" style="text-align: center">
-<img src="figures/02_raster_crs.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a raster data type." width="475" />
-<p class="caption">(\#fig:raster-crs)Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) and coordinate systems for a raster data type.</p>
+<img src="figures/02_raster_crs.png" alt="Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) coordinate systems for raster data." width="475" />
+<p class="caption">(\#fig:raster-crs)Examples of geographic (WGS 84; left) and projected (NAD83 / UTM zone 12N; right) coordinate systems for raster data.</p>
 </div>
 
 We will expand on CRSs and how to project from one CRS to another in much more detail in chapter \@ref(reproj-geo-data).
