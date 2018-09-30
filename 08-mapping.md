@@ -660,8 +660,8 @@ tm_shape(world_coffee) + tm_polygons(facets) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="https://user-images.githubusercontent.com/1825120/39561412-4dbba7ba-4e9d-11e8-885c-7973b351006b.png" alt="Faceted interactive maps of global coffee producing in 2016 and 2017 in 'sync', demonstrating tmap's view mode in action."  />
-<p class="caption">(\#fig:sync)Faceted interactive maps of global coffee producing in 2016 and 2017 in 'sync', demonstrating tmap's view mode in action.</p>
+<img src="https://user-images.githubusercontent.com/1825120/39561412-4dbba7ba-4e9d-11e8-885c-7973b351006b.png" alt="Faceted interactive maps of global coffee production in 2016 and 2017 in 'sync', demonstrating tmap's view mode in action."  />
+<p class="caption">(\#fig:sync)Faceted interactive maps of global coffee production in 2016 and 2017 in 'sync', demonstrating tmap's view mode in action.</p>
 </div>
 
 Switch **tmap** back to plotting mode with the same function:
