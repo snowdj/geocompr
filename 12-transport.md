@@ -510,8 +510,8 @@ plot(ways_sln@sl$geometry, lwd = e / 500)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="figures/unnamed-chunk-25-1.png" alt="Illustration of a small route network, with segment thickness proportional to its betweeness, generated using the igraph package and described in the text." width="576" />
-<p class="caption">(\#fig:unnamed-chunk-25)Illustration of a small route network, with segment thickness proportional to its betweeness, generated using the igraph package and described in the text.</p>
+<img src="figures/Illustration of a small route network.-1.png" alt="Illustration of a small route network, with segment thickness proportional to its betweeness, generated using the igraph package and described in the text." width="576" />
+<p class="caption">(\#fig:Illustration of a small route network.)Illustration of a small route network, with segment thickness proportional to its betweeness, generated using the igraph package and described in the text.</p>
 </div>
 
 

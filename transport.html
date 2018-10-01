@@ -828,10 +828,10 @@ The results demonstrate that each graph edge represents a segment: the segments 
 <div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb406-1" data-line-number="1">g =<span class="st"> </span>ways_sln<span class="op">@</span>g</a>
 <a class="sourceLine" id="cb406-2" data-line-number="2">e =<span class="st"> </span>igraph<span class="op">::</span><span class="kw">edge_betweenness</span>(ways_sln<span class="op">@</span>g)</a>
 <a class="sourceLine" id="cb406-3" data-line-number="3"><span class="kw">plot</span>(ways_sln<span class="op">@</span>sl<span class="op">$</span>geometry, <span class="dt">lwd =</span> e <span class="op">/</span><span class="st"> </span><span class="dv">500</span>)</a></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-25"></span>
-<img src="figures/unnamed-chunk-25-1.png" alt="Illustration of a small route network, with segment thickness proportional to its betweeness, generated using the igraph package and described in the text." width="576" />
+<div class="figure" style="text-align: center">
+<img src="figures/Illustration%20of%20a%20small%20route%20network.-1.png" alt="Illustration of a small route network, with segment thickness proportional to its betweeness, generated using the igraph package and described in the text." width="576" />
 <p class="caption">
-Figure 12.5: Illustration of a small route network, with segment thickness proportional to its betweeness, generated using the igraph package and described in the text.
+(#fig:Illustration of a small route network.)Illustration of a small route network, with segment thickness proportional to its betweeness, generated using the igraph package and described in the text.
 </p>
 </div>
 <p>One can also find the shortest route between origins and destinations using this graph representation of the route network.
@@ -857,19 +857,19 @@ It adds the car-dependent routes in <code>route_carshort</code> with a newly-cre
 <a class="sourceLine" id="cb409-4" data-line-number="4"><span class="st">  </span><span class="kw">st_set_crs</span>(<span class="dv">4326</span>)</a></code></pre></div>
 <div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb410-1" data-line-number="1">route_cycleway =<span class="st"> </span><span class="kw">rbind</span>(route_rail, route_carshort)</a>
 <a class="sourceLine" id="cb410-2" data-line-number="2">route_cycleway<span class="op">$</span>all =<span class="st"> </span><span class="kw">c</span>(desire_rail<span class="op">$</span>all, desire_carshort<span class="op">$</span>all)</a></code></pre></div>
-<p>The results of the preceding code are visualized in Figure <a href="transport.html#fig:cycleways">12.6</a>, which shows routes with high levels of car dependency and highlights opportunities for cycling rail stations (the subsequent code chunk creates a simple version of the figure — see <code>code/12-cycleways.R</code> to reproduce the figure exactly).
+<p>The results of the preceding code are visualized in Figure <a href="transport.html#fig:cycleways">12.5</a>, which shows routes with high levels of car dependency and highlights opportunities for cycling rail stations (the subsequent code chunk creates a simple version of the figure — see <code>code/12-cycleways.R</code> to reproduce the figure exactly).
 The method has some the limitations: in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode.
 However the results demonstrate routes along which cycle paths could be prioritized from car dependency and public transport perspectives.</p>
 <div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb411-1" data-line-number="1"><span class="kw">qtm</span>(route_cycleway, <span class="dt">lines.lwd =</span> <span class="st">&quot;all&quot;</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:cycleways"></span>
 <img src="figures/cycleways-1.png" alt="Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips." width="576" />
 <p class="caption">
-Figure 12.6: Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.
+Figure 12.5: Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips.
 </p>
 </div>
 <!-- Much more work is needed to create a realistic strategic cycle network but the analysis shows that R can be used to create a transparent and reproducible evidence base for transport applications. -->
 <p>The results may look more attractive in an interactive map, but what do they mean?
-The routes highlighted in Figure <a href="transport.html#fig:cycleways">12.6</a> suggest that transport systems are intimately linked to the wider economic and social context.
+The routes highlighted in Figure <a href="transport.html#fig:cycleways">12.5</a> suggest that transport systems are intimately linked to the wider economic and social context.
 The example of Stoke Bradley is a case in point:
 its location, lack of public transport services and active travel infrastructure help explain why it is so highly car-dependent.
 The wider point is that car dependency has a spatial distribution which has implications for sustainable transport policies <span class="citation">(Hickman, Ashiru, and Banister <a href="#ref-hickman_transitions_2011">2011</a>)</span>.</p>
@@ -900,7 +900,7 @@ Similar tools could be used to encourage evidence-based transport policies relat
 <div id="ex-transport" class="section level2">
 <h2><span class="header-section-number">12.10</span> Exercises</h2>
 <ol style="list-style-type: decimal">
-<li>What is the total distance of cycleways that would be constructed if all the routes presented in Figure <a href="transport.html#fig:cycleways">12.6</a> were to be constructed?
+<li>What is the total distance of cycleways that would be constructed if all the routes presented in Figure <a href="transport.html#fig:cycleways">12.5</a> were to be constructed?
 <ul>
 <li>Bonus: find two ways of arriving at the same answer.</li>
 </ul></li>
@@ -914,7 +914,7 @@ Similar tools could be used to encourage evidence-based transport policies relat
 <!-- Use cycle-specific routing services. -->
 <!-- Identify key walking routes. -->
 <!-- Include a higher proportion of trips in the analysis --></li>
-<li>Clearly the routes identified in Figure <a href="transport.html#fig:cycleways">12.6</a> only provide part of the picture. How would you extend the analysis to incorporate more trips that could potentially be cycled?</li>
+<li>Clearly the routes identified in Figure <a href="transport.html#fig:cycleways">12.5</a> only provide part of the picture. How would you extend the analysis to incorporate more trips that could potentially be cycled?</li>
 <li>Imagine that you want to extend the scenario by creating key <em>areas</em> (not routes) for investment in place-based cycling policies such as car-free zones, cycle parking points and reduced car parking strategy. How could raster data assist with this work?
 <ul>
 <li>Bonus: develop a raster layer that divides the Bristol region into 100 cells (10 by 10) and provide a metric related to transport policy, such as number of people trips that pass through each cell by walking or the average speed limit of roads, from the <code>bristol_ways</code> dataset (the approach taken in Chapter <a href="location.html#location">13</a>).</li>
