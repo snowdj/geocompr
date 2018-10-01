@@ -417,16 +417,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This book is about using the power of computers to <em>do things</em> with geographic data.
 It teaches a range of spatial skills, including: reading, writing and manipulating geographic data; making static and interactive maps; applying geocomputation to solve real-world problems; and modeling geographic phenomena.
 By demonstrating how various spatial operations can be linked, in reproducible ‘code chunks’ that intersperse the prose, the book also teaches a transparent and thus scientific workflow.
-Learning how to use the wealth of geospatial tools available from the R command line can be exciting but creating <em>new ones</em> can be truly liberating, by removing constraints on your creativity imposed by software.
-After reading the book and completing the exercises you will:
-understand the wide range of geographic operations possible with R,
-have skills and confidence to solve problems with geographic data,
-and share your work with others in maps, R scripts and functions.</p>
+Learning how to use the wealth of geospatial tools available from the R command line can be exciting but creating <em>new ones</em> can be truly liberating.
+Using the command-line driven approach taught throughout, and programming techniques covered in Chapter <a href="algorithms.html#algorithms">10</a>, can help remove constraints on your creativity imposed by software.
+After reading the book and completing the exercises you should therefore feel empowered:
+with new understandings the wide range of geographic operations possible with R;
+having new skills to solve problems with geographic data;
+and new-found skills share your work, in maps, R scripts and functions.</p>
 <p>Over the last few decades free and open source software for geospatial (FOSS4G) has progressed at an astonishing rate.
-Thanks to organisations such as <a href="https://www.osgeo.org/">OSGeo</a> and the wider open source movement, geospatial analysis is no longer the preserve of those with expensive hardware and software: anyone can now download and run high performance spatial libraries.
+Thanks to movements/organisations such as <a href="https://www.osgeo.org/">OSGeo</a>, geospatial analysis is no longer the preserve of those with expensive hardware and software: anyone can now download and run high performance spatial libraries.
 Open source Geographic Information Systems (GIS) such as <a href="http://qgis.org/en/site/">QGIS</a> have made geographic analysis accessible worldwide.
-Many GIS programs provide command-line interfaces (see Chapter <a href="gis.html#gis">9</a>) but emphasize the graphical user interface (GUI).
-This can have the unintended consequence of discouraging reproducibility, as illustrated in Table <a href="intro.html#tab:gdsl">1.1</a>.
+GIS programs tend to emphasize graphical user interfaces (GUIs), with the unintended consequence of discouraging reproducibility (although many can be used from the command line as we’ll see in see in Chapter <a href="gis.html#gis">9</a>).
+R, by contrast, emphasizes the command line interface (CLI).
+A simplistic comparison between the different approaches is illustrated in Table <a href="intro.html#tab:gdsl">1.1</a>.
 <!-- Still, many GIS programs ... but most teaching materials focus on the GUI ... to supplement the main graphical user interface (GUI), but  --></p>
 <table>
 <caption><span id="tab:gdsl">Table 1.1: </span>Differences in emphasis between software packages (Graphical User Interface (GUI) of Geographic Information Systems (GIS) and R).</caption>
@@ -455,10 +457,11 @@ This can have the unintended consequence of discouraging reproducibility, as ill
 </tr>
 </tbody>
 </table>
-<p>Motivated by the importance of reproducibility for scientific research and other advantages of typing commands rather than pointing and clicking, this book focuses on R’s Command Line Interface (CLI) for GIS operations.
-The reproducible and ‘computational’ workflows enabled by R’s CLI can also help unleash its statistical capabilities on geographic data (see section <a href="intro.html#why-geocomputation-with-r">1.2</a> and the note below).
-A major aim of this book is to make geographic data analysis more accessible as part of a reproducible workflow.
-R is a flexible language that allows access to many spatial software libraries (see section <a href="intro.html#why-geocomputation-with-r">1.2</a>).
+<p>This book is motivated by the importance of reproducibility for scientific research (see the note below).
+<!-- , something that is often lacking in geographic work. -->
+It aims to make reproducible geographic data analysis workflows more accessible, and demonstrate the power of open geospatial software available from the command-line.
+“Interfaces to other software are part of R” <span class="citation">(Eddelbuettel and Balamuta <a href="#ref-eddelbuettel_extending_2018">2018</a>)</span>.
+This means that in addition to outstanding ‘in house’ capabilities, R allows access to many other spatial software libraries, explained in section <a href="intro.html#why-geocomputation-with-r">1.2</a> and demonstrated in Chapter <a href="gis.html#gis">9</a>.
 Before going into the details of the software, however, it is worth taking a step back and thinking about what we mean by geocomputation.</p>
 
 <div class="rmdnote">
@@ -759,6 +762,9 @@ As of 2018 map making in R is a hot topic with dedicated packages such as <stron
 
 <h3>References</h3>
 <div id="refs" class="references">
+<div id="ref-eddelbuettel_extending_2018">
+<p>Eddelbuettel, Dirk, and James Joseph Balamuta. 2018. “Extending R with C++: A Brief Introduction to Rcpp.” <em>The American Statistician</em> 72 (1): 28–36. <a href="https://doi.org/10.1080/00031305.2017.1375990" class="uri">https://doi.org/10.1080/00031305.2017.1375990</a>.</p>
+</div>
 <div id="ref-pebesma_r_2012">
 <p>Pebesma, Edzer, Daniel Nüst, and Roger Bivand. 2012. “The R Software Environment in Reproducible Geoscientific Research.” <em>Eos, Transactions American Geophysical Union</em> 93 (16): 163–63. <a href="https://doi.org/10.1029/2012EO160003" class="uri">https://doi.org/10.1029/2012EO160003</a>.</p>
 </div>
