@@ -173,8 +173,8 @@ tmap_arrange(map_nz1, map_nz2, map_nz3)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="figures/tmlayers-1.png" alt="Maps with additional layers added to the final map of Figure 9.1." width="576" />
-<p class="caption">(\#fig:tmlayers)Maps with additional layers added to the final map of Figure 9.1.</p>
+<img src="figures/tmlayers-1.png" alt="Maps with additional layers added to the final map of Figure 8.1." width="576" />
+<p class="caption">(\#fig:tmlayers)Maps with additional layers added to the final map of Figure 8.1.</p>
 </div>
 
 Additional elements can also be added with the `+` operator.
