@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-09-30">
+<meta name="date" content="2018-10-01">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -47,7 +47,7 @@
 
 
 
-<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
@@ -499,7 +499,7 @@ Figure 11.1: Landslide initiation points (red) and points unaffected by landslid
 </div>
 <p>To model landslide susceptibility, we need some predictors.
 Terrain attributes are frequently associated with landsliding <span class="citation">(Muenchow, Brenning, and Richter <a href="#ref-muenchow_geomorphic_2012">2012</a>)</span>, and these can be computed from the digital elevation model (<code>dem</code>) using R-GIS bridges (see Chapter <a href="gis.html#gis">9</a>).
-We leave it as an exercise to the reader to compute the following terrain attribute rasters and extract the corresponding values to our landslide/non-landslide dataframe (see exercises; we also provide the resulting dataframe via the <strong>spDataLarge</strong> package, see further below):</p>
+We leave it as an exercise to the reader to compute the following terrain attribute rasters and extract the corresponding values to our landslide/non-landslide data frame (see exercises; we also provide the resulting data frame via the <strong>spDataLarge</strong> package, see further below):</p>
 <ul>
 <li><code>slope</code>: slope angle (°).</li>
 <li><code>cplan</code>: plan curvature (rad m<sup>−1</sup>) expressing the convergence or divergence of a slope and thus water flow.</li>
@@ -507,7 +507,7 @@ We leave it as an exercise to the reader to compute the following terrain attrib
 <li><code>elev</code>: elevation (m a.s.l.) as the representation of different altitudinal zones of vegetation and precipitation in the study area.</li>
 <li><code>log10_carea</code>: the decadic logarithm of the catchment area (log10 m<sup>2</sup>) representing the amount of water flowing towards a location.</li>
 </ul>
-<p>As a convenience to the reader, the dataframe containing the landslide points with the corresponding terrain attributes is also available in the <strong>spDataLarge</strong> package along with the a terrain attribute raster stack from which the values were extracted.
+<p>As a convenience to the reader, the data frame containing the landslide points with the corresponding terrain attributes is also available in the <strong>spDataLarge</strong> package along with the a terrain attribute raster stack from which the values were extracted.
 Hence, if you have not computed the predictors yourself, attach the corresponding data before running the code of the remaining chapter:</p>
 <div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb360-1" data-line-number="1"><span class="co"># attach landslide points with terrain attributes</span></a>
 <a class="sourceLine" id="cb360-2" data-line-number="2"><span class="kw">data</span>(<span class="st">&quot;lsl&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;spDataLarge&quot;</span>)</a>
@@ -576,7 +576,7 @@ The following command specifies and runs a generalized linear model:</p>
 <ul>
 <li>A formula, which specifies landslide occurrence (<code>lslpts</code>) as a function of the predictors.</li>
 <li>A family, which specifies the type of model, in this case <code>binomial</code> because the response is binary (see <code>?family</code>).</li>
-<li>The dataframe which contains the response and the predictors.</li>
+<li>The data frame which contains the response and the predictors.</li>
 </ul>
 <p>The results of this model can be printed as follows (<code>summary(fit)</code> provides a more detailed account of the results):</p>
 <div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb362-1" data-line-number="1"><span class="kw">class</span>(fit)</a>
@@ -605,7 +605,7 @@ Setting <code>type</code> to <code>response</code> returns the predicted probabi
 <a class="sourceLine" id="cb363-4" data-line-number="4"><span class="co">#&gt; 0.3327 0.4755 0.0995 0.1480 0.3486 0.6766</span></a></code></pre></div>
 <p>Spatial predictions can be made by applying the coefficients to the predictor rasters.
 This can be done manually or with <code>raster::predict()</code>.
-In addition to a model object (<code>fit</code>), this function also expects a raster stack with the predictors named as in the model’s input dataframe (Figure <a href="spatial-cv.html#fig:lsl-susc">11.2</a>).</p>
+In addition to a model object (<code>fit</code>), this function also expects a raster stack with the predictors named as in the model’s input data frame (Figure <a href="spatial-cv.html#fig:lsl-susc">11.2</a>).</p>
 <div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb364-1" data-line-number="1"><span class="co"># making the prediction</span></a>
 <a class="sourceLine" id="cb364-2" data-line-number="2">pred =<span class="st"> </span>raster<span class="op">::</span><span class="kw">predict</span>(ta, <span class="dt">model =</span> fit, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:lsl-susc"></span>
@@ -706,7 +706,7 @@ Since the response is binary (two-category variable) we create a classification 
 The first essential argument of these <code>make*()</code> functions is <code>data</code>.
 The <code>target</code> argument expects the name of a response variable and <code>positive</code> determines which of the two factor levels of the response variable indicate the landslide initiation point (in our case this is <code>TRUE</code>).
 All other variables of the <code>lsl</code> dataset will serve as predictors except for the coordinates (see the result of <code>getTaskFormula(task)</code> for the model formula).
-For spatial CV the <code>coordinates</code> parameter is used (see section <a href="spatial-cv.html#intro-cv">11.4</a> and Figure <a href="spatial-cv.html#fig:partitioning">11.3</a>) which expects the coordinates as a xy-dataframe.</p>
+For spatial CV the <code>coordinates</code> parameter is used (see section <a href="spatial-cv.html#intro-cv">11.4</a> and Figure <a href="spatial-cv.html#fig:partitioning">11.3</a>) which expects the coordinates as a xy data frame.</p>
 <div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb366-1" data-line-number="1"><span class="kw">library</span>(mlr)</a>
 <a class="sourceLine" id="cb366-2" data-line-number="2"><span class="co"># coordinates needed for the spatial partitioning</span></a>
 <a class="sourceLine" id="cb366-3" data-line-number="3">coords =<span class="st"> </span>lsl[, <span class="kw">c</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>)]</a>

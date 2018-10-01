@@ -1084,7 +1084,7 @@ Next, combine this map and the map created in the previous exercise into a singl
 1. Create a land cover map of the Zion National Park.
     - Change the default colors to match your perception of the land cover categories
     - Add a scale bar and north arrow and change the position of both to improve the map's aesthetic appeal
-    - Bonus: Add an inset map of the Zion National Park's location in the context of the Utah state. (Hint: an object representing Utah can be subsetted from the `us_states` dataset.) 
+    - Bonus: Add an inset map of the Zion National Park's location in the context of the Utah state. (Hint: an object representing Utah can be subset from the `us_states` dataset.) 
 
 1. Create facet maps of countries in Eastern Africa:
     - With one facet showing HDI and the other representing population growth (hint: using variables `HDI` and `pop_growth` respectively)

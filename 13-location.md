@@ -430,7 +430,7 @@ Finally, we `rbind` all shops into one large `sf` object.
 ```r
 # select only specific columns
 shops = map(shops, dplyr::select, osm_id, shop)
-# putting all list elements into a single dataframe
+# putting all list elements into a single data frame
 shops = do.call(rbind, shops)
 ```
 

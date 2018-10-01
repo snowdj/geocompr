@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-09-30">
+<meta name="date" content="2018-10-01">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -47,7 +47,7 @@
 
 
 
-<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
@@ -611,7 +611,7 @@ Random forest models are frequently used in environmental and ecological modelin
 Here, we shortly introduce decision trees and bagging, since they form the basis of random forests.
 We refer the reader to <span class="citation">James et al. (<a href="#ref-james_introduction_2013">2013</a>)</span> for a more detailed description of random forests and related techniques.</p>
 <p>To introduce decision trees by example, we first construct a response-predictor matrix by joining the rotated NMDS scores to the field observations (<code>random_points</code>).
-We will also use the resulting dataframe for the <strong>mlr</strong> modeling later on.</p>
+We will also use the resulting data frame for the <strong>mlr</strong> modeling later on.</p>
 <div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb449-1" data-line-number="1"><span class="co"># construct response-predictor matrix</span></a>
 <a class="sourceLine" id="cb449-2" data-line-number="2"><span class="co"># id- and response variable</span></a>
 <a class="sourceLine" id="cb449-3" data-line-number="3">rp =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id =</span> <span class="kw">as.numeric</span>(<span class="kw">rownames</span>(sc)), <span class="dt">sc =</span> sc[, <span class="dv">1</span>])</a>
@@ -667,8 +667,8 @@ For the latter, one estimates the best hyperparameter combination from the compl
 This means, the inner hyperparameter tuning level is no longer needed which makes perfect sense since we are applying our model to new data (unvisited field observations) for which the true outcomes are unavailable, hence testing is impossible in any case.
 Therefore, we tune the hyperparameters for a good spatial prediction on the complete dataset via a 5-fold spatial CV with one repetition.
 <!-- If we used more than one repetition (say 2) we would retrieve multiple optimal tuned hyperparameter combinations (say 2) --></p>
-<p>The preparation for the modeling using the <strong>mlr</strong> package includes the construction of a response-predictor matrix containing only variables which should be used in the modeling and the construction of a separate coordinate dataframe.</p>
-<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb451-1" data-line-number="1"><span class="co"># extract the coordinates into a separate dataframe</span></a>
+<p>The preparation for the modeling using the <strong>mlr</strong> package includes the construction of a response-predictor matrix containing only variables which should be used in the modeling and the construction of a separate coordinate data frame.</p>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb451-1" data-line-number="1"><span class="co"># extract the coordinates into a separate data frame</span></a>
 <a class="sourceLine" id="cb451-2" data-line-number="2">coords =<span class="st"> </span>sf<span class="op">::</span><span class="kw">st_coordinates</span>(rp) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb451-3" data-line-number="3"><span class="st">  </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb451-4" data-line-number="4"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">x =</span> X, <span class="dt">y =</span> Y)</a>
@@ -750,11 +750,11 @@ We simply have to modify our learner using the result of the hyperparameter tuni
 <a class="sourceLine" id="cb456-18" data-line-number="18"><span class="co">#        min.node.sie = tune$x$min.node.size)</span></a></code></pre></div>
 <p>The last step is to apply the model to the spatially available predictors, i.e. to the raster stack.
 So far, <code>raster::predict()</code> does not support the output of <strong>ranger</strong> models, hence, we will have to program the prediction ourselves.
-First, we convert <code>ep</code> into a prediction dataframe which secondly serves as input for the <code>predict.ranger()</code> function.
+First, we convert <code>ep</code> into a prediction data frame which secondly serves as input for the <code>predict.ranger()</code> function.
 Thirdly, we put the predicted values back into a <code>RasterLayer</code> (see section <a href="attr.html#raster-subsetting">3.3.1</a> and Figure <a href="eco.html#fig:rf-pred">14.5</a>).</p>
-<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb457-1" data-line-number="1"><span class="co"># convert raster stack into a dataframe</span></a>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb457-1" data-line-number="1"><span class="co"># convert raster stack into a data frame</span></a>
 <a class="sourceLine" id="cb457-2" data-line-number="2">new_data =<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">as.matrix</span>(ep))</a>
-<a class="sourceLine" id="cb457-3" data-line-number="3"><span class="co"># apply the model to the dataframe</span></a>
+<a class="sourceLine" id="cb457-3" data-line-number="3"><span class="co"># apply the model to the data frame</span></a>
 <a class="sourceLine" id="cb457-4" data-line-number="4">pred_rf =<span class="st"> </span><span class="kw">predict</span>(model_rf, <span class="dt">newdata =</span> new_data)</a>
 <a class="sourceLine" id="cb457-5" data-line-number="5"><span class="co"># put the predicted values into a raster</span></a>
 <a class="sourceLine" id="cb457-6" data-line-number="6">pred =<span class="st"> </span>dem</a>
