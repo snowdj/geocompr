@@ -490,7 +490,9 @@ But there is still overlap in the packages we have used, as illustrated by the d
 <p>Package overlap is not necessarily a bad thing.
 It can increase resilience, performance (partly driven by friendly competition and mutual learning between developers) and choice, a key feature of open source software.
 In this context the decision to use a particular approach, such as the <strong>sf</strong>/<strong>tidyverse</strong>/<strong>raster</strong> ecosystem advocated in this book should be made with knowledge of alternatives.
-The <strong>sp</strong>/<strong>rgdal</strong>/<strong>rgeos</strong> ‘stack’, for example, can do many of the things covered in this book and used in more than 400 packages.<a href="#fn79" class="footnote-ref" id="fnref79"><sup>79</sup></a></p>
+The <strong>sp</strong>/<strong>rgdal</strong>/<strong>rgeos</strong> ecosystem that <strong>sf</strong> is designed to supercede, for example, can do many of the things covered in this book and, due to its age, is built-on by many other packages.<a href="#fn79" class="footnote-ref" id="fnref79"><sup>79</sup></a>
+Although best known for point pattern analysis, the <strong>spatstat</strong> package also supports raster and other vector geometries <span class="citation">(Baddeley and Turner <a href="#ref-baddeley_spatstat_2005">2005</a>)</span>.
+At the time of writing (October 2018) 69 packages depend on it, making it more than a package: <strong>spatstat</strong> is an alternative R-spatial ecosystem.</p>
 <p>It is also being aware of promising alternatives that are under development.
 The package <strong>stars</strong>, for example, provides a new class system for working with spatiotemporal data.
 If you are interested in this topic, you can check for updates on the package’s <a href="https://github.com/r-spatial/stars">source code</a> and the broader <a href="https://cran.r-project.org/web/views/SpatioTemporal.html">SpatialTemporal Task View</a>.
@@ -633,6 +635,9 @@ Whether it’s raising a constructive issue alerting developers to problems in t
 </div>
 <h3>References</h3>
 <div id="refs" class="references">
+<div id="ref-baddeley_spatstat_2005">
+<p>Baddeley, Adrian, and Rolf Turner. 2005. “Spatstat: An R Package for Analyzing Spatial Point Patterns.” <em>Journal of Statistical Software</em> 12 (6): 1–42.</p>
+</div>
 <div id="ref-bivand_applied_2013">
 <p>Bivand, Roger, Edzer J Pebesma, and Virgilio Gómez-Rubio. 2013. <em>Applied Spatial Data Analysis with R</em>. Vol. 747248717. Springer.</p>
 </div>
