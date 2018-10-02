@@ -610,7 +610,8 @@ A great advantage of the open source nature of such libraries is that their sour
 <div id="functions" class="section level2">
 <h2><span class="header-section-number">10.4</span> Functions</h2>
 <p>Like algorithms, functions take an input and return an output.
-The difference is that functions are ‘first class’ objects in R and are more flexible than scripts.
+Functions, however, refer to the implementation in a particular programming language, rather than the ‘recipe’ itself.
+In R functions are objects in their own right, that can be created and joined together in a modular fashion.
 We can, for example, create function that undertakes step 2 of our centroid generation algorithm as follows:</p>
 <div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb347-1" data-line-number="1">t_centroid =<span class="st"> </span><span class="cf">function</span>(x) {</a>
 <a class="sourceLine" id="cb347-2" data-line-number="2">  (x[<span class="dv">1</span>, ] <span class="op">+</span><span class="st"> </span>x[<span class="dv">2</span>, ] <span class="op">+</span><span class="st"> </span>x[<span class="dv">3</span>, ]) <span class="op">/</span><span class="st"> </span><span class="dv">3</span></a>
