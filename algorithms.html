@@ -649,7 +649,7 @@ Thus, the functions <code>t_centroid()</code> and <code>t_area()</code> can be u
 The code chunk below creates the function <code>poly_centroid()</code> to mimic the behavior of <code>sf::st_centroid()</code>:</p>
 <div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb352-1" data-line-number="1">poly_centroid =<span class="st"> </span><span class="cf">function</span>(x) {</a>
 <a class="sourceLine" id="cb352-2" data-line-number="2">  i =<span class="st"> </span><span class="dv">2</span><span class="op">:</span>(<span class="kw">nrow</span>(x) <span class="op">-</span><span class="st"> </span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb352-3" data-line-number="3">  T_all =<span class="st"> </span>T_all =<span class="st"> </span><span class="kw">lapply</span>(i, <span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb352-3" data-line-number="3">  T_all =<span class="st"> </span><span class="kw">lapply</span>(i, <span class="cf">function</span>(x) {</a>
 <a class="sourceLine" id="cb352-4" data-line-number="4">    <span class="kw">rbind</span>(Origin, poly_mat[x<span class="op">:</span>(x <span class="op">+</span><span class="st"> </span><span class="dv">1</span>), ], Origin)</a>
 <a class="sourceLine" id="cb352-5" data-line-number="5">  })</a>
 <a class="sourceLine" id="cb352-6" data-line-number="6">  C_list =<span class="st"> </span><span class="kw">lapply</span>(T_all, t_centroid)</a>
