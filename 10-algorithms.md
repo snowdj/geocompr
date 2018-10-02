@@ -30,7 +30,7 @@ To ease sharing and reproducibility, algorithms can be placed into functions.
 That is the topic of section \@ref(functions).
 <!-- This chapter provides illustrative examples and directs the reader to established resources, to avoid reinventing the wheel. -->
 <!-- The approach taken in this chapter was partly inspired by @xiao_gis_2016, who advocates explanations that are neither highly theoretical (as many academic papers are) -->
-<!-- , with dozens of lines of non-reproducible psuedo-code and equations -->
+<!-- , with dozens of lines of non-reproducible pseudocode and equations -->
 <!-- nor entirely focused on implementations via a GUI or CLI in a particular sofware package (as the first part of this book is, with its focus on implementations in various R packages). -->
 <!-- The focus of this chapter is on understanding, using reproducible code and clear explanation. -->
 The example of finding the centroid of a polygon will be used to tie these concepts together.
@@ -154,6 +154,7 @@ In this case we'll create a polygon with five vertices in base R, building on an
 
 
 ```r
+# generate a simple matrix representation of a polygon:
 x_coords = c(10, 0, 0, 12, 20, 10)
 y_coords = c(0, 0, 10, 20, 15, 0)
 poly_mat = cbind(x_coords, y_coords)
@@ -164,8 +165,10 @@ The code below shows how this can be done by creating a single triangle (`T1`), 
 
 
 ```r
-Origin = poly_mat[1, ] # create a point representing the origin
-T1 = rbind(Origin, poly_mat[2:3, ], Origin) # create 'triangle matrix'
+# create a point representing the origin:
+Origin = poly_mat[1, ]
+# create 'triangle matrix':
+T1 = rbind(Origin, poly_mat[2:3, ], Origin) 
 # find centroid (drop = FALSE preserves classes, resulting in a matrix):
 C1 = (T1[1, , drop = FALSE] + T1[2, , drop = FALSE] + T1[3, , drop = FALSE]) / 3
 ```
@@ -189,6 +192,7 @@ A translation of this formula into R code that works with the data in the matrix
 
 
 ```r
+# calculate the area of the triangle represented by matrix T1:
 abs(T1[1, 1] * (T1[2, 2] - T1[3, 2]) +
   T1[2, 1] * (T1[3, 2] - T1[1, 2]) +
   T1[3, 1] * (T1[1, 2] - T1[2, 2]) ) / 2
@@ -328,7 +332,7 @@ t_area(t_new)
 ```
 
 A useful feature of functions is that they are modular.
-Providing you know what the output will be, one function can be used as the building block of another.
+Provided that you know what the output will be, one function can be used as the building block of another.
 Thus, the functions `t_centroid()` and `t_area()` can be used as sub-components of a larger function to do the work of the script `10-centroid-alg.R`: calculate the area of any convex polygon.
 The code chunk below creates the function `poly_centroid()` to mimic the behavior of `sf::st_centroid()`:
 
