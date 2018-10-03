@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-10-02">
+<meta name="date" content="2018-10-03">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -329,7 +329,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2" data-path="algorithms.html"><a href="algorithms.html#scripts"><i class="fa fa-check"></i><b>10.2</b> Scripts</a></li>
 <li class="chapter" data-level="10.3" data-path="algorithms.html"><a href="algorithms.html#geometric-algorithms"><i class="fa fa-check"></i><b>10.3</b> Geometric algorithms</a></li>
 <li class="chapter" data-level="10.4" data-path="algorithms.html"><a href="algorithms.html#functions"><i class="fa fa-check"></i><b>10.4</b> Functions</a></li>
-<li class="chapter" data-level="10.5" data-path="algorithms.html"><a href="algorithms.html#ex-algorithms"><i class="fa fa-check"></i><b>10.5</b> Exercises</a></li>
+<li class="chapter" data-level="10.5" data-path="algorithms.html"><a href="algorithms.html#programming"><i class="fa fa-check"></i><b>10.5</b> Programming</a></li>
+<li class="chapter" data-level="10.6" data-path="algorithms.html"><a href="algorithms.html#ex-algorithms"><i class="fa fa-check"></i><b>10.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="spatial-cv.html"><a href="spatial-cv.html"><i class="fa fa-check"></i><b>11</b> Statistical learning</a><ul>
 <li class="chapter" data-level="" data-path="spatial-cv.html"><a href="spatial-cv.html#prerequisites-9"><i class="fa fa-check"></i>Prerequisites</a></li>
@@ -646,7 +647,7 @@ The newly created function <code>t_area()</code> takes any object <code>x</code>
 <p>A useful feature of functions is that they are modular.
 Provided that you know what the output will be, one function can be used as the building block of another.
 Thus, the functions <code>t_centroid()</code> and <code>t_area()</code> can be used as sub-components of a larger function to do the work of the script <code>10-centroid-alg.R</code>: calculate the area of any convex polygon.
-The code chunk below creates the function <code>poly_centroid()</code> to mimic the behavior of <code>sf::st_centroid()</code>:</p>
+The code chunk below creates the function <code>poly_centroid()</code> to mimic the behavior of <code>sf::st_centroid()</code> for convex polygons:<a href="#fn60" class="footnote-ref" id="fnref60"><sup>60</sup></a></p>
 <div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb352-1" data-line-number="1">poly_centroid =<span class="st"> </span><span class="cf">function</span>(x) {</a>
 <a class="sourceLine" id="cb352-2" data-line-number="2">  i =<span class="st"> </span><span class="dv">2</span><span class="op">:</span>(<span class="kw">nrow</span>(x) <span class="op">-</span><span class="st"> </span><span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb352-3" data-line-number="3">  T_all =<span class="st"> </span><span class="kw">lapply</span>(i, <span class="cf">function</span>(x) {</a>
@@ -670,6 +671,34 @@ To return the result as an object of class <code>sfg</code>, for example, a ‘w
 <a class="sourceLine" id="cb355-2" data-line-number="2"><span class="kw">identical</span>(<span class="kw">poly_centroid_sfg</span>(poly_mat), sf<span class="op">::</span><span class="kw">st_centroid</span>(poly_sfc))</a>
 <a class="sourceLine" id="cb355-3" data-line-number="3"><span class="co">#&gt; [1] TRUE</span></a></code></pre></div>
 <!-- RL: I've commented-out the rest of this section as I think it distracts from the core content -->
+</div>
+<div id="programming" class="section level2">
+<h2><span class="header-section-number">10.5</span> Programming</h2>
+<p>In this chapter we have moved quickly, from scripts to functions via the tricky topic of algorithms.
+Not only have we discussed them in the abstract.
+We have created working examples of each to solve a specific problem:</p>
+<ul>
+<li>The script <code>10-centroid-alg.R</code> was introduced and demonstrated on a ‘polygon matrix’.</li>
+<li>The individual steps that allowed this script to work were described as algorithm, a computational recipe.</li>
+<li>To generalize the algorithm we converted into modular functions which were eventually combined to create the function <code>poly_centroid()</code> in the previous section.</li>
+</ul>
+<p>Taken on its own each of these steps is straightforward.
+But the skill of programming is combining scripts, algorithms and functions in a way that produces performant, robust and user-friendly tools that other people can use.
+If you are new to programming, as we expect most people reading this book will be, being able to follow and reproduce the results in the preceding sections should be seen as a major acheivement.
+As outlined in the introduction programming takes many hours of dedicated study and practice before you become proficient.</p>
+<p>The challenge facing developers aiming to implement new algorithms in an efficient way is put in perspective by considering that we have only created a toy function.
+In its current state, it does not even work on most (non-convex) polygons!
+A question arising from this is: how would one generalise the function.
+Two options are 1) to find a way to create triangular meshes of non-convex polygons (a topic covered in the online <a href="https://geocompr.github.io/geocompkg/articles/algorithm.html">algorithm</a> article that supports this chapter) and 2) to explore other centroid algorithms that do not rely on triangular meshes.</p>
+<p>A wider question is: is it worth programming a solution at all when high performance algorithms have already been implemented in packaged functions such as <code>st_centroid()</code>?
+The reductionist answer in this specific case is ‘no’.
+In the wider context, and considering the benefits of learning to program, the answer is ‘it depends’.
+With programming, it’s easy to waste hours trying to implement a method, only to find that someone has already done the hard work.
+So instead of seeing this chapter as your first stepping stone towards geometric algorithm programming wizardry, it may be more productive to use it as a lesson in when to try to program a generalized solution, and when to use existing higher-level solutions.
+There will surely be occasions when writing new functions is the best way forward, but there will also be times when using functions that already exist is the best way forward.</p>
+<p>We cannot gurarntee that, having read this chapter, you will be able to rapidly create new functions for your work.
+But we are confident that its contents will help you decide when is an appropriate time to try (when no other existing functions solve the problem, when the programming task is within your capabilities and when the benefits of the solution are likely to outweigh the time costs of developing it).
+First steps towards programming can be slow (the exercises below should not be rushed) but the long-term rewards can be large.</p>
 <!-- An important concept to consider when developing your own function is *type stability*. -->
 <!-- Functions are type stable if they always return objects of the same class and, generally, this means returning objects of the same type as the input object. -->
 <!-- To illustrate this concept in practice we will create a type stable version `poly_centroid()` that always takes a matrix with 2 columns as an input and always returns a matrix with 2 columns representing x and y coordinates: -->
@@ -696,7 +725,7 @@ To return the result as an object of class <code>sfg</code>, for example, a ‘w
 <!-- ``` -->
 </div>
 <div id="ex-algorithms" class="section level2">
-<h2><span class="header-section-number">10.5</span> Exercises</h2>
+<h2><span class="header-section-number">10.6</span> Exercises</h2>
 <ol style="list-style-type: decimal">
 <li>Read the script <code>10-centroid-alg.R</code> in the <code>code</code> folder of the book’s GitHub repo.
 <ul>
@@ -789,6 +818,8 @@ The CGAL function <code>CGAL::centroid()</code> is in fact composed of 7 sub-fun
 The source code underlying GEOS function <code>Centroid::getCentroid()</code> can be found at <a href="https://github.com/libgeos/geos/search?q=getCentroid" class="uri">https://github.com/libgeos/geos/search?q=getCentroid</a>.<a href="algorithms.html#fnref58" class="footnote-back">↩</a></p></li>
 <li id="fn59"><p>
 You can also explicitly set the output of a function by adding <code>return(output)</code> into the body of the function, where <code>output</code> is the result to be returned.<a href="algorithms.html#fnref59" class="footnote-back">↩</a></p></li>
+<li id="fn60"><p>
+Note that the functions we created are called recursively in <code>lapply()</code> and <code>vapply()</code> function calls respectively, which you may want to read-up on in <code>?lapply</code> for reference.<a href="algorithms.html#fnref60" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 <script>
