@@ -679,8 +679,8 @@ Not only have we discussed them in the abstract.
 We have created working examples of each to solve a specific problem:</p>
 <ul>
 <li>The script <code>10-centroid-alg.R</code> was introduced and demonstrated on a ‘polygon matrix’.</li>
-<li>The individual steps that allowed this script to work were described as algorithm, a computational recipe.</li>
-<li>To generalize the algorithm we converted into modular functions which were eventually combined to create the function <code>poly_centroid()</code> in the previous section.</li>
+<li>The individual steps that allowed this script to work were described as an algorithm, a computational recipe.</li>
+<li>To generalize the algorithm we converted it into modular functions which were eventually combined to create the function <code>poly_centroid()</code> in the previous section.</li>
 </ul>
 <p>Taken on its own each of these steps is straightforward.
 But the skill of programming is combining scripts, algorithms and functions in a way that produces performant, robust and user-friendly tools that other people can use.
@@ -689,7 +689,7 @@ As outlined in the introduction programming takes many hours of dedicated study 
 <p>The challenge facing developers aiming to implement new algorithms in an efficient way is put in perspective by considering that we have only created a toy function.
 In its current state, it does not even work on most (non-convex) polygons!
 A question arising from this is: how would one generalise the function.
-Two options are 1) to find a way to create triangular meshes of non-convex polygons (a topic covered in the online <a href="https://geocompr.github.io/geocompkg/articles/algorithm.html">algorithm</a> article that supports this chapter) and 2) to explore other centroid algorithms that do not rely on triangular meshes.</p>
+Two options are 1) to find ways to triangulate non-convex polygons (a topic covered in the online <a href="https://geocompr.github.io/geocompkg/articles/algorithm.html">algorithm</a> article that supports this chapter) and 2) to explore other centroid algorithms that do not rely on triangular meshes.</p>
 <p>A wider question is: is it worth programming a solution at all when high performance algorithms have already been implemented in packaged functions such as <code>st_centroid()</code>?
 The reductionist answer in this specific case is ‘no’.
 In the wider context, and considering the benefits of learning to program, the answer is ‘it depends’.
