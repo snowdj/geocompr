@@ -1103,22 +1103,21 @@ Next, combine this map and the map created in the previous exercise into a singl
     - In the city you live in, for a couple of users per day
     - In the country you live in, for dozens of users per day
     - Worldwide for hundreds of users per day and large data serving requirements
+
 9) Update the code in `coffeeApp/app.R` so that instead of centering on Brazil the user can select which country to focus on:
     - Using `textInput()`
     - Using `selectInput()`
 
-The answer can be found in the `shinymod` branch of the geocompr repo: https://github.com/Robinlovelace/geocompr/pull/318/files
-You create the new widget and then use it to set the center.
-Note: the input data must be fed into the map earlier to prevent the polygons disappearing when you change the center this way.
+10) Reproduce Figure \@ref(fig:tmshape) and the 1st and 6th panel of Figure \@ref(fig:break-styles) as closely as possible using the **ggplot2** package.
 
-1. Reproduce Figure \@ref(fig:tmshape) and the 1st and 6th panel of Figure \@ref(fig:break-styles) as closely as possible using the **ggplot2** package.
 
-1. Join `us_states` and `us_states_df` together and calculate a poverty rate for each state using the new dataset.
+11) Join `us_states` and `us_states_df` together and calculate a poverty rate for each state using the new dataset.
 Next, construct a continuous area cartogram based on total population. 
 Finally, create and compare two maps of the poverty rate: (1) a standard choropleth map and (2) a map using the created cartogram boundaries.
 What is the information provided by the first and the second map?
 How do they differ from each other?
 
-1. Visualize population growth in Africa. 
+
+12) Visualize population growth in Africa. 
 Next, compare it with the maps of a hexagonal and regular grid created using the **geogrid** package.
 
