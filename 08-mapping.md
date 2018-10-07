@@ -29,13 +29,13 @@ library(shiny)   # for web applications
 ## Introduction
 
 A satisfying and important aspect of geographic research is communicating the results.
-Map making --- the art of cartography --- is an ancient skill that involves communication skill, intuition, and an element of creativity.
+Map making --- the art of cartography --- is an ancient skill that involves communication, intuition, and an element of creativity.
 Static mapping is straightforward with `plot()`, as we saw in section \@ref(basic-map).
 It is possible to create advanced maps using base R methods [@murrell_r_2016], but this chapter focuses on dedicated map-making packages.
 When learning a new skill, it makes sense to gain depth-of-knowledge in one area branching out.
 Map making is no exception, hence this chapter's coverage of one package (**tmap**) in depth rather than many superficially.
 In addition to being fun and creative, cartography also has important practical applications.
-A carefully crafted map can ensure that the findings of geographic data analysis communicated effectively [@brewer_designing_2015]:
+A carefully crafted map be vital for effectively communicating the results of your work [@brewer_designing_2015]:
 
 > Amateur-looking maps can undermine your audience’s ability to understand important information and weaken the presentation of a professional data investigation.
 
