@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-10-07">
+<meta name="date" content="2018-10-08">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -447,16 +447,16 @@ This final section of the book also provides some pointers on how to get involve
 <h2><span class="header-section-number">15.2</span> Package choice</h2>
 <p>A characteristic of R is that there are often multiple ways to achieve the result.
 The code chunk below illustrates this by using three functions, covered in Chapters <a href="attr.html#attr">3</a> and <a href="geometric-operations.html#geometric-operations">5</a>, to combine the 16 regions of New Zealand into a single geometry:</p>
-<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb458-1" data-line-number="1"><span class="kw">library</span>(spData)</a>
-<a class="sourceLine" id="cb458-2" data-line-number="2">nz_u1 =<span class="st"> </span>sf<span class="op">::</span><span class="kw">st_union</span>(nz)</a>
-<a class="sourceLine" id="cb458-3" data-line-number="3">nz_u2 =<span class="st"> </span><span class="kw">aggregate</span>(nz[<span class="st">&quot;Population&quot;</span>], <span class="kw">list</span>(<span class="kw">rep</span>(<span class="dv">1</span>, <span class="kw">nrow</span>(nz))), sum)</a>
-<a class="sourceLine" id="cb458-4" data-line-number="4">nz_u3 =<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(nz, <span class="dt">t =</span> <span class="kw">sum</span>(Population))</a>
-<a class="sourceLine" id="cb458-5" data-line-number="5"><span class="kw">identical</span>(nz_u1, nz_u2<span class="op">$</span>geometry)</a>
-<a class="sourceLine" id="cb458-6" data-line-number="6"><span class="co">#&gt; [1] TRUE</span></a>
-<a class="sourceLine" id="cb458-7" data-line-number="7"><span class="kw">identical</span>(nz_u1, nz_u3<span class="op">$</span>geom)</a>
-<a class="sourceLine" id="cb458-8" data-line-number="8"><span class="co">#&gt; [1] TRUE</span></a></code></pre></div>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb459-1" data-line-number="1"><span class="kw">library</span>(spData)</a>
+<a class="sourceLine" id="cb459-2" data-line-number="2">nz_u1 =<span class="st"> </span>sf<span class="op">::</span><span class="kw">st_union</span>(nz)</a>
+<a class="sourceLine" id="cb459-3" data-line-number="3">nz_u2 =<span class="st"> </span><span class="kw">aggregate</span>(nz[<span class="st">&quot;Population&quot;</span>], <span class="kw">list</span>(<span class="kw">rep</span>(<span class="dv">1</span>, <span class="kw">nrow</span>(nz))), sum)</a>
+<a class="sourceLine" id="cb459-4" data-line-number="4">nz_u3 =<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(nz, <span class="dt">t =</span> <span class="kw">sum</span>(Population))</a>
+<a class="sourceLine" id="cb459-5" data-line-number="5"><span class="kw">identical</span>(nz_u1, nz_u2<span class="op">$</span>geometry)</a>
+<a class="sourceLine" id="cb459-6" data-line-number="6"><span class="co">#&gt; [1] TRUE</span></a>
+<a class="sourceLine" id="cb459-7" data-line-number="7"><span class="kw">identical</span>(nz_u1, nz_u3<span class="op">$</span>geom)</a>
+<a class="sourceLine" id="cb459-8" data-line-number="8"><span class="co">#&gt; [1] TRUE</span></a></code></pre></div>
 <p>Although the classes, attributes and column names of the resulting objects <code>nz_u1</code> to <code>nz_u3</code> differ, their geometries are identical.
-This is verified using the base R function <code>identical()</code>.<a href="#fn79" class="footnote-ref" id="fnref79"><sup>79</sup></a>
+This is verified using the base R function <code>identical()</code>.<a href="#fn78" class="footnote-ref" id="fnref78"><sup>78</sup></a>
 Which to use?
 It depends: the former only processes the geometry data contained in <code>nz</code> so is faster, while the other options performed attribute operations, which may be useful for subsequent steps.</p>
 <p>The wider point is that there are often multiple options to choose from when working with geographic data in R, even within a single package.
@@ -466,11 +466,11 @@ We recommend using <strong>sf</strong> and the other packages showcased in this 
 We cover both and encourage you to try both before deciding which is more appropriate for different tasks.
 The following code chunk, described in Chapter <a href="attr.html#attr">3</a>, shows how attribute data subsetting works in each approach, using the base R operator <code>[</code> and the <code>select()</code> function from the <strong>tidyverse</strong> package <strong>dplyr</strong>.
 The syntax differs but the results are (in essence) the same:</p>
-<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb459-1" data-line-number="1"><span class="kw">library</span>(dplyr)                          <span class="co"># attach tidyverse package</span></a>
-<a class="sourceLine" id="cb459-2" data-line-number="2">nz_name1 =<span class="st"> </span>nz[<span class="st">&quot;Name&quot;</span>]                   <span class="co"># base R approach</span></a>
-<a class="sourceLine" id="cb459-3" data-line-number="3">nz_name2 =<span class="st"> </span>nz <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Name)          <span class="co"># tidyverse approach</span></a>
-<a class="sourceLine" id="cb459-4" data-line-number="4"><span class="kw">identical</span>(nz_name1<span class="op">$</span>Name, nz_name2<span class="op">$</span>Name) <span class="co"># check results</span></a>
-<a class="sourceLine" id="cb459-5" data-line-number="5"><span class="co">#&gt; [1] TRUE</span></a></code></pre></div>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb460-1" data-line-number="1"><span class="kw">library</span>(dplyr)                          <span class="co"># attach tidyverse package</span></a>
+<a class="sourceLine" id="cb460-2" data-line-number="2">nz_name1 =<span class="st"> </span>nz[<span class="st">&quot;Name&quot;</span>]                   <span class="co"># base R approach</span></a>
+<a class="sourceLine" id="cb460-3" data-line-number="3">nz_name2 =<span class="st"> </span>nz <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Name)          <span class="co"># tidyverse approach</span></a>
+<a class="sourceLine" id="cb460-4" data-line-number="4"><span class="kw">identical</span>(nz_name1<span class="op">$</span>Name, nz_name2<span class="op">$</span>Name) <span class="co"># check results</span></a>
+<a class="sourceLine" id="cb460-5" data-line-number="5"><span class="co">#&gt; [1] TRUE</span></a></code></pre></div>
 <p>Again the question arises: which to use?
 Again the answer is: it depends.
 Each approach has advantages: the pipe syntax is popular and appealing to some, while base R is more stable, and is well-known to others.
@@ -491,7 +491,7 @@ But there is still overlap in the packages we have used, as illustrated by the d
 <p>Package overlap is not necessarily a bad thing.
 It can increase resilience, performance (partly driven by friendly competition and mutual learning between developers) and choice, a key feature of open source software.
 In this context the decision to use a particular approach, such as the <strong>sf</strong>/<strong>tidyverse</strong>/<strong>raster</strong> ecosystem advocated in this book should be made with knowledge of alternatives.
-The <strong>sp</strong>/<strong>rgdal</strong>/<strong>rgeos</strong> ecosystem that <strong>sf</strong> is designed to supercede, for example, can do many of the things covered in this book and, due to its age, is built-on by many other packages.<a href="#fn80" class="footnote-ref" id="fnref80"><sup>80</sup></a>
+The <strong>sp</strong>/<strong>rgdal</strong>/<strong>rgeos</strong> ecosystem that <strong>sf</strong> is designed to supercede, for example, can do many of the things covered in this book and, due to its age, is built-on by many other packages.<a href="#fn79" class="footnote-ref" id="fnref79"><sup>79</sup></a>
 Although best known for point pattern analysis, the <strong>spatstat</strong> package also supports raster and other vector geometries <span class="citation">(Baddeley and Turner <a href="#ref-baddeley_spatstat_2005">2005</a>)</span>.
 At the time of writing (October 2018) 69 packages depend on it, making it more than a package: <strong>spatstat</strong> is an alternative R-spatial ecosystem.</p>
 <p>It is also being aware of promising alternatives that are under development.
@@ -548,7 +548,7 @@ A next step in this direction is to deepen your knowledge of base R, for example
 <!-- maybe we should add info about places to learn more r-spatial stuff (aka github, twitter, ...?)? --></p>
 <!-- Many directions of travel could be taken after taking the geocomputational steps -->
 <p>Another software-related direction for future learning is <strong>discovering geocomputation with other languages</strong>.
-There are good reasons for learning R as a language for geocomputation, as described in Chapter <a href="intro.html#intro">1</a>, but it is not the only option.<a href="#fn81" class="footnote-ref" id="fnref81"><sup>81</sup></a>
+There are good reasons for learning R as a language for geocomputation, as described in Chapter <a href="intro.html#intro">1</a>, but it is not the only option.<a href="#fn80" class="footnote-ref" id="fnref80"><sup>80</sup></a>
 It would be possible to study <em>Geocomputation with: Python</em>, <em>C++</em>, <em>JavaScript</em>, <em>Scala</em> or <em>Rust</em> in equal depth.
 Each have evolving geospatial capabilities.
 <a href="https://github.com/mapbox/rasterio"><strong>rasterio</strong></a>, for example, is a Python package
@@ -681,18 +681,18 @@ Whether it’s raising a constructive issue alerting developers to problems in t
 </div>
 <div class="footnotes">
 <hr />
-<ol start="79">
-<li id="fn79"><p>
+<ol start="78">
+<li id="fn78"><p>
 The first operation, undertaken by the function <code>st_union()</code>, creates an object of class <code>sfc</code> (a simple feature column).
 The latter two operations create <code>sf</code> objects, each of which <em>contains</em> a simple feature column.
-Therefore it is the geometries contained in simple feature columns, not the objects themselves, that are identical.<a href="conclusion.html#fnref79" class="footnote-back">↩</a></p></li>
-<li id="fn80"><p>
+Therefore it is the geometries contained in simple feature columns, not the objects themselves, that are identical.<a href="conclusion.html#fnref78" class="footnote-back">↩</a></p></li>
+<li id="fn79"><p>
 At the time of writing 452 package <code>Depend</code> or <code>Import</code> <strong>sp</strong>, showing that its data structures are widely used and have been extended in many directions.
-The equivalent number for <strong>sf</strong> was 69 in October 2018; with the growing popularity of <strong>sf</strong>, this is set to grow.<a href="conclusion.html#fnref80" class="footnote-back">↩</a></p></li>
-<li id="fn81"><p>
+The equivalent number for <strong>sf</strong> was 69 in October 2018; with the growing popularity of <strong>sf</strong>, this is set to grow.<a href="conclusion.html#fnref79" class="footnote-back">↩</a></p></li>
+<li id="fn80"><p>
 R’s strengths relevant to our definition geocomputation include its emphasis on scientific reproducibility, widespread use in academic research and unparalleled support for statistical modeling of geographic data.
 Furthermore, we advocate learning one language (R) for geocomputation in depth before delving into other languages/frameworks because of the costs associated with context switching.
-It is preferable to have expertise in one language than basic knowledge of many.<a href="conclusion.html#fnref81" class="footnote-back">↩</a></p></li>
+It is preferable to have expertise in one language than basic knowledge of many.<a href="conclusion.html#fnref80" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 <script>

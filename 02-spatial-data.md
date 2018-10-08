@@ -21,8 +21,7 @@ Organize your work (e.g. with RStudio projects) and give scripts sensible names 
 <!-- This will make it easier to run this book's worked examples on your computer. -->
 
 The packages used in this chapter can be installed with the following commands:^[
-**spDataLarge** is not on CRAN meaning it can be installed by **devtools**, a package that can be installed with the following command: `install.packages("devtools")`.
-**spDataLarge** can also be installed with: `install.packages("spDataLarge", repos = "https://nowosad.github.io/drat/", type = "source")`.
+**spDataLarge** is not on CRAN meaning it must be installed via **devtools** or with the followig command: `install.packages("spDataLarge", repos = "https://nowosad.github.io/drat/", type = "source")`.
 <!-- In case the installation fails, for example if you do not have rights to install non CRAN packages on your organisation's computers, the data in **spDataLarge** can be loaded by running the script [`spData.R`](https://github.com/Robinlovelace/geocompr/blob/master/code/spData.R) from the `code` folder in the book's GitHub repo at [github.com/Robinlovelace/geocompr](https://github.com/Robinlovelace/geocompr). -->
 ]
 
@@ -156,11 +155,14 @@ All 17 types can be represented with the **sf** package, although (as of summer 
 
 **sf** can represent all common vector geometry types (raster data classes are not supported by **sf**): points, lines, polygons and their respective 'multi' versions (which group together features of the same type into a single feature).
 **sf** also supports geometry collections, which can contain multiple geometry types in a single object.
-Given the breadth of geographic data forms, it may come as a surprise that a class system to support all of them is provided in a single package, which can be installed from CRAN:^[The
-development version, which may contain new features, can be installed with `devtools::install_github("r-spatial/sf").`
-]
-**sf** incorporates the functionality of the three main packages of the **sp** paradigm, **sp** [@R-sp] for the class system, **rgdal** [@R-rgdal] for reading and writing data, **rgeos** [@R-rgeos] for spatial operations undertaken by GEOS, in a single, cohesive whole.
-This is well-documented in **sf**'s [vignettes](http://cran.rstudio.com/package=sf).
+**sf** was largely supercedes the **sp** ecosystem, which comprises **sp** [@R-sp], **rgdal** for data read/write [@R-rgdal] and **rgeos** for spatial operations [@R-rgeos].
+The package is well documented, as can be seen on its website and in 6 vignettes, which can loaded as follows:
+
+
+```r
+vignette(package = "sf") # see which vignettes are available
+vignette("sf1")          # an introduction to the package
+```
 
 
 
@@ -256,14 +258,11 @@ In turn, `sfc` objects are composed of one or more objects of class `sfg`: simpl
 To understand how the spatial components of simple features work, it is vital to understand simple feature geometries.
 For this reason we cover each currently supported simple features geometry types in the section \@ref(geometry) before moving on to describe how these can be represented in R using `sfg` objects, combined to form `sfc` and eventually full `sf` objects.
 
-\BeginKnitrBlock{rmdnote}<div class="rmdnote">Note that in the above code chunk we used the `=` sign to create a new object called `world_mini` in the command `world_mini = world[1:2, 1:3]`.
+\BeginKnitrBlock{rmdnote}<div class="rmdnote">The preceding code chunk uses `=` to create a new object called `world_mini` in the command `world_mini = world[1:2, 1:3]`.
 This is called assignment.
 An equivalent command to achieve the same result is `world_mini <- world[1:2, 1:3]`.
-The 'arrow sign' `<-` is the most common way to assign objects in R.
-We use 'equals assignment' because it's slightly faster to type and easier to teach due to compatibility with commonly used languages such as Python and JavaScript.
-`<-` assignment also has advantages: it can prevent confusion between assignment and argument passing.
-Which to use is a largely a matter of preference as long as you're consistent.
-To change from one style to another we recommend the package [**styler**](https://github.com/r-lib/styler).</div>\EndKnitrBlock{rmdnote}
+Although 'arrow assigment' is more commonly used, we use 'equals assignment' because it's slightly faster to type and easier to teach due to compatibility with commonly used languages such as Python and JavaScript.
+Which to use is a largely a matter of preference as long as you're consistent (packages such as **styler** can be used to change style).</div>\EndKnitrBlock{rmdnote}
 
 ### Why simple features?
 
