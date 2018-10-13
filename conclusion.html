@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-10-08">
+<meta name="date" content="2018-10-13">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -512,10 +512,10 @@ Statistical topics including point pattern analysis, spatial interpolation (krig
 There is already excellent material on these methods, including statistically orientated chapters in <span class="citation">Bivand, Pebesma, and Gómez-Rubio (<a href="#ref-bivand_applied_2013">2013</a>)</span> and a book on point pattern analysis by <span class="citation">Baddeley, Rubak, and Turner (<a href="#ref-baddeley_spatial_2015">2015</a>)</span>.
 <!-- one could also add @brunsdon_introduction_2015 -->
 <!-- Todo: add citations to these materials (RL) -->
-Another topic which we barely touched is remote sensing though especially everything related to raster analysis is a good introduction to remote sensing with R.
-If you want to know more, you might find <span class="citation">Wegmann, Leutner, and Dech (<a href="#ref-wegmann_remote_2016">2016</a>)</span> interesting.</p>
+Other topics which received limited attention were remote sensing and using R alongside (rather than as a bridge to) dedicated GIS software.
+There are many resources on these topics, including <span class="citation">Wegmann, Leutner, and Dech (<a href="#ref-wegmann_remote_2016">2016</a>)</span> and the GIS-related teaching materials available from <a href="https://moc.online.uni-marburg.de/doku.php">Marburg University</a>.</p>
 <p>Instead covering spatial statistical modeling and inference techniques, we focussed on machine learning (see Chapters <a href="spatial-cv.html#spatial-cv">11</a> and <a href="eco.html#eco">14</a>).
-Again, the reason was that there are already great books out there covering these topics, especially with ecological use cases <span class="citation">(among others, Zuur et al. <a href="#ref-zuur_mixed_2009">2009</a>, <a href="#ref-zuur_beginners_2017">2017</a>)</span>.
+Again, the reason was that there are already excellent resources on these topics, especially with ecological use cases, including <span class="citation">Zuur et al. (<a href="#ref-zuur_mixed_2009">2009</a>)</span>, <span class="citation">Zuur et al. (<a href="#ref-zuur_beginners_2017">2017</a>)</span> and freely available teaching material and code on <em>Geostatistics &amp; Open-source statistical computing</em> by David Rossiter, hosted at <a href="http://www.css.cornell.edu/faculty/dgr2/teach/degeostats.html">css.cornell.edu/faculty/dgr2</a>.
 There are also excellent resources on spatial statistics using Bayesian modeling, a powerful framework for modelling and uncertainty estimation <span class="citation">(Blangiardo and Cameletti <a href="#ref-blangiardo_spatial_2015">2015</a>; Krainski et al. <a href="#ref-krainski_advanced_2018">2018</a>)</span>.
 <!-- @Robinlovelace, as far as I remember blangiardo also were using epidemiological use cases. Zuur et al. also agreed to write a book on spatial, and spatial-temporal models for medical, public health and epidemiological data analysis using R-INLA -> see highstat.com --></p>
 <!-- maybe, we should put this into the preface as well? -->
@@ -541,9 +541,9 @@ Consolidation of skills learned, discovery of new packages and approaches for ha
 This section expands on this general advice by suggesting specific ‘next steps’, highlighted in <strong>bold</strong> below.
 <!-- and ordered by difficulty, beginning with continue to improve your knowledge of R. -->
 <!-- JM: the end of the last section is already giving pointers where to go next, maybe, we can marry the two sections, or at least the part on the stuff we have omitted? --></p>
-<p>The R language connects all the chapters.
-<strong>Becoming fluent in R</strong> and skilled at using its fundamental data classes such as <code>data.frame</code> and <code>matrix</code> — the foundations of <code>sf</code> and <code>raster</code> geographic classes respectively — is a logical direction of travel.
-A next step in this direction is to deepen your knowledge of base R, for example by: studying R’s key documents (which can be found by entering <code>help.start()</code> in the console), reading and playing with the source code of useful functions, or reading comprehensive resources on the subject such as those by <span class="citation">Wickham (<a href="#ref-wickham_advanced_2014">2014</a><a href="#ref-wickham_advanced_2014">a</a>)</span> and <span class="citation">Chambers (<a href="#ref-chambers_extending_2016">2016</a>)</span>.
+<p>In addition to learning about further geographic methods and applications with R, for example with reference to the work cited in the previous section, deepening your understanding of <strong>R itself</strong> is a logical next step.
+R’s fundamental classes such as <code>data.frame</code> and <code>matrix</code> are the foundation of <code>sf</code> and <code>raster</code> classes so studying them will improve your understanding of geographic data.
+This can be done with reference to documents that are part of R, and which can be found with the command <code>help.start()</code> and additional resources on the subject such as those by <span class="citation">Wickham (<a href="#ref-wickham_advanced_2014">2014</a><a href="#ref-wickham_advanced_2014">a</a>)</span> and <span class="citation">Chambers (<a href="#ref-chambers_extending_2016">2016</a>)</span>.
 <!-- creating and querying simple spatial in Chapter \ref(spatial-class) -->
 <!-- maybe we should add info about places to learn more r-spatial stuff (aka github, twitter, ...?)? --></p>
 <!-- Many directions of travel could be taken after taking the geocomputational steps -->
