@@ -310,8 +310,8 @@ The standardized **mlr** interface is based on eight 'building blocks'.
 As illustrated in Figure \@ref(fig:building-blocks), these have a clear order.
 
 <div class="figure" style="text-align: center">
-<img src="figures/13_ml_abstraction_crop.png" alt="Basic building blocks of the mlr package. Source: openml.github.io. Permission to reuse this figure was kindly granted." width="862" />
-<p class="caption">(\#fig:building-blocks)Basic building blocks of the mlr package. Source: openml.github.io. Permission to reuse this figure was kindly granted.</p>
+<img src="figures/13_ml_abstraction_crop.png" alt="Basic building blocks of the mlr package. Source: http://openml.github.io/articles/slides/useR2017_tutorial/slides_tutorial_files/ml_abstraction-crop.png. Permission to reuse this figure was kindly granted." width="862" />
+<p class="caption">(\#fig:building-blocks)Basic building blocks of the mlr package. Source: http://openml.github.io/articles/slides/useR2017_tutorial/slides_tutorial_files/ml_abstraction-crop.png. Permission to reuse this figure was kindly granted.</p>
 </div>
 
 The **mlr** modeling process consists of three main stages.
