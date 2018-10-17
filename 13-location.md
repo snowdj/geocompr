@@ -100,7 +100,7 @@ input_tidy = mutate_all(input, funs(ifelse(. %in% c(-1, -9), NA, .)))
 
 
 
-Table: (\#tab:census-desc)Categories for each variable in Census data from 'Datensatzbeschreibung...xlsx' located in the downloaded file census.zip. See Figure 13.1 for their spatial distribution.
+Table: (\#tab:census-desc)Categories for each variable in census data from 'Datensatzbeschreibung...xlsx' located in the downloaded file census.zip. See Figure 13.1 for their spatial distribution.
 
  class    Population    % female    Mean age    Household size 
 -------  ------------  ----------  ----------  ----------------

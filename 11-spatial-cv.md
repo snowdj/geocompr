@@ -147,7 +147,7 @@ data("ta", package = "spDataLarge")
 The first three rows of `lsl`, rounded to two significant digits, look like this (Table \@ref(tab:lslsummary)):
 
 
-Table: (\#tab:lslsummary)Structure of the lsl dataset.
+Table: (\#tab:lslsummary)Structure of the `lsl` dataset.
 
       x         y  lslpts    slope    cplan   cprof   elev   log10_carea
 -------  --------  -------  ------  -------  ------  -----  ------------

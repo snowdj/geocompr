@@ -524,6 +524,7 @@ To select nodes by geographic location the **stplanr** function `find_network_no
 path = sum_network_routes(ways_sln, 1, 20, "length")
 ```
 
+
 ```r
 plot(st_geometry(path), col = "red", lwd = 10)
 plot(ways_sln@sl$geometry, add = TRUE)
