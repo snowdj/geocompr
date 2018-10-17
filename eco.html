@@ -467,7 +467,7 @@ To guarantee an optimal prediction, it is advisable to tune beforehand the hyper
 <div id="data-and-data-preparation" class="section level2">
 <h2><span class="header-section-number">14.2</span> Data and data preparation</h2>
 <p>All the data needed for the subsequent analyses is available via the <strong>RQGIS</strong> package.</p>
-<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb439-1" data-line-number="1"><span class="kw">data</span>(<span class="st">&quot;study_area&quot;</span>, <span class="st">&quot;random_points&quot;</span>, <span class="st">&quot;comm&quot;</span>, <span class="st">&quot;dem&quot;</span>, <span class="st">&quot;ndvi&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb439-1" data-line-number="1"><span class="kw">data</span>(<span class="st">&quot;study_area&quot;</span>, <span class="st">&quot;random_points&quot;</span>, <span class="st">&quot;comm&quot;</span>, <span class="st">&quot;dem&quot;</span>, <span class="st">&quot;ndvi&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;RQGIS&quot;</span>)</a></code></pre></div>
 <p><code>study_area</code> is an <code>sf</code> polygon representing the outlines of the study area.
 <code>random_points</code> is an <code>sf</code> object, and contains the 100 randomly chosen sites.
 <code>comm</code> is a community matrix of the wide data format <span class="citation">(Wickham <a href="#ref-wickham_tidy_2014">2014</a><a href="#ref-wickham_tidy_2014">b</a>)</span> where the rows represent the visited sites in the field and the columns the observed species.<a href="#fn76" class="footnote-ref" id="fnref76"><sup>76</sup></a></p>
@@ -484,9 +484,9 @@ To guarantee an optimal prediction, it is advisable to tune beforehand the hyper
 <p>The values represent species cover per site, and were recorded as the area covered by a species in proportion to the site area in percentage points (%; please note that one site can have &gt;100% due to overlapping cover between individual plants).
 The rownames of <code>comm</code> correspond to the <code>id</code> column of <code>random_points</code>.
 <code>dem</code> is the digital elevation model for the study area, and <code>ndvi</code> is the Normalized Difference Vegetation Index (NDVI) computed from the red and near-infrared channels of a Landsat scene (see section <a href="spatial-operations.html#local-operations">4.3.3</a> and <code>?ndvi</code>).
-Visualizing the data helps to get more familiar with it:</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-6"></span>
-<img src="figures/unnamed-chunk-6-1.png" alt="Study mask (polygon), location of the sampling sites (black points) and DEM in the background." width="576" />
+elps to get more familiar with it, as in Figure <a href="eco.html#fig:sa-mongon">14.2</a> where the <code>dem</code> is overplotted by the <code>random_points</code> and the <code>study_area</code>.</p>
+<div class="figure" style="text-align: center"><span id="fig:sa-mongon"></span>
+<img src="figures/sa-mongon-1.png" alt="Study mask (polygon), location of the sampling sites (black points) and DEM in the background." width="576" />
 <p class="caption">
 Figure 14.2: Study mask (polygon), location of the sampling sites (black points) and DEM in the background.
 </p>
@@ -803,7 +803,7 @@ If the linear model cannot cope with the degree of non-linearity present in the 
 The point here is that the toolbox of a data scientist consists of more than one tool, and it is your responsibility to select the tool best suited for the task or purpose at hand.
 Here, we wanted to introduce the reader to random forest modeling and how to use the corresponding results for spatial predictions.
 For this purpose, a well-studied dataset with known relationships between response and predictors, is appropriate.
-However, this does not imply that the random forest model has given back the best result in terms of predictive performance (see exercises).</p>
+However, this does not imply that the random forest model has returned the best result in terms of predictive performance (see exercises).</p>
 </div>
 <div id="exercises-10" class="section level2">
 <h2><span class="header-section-number">14.6</span> Exercises</h2>

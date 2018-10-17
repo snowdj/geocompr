@@ -64,7 +64,7 @@ All the data needed for the subsequent analyses is available via the **RQGIS** p
 
 
 ```r
-data("study_area", "random_points", "comm", "dem", "ndvi")
+data("study_area", "random_points", "comm", "dem", "ndvi", package = "RQGIS")
 ```
 
 `study_area` is an `sf` polygon representing the outlines of the study area.
@@ -89,13 +89,13 @@ comm[35:40, 1:5]
 The values represent species cover per site, and were recorded as the area covered by a species in proportion to the site area in percentage points (%; please note that one site can have >100% due to overlapping cover between individual plants).
 The rownames of `comm` correspond to the `id` column of `random_points`.
 `dem` is the digital elevation model for the study area, and `ndvi` is the Normalized Difference Vegetation Index (NDVI) computed from the red and near-infrared channels of a Landsat scene (see section \@ref(local-operations) and `?ndvi`).
-Visualizing the data helps to get more familiar with it:
+elps to get more familiar with it, as in Figure \@ref(fig:sa-mongon) where the `dem` is overplotted by the `random_points` and the `study_area`.
 
 
 
 <div class="figure" style="text-align: center">
-<img src="figures/unnamed-chunk-6-1.png" alt="Study mask (polygon), location of the sampling sites (black points) and DEM in the background." width="576" />
-<p class="caption">(\#fig:unnamed-chunk-6)Study mask (polygon), location of the sampling sites (black points) and DEM in the background.</p>
+<img src="figures/sa-mongon-1.png" alt="Study mask (polygon), location of the sampling sites (black points) and DEM in the background." width="576" />
+<p class="caption">(\#fig:sa-mongon)Study mask (polygon), location of the sampling sites (black points) and DEM in the background.</p>
 </div>
 
 The next step is to compute variables which we will predominantly need for the modeling and predictive mapping (see section \@ref(predictive-mapping)) but also for aligning the NMDS axes with the main gradient, altitude and humidity, respectively, in the study area (see section \@ref(nmds)).
@@ -522,7 +522,7 @@ If the linear model cannot cope with the degree of non-linearity present in the 
 The point here is that the toolbox of a data scientist consists of more than one tool, and it is your responsibility to select the tool best suited for the task or purpose at hand.
 Here, we wanted to introduce the reader to random forest modeling and how to use the corresponding results for spatial predictions.
 For this purpose, a well-studied dataset with known relationships between response and predictors, is appropriate.
-However, this does not imply that the random forest model has given back the best result in terms of predictive performance (see exercises).
+However, this does not imply that the random forest model has returned the best result in terms of predictive performance (see exercises).
 
 ## Exercises
 
