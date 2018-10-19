@@ -547,7 +547,7 @@ This can have implications for file sizes when raster datasets are saved.
 ]:
 
 
-Table: (\#tab:rastercrs)Key attributes original ('con_raster') and projected ('con_raster') continuous raster datasets.
+Table: (\#tab:rastercrs)Key attributes in the original ('con_raster') and projected ('con_raster') continuous raster datasets.
 
 CRS           nrow   ncol    ncell   resolution   mean
 -----------  -----  -----  -------  -----------  -----

@@ -268,7 +268,7 @@ world6 = filter(world, lifeExp > 82)
 The standard set of comparison operators can be used in the `filter()` function, as illustrated in Table \@ref(tab:operators): 
 
 
-Table: (\#tab:operators)Table of comparison operators that result in boolean (TRUE/FALSE) outputs.
+Table: (\#tab:operators)Comparison operators that return booleans (TRUE/FALSE).
 
 Symbol      Name                            
 ----------  --------------------------------
