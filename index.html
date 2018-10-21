@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-10-19">
+<meta name="date" content="2018-10-21">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -279,17 +279,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1" data-path="read-write.html"><a href="read-write.html#introduction-4"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
 <li class="chapter" data-level="7.2" data-path="read-write.html"><a href="read-write.html#retrieving-data"><i class="fa fa-check"></i><b>7.2</b> Retrieving open data</a></li>
 <li class="chapter" data-level="7.3" data-path="read-write.html"><a href="read-write.html#geographic-data-packages"><i class="fa fa-check"></i><b>7.3</b> Geographic data packages</a></li>
-<li class="chapter" data-level="7.4" data-path="read-write.html"><a href="read-write.html#file-formats"><i class="fa fa-check"></i><b>7.4</b> File formats</a></li>
-<li class="chapter" data-level="7.5" data-path="read-write.html"><a href="read-write.html#data-input"><i class="fa fa-check"></i><b>7.5</b> Data Input (I)</a><ul>
-<li class="chapter" data-level="7.5.1" data-path="read-write.html"><a href="read-write.html#vector-data-1"><i class="fa fa-check"></i><b>7.5.1</b> Vector data</a></li>
-<li class="chapter" data-level="7.5.2" data-path="read-write.html"><a href="read-write.html#raster-data-1"><i class="fa fa-check"></i><b>7.5.2</b> Raster data</a></li>
+<li class="chapter" data-level="7.4" data-path="read-write.html"><a href="read-write.html#geographic-web-services"><i class="fa fa-check"></i><b>7.4</b> Geographic web services</a></li>
+<li class="chapter" data-level="7.5" data-path="read-write.html"><a href="read-write.html#file-formats"><i class="fa fa-check"></i><b>7.5</b> File formats</a></li>
+<li class="chapter" data-level="7.6" data-path="read-write.html"><a href="read-write.html#data-input"><i class="fa fa-check"></i><b>7.6</b> Data Input (I)</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="read-write.html"><a href="read-write.html#vector-data-1"><i class="fa fa-check"></i><b>7.6.1</b> Vector data</a></li>
+<li class="chapter" data-level="7.6.2" data-path="read-write.html"><a href="read-write.html#raster-data-1"><i class="fa fa-check"></i><b>7.6.2</b> Raster data</a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="read-write.html"><a href="read-write.html#data-output"><i class="fa fa-check"></i><b>7.6</b> Data output (O)</a><ul>
-<li class="chapter" data-level="7.6.1" data-path="read-write.html"><a href="read-write.html#vector-data-2"><i class="fa fa-check"></i><b>7.6.1</b> Vector data</a></li>
-<li class="chapter" data-level="7.6.2" data-path="read-write.html"><a href="read-write.html#raster-data-2"><i class="fa fa-check"></i><b>7.6.2</b> Raster data</a></li>
+<li class="chapter" data-level="7.7" data-path="read-write.html"><a href="read-write.html#data-output"><i class="fa fa-check"></i><b>7.7</b> Data output (O)</a><ul>
+<li class="chapter" data-level="7.7.1" data-path="read-write.html"><a href="read-write.html#vector-data-2"><i class="fa fa-check"></i><b>7.7.1</b> Vector data</a></li>
+<li class="chapter" data-level="7.7.2" data-path="read-write.html"><a href="read-write.html#raster-data-2"><i class="fa fa-check"></i><b>7.7.2</b> Raster data</a></li>
 </ul></li>
-<li class="chapter" data-level="7.7" data-path="read-write.html"><a href="read-write.html#visual-outputs"><i class="fa fa-check"></i><b>7.7</b> Visual outputs</a></li>
-<li class="chapter" data-level="7.8" data-path="read-write.html"><a href="read-write.html#exercises-5"><i class="fa fa-check"></i><b>7.8</b> Exercises</a></li>
+<li class="chapter" data-level="7.8" data-path="read-write.html"><a href="read-write.html#visual-outputs"><i class="fa fa-check"></i><b>7.8</b> Visual outputs</a></li>
+<li class="chapter" data-level="7.9" data-path="read-write.html"><a href="read-write.html#exercises-5"><i class="fa fa-check"></i><b>7.9</b> Exercises</a></li>
 </ul></li>
 <li class="part"><span><b>II Extensions</b></span></li>
 <li class="chapter" data-level="8" data-path="adv-map.html"><a href="adv-map.html"><i class="fa fa-check"></i><b>8</b> Making maps with R</a><ul>
@@ -417,7 +418,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Geocomputation with R</h1>
 <h4 class="author"><em>Robin Lovelace, Jakub Nowosad, Jannes Muenchow</em></h4>
-<h4 class="date"><em>2018-10-19</em></h4>
+<h4 class="date"><em>2018-10-21</em></h4>
 </div>
 <div id="welcome" class="section level1 unnumbered">
 <h1>Welcome</h1>
@@ -427,7 +428,7 @@ It is published online here and by CRC Press in the <a href="https://www.crcpres
 This ensures its contents are reproducible and publicly accessible or people worldwide.</p>
 <p>The online version of the book is hosted at <a href="https://geocompr.robinlovelace.net">geocompr.robinlovelace.net</a> and kept up-to-date by <a href="https://travis-ci.org/Robinlovelace/geocompr">Travis</a>, which provides information on its ‘build status’ as follows:</p>
 <p><a href="https://travis-ci.org/Robinlovelace/geocompr"><img src="https://travis-ci.org/Robinlovelace/geocompr.svg?branch=master" alt="Build Status" /></a></p>
-<p>The version of the book you are reading now was built on 2018-10-19 and was built on <a href="https://travis-ci.org/Robinlovelace/geocompr">Travis</a>.</p>
+<p>The version of the book you are reading now was built on 2018-10-21 and was built on <a href="https://travis-ci.org/Robinlovelace/geocompr">Travis</a>.</p>
 <div id="how-to-contribute" class="section level2 unnumbered">
 <h2>How to contribute?</h2>
 <p><strong>bookdown</strong> makes editing a book as easy as editing a wiki, provided you have a GitHub account (<a href="https://github.com/">sign-up at github.com</a>).

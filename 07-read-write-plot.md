@@ -148,6 +148,90 @@ world2 = spData::world
 world3 = st_read(system.file("shapes/world.gpkg", package = "spData"))
 ```
 
+## Geographic web services
+
+In an effort to standardize web APIs for accessing spatial data, the Open Geospatial Consortium (OGC) has created a number of specifications for web services (collectively known as OWS, which is short for OGC Web Services).
+These specifications include the Web Feature Service (WFS), Web Map Service (WMS), Web Map Tile Service (WMTS), the Web Coverage Service (WCS) and even a Wep Processing Service (WPS).
+Map servers such as PostGIS have adopted these protocals, leading to standardization of  queries:
+Like other web APIs, OWS APIs use a 'base URL' and a 'query string' proceeding a `?` to request data.
+
+There are many requests that can be made to a OWS service.
+One of the most fundamental is `getCapabilities`, demonstrated with the **httr** package to show how API queries can be constructed and dispatched, in this case to discover the capabilities of a service providing run by the Food and Agriculture Organization of the United Nations (FAO):
+
+
+```r
+base_url = "http://www.fao.org/figis/geoserver/wfs"
+q = list(request = "GetCapabilities")
+res = httr::GET(url = base_url, query = q)
+res$url
+#> [1] "http://www.fao.org/figis/geoserver/wfs?request=GetCapabilities"
+```
+
+The above code chunk demonstrates how API requests can be constructed programmatically with the `GET()` function, which takes a base URL and a list of query parameters which can easily be extended.
+The result of the request is saved in `res`, an object of class `response` defined in the **httr** package, which is a list containing information of the request, including the URL.
+As can be seen by executing `browseURL(res$url)`), the results can also be read directly in a browser, although they are not designed to be human readable.
+The contents of the request can be extracted as follows:
+
+
+```r
+txt = httr::content(res, "text")
+xml = xml2::read_xml(txt)
+```
+
+
+```r
+#> {xml_document} ...
+#> [1] <ows:ServiceIdentification>\n  <ows:Title>GeoServer WFS...
+#> [2] <ows:ServiceProvider>\n  <ows:ProviderName>Food and Agr...
+#> ...
+```
+
+Data can be downloaded from WFS services using **httr** with the `GetFeature` request and a specific `typeName` (available names can be found by reading the output from `GetCapabilities`), as illustrated in the following code chunk:
+
+
+
+
+```r
+qf = list(request = "GetFeature", typeName = "area:FAO_AREAS")
+httr::GET(url = base_url, query = q, httr::write_disk("f.gml"))
+fao_areas = sf::read_sf("f.gml")
+```
+
+Note the use of `write_disc()` to ensure that the results are written to disk rather than loaded into memory, allowing them to be imported with **sf**.
+This example shows how to gain low-level access to web services using **httr**, which can be useful for understanding how web services work.
+For many everyday tasks, however, a higher-level interface may be more appropriate, and a number of R packages, and tutorials, have been developed precisely for this purpose.
+
+Packages **ows4R**, **rwfs** and **sos4R** have been developed for working with OWS services in general, WFS and the sensor observation service (SOS) respectively.
+As of October 2018, only **ows4R** is on CRAN.
+The package's basic functionality is demonstrated below, in commands that get all `FAO_AREAS` as we did in the previous code chunk:^[
+To filter features on the server before downloading them, the argument `cql_filter` can be used. Adding `cql_filter = URLencode("F_CODE= '27'")` to the command, for example, would instruct the server to only return the feature with values in the `F_CODE` column equal to 27.
+]
+
+
+```r
+library(ows4R)
+wfs = WFSClient$new("http://www.fao.org/figis/geoserver/wfs",
+                      serviceVersion = "1.0.0", logger = "INFO")
+fao_areas = wfs$getFeatures("area:FAO_AREAS")
+```
+
+
+
+There is much more to learn about web services and much potential for development of R-OWS interfaces, an active area of development.
+For further information on the topic, we recommend examples from European Centre for Medium-Range Weather Forecasts (ECMWF) services at [github.com/OpenDataHack](https://github.com/OpenDataHack/data_service_catalogue) and reading-up on OCG Web Services at [opengeospatial.org](http://www.opengeospatial.org/standards).
+
+<!-- JM: If showing one of the examples below I would recommend to use the same data also above (GET query), and to add two or three sentences with regard to WFS:
+- only vector data
+- WMS allows the web-based display of geographic data whereas WFS allows the download of geographic data.
+- data exchange format is XML-based Geography Markup Language (GML)
+
+Still, it seems that ows4r is very much in development. Obviously, it has problems with languages other than English. If the WFS requires a namespace, I have no idea how one can provide it with ows4r. The documentation is only rudimentary.
+-->
+
+
+
+
+
 ## File formats
 
 Spatial datasets are usually stored as files or in spatial databases.
