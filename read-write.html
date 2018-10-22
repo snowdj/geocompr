@@ -560,7 +560,7 @@ One of the most fundamental is <code>getCapabilities</code>, demonstrated with t
 <a class="sourceLine" id="cb238-5" data-line-number="5"><span class="co">#&gt; [1] &quot;http://www.fao.org/figis/geoserver/wfs?request=GetCapabilities&quot;</span></a></code></pre></div>
 <p>The above code chunk demonstrates how API requests can be constructed programmatically with the <code>GET()</code> function, which takes a base URL and a list of query parameters which can easily be extended.
 The result of the request is saved in <code>res</code>, an object of class <code>response</code> defined in the <strong>httr</strong> package, which is a list containing information of the request, including the URL.
-As can be seen by executing <code>browseURL(res$url)</code>), the results can also be read directly in a browser.
+As can be seen by executing <code>browseURL(res$url)</code>, the results can also be read directly in a browser.
 One way of extracting the contents of the request is as follows:</p>
 <div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb239-1" data-line-number="1">txt =<span class="st"> </span>httr<span class="op">::</span><span class="kw">content</span>(res, <span class="st">&quot;text&quot;</span>)</a>
 <a class="sourceLine" id="cb239-2" data-line-number="2">xml =<span class="st"> </span>xml2<span class="op">::</span><span class="kw">read_xml</span>(txt)</a></code></pre></div>
