@@ -169,8 +169,8 @@ res$url
 
 The above code chunk demonstrates how API requests can be constructed programmatically with the `GET()` function, which takes a base URL and a list of query parameters which can easily be extended.
 The result of the request is saved in `res`, an object of class `response` defined in the **httr** package, which is a list containing information of the request, including the URL.
-As can be seen by executing `browseURL(res$url)`), the results can also be read directly in a browser, although they are not designed to be human readable.
-The contents of the request can be extracted as follows:
+As can be seen by executing `browseURL(res$url)`), the results can also be read directly in a browser.
+One way of extracting the contents of the request is as follows:
 
 
 ```r
@@ -186,15 +186,21 @@ xml = xml2::read_xml(txt)
 #> ...
 ```
 
-Data can be downloaded from WFS services using **httr** with the `GetFeature` request and a specific `typeName` (available names can be found by reading the output from `GetCapabilities`), as illustrated in the following code chunk:
+Data can be downloaded from WFS services with the `GetFeature` request and a specific `typeName` (as illustrated in the code chunk below).
+
+<!--@Robinlovelace fyi: In the fao example there are hundreds of typenames (maybe we should mention that in the text?). Here I just show one way how one can extract them using web technologies (but I guess this is beyond the scope of the book). using ows4R one can also use findFeatureTypeByName("") (see in the unevaluated code chunks below) -->
 
 
+
+Available names differ depending on the accessed web feature service.
+One can extract them programmatically using web technologies [@nolan_xml_2014] or scrolling manually through the contents of the `GetCapabilities` output in a browser.
 
 
 ```r
 qf = list(request = "GetFeature", typeName = "area:FAO_AREAS")
-httr::GET(url = base_url, query = q, httr::write_disk("f.gml"))
-fao_areas = sf::read_sf("f.gml")
+file = tempfile(fileext = ".gml")
+httr::GET(url = base_url, query = qf, httr::write_disk(file))
+fao_areas = sf::read_sf(file)
 ```
 
 Note the use of `write_disc()` to ensure that the results are written to disk rather than loaded into memory, allowing them to be imported with **sf**.

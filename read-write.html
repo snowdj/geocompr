@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-10-21">
+<meta name="date" content="2018-10-22">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -560,18 +560,22 @@ One of the most fundamental is <code>getCapabilities</code>, demonstrated with t
 <a class="sourceLine" id="cb238-5" data-line-number="5"><span class="co">#&gt; [1] &quot;http://www.fao.org/figis/geoserver/wfs?request=GetCapabilities&quot;</span></a></code></pre></div>
 <p>The above code chunk demonstrates how API requests can be constructed programmatically with the <code>GET()</code> function, which takes a base URL and a list of query parameters which can easily be extended.
 The result of the request is saved in <code>res</code>, an object of class <code>response</code> defined in the <strong>httr</strong> package, which is a list containing information of the request, including the URL.
-As can be seen by executing <code>browseURL(res$url)</code>), the results can also be read directly in a browser, although they are not designed to be human readable.
-The contents of the request can be extracted as follows:</p>
+As can be seen by executing <code>browseURL(res$url)</code>), the results can also be read directly in a browser.
+One way of extracting the contents of the request is as follows:</p>
 <div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb239-1" data-line-number="1">txt =<span class="st"> </span>httr<span class="op">::</span><span class="kw">content</span>(res, <span class="st">&quot;text&quot;</span>)</a>
 <a class="sourceLine" id="cb239-2" data-line-number="2">xml =<span class="st"> </span>xml2<span class="op">::</span><span class="kw">read_xml</span>(txt)</a></code></pre></div>
 <div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb240-1" data-line-number="1"><span class="co">#&gt; {xml_document} ...</span></a>
 <a class="sourceLine" id="cb240-2" data-line-number="2"><span class="co">#&gt; [1] &lt;ows:ServiceIdentification&gt;\n  &lt;ows:Title&gt;GeoServer WFS...</span></a>
 <a class="sourceLine" id="cb240-3" data-line-number="3"><span class="co">#&gt; [2] &lt;ows:ServiceProvider&gt;\n  &lt;ows:ProviderName&gt;Food and Agr...</span></a>
 <a class="sourceLine" id="cb240-4" data-line-number="4"><span class="co">#&gt; ...</span></a></code></pre></div>
-<p>Data can be downloaded from WFS services using <strong>httr</strong> with the <code>GetFeature</code> request and a specific <code>typeName</code> (available names can be found by reading the output from <code>GetCapabilities</code>), as illustrated in the following code chunk:</p>
+<p>Data can be downloaded from WFS services with the <code>GetFeature</code> request and a specific <code>typeName</code> (as illustrated in the code chunk below).</p>
+<!--@Robinlovelace fyi: In the fao example there are hundreds of typenames (maybe we should mention that in the text?). Here I just show one way how one can extract them using web technologies (but I guess this is beyond the scope of the book). using ows4R one can also use findFeatureTypeByName("") (see in the unevaluated code chunks below) -->
+<p>Available names differ depending on the accessed web feature service.
+One can extract them programmatically using web technologies <span class="citation">(Nolan and Lang <a href="#ref-nolan_xml_2014">2014</a>)</span> or scrolling manually through the contents of the <code>GetCapabilities</code> output in a browser.</p>
 <div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb241-1" data-line-number="1">qf =<span class="st"> </span><span class="kw">list</span>(<span class="dt">request =</span> <span class="st">&quot;GetFeature&quot;</span>, <span class="dt">typeName =</span> <span class="st">&quot;area:FAO_AREAS&quot;</span>)</a>
-<a class="sourceLine" id="cb241-2" data-line-number="2">httr<span class="op">::</span><span class="kw">GET</span>(<span class="dt">url =</span> base_url, <span class="dt">query =</span> q, httr<span class="op">::</span><span class="kw">write_disk</span>(<span class="st">&quot;f.gml&quot;</span>))</a>
-<a class="sourceLine" id="cb241-3" data-line-number="3">fao_areas =<span class="st"> </span>sf<span class="op">::</span><span class="kw">read_sf</span>(<span class="st">&quot;f.gml&quot;</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb241-2" data-line-number="2">file =<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.gml&quot;</span>)</a>
+<a class="sourceLine" id="cb241-3" data-line-number="3">httr<span class="op">::</span><span class="kw">GET</span>(<span class="dt">url =</span> base_url, <span class="dt">query =</span> qf, httr<span class="op">::</span><span class="kw">write_disk</span>(file))</a>
+<a class="sourceLine" id="cb241-4" data-line-number="4">fao_areas =<span class="st"> </span>sf<span class="op">::</span><span class="kw">read_sf</span>(file)</a></code></pre></div>
 <p>Note the use of <code>write_disc()</code> to ensure that the results are written to disk rather than loaded into memory, allowing them to be imported with <strong>sf</strong>.
 This example shows how to gain low-level access to web services using <strong>httr</strong>, which can be useful for understanding how web services work.
 For many everyday tasks, however, a higher-level interface may be more appropriate, and a number of R packages, and tutorials, have been developed precisely for this purpose.</p>
@@ -1319,11 +1323,11 @@ Export this map to a file called <code>cycle_hire.html</code>.</p></li>
 <div id="ref-R-osmdata">
 <p>Padgham, Mark, Bob Rudis, Robin Lovelace, and Maëlle Salmon. 2018. <em>Osmdata: Import ’Openstreetmap’ Data as Simple Features or Spatial Objects</em>. <a href="https://CRAN.R-project.org/package=osmdata" class="uri">https://CRAN.R-project.org/package=osmdata</a>.</p>
 </div>
-<div id="ref-coppock_history_1991">
-<p>Coppock, J Terry, and David W Rhind. 1991. “The History of GIS.” <em>Geographical Information Systems: Principles and Applications, Vol. 1.</em> 1 (1): 21–43.</p>
-</div>
 <div id="ref-nolan_xml_2014">
 <p>Nolan, Deborah, and Duncan Temple Lang. 2014. <em>XML and Web Technologies for Data Sciences with R</em>. Use R! New York, NY: Springer.</p>
+</div>
+<div id="ref-coppock_history_1991">
+<p>Coppock, J Terry, and David W Rhind. 1991. “The History of GIS.” <em>Geographical Information Systems: Principles and Applications, Vol. 1.</em> 1 (1): 21–43.</p>
 </div>
 </div>
 <div class="footnotes">
