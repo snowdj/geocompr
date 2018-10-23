@@ -190,12 +190,18 @@ On the other hand, we embed the shown methods into the bigger field of GIScience
 
 
 
-Many thanks to all the people who contributed to the book via GitHub: [katygregg](https://github.com/katygregg), [erstearns](https://github.com/erstearns), [eyesofbambi](https://github.com/eyesofbambi), [mdsumner](https://github.com/mdsumner), [rsbivand](https://github.com/rsbivand), [marcosci](https://github.com/marcosci), [pat-s](https://github.com/pat-s), [gisma](https://github.com/gisma), [ateucher](https://github.com/ateucher), [annakrystalli](https://github.com/annakrystalli), [gavinsimpson](https://github.com/gavinsimpson), [Himanshuteli](https://github.com/Himanshuteli), [yutannihilation](https://github.com/yutannihilation), [katiejolly](https://github.com/katiejolly), [layik](https://github.com/layik), [mvl22](https://github.com/mvl22), [nickbearman](https://github.com/nickbearman), [richfitz](https://github.com/richfitz), [SymbolixAU](https://github.com/SymbolixAU), [wdearden](https://github.com/wdearden), [yihui](https://github.com/yihui), [chihinl](https://github.com/chihinl), [gregor-d](https://github.com/gregor-d), [p-kono](https://github.com/p-kono), [pokyah](https://github.com/pokyah), [schuetzingit](https://github.com/schuetzingit), [tim-salabim](https://github.com/tim-salabim).
+Many thanks to everyone who contributed directly and indirectly via the code hosting and collaboration site GitHub, including the following people who contributed direct via pull requests: [katygregg](https://github.com/katygregg), [erstearns](https://github.com/erstearns), [eyesofbambi](https://github.com/eyesofbambi), [mdsumner](https://github.com/mdsumner), [rsbivand](https://github.com/rsbivand), [marcosci](https://github.com/marcosci), [pat-s](https://github.com/pat-s), [gisma](https://github.com/gisma), [ateucher](https://github.com/ateucher), [annakrystalli](https://github.com/annakrystalli), [gavinsimpson](https://github.com/gavinsimpson), [Himanshuteli](https://github.com/Himanshuteli), [yutannihilation](https://github.com/yutannihilation), [katiejolly](https://github.com/katiejolly), [layik](https://github.com/layik), [mvl22](https://github.com/mvl22), [nickbearman](https://github.com/nickbearman), [richfitz](https://github.com/richfitz), [SymbolixAU](https://github.com/SymbolixAU), [wdearden](https://github.com/wdearden), [yihui](https://github.com/yihui), [chihinl](https://github.com/chihinl), [gregor-d](https://github.com/gregor-d), [p-kono](https://github.com/p-kono), [pokyah](https://github.com/pokyah), [schuetzingit](https://github.com/schuetzingit), [tim-salabim](https://github.com/tim-salabim).
+Dozens more people contributed online, by raising and commenting on issues, and by providing feedback via social media.
+The `#geocompr` hashtag will live on!
 
+We would like to thank John Kimmel from CRC Press, who has worked with us over two years to take our ideas from an early book plan into production via four rounds of peer review.
+The anonymous reviewers deserve special mention here: their detailed feedback and expertise substantially improved the book's structure and content.
+We thank Patrick Schratz and Alexander Brenning from the University of Jena for fruitful discussions on and input into Chapters \@ref(spatial-cv) and \@ref(eco).
+We thanks Emmanuel Blondel from the Food and Agriculture Organization of the United Nations for expert input into the section on web services; Michael Sumner for critical input into many areas of the book, especially the discussion of algorithms in Chapter 10; and Katy Gregg, who proof-read every chapter and greatly improved the readability of the book.
 
-We thank Patrick Schratz (University of Jena) for fruitful discussions on **mlr** and for providing code input (Chapters \@ref(spatial-cv) & \@ref(eco)).
-We also thank Dr. Alexander Brenning (University of Jena) for providing detailed feedback on Chapter \@ref(spatial-cv).
-We also would like to thank numerous anonymous reviewers who provided detailed feedback which helped to substantially improve the book in terms of structure, content and programming.
+Countless others could be mentioned who contributed in myriad ways.
+The final thank you is for all the software developers who make geocomputation with R possible.
+Edzer Pebesma (who created the **sf** package), Robert Hijmans (who created **raster**) and Roger Bivand (who laid the foundations for much R-spatial software) have made high performance geographic computing possible in R.
 
 <!-- add list of people who helped with this book -->
 
