@@ -835,12 +835,18 @@ Figure 12.5: Illustration of a small route network, with segment thickness propo
 </div>
 <p>One can also find the shortest route between origins and destinations using this graph representation of the route network.
 This is can be done with <code>sum_network_routes()</code> from <strong>stplanr</strong>, which undertakes ‘local routing’ (see section <a href="transport.html#routes">12.5</a>).
-The code below finds the shortest path between two nodes on the network —
-‘shortest’ with reference to the <code>weightfield</code> slot of <code>ways_sln</code> (route distance by default
-— and returns a linestring (plot not shown):<a href="#fn73" class="footnote-ref" id="fnref73"><sup>73</sup></a></p>
-<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb413-1" data-line-number="1">path =<span class="st"> </span><span class="kw">sum_network_routes</span>(ways_sln, <span class="dv">1</span>, <span class="dv">20</span>, <span class="st">&quot;length&quot;</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb414-1" data-line-number="1"><span class="kw">plot</span>(<span class="kw">st_geometry</span>(path), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">lwd =</span> <span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb414-2" data-line-number="2"><span class="kw">plot</span>(ways_sln<span class="op">@</span>sl<span class="op">$</span>geometry, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<!-- The code below finds the shortest path between two nodes on the network --- -->
+<!-- 'shortest' with reference to the `weightfield` slot of `ways_sln` (route distance by default -->
+<!-- --- and returns a linestring (plot not shown):^[ -->
+<!-- To select nodes by geographic location the **stplanr** function `find_network_nodes()` can be used. -->
+<!-- ] --></p>
+<!-- ```{r} -->
+<!-- path = sum_network_routes(ways_sln, 1, 20, "length") -->
+<!-- ``` -->
+<!-- ```{r, eval=FALSE} -->
+<!-- plot(st_geometry(path), col = "red", lwd = 10) -->
+<!-- plot(ways_sln@sl$geometry, add = TRUE) -->
+<!-- ``` -->
 </div>
 <div id="prioritizing-new-infrastructure" class="section level2">
 <h2><span class="header-section-number">12.8</span> Prioritizing new infrastructure</h2>
@@ -850,16 +856,16 @@ However each stage could be useful on its own, and feed-into wider analyses.
 To summarize, these were: identifying short but car-dependent commuting routes (generated from desire lines)in section <a href="transport.html#routes">12.5</a>; creating desire lines representing trips to rail stations in section <a href="transport.html#nodes">12.6</a>; and analysis of transport systems at the route network using graph theory in section <a href="transport.html#route-networks">12.7</a>.</p>
 <p>The final code chunk of this chapter combines these strands of analysis.
 It adds the car-dependent routes in <code>route_carshort</code> with a newly-created object, <code>route_rail</code> and creates a new column representing the amount of travel along the centroid-to-centroid desire lines they represent:</p>
-<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb415-1" data-line-number="1">route_rail =<span class="st"> </span>desire_rail <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb415-2" data-line-number="2"><span class="st">  </span><span class="kw">st_set_geometry</span>(<span class="st">&quot;leg_orig&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb415-3" data-line-number="3"><span class="st">  </span><span class="kw">line2route</span>(<span class="dt">route_fun =</span> route_osrm) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb415-4" data-line-number="4"><span class="st">  </span><span class="kw">st_set_crs</span>(<span class="dv">4326</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb416-1" data-line-number="1">route_cycleway =<span class="st"> </span><span class="kw">rbind</span>(route_rail, route_carshort)</a>
-<a class="sourceLine" id="cb416-2" data-line-number="2">route_cycleway<span class="op">$</span>all =<span class="st"> </span><span class="kw">c</span>(desire_rail<span class="op">$</span>all, desire_carshort<span class="op">$</span>all)</a></code></pre></div>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb413-1" data-line-number="1">route_rail =<span class="st"> </span>desire_rail <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb413-2" data-line-number="2"><span class="st">  </span><span class="kw">st_set_geometry</span>(<span class="st">&quot;leg_orig&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb413-3" data-line-number="3"><span class="st">  </span><span class="kw">line2route</span>(<span class="dt">route_fun =</span> route_osrm) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb413-4" data-line-number="4"><span class="st">  </span><span class="kw">st_set_crs</span>(<span class="dv">4326</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb414-1" data-line-number="1">route_cycleway =<span class="st"> </span><span class="kw">rbind</span>(route_rail, route_carshort)</a>
+<a class="sourceLine" id="cb414-2" data-line-number="2">route_cycleway<span class="op">$</span>all =<span class="st"> </span><span class="kw">c</span>(desire_rail<span class="op">$</span>all, desire_carshort<span class="op">$</span>all)</a></code></pre></div>
 <p>The results of the preceding code are visualized in Figure <a href="transport.html#fig:cycleways">12.6</a>, which shows routes with high levels of car dependency and highlights opportunities for cycling rail stations (the subsequent code chunk creates a simple version of the figure — see <code>code/12-cycleways.R</code> to reproduce the figure exactly).
 The method has some the limitations: in reality people do not travel to zone centroids or always use the shortest route algorithm for a particular mode.
 However the results demonstrate routes along which cycle paths could be prioritized from car dependency and public transport perspectives.</p>
-<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb417-1" data-line-number="1"><span class="kw">qtm</span>(route_cycleway, <span class="dt">lines.lwd =</span> <span class="st">&quot;all&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb415-1" data-line-number="1"><span class="kw">qtm</span>(route_cycleway, <span class="dt">lines.lwd =</span> <span class="st">&quot;all&quot;</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:cycleways"></span>
 <img src="figures/cycleways-1.png" alt="Potential routes along which to prioritise cycle infrastructure in Bristol, based on access key rail stations (red dots) and routes with many short car journeys (north of Bristol surrounding Stoke Bradley). Line thickness is proportional to number of trips." width="576" />
 <p class="caption">
@@ -984,8 +990,6 @@ This could be done by reversing the order of the ID’s in the commend — <code
 Note that the operation emits a warning because <code>od2line()</code> works by allocating the start and end points of each origin-destination pair to the <em>centroid</em> of its zone of origin and destination.
 <!-- This represents a straight line between the centroid of zone `E02003047` and the centroid of `E02003043` for the second origin-destination pair represented in Table \@ref(tab:od), for example. -->
 For real-world use one would use centroid values generated from projected data or, preferably, use <em>population-weighted</em> centroids <span class="citation">(Lovelace et al. <a href="#ref-lovelace_propensity_2017">2017</a>)</span>.<a href="transport.html#fnref72" class="footnote-back">↩</a></p></li>
-<li id="fn73"><p>
-To select nodes by geographic location the <strong>stplanr</strong> function <code>find_network_nodes()</code> can be used.<a href="transport.html#fnref73" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 <script>
