@@ -191,11 +191,13 @@ On the other hand, we embed the shown methods into the bigger field of GIScience
 
 
 Many thanks to everyone who contributed directly and indirectly via the code hosting and collaboration site GitHub, including the following people who contributed direct via pull requests: [katygregg](https://github.com/katygregg), [erstearns](https://github.com/erstearns), [eyesofbambi](https://github.com/eyesofbambi), [mdsumner](https://github.com/mdsumner), [rsbivand](https://github.com/rsbivand), [marcosci](https://github.com/marcosci), [pat-s](https://github.com/pat-s), [gisma](https://github.com/gisma), [ateucher](https://github.com/ateucher), [annakrystalli](https://github.com/annakrystalli), [gavinsimpson](https://github.com/gavinsimpson), [Himanshuteli](https://github.com/Himanshuteli), [yutannihilation](https://github.com/yutannihilation), [katiejolly](https://github.com/katiejolly), [layik](https://github.com/layik), [mvl22](https://github.com/mvl22), [nickbearman](https://github.com/nickbearman), [richfitz](https://github.com/richfitz), [SymbolixAU](https://github.com/SymbolixAU), [wdearden](https://github.com/wdearden), [yihui](https://github.com/yihui), [chihinl](https://github.com/chihinl), [gregor-d](https://github.com/gregor-d), [p-kono](https://github.com/p-kono), [pokyah](https://github.com/pokyah), [schuetzingit](https://github.com/schuetzingit), [tim-salabim](https://github.com/tim-salabim).
+Special thanks to Marco Sciani, who not only created the front cover image, but also published the code that generated it (see `frontcover.R` in the book's GitHub repo). 
 Dozens more people contributed online, by raising and commenting on issues, and by providing feedback via social media.
 The `#geocompr` hashtag will live on!
 
 We would like to thank John Kimmel from CRC Press, who has worked with us over two years to take our ideas from an early book plan into production via four rounds of peer review.
 The anonymous reviewers deserve special mention here: their detailed feedback and expertise substantially improved the book's structure and content.
+
 We thank Patrick Schratz and Alexander Brenning from the University of Jena for fruitful discussions on and input into Chapters \@ref(spatial-cv) and \@ref(eco).
 We thank Emmanuel Blondel from the Food and Agriculture Organization of the United Nations for expert input into the section on web services; Michael Sumner for critical input into many areas of the book, especially the discussion of algorithms in Chapter 10; and Katy Gregg, who proof-read every chapter and greatly improved the readability of the book.
 
