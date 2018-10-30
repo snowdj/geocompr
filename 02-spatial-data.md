@@ -37,7 +37,7 @@ devtools::install_github("Nowosad/spDataLarge")
 These operating systems (OSs) have 'systems requirements' that are described in the package's [README](https://github.com/r-spatial/sf).
 Various OS-specific instructions can be found online, such as the article *Installation of R 3.5 on Ubuntu 18.04* on the blog [rtask.thinkr.fr](https://rtask.thinkr.fr/blog/installation-of-r-3-5-on-ubuntu-18-04-lts-and-tips-for-spatial-packages/).</div>\EndKnitrBlock{rmdnote}
 
-All the packages needed to reproduce the contents of the book can be installed withthe following command: `devtools::install_github("geocompr/geocompkg")`.
+All the packages needed to reproduce the contents of the book can be installed with the following command: `devtools::install_github("geocompr/geocompkg")`.
 The necessary packages can be 'loaded' (technically they are attached) with the `library()` function as follows:
 
 
