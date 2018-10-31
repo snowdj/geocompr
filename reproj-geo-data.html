@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-10-30">
+<meta name="date" content="2018-10-31">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -454,8 +454,8 @@ A CRS can be added to <code>sf</code> objects with <code>st_set_crs()</code> as 
 An example is provided below, which creates a buffer of one unit around <code>london</code> and <code>london_geo</code> objects:</p>
 <div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb209-1" data-line-number="1">london_buff_no_crs =<span class="st"> </span><span class="kw">st_buffer</span>(london, <span class="dt">dist =</span> <span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb209-2" data-line-number="2">london_buff =<span class="st"> </span><span class="kw">st_buffer</span>(london_geo, <span class="dt">dist =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb209-3" data-line-number="3"><span class="co">#&gt; Warning in st_buffer.sfc(st_geometry(x), dist, nQuadSegs): st_buffer does</span></a>
-<a class="sourceLine" id="cb209-4" data-line-number="4"><span class="co">#&gt; not correctly buffer longitude/latitude data</span></a>
+<a class="sourceLine" id="cb209-3" data-line-number="3"><span class="co">#&gt; Warning in st_buffer.sfc(st_geometry(x), dist, nQuadSegs, endCapStyle =</span></a>
+<a class="sourceLine" id="cb209-4" data-line-number="4"><span class="co">#&gt; endCapStyle, : st_buffer does not correctly buffer longitude/latitude data</span></a>
 <a class="sourceLine" id="cb209-5" data-line-number="5"><span class="co">#&gt; dist is assumed to be in decimal degrees (arc_degrees).</span></a></code></pre></div>
 <p>Only the second operation generates a warning.
 The warning message is useful, telling us that the result may be of limited use because it is in units of latitude and longitude, rather than meters or some other suitable measure of distance assumed by <code>st_buffer()</code>.

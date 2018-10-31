@@ -598,7 +598,7 @@ st_write(obj = world, dsn = "world.gpkg")
 
 ```r
 st_write(obj = world, dsn = "world.gpkg")
-#> Updating layer `world' to data source `/home/travis/build/Robinlovelace/geocompr/world.gpkg' using driver `GPKG'
+#> Updating layer `world' to data source `world.gpkg' using driver `GPKG'
 #> Warning in CPL_write_ogr(obj, dsn, layer, driver, as.character(dataset_options), : GDAL Error 1: Layer world already exists, CreateLayer failed.
 #> Use the layer creation option OVERWRITE=YES to replace it.
 #> Creating layer world failed.

@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-10-30">
+<meta name="date" content="2018-10-31">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -1094,7 +1094,7 @@ The speed of the writing process depends also on the driver.
 <a class="sourceLine" id="cb251-5" data-line-number="5"><span class="co">#&gt; geometry type:  Multi Polygon</span></a></code></pre></div>
 <p><strong>Note</strong>: if you try to write to the same data source again, the function will fail:</p>
 <div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" data-line-number="1"><span class="kw">st_write</span>(<span class="dt">obj =</span> world, <span class="dt">dsn =</span> <span class="st">&quot;world.gpkg&quot;</span>)</a>
-<a class="sourceLine" id="cb252-2" data-line-number="2"><span class="co">#&gt; Updating layer `world&#39; to data source `/home/travis/build/Robinlovelace/geocompr/world.gpkg&#39; using driver `GPKG&#39;</span></a>
+<a class="sourceLine" id="cb252-2" data-line-number="2"><span class="co">#&gt; Updating layer `world&#39; to data source `world.gpkg&#39; using driver `GPKG&#39;</span></a>
 <a class="sourceLine" id="cb252-3" data-line-number="3"><span class="co">#&gt; Warning in CPL_write_ogr(obj, dsn, layer, driver, as.character(dataset_options), : GDAL Error 1: Layer world already exists, CreateLayer failed.</span></a>
 <a class="sourceLine" id="cb252-4" data-line-number="4"><span class="co">#&gt; Use the layer creation option OVERWRITE=YES to replace it.</span></a>
 <a class="sourceLine" id="cb252-5" data-line-number="5"><span class="co">#&gt; Creating layer world failed.</span></a>

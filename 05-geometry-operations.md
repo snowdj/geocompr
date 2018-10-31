@@ -505,7 +505,7 @@ linestring_sf2
 #> bbox:           xmin: 1 ymin: 1 xmax: 4 ymax: 5
 #> epsg (SRID):    NA
 #> proj4string:    NA
-#>                geometry
+#>                    geom
 #> 1 LINESTRING (1 5, 4 3)
 #> 2 LINESTRING (4 4, 4 1)
 #> 3 LINESTRING (2 2, 4 2)
@@ -529,7 +529,7 @@ linestring_sf2
 #> bbox:           xmin: 1 ymin: 1 xmax: 4 ymax: 5
 #> epsg (SRID):    NA
 #> proj4string:    NA
-#>                geometry         name length
+#>                    geom         name length
 #> 1 LINESTRING (1 5, 4 3)    Riddle Rd   3.61
 #> 2 LINESTRING (4 4, 4 1) Marshall Ave   3.00
 #> 3 LINESTRING (2 2, 4 2)    Foulke St   2.00

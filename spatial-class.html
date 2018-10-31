@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-10-30">
+<meta name="date" content="2018-10-31">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -946,7 +946,7 @@ They are created with <code>st_sf()</code> as illustrated below, which creates t
 <p>What just happened? First, the coordinates were used to create the simple feature geometry (<code>sfg</code>).
 Second, the geometry was converted into a simple feature geometry column (<code>sfc</code>), with a CRS.
 Third, attributes were stored in a <code>data.frame</code>, which was combined with the <code>sfc</code> object with <code>st_sf()</code>.
-This results in an <code>sf</code> object, as demonstrated below (some output ommited):</p>
+This results in an <code>sf</code> object, as demonstrated below (some output omitted):</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">lnd_sf</a>
 <a class="sourceLine" id="cb34-2" data-line-number="2"><span class="co">#&gt; Simple feature collection with 1 features and 3 fields</span></a>
 <a class="sourceLine" id="cb34-3" data-line-number="3"><span class="co">#&gt; ...</span></a>
@@ -1400,7 +1400,7 @@ What kind of information can you get about the properties of this file?</li>
 <hr />
 <ol start="5">
 <li id="fn5"><p>
-<strong>spDataLarge</strong> is not on CRAN meaning it must be installed via <strong>devtools</strong> or with the followig command: <code>install.packages(&quot;spDataLarge&quot;, repos = &quot;https://nowosad.github.io/drat/&quot;, type = &quot;source&quot;)</code>.
+<strong>spDataLarge</strong> is not on CRAN meaning it must be installed via <strong>devtools</strong> or with the following command: <code>install.packages(&quot;spDataLarge&quot;, repos = &quot;https://nowosad.github.io/drat/&quot;, type = &quot;source&quot;)</code>.
 <!-- In case the installation fails, for example if you do not have rights to install non CRAN packages on your organisation's computers, the data in **spDataLarge** can be loaded by running the script [`spData.R`](https://github.com/Robinlovelace/geocompr/blob/master/code/spData.R) from the `code` folder in the book's GitHub repo at [github.com/Robinlovelace/geocompr](https://github.com/Robinlovelace/geocompr). --><a href="spatial-class.html#fnref5" class="footnote-back">↩</a></p></li>
 <li id="fn6"><p>
 The origin we are referring to, depicted in blue in Figure <a href="spatial-class.html#fig:vectorplots">2.1</a>, is in fact the ‘false’ origin.
@@ -1421,11 +1421,11 @@ A polygon with a hole would be, for example, <code>POLYGON ((1 5, 2 2, 4 1, 4 4,
 <li id="fn11"><p>
 Other attributes might include a urbanity category (city or village), or a remark if the measurement was made using an automatic station.<a href="spatial-class.html#fnref11" class="footnote-back">↩</a></p></li>
 <li id="fn12"><p>
-Depending on the file format the header is part of the actual image data file, e.g., GeoTIFF, or stored in an extra header or world file, e.g., ASCII grid formats. There is also the headerless (flat) binary raster format which should fascilitate the import into various software programs.
+Depending on the file format the header is part of the actual image data file, e.g., GeoTIFF, or stored in an extra header or world file, e.g., ASCII grid formats. There is also the headerless (flat) binary raster format which should facilitate the import into various software programs.
 <!-- To convert these files into other raster formats requiring a header information, the user is often forced to provide the header information manually, see e.g. https://lta.cr.usgs.gov/glcc/technote. --><a href="spatial-class.html#fnref12" class="footnote-back">↩</a></p></li>
 <li id="fn13"><p>
-The degree of compression is often referred to as <em>flattening</em>, defined in terms of the equitorial radius (<span class="math inline">\(a\)</span>) and polar radius (<span class="math inline">\(b\)</span>) as follows: <span class="math inline">\(f = (a - b) / a\)</span>. The terms <em>ellipticity</em> and <em>compression</em> can also be used <span class="citation">(Maling <a href="#ref-maling_coordinate_1992">1992</a>)</span>.
-<!-- The degree of compression is often referred to as [*flattening*](https://en.wikipedia.org/wiki/Flattening), defined in terms of the equitorial radius ($a$) and polar radius ($b$) as follows: $f = (a - b) / a$. The terms *ellipticity* and *compression* can also be used [@maling_coordinate_1992]. -->
+The degree of compression is often referred to as <em>flattening</em>, defined in terms of the equatorial radius (<span class="math inline">\(a\)</span>) and polar radius (<span class="math inline">\(b\)</span>) as follows: <span class="math inline">\(f = (a - b) / a\)</span>. The terms <em>ellipticity</em> and <em>compression</em> can also be used <span class="citation">(Maling <a href="#ref-maling_coordinate_1992">1992</a>)</span>.
+<!-- The degree of compression is often referred to as [*flattening*](https://en.wikipedia.org/wiki/Flattening), defined in terms of the equatorial radius ($a$) and polar radius ($b$) as follows: $f = (a - b) / a$. The terms *ellipticity* and *compression* can also be used [@maling_coordinate_1992]. -->
 Because <span class="math inline">\(f\)</span> is a rather small value, digital ellipsoid models use the ‘inverse flattening’ (<span class="math inline">\(rf = 1/f\)</span>) to define the Earth’s compression.
 Values of <span class="math inline">\(a\)</span> and <span class="math inline">\(rf\)</span> used in a variety of ellipsoidal models can be seen be executing <code>st_proj_info(type = &quot;ellps&quot;)</code>.<a href="spatial-class.html#fnref13" class="footnote-back">↩</a></p></li>
 <li id="fn14"><p>

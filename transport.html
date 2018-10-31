@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-10-30">
+<meta name="date" content="2018-10-31">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -522,13 +522,13 @@ Another issue with small zones is related to anonymity rules. To make it impossi
 </p>
 </div>
 <p>The 102 zones used in this chapter are stored in <code>bristol_zones</code>, as illustrated in Figure <a href="transport.html#fig:zones">12.2</a>.
-Note the zones get smaller in densly populated areas: each houses a similar number of people.
+Note the zones get smaller in densely populated areas: each houses a similar number of people.
 <code>bristol_zones</code> contains no attribute data on transport, however, only the name and code of each zone:</p>
 <div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb393-1" data-line-number="1"><span class="kw">names</span>(bristol_zones)</a>
 <a class="sourceLine" id="cb393-2" data-line-number="2"><span class="co">#&gt; [1] &quot;geo_code&quot; &quot;name&quot;     &quot;geometry&quot;</span></a></code></pre></div>
 <p>To add travel data we will join a non geographic table on travel behavior to the zones, a common task described in section <a href="attr.html#vector-attribute-joining">3.2.3</a>.
 We will use travel derived from the UK’s 2011 census question on travel to work, data stored in <code>bristol_od</code>, which was provided by the <a href="https://www.ons.gov.uk/help/localstatistics">ons.gov.uk</a> data portal.
-<code>bristol_od</code> is an orgin-destination (OD) dataset representing travel to work between zones from the UK’s 2011 Census (see section <a href="transport.html#desire-lines">12.4</a>).
+<code>bristol_od</code> is an origin-destination (OD) dataset representing travel to work between zones from the UK’s 2011 Census (see section <a href="transport.html#desire-lines">12.4</a>).
 The first column is the ID of the zone of origin and the second column is the zone of destination.
 <code>bristol_od</code> is provided at higher geographic resolution than <code>bristol_zones</code>, as can be seen from the number of rows in each:</p>
 <div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb394-1" data-line-number="1"><span class="kw">nrow</span>(bristol_od)</a>
@@ -576,7 +576,7 @@ The result is <code>zones_od</code>, which contains a new column reporting the n
 <a class="sourceLine" id="cb398-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize_if</span>(is.numeric, sum) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb398-4" data-line-number="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">geo_code =</span> d, <span class="dt">all_dest =</span> all) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb398-5" data-line-number="5"><span class="st">  </span><span class="kw">inner_join</span>(zones_joined, ., <span class="dt">by =</span> <span class="st">&quot;geo_code&quot;</span>)</a></code></pre></div>
-<p>A simplified version of Figure <a href="transport.html#fig:zones">12.2</a> is created with the code below (see <code>12-zones.R</code> in the <a href="https://github.com/Robinlovelace/geocompr/tree/master/code"><code>code</code></a> folder of the book’s GitHub repo to reproduce the figure and section <a href="adv-map.html#faceted-maps">8.2.6</a> for details on facetted maps with <strong>tmap</strong>):</p>
+<p>A simplified version of Figure <a href="transport.html#fig:zones">12.2</a> is created with the code below (see <code>12-zones.R</code> in the <a href="https://github.com/Robinlovelace/geocompr/tree/master/code"><code>code</code></a> folder of the book’s GitHub repo to reproduce the figure and section <a href="adv-map.html#faceted-maps">8.2.6</a> for details on faceted maps with <strong>tmap</strong>):</p>
 <div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb399-1" data-line-number="1"><span class="kw">qtm</span>(zones_od, <span class="kw">c</span>(<span class="st">&quot;all&quot;</span>, <span class="st">&quot;all_dest&quot;</span>)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb399-2" data-line-number="2"><span class="st">  </span><span class="kw">tm_layout</span>(<span class="dt">panel.labels =</span> <span class="kw">c</span>(<span class="st">&quot;Origin&quot;</span>, <span class="st">&quot;Destination&quot;</span>))</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:zones"></span>

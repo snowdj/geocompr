@@ -59,8 +59,8 @@ An example is provided below, which creates a buffer of one unit around `london`
 ```r
 london_buff_no_crs = st_buffer(london, dist = 1)
 london_buff = st_buffer(london_geo, dist = 1)
-#> Warning in st_buffer.sfc(st_geometry(x), dist, nQuadSegs): st_buffer does
-#> not correctly buffer longitude/latitude data
+#> Warning in st_buffer.sfc(st_geometry(x), dist, nQuadSegs, endCapStyle =
+#> endCapStyle, : st_buffer does not correctly buffer longitude/latitude data
 #> dist is assumed to be in decimal degrees (arc_degrees).
 ```
 

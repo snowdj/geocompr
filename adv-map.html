@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-10-30">
+<meta name="date" content="2018-10-31">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -465,7 +465,7 @@ Finally, section <a href="adv-map.html#other-mapping-packages">8.6</a> covers a 
 <p>Static maps are the most common type of visual output from geocomputation.
 Fixed images for printed outputs, common formats for static maps include <code>.png</code> and <code>.pdf</code>, for raster and vector outputs, respectively (interactive maps are covered in section <a href="adv-map.html#interactive-maps">8.4</a>).
 Initially static maps were the <em>only</em> type of map that R could produce.
-Things have advanced greatly since <strong>sp</strong> was realeased <span class="citation">(see Pebesma and Bivand <a href="#ref-pebesma_classes_2005">2005</a>)</span>.
+Things have advanced greatly since <strong>sp</strong> was released <span class="citation">(see Pebesma and Bivand <a href="#ref-pebesma_classes_2005">2005</a>)</span>.
 Although many new techniques for geographic data visualization have been developed and demonstrated since then, a decade later static plotting (and some animations) was still the emphasis of geographic data visualisation in R <span class="citation">(Cheshire and Lovelace <a href="#ref-cheshire_spatial_2015">2015</a>)</span>.</p>
 <p>Despite the innovation of interactive mapping in R, static maps are still the foundation of mapping in R.
 The generic <code>plot()</code> function is often the fastest way to create static maps from vector and raster spatial objects, as shown in sections <a href="spatial-class.html#basic-map">2.2.3</a> and <a href="spatial-class.html#basic-map-raster">2.3.2</a>.
@@ -968,7 +968,7 @@ The <strong>googleway</strong> package, for example, provides an interactive map
 <!-- The command `google_map(key = key) %>% add_polygons(st_transform(nz, 4326))` creates an interactive map of New Zealand, assuming `key` contains an API key. -->
 <!-- Many other functions are provided by the package, providing an R interface to a wide range of mapping services including routing, traffic visualization and geocoding. -->
 Another approach by the same author is <strong><a href="https://github.com/SymbolixAU/mapdeck">mapdeck</a></strong>, which provides access to Uber’s <code>Deck.gl</code> framework.
-Its use of WebGL enables it to interactively visualize large datastes (up to millions of points).
+Its use of WebGL enables it to interactively visualize large datasets (up to millions of points).
 The package uses
 <!-- commented-out the below to reduce hyperlinks (RL) -->
 <!-- [Mapbox](https://www.mapbox.com/) -->
@@ -1269,7 +1269,7 @@ Line Maps
 In the next paragraph, we focus solely on the <strong>cartogram</strong> package.
 Therefore, we suggest to read the <a href="https://github.com/rCarto/linemap">linemap</a>, <a href="https://github.com/jbaileyh/geogrid">geogrid</a> and <a href="https://github.com/hafen/geofacet">geofacet</a> documentations to learn more about them.</p>
 <p>A cartogram is a map in which the geometry is proportionately distorted to represent a mapping variable.
-Creation of this type of map is possible in R with <strong>cartogram</strong>, which allows for creating continuous and non-contigous area cartograms.
+Creation of this type of map is possible in R with <strong>cartogram</strong>, which allows for creating continuous and non-contiguous area cartograms.
 It is not a mapping package per se, but it allows for construction of distorted spatial objects that could be plotted using any generic mapping package.</p>
 <p>The <code>cartogram_cont()</code> function creates continuous area cartograms.
 It accepts an <code>sf</code> object and name of the variable (column) as inputs.

@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-10-30">
+<meta name="date" content="2018-10-31">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -457,7 +457,7 @@ Section <a href="attr.html#summarizing-raster-objects">3.3.2</a> provides an ove
 <p>Geographic vector data in R are well-support by <code>sf</code>, a class which extends the <code>data.frame</code>.
 Thus <code>sf</code> objects have one column per attribute variable (such as ‘name’) and one row per observation, or <em>feature</em> (e.g. per bus station).
 <code>sf</code> objects also have a special column to contain geometry data, usually named <code>geometry</code>.
-The <code>geometry</code> column is special because it is a <em>list-colum</em>, which can contain multiple geographic entities (points, lines, polygons) per row.
+The <code>geometry</code> column is special because it is a <em>list-column</em>, which can contain multiple geographic entities (points, lines, polygons) per row.
 In Chapter <a href="spatial-class.html#spatial-class">2</a> we saw how to perform <em>generic methods</em> such as <code>plot()</code> and <code>summary()</code> on <code>sf</code> objects.
 <strong>sf</strong> also provides methods that allow <code>sf</code> objects to behave like regular data frames:</p>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="kw">methods</span>(<span class="dt">class =</span> <span class="st">&quot;sf&quot;</span>) <span class="co"># methods for sf objects, first 12 shown</span></a></code></pre></div>
@@ -745,7 +745,7 @@ A ‘left join’, which preserves the first dataset, merges <code>world</code> 
 <a class="sourceLine" id="cb84-3" data-line-number="3"><span class="kw">class</span>(world_coffee)</a>
 <a class="sourceLine" id="cb84-4" data-line-number="4"><span class="co">#&gt; [1] &quot;sf&quot;         &quot;data.frame&quot;</span></a></code></pre></div>
 <p>Because the input datasets share a ‘key variable’ (<code>name_long</code>) the join worked without using the <code>by</code> argument (see <code>?left_join</code> for details).
-The result is an <code>sf</code> object identical to the orignal <code>world</code> object but with two new variables (with column indices 11 and 12) on coffee production.
+The result is an <code>sf</code> object identical to the original <code>world</code> object but with two new variables (with column indices 11 and 12) on coffee production.
 This can be plotted as a map, as illustrated in Figure <a href="attr.html#fig:coffeemap">3.1</a>, generated with the <code>plot()</code> function below:</p>
 <div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1"><span class="kw">names</span>(world_coffee)</a>
 <a class="sourceLine" id="cb85-2" data-line-number="2"><span class="co">#&gt;  [1] &quot;iso_a2&quot;                 &quot;name_long&quot;             </span></a>

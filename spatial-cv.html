@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-10-30">
+<meta name="date" content="2018-10-31">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -917,7 +917,7 @@ This is called hyperparameter tuning.</p>
 <p>Some SVM implementations such as that provided by <strong>kernlab</strong> allow hyperparameters to be tuned automatically, usually based on random sampling (see upper row of Figure <a href="spatial-cv.html#fig:partitioning">11.3</a>).
 This works for non-spatial data but is of less use for spatial data where ‘spatial tuning’ should be undertaken.</p>
 <p>Before defining spatial tuning we will set-up the <strong>mlr</strong> building blocks, introduced in section <a href="spatial-cv.html#glm">11.5.1</a>, for the SVM.
-The classification task remains the same, hence we can simply resue the <code>task</code> object created in section <a href="spatial-cv.html#glm">11.5.1</a>.
+The classification task remains the same, hence we can simply reuse the <code>task</code> object created in section <a href="spatial-cv.html#glm">11.5.1</a>.
 Learners implementing SVM can be found using <code>listLearners()</code> as follows:</p>
 <div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb379-1" data-line-number="1">lrns =<span class="st"> </span><span class="kw">listLearners</span>(task, <span class="dt">warn.missing.packages =</span> <span class="ot">FALSE</span>)</a>
 <a class="sourceLine" id="cb379-2" data-line-number="2"><span class="kw">filter</span>(lrns, <span class="kw">grepl</span>(<span class="st">&quot;svm&quot;</span>, class)) <span class="op">%&gt;%</span><span class="st"> </span></a>
