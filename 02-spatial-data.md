@@ -262,7 +262,7 @@ For this reason we cover each currently supported simple features geometry types
 This is called assignment.
 An equivalent command to achieve the same result is `world_mini <- world[1:2, 1:3]`.
 Although 'arrow assigment' is more commonly used, we use 'equals assignment' because it's slightly faster to type and easier to teach due to compatibility with commonly used languages such as Python and JavaScript.
-Which to use is a largely a matter of preference as long as you're consistent (packages such as **styler** can be used to change style).</div>\EndKnitrBlock{rmdnote}
+Which to use is largely a matter of preference as long as you're consistent (packages such as **styler** can be used to change style).</div>\EndKnitrBlock{rmdnote}
 
 ### Why simple features?
 
