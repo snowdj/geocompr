@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-10-31">
+<meta name="date" content="2018-11-06">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -503,7 +503,7 @@ Figure 2.1: Illustration of vector (point) data in which location of London (the
 </p>
 </div>
 <p><strong>sf</strong> is a package providing a class system for geographic vector data.
-Not only does it supercede <strong>sp</strong> it also provides a consistent command-line interface to GEOS and GDAL, superceding <strong>rgeos</strong> and <strong>rgdal</strong> (described in section <a href="intro.html#the-history-of-r-spatial">1.5</a>).
+Not only does it supersede <strong>sp</strong> it also provides a consistent command-line interface to GEOS and GDAL, superseding <strong>rgeos</strong> and <strong>rgdal</strong> (described in section <a href="intro.html#the-history-of-r-spatial">1.5</a>).
 <!-- Really? not necessary so removed (RL) -->
 <!-- In theory this should make **sf** faster than **sp**/**rgdal**/**rgeos**. -->
 This section introduces <strong>sf</strong> classes in preparation for subsequent chapters (Chapters <a href="geometric-operations.html#geometric-operations">5</a> and <a href="read-write.html#read-write">7</a> cover the GEOS and GDAL interface respectively).</p>
@@ -536,7 +536,7 @@ Figure 2.2: Simple feature types fully supported by sf.
 </div>
 <p><strong>sf</strong> can represent all common vector geometry types (raster data classes are not supported by <strong>sf</strong>): points, lines, polygons and their respective ‘multi’ versions (which group together features of the same type into a single feature).
 <strong>sf</strong> also supports geometry collections, which can contain multiple geometry types in a single object.
-<strong>sf</strong> was largely supercedes the <strong>sp</strong> ecosystem, which comprises <strong>sp</strong> <span class="citation">(E. Pebesma and Bivand <a href="#ref-R-sp">2018</a>)</span>, <strong>rgdal</strong> for data read/write <span class="citation">(Bivand, Keitt, and Rowlingson <a href="#ref-R-rgdal">2018</a>)</span> and <strong>rgeos</strong> for spatial operations <span class="citation">(Bivand and Rundel <a href="#ref-R-rgeos">2018</a>)</span>.
+<strong>sf</strong> largely supersedes the <strong>sp</strong> ecosystem, which comprises <strong>sp</strong> <span class="citation">(E. Pebesma and Bivand <a href="#ref-R-sp">2018</a>)</span>, <strong>rgdal</strong> for data read/write <span class="citation">(Bivand, Keitt, and Rowlingson <a href="#ref-R-rgdal">2018</a>)</span> and <strong>rgeos</strong> for spatial operations <span class="citation">(Bivand and Rundel <a href="#ref-R-rgeos">2018</a>)</span>.
 The package is well documented, as can be seen on its website and in 6 vignettes, which can loaded as follows:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">vignette</span>(<span class="dt">package =</span> <span class="st">&quot;sf&quot;</span>) <span class="co"># see which vignettes are available</span></a>
 <a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">vignette</span>(<span class="st">&quot;sf1&quot;</span>)          <span class="co"># an introduction to the package</span></a></code></pre></div>
