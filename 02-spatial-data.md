@@ -220,7 +220,7 @@ This representation is necessary for countries with islands such as Indonesia an
 Other geometry types are described in section \@ref(geometry).</div>\EndKnitrBlock{rmdnote}
 
 <!-- TODO: cross-reference section covering CRSs. -->
-It is worth taking a deeper look at the basic behavior and contents of this simple feature object, which can usefully be thought of as a '**S**patial data**F**rame).
+It is worth taking a deeper look at the basic behavior and contents of this simple feature object, which can usefully be thought of as a '**S**patial data**F**rame'.
 
 `sf` objects are easy to subset.
 The code below shows its first two rows and three columns.
