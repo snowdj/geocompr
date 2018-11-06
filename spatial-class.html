@@ -527,7 +527,7 @@ This section introduces <strong>sf</strong> classes in preparation for subsequen
 <p>Simple features is an <a href="http://portal.opengeospatial.org/files/?artifact_id=25355">open standard</a> developed and endorsed by the Open Geospatial Consortium (OGC), a not-for-profit organization whose activities we will revisit in a later chapter (in section <a href="read-write.html#file-formats">7.5</a>).
 Simple Features is a hierarchical data model that represents a wide range of geometry types.
 Of 17 geometry types supported by the specification, only 7 are used in the vast majority of geographic research (see Figure <a href="spatial-class.html#fig:sf-ogc">2.2</a>);
-these core geometry types are fully supported by R package <strong>sf</strong> <span class="citation">(E. Pebesma <a href="#ref-pebesma_simple_2018">2018</a>)</span>.<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a></p>
+these core geometry types are fully supported by the R package <strong>sf</strong> <span class="citation">(E. Pebesma <a href="#ref-pebesma_simple_2018">2018</a>)</span>.<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a></p>
 <div class="figure" style="text-align: center"><span id="fig:sf-ogc"></span>
 <img src="figures/sf-classes.png" alt="Simple feature types fully supported by sf." width="60%" />
 <p class="caption">
@@ -537,11 +537,11 @@ Figure 2.2: Simple feature types fully supported by sf.
 <p><strong>sf</strong> can represent all common vector geometry types (raster data classes are not supported by <strong>sf</strong>): points, lines, polygons and their respective ‘multi’ versions (which group together features of the same type into a single feature).
 <strong>sf</strong> also supports geometry collections, which can contain multiple geometry types in a single object.
 <strong>sf</strong> largely supersedes the <strong>sp</strong> ecosystem, which comprises <strong>sp</strong> <span class="citation">(E. Pebesma and Bivand <a href="#ref-R-sp">2018</a>)</span>, <strong>rgdal</strong> for data read/write <span class="citation">(Bivand, Keitt, and Rowlingson <a href="#ref-R-rgdal">2018</a>)</span> and <strong>rgeos</strong> for spatial operations <span class="citation">(Bivand and Rundel <a href="#ref-R-rgeos">2018</a>)</span>.
-The package is well documented, as can be seen on its website and in 6 vignettes, which can loaded as follows:</p>
+The package is well documented, as can be seen on its website and in 6 vignettes, which can be loaded as follows:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">vignette</span>(<span class="dt">package =</span> <span class="st">&quot;sf&quot;</span>) <span class="co"># see which vignettes are available</span></a>
 <a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">vignette</span>(<span class="st">&quot;sf1&quot;</span>)          <span class="co"># an introduction to the package</span></a></code></pre></div>
 <p>As the first vignette explains, simple feature objects in R are stored in a data frame, with geographic data occupying a special column, a ‘list-column’. This column is usually named ‘geom’ or ‘geometry’.
-We will use the <code>world</code> dataset provided by the <strong>spData</strong>, loaded at the beginning of this chapter (see <a href="https://nowosad.github.io/spData/">nowosad.github.io/spData</a> for a list datasets loaded by the package).
+We will use the <code>world</code> dataset provided by the <strong>spData</strong>, loaded at the beginning of this chapter (see <a href="https://nowosad.github.io/spData/">nowosad.github.io/spData</a> for a list of datasets loaded by the package).
 <code>world</code> is a spatial object containing spatial and attribute columns, the names of which are returned by the function <code>names()</code> (the last column contains the geographic information):</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">names</span>(world)</a>
 <a class="sourceLine" id="cb8-2" data-line-number="2"><span class="co">#&gt;  [1] &quot;iso_a2&quot;    &quot;name_long&quot; &quot;continent&quot; &quot;region_un&quot; &quot;subregion&quot;</span></a>
@@ -581,10 +581,10 @@ Other geometry types are described in section <a href="spatial-class.html#geomet
 </div>
 
 <!-- TODO: cross-reference section covering CRSs. -->
-<p>It is worth taking a deeper look at the basic behavior and contents of this simple feature object, which can usefully be thought of as a ‘<strong>S</strong>patial data<strong>F</strong>rame’.</p>
+<p>It is worth taking a deeper look at the basic behavior and contents of this simple feature object, which can usefully be thought of as a ‘<strong>s</strong>patial data <strong>f</strong>rame’.</p>
 <p><code>sf</code> objects are easy to subset.
 The code below shows its first two rows and three columns.
-The output shows two major differences compared with a regular <code>data.frame</code>: the inclusion of additional geographic data (<code>geometry type</code>, <code>dimension</code>, <code>bbox</code> and CRS information - <code>epsg (SRID)</code>, <code>proj4string</code>), and the presence of final <code>geometry</code> column:</p>
+The output shows two major differences compared with a regular <code>data.frame</code>: the inclusion of additional geographic data (<code>geometry type</code>, <code>dimension</code>, <code>bbox</code> and CRS information - <code>epsg (SRID)</code>, <code>proj4string</code>), and the presence of a <code>geometry</code> column, here named <code>geom</code>:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">world_mini =<span class="st"> </span>world[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a>
 <a class="sourceLine" id="cb11-2" data-line-number="2">world_mini</a>
 <a class="sourceLine" id="cb11-3" data-line-number="3"><span class="co">#&gt; Simple feature collection with 2 features and 3 fields</span></a>
@@ -607,7 +607,7 @@ These spatial columns are often called <code>geom</code> or <code>geometry</code
 These geometry columns are ‘list columns’ of class <code>sfc</code> (see section <a href="spatial-class.html#sfc">2.2.7</a>).
 In turn, <code>sfc</code> objects are composed of one or more objects of class <code>sfg</code>: simple feature geometries that we describe in section <a href="spatial-class.html#sfg">2.2.6</a>.</p>
 <p>To understand how the spatial components of simple features work, it is vital to understand simple feature geometries.
-For this reason we cover each currently supported simple features geometry types in the section <a href="spatial-class.html#geometry">2.2.5</a> before moving on to describe how these can be represented in R using <code>sfg</code> objects, combined to form <code>sfc</code> and eventually full <code>sf</code> objects.</p>
+For this reason we cover each currently supported simple features geometry type in section <a href="spatial-class.html#geometry">2.2.5</a> before moving on to describe how these can be represented in R using <code>sfg</code> objects, which form the basis of <code>sfc</code> and eventually full <code>sf</code> objects.</p>
 
 <div class="rmdnote">
 The preceding code chunk uses <code>=</code> to create a new object called <code>world_mini</code> in the command <code>world_mini = world[1:2, 1:3]</code>.

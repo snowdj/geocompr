@@ -143,7 +143,7 @@ This section introduces **sf** classes in preparation for subsequent chapters (C
 Simple features is an [open standard](http://portal.opengeospatial.org/files/?artifact_id=25355) developed and endorsed by the Open Geospatial Consortium (OGC), a not-for-profit organization whose activities we will revisit in a later chapter (in section \@ref(file-formats)).
 Simple Features is a hierarchical data model that represents a wide range of geometry types.
 Of 17 geometry types supported by the specification, only 7 are used in the vast majority of geographic research (see Figure \@ref(fig:sf-ogc));
-these core geometry types are fully supported by R package **sf** [@pebesma_simple_2018].^[
+these core geometry types are fully supported by the R package **sf** [@pebesma_simple_2018].^[
 The full OGC standard includes rather exotic geometry types including 'surface' and 'curve' geometry types, which currently have limited application in real world applications.
 All 17 types can be represented with the **sf** package, although (as of summer 2018) plotting only works for the 'core 7'.
 ]
@@ -156,7 +156,7 @@ All 17 types can be represented with the **sf** package, although (as of summer 
 **sf** can represent all common vector geometry types (raster data classes are not supported by **sf**): points, lines, polygons and their respective 'multi' versions (which group together features of the same type into a single feature).
 **sf** also supports geometry collections, which can contain multiple geometry types in a single object.
 **sf** largely supersedes the **sp** ecosystem, which comprises **sp** [@R-sp], **rgdal** for data read/write [@R-rgdal] and **rgeos** for spatial operations [@R-rgeos].
-The package is well documented, as can be seen on its website and in 6 vignettes, which can loaded as follows:
+The package is well documented, as can be seen on its website and in 6 vignettes, which can be loaded as follows:
 
 
 ```r
@@ -167,7 +167,7 @@ vignette("sf1")          # an introduction to the package
 
 
 As the first vignette explains, simple feature objects in R are stored in a data frame, with geographic data occupying a special column, a 'list-column'. This column is usually named 'geom' or 'geometry'.
-We will use the `world` dataset provided by the **spData**, loaded at the beginning of this chapter (see [nowosad.github.io/spData](https://nowosad.github.io/spData/) for a list datasets loaded by the package).
+We will use the `world` dataset provided by the **spData**, loaded at the beginning of this chapter (see [nowosad.github.io/spData](https://nowosad.github.io/spData/) for a list of datasets loaded by the package).
 `world` is a spatial object containing spatial and attribute columns, the names of which are returned by the function `names()` (the last column contains the geographic information):
 
 
@@ -220,11 +220,11 @@ This representation is necessary for countries with islands such as Indonesia an
 Other geometry types are described in section \@ref(geometry).</div>\EndKnitrBlock{rmdnote}
 
 <!-- TODO: cross-reference section covering CRSs. -->
-It is worth taking a deeper look at the basic behavior and contents of this simple feature object, which can usefully be thought of as a '**S**patial data**F**rame'.
+It is worth taking a deeper look at the basic behavior and contents of this simple feature object, which can usefully be thought of as a '**s**patial data **f**rame'.
 
 `sf` objects are easy to subset.
 The code below shows its first two rows and three columns.
-The output shows two major differences compared with a regular `data.frame`: the inclusion of additional geographic data (`geometry type`, `dimension`, `bbox` and CRS information - `epsg (SRID)`, `proj4string`), and the presence of final `geometry` column:
+The output shows two major differences compared with a regular `data.frame`: the inclusion of additional geographic data (`geometry type`, `dimension`, `bbox` and CRS information - `epsg (SRID)`, `proj4string`), and the presence of a `geometry` column, here named `geom`:
 
 
 ```r
@@ -256,7 +256,7 @@ These geometry columns are 'list columns' of class `sfc` (see section \@ref(sfc)
 In turn, `sfc` objects are composed of one or more objects of class `sfg`: simple feature geometries that we describe in section \@ref(sfg).
 
 To understand how the spatial components of simple features work, it is vital to understand simple feature geometries.
-For this reason we cover each currently supported simple features geometry types in the section \@ref(geometry) before moving on to describe how these can be represented in R using `sfg` objects, combined to form `sfc` and eventually full `sf` objects.
+For this reason we cover each currently supported simple features geometry type in section \@ref(geometry) before moving on to describe how these can be represented in R using `sfg` objects, which form the basis of `sfc` and eventually full `sf` objects.
 
 \BeginKnitrBlock{rmdnote}<div class="rmdnote">The preceding code chunk uses `=` to create a new object called `world_mini` in the command `world_mini = world[1:2, 1:3]`.
 This is called assignment.
