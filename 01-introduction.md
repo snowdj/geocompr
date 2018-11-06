@@ -266,11 +266,11 @@ These can still be useful today, provided you know where to look.
 
 R's spatial capabilities originated in early spatial packages in the S language [@bivand_implementing_2000].
 The 1990s saw the development of numerous S scripts and a handful of packages for spatial statistics.
-R packages arose from these and by 2000 there were R packages for various spatial methods "point pattern analysis, geostatistics, exploratory spatial data analysis and spatial econometrics", according to an [article](http://www.geocomputation.org/2000/GC009/Gc009.htm) presented at GeoComputation 2000 [@bivand_open_2000]
+R packages arose from these and by 2000 there were R packages for various spatial methods "point pattern analysis, geostatistics, exploratory spatial data analysis and spatial econometrics", according to an [article](http://www.geocomputation.org/2000/GC009/Gc009.htm) presented at GeoComputation 2000 [@bivand_open_2000].
 Some of these, notably **spatial**, **sgeostat** and **splancs** are still available on CRAN [@rowlingson_splancs_1993; @rowlingson_splancs_2017;@venables_modern_2002; @majure_sgeostat_2016].
 
 A subsequent article in R News (the predecessor of [The R Journal](https://journal.r-project.org/)) contained an overview of spatial statistical software in R at the time, much of which was based on previous code written for S/S-PLUS [@ripley_spatial_2001].
-This overview described packages for spatial smoothing and interpolation, including **akima** and **geoR** [@akima_akima_2016; @jr_geor_2016], and point pattern analysis, including **splancs** [@rowlingson_splancs_2017] and **spatstat**, which  remains dominant in the field of spatial point pattern analysis [@baddeley_spatial_2015].
+This overview described packages for spatial smoothing and interpolation, including **akima** and **geoR** [@akima_akima_2016; @jr_geor_2016], and point pattern analysis, including **splancs** [@rowlingson_splancs_2017] and **spatstat** [@baddeley_spatial_2015].
 
 The following R News issue (Volume 1/3) put spatial packages in the spotlight again, with a more detailed introduction to **splancs** and a commentary on future prospects regarding spatial statistics [@bivand_more_2001].
 Additionally, the issue introduced two packages for testing spatial autocorrelation that eventually became part of **spdep** [@bivand_spdep_2017].
@@ -287,7 +287,7 @@ Furthermore, it suggested interfaces to external libraries should form the basis
 To a large extent these ideas were realized in the packages **rgdal** and **sp**.
 These provided a foundation for spatial data analysis with R, as described in *Applied Spatial Data Analysis with R* (ASDAR) [@bivand_applied_2013], first published in 2008.
 10 years later, R's spatial capabilities have evolved substantially but they still build on ideas set-out by @hornik_approaches_2003:
-interfaces to GDAL and PROJ, for example, still power R's high-performance geographic data I/O and CRS transformation capabilities (see chapters \@ref(read-write) and \@ref(reproj-geo-data) respectively).
+interfaces to GDAL and PROJ, for example, still power R's high-performance geographic data I/O and CRS transformation capabilities (see chapters \@ref(reproj-geo-data) and \@ref(read-write) respectively).
 
 **rgdal**, released in 2003, provided GDAL bindings for R which greatly enhanced its ability to import data from previously unavailable geographic data formats.
 The initial release supported only raster drivers but subsequent enhancements provided support for coordinate reference systems (via the PROJ library), reprojections and import of vector file formats (see Chapter \@ref(read-write) for more on file formats). 
@@ -311,18 +311,18 @@ Prior to 2005, geographic coordinates were generally treated like any other numb
 <!-- This enables non-spatial data operations to work alongside spatial operations (see section \@ref(why-simple-features)). -->
 enabling data operations to work on geographic data (see section \@ref(why-simple-features)).
 Further, **sp** provides generic methods such as `summary()` and `plot()` for geographic data.
-In the following decade, **sp** classes rapidly became the go-to standard for spatial data in R and the number of packages that depended on it increased from around 20 in 2008 and over 100 in 2013 [@bivand_applied_2013].
+In the following decade, **sp** classes rapidly became the go-to standard for spatial data in R and the number of packages that depended on it increased from around 20 in 2008 to over 100 in 2013 [@bivand_applied_2013].
 As of 2018 almost 500 packages rely on **sp**, making it an important part of the R ecosystem. 
 <!-- https://github.com/Robinlovelace/geocompr/issues/58 -->
 <!-- https://github.com/edzer/sfr/issues/387#issuecomment-308949140 -->
 Prominent R packages using **sp** include: **gstat**, for spatial and spatio-temporal geostatistics; **geosphere**, for spherical trigonometry; and **adehabitat** used for the analysis of habitat selection by animals [@R-gstat; @calenge_package_2006; @hijmans_geosphere_2016].
 
-While **rgdal** and **sp** solved many spatial issues, R was still lacked the ability to do geometric operations (see chapter \@ref(geometric-operations)).
-Colin Rundel addressed this issue by developing **rgeos**, an R interface to  the open-source geometry library (GEOS) during a Google Summer of Coding project in 2010 [@R-rgeos].
+While **rgdal** and **sp** solved many spatial issues, R still lacked the ability to do geometric operations (see chapter \@ref(geometric-operations)).
+Colin Rundel addressed this issue by developing **rgeos**, an R interface to  the open-source geometry library (GEOS) during a Google Summer of Code project in 2010 [@R-rgeos].
 **rgeos** enabled GEOS to manipulate **sp** objects, with functions such as `gIntersection()`.
 
 Another limitation of **sp** --- its limited support for raster data --- was overcome by **raster**, first released in 2010 [@R-raster].
-Its class system and functions support a range raster operations as outlined in section \@ref(raster-data).
+Its class system and functions support a range of raster operations as outlined in section \@ref(raster-data).
 A key feature of **raster** is its ability to work with datasets that are too large to fit into the main memory (RAM), thereby overcoming one of R's major limitations with respect to spatial data.
 **raster** also supports map algebra (see section \@ref(map-algebra)).
 
@@ -334,7 +334,7 @@ Visualization was not a focus initially, with the bulk of R-spatial development 
 **sp** provided methods for map making using both the base and lattice plotting system but demand was growing for advanced map making capabilities, especially after the release of **ggplot2** in 2007.
 **ggmap** extended **ggplot2**'s spatial capabilities [@kahle_ggmap_2013], by facilitating access to 'basemap' tiles from online services such as Google Maps. 
 <!--Additionally, *ggmap** lets you use (mainly Google's) geocoding and routing services.-->
-Though **ggmap** facilitated map-making with **ggplot2**, its utility was limited by the need to `fortify` spatial objects, which means converting them into long data frame.
+Though **ggmap** facilitated map-making with **ggplot2**, its utility was limited by the need to `fortify` spatial objects, which means converting them into long data frames.
 While this works well for points it is computationally inefficient for lines and polygons, since each coordinate (vertex) is converted into a row, leading to huge data frames to represent complex geometries.
 <!-- This is especially disadvantageous if you need to deal with tens of thousands of polygons. -->
 <!-- With the introduction of simple features to R this limitation disappears, and it seems likely that this will make **ggplot2** the standard tool for the visualization of vector data.  -->
