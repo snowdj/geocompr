@@ -9,10 +9,10 @@ Using the command-line driven approach taught throughout, and programming techni
 After reading the book and completing the exercises you should therefore feel empowered, with:
 a strong understanding of the possibilities opened-up by R's impressive spatial capabilities;
 new skills to solve real world problems with geographic data;
-and the ability communicate your work with maps and reproducible code.
+and the ability to communicate your work with maps and reproducible code.
 
 Over the last few decades free and open source software for geospatial (FOSS4G) has progressed at an astonishing rate.
-Thanks to organisations such as [OSGeo](https://www.osgeo.org/), geospatial analysis is no longer the preserve of those with expensive hardware and software: anyone can now download and run high performance spatial libraries.
+Thanks to organizations such as [OSGeo](https://www.osgeo.org/), geospatial analysis is no longer the preserve of those with expensive hardware and software: anyone can now download and run high performance spatial libraries.
 Open source Geographic Information Systems (GIS) such as [QGIS](http://qgis.org/en/site/) have made geographic analysis accessible worldwide.
 GIS programs tend to emphasize graphical user interfaces (GUIs), with the unintended consequence of discouraging reproducibility (although many can be used from the command line as we'll see in see in Chapter \@ref(gis)).
 R, by contrast, emphasizes the command line interface (CLI).
@@ -50,7 +50,7 @@ The 21^st^ GeoComputation conference was also hosted at the University of Leeds,
 <!-- todo: which chapters? -->
 What distinguished geocomputation from  the (at the time) commonly used term 'quantitative geography', its early advocates proposed, was its emphasis on "creative and experimental" applications [@longley_geocomputation_1998] and the development of new tools and methods [@openshaw_geocomputation_2000]:
 "GeoComputation is about using the various different types of geodata and about developing relevant geo-tools within the overall context of a 'scientific' approach."
-This book aims to go beyond teaching methods and code: by the end of it you should be able use your geocomputational skills, to do "practical work that is beneficial or useful" [@openshaw_geocomputation_2000].
+This book aims to go beyond teaching methods and code: by the end of it you should be able to use your geocomputational skills, to do "practical work that is beneficial or useful" [@openshaw_geocomputation_2000].
 
 Our approach differs from early adopters such as Stan Openshaw, however, in its emphasis on reproducibility and collaboration.
 At the turn of the 21^st^ Century it was unrealistic to expect readers to be able to reproduce code examples, due to barriers preventing access to the necessary hardware, software and data.
@@ -95,7 +95,7 @@ By teaching you its foundations and underlying structure, we aim to empower you 
 ## Why geocomputation with R?
 
 Early geographers used a variety of tools including barometers, compasses and [sextants](https://en.wikipedia.org/wiki/Sextant) to advance knowledge about the world [@wulf_invention_2015]. 
-It was only with the invention of the marine [chronometer](https://en.wikipedia.org/wiki/Marine_chronometer) in 1761 that it became possible to calculate longitude at sea, enabling ships to take more direct routes and accurate maps of the world.
+It was only with the invention of the marine [chronometer](https://en.wikipedia.org/wiki/Marine_chronometer) in 1761 that it became possible to calculate longitude at sea, enabling ships to take more direct routes.
 
 Nowadays such lack of geographic data is hard to imagine.
 Every smartphone has a global positioning (GPS) receiver and a multitude of sensors on devices ranging from satellites and semi-autonomous vehicles to citizen scientists incessantly measure every part of the world.
@@ -105,7 +105,7 @@ Remote sensing data from satellites has become too large to analyze the correspo
 
 This 'geodata revolution' drives demand for high performance computer hardware and efficient, scalable software to handle and extract signal from the noise, to understand and perhaps change the world.
 'Geodatabases' enable storage and generation of manageable subsets from the vast geographic data stores, making interfaces for gaining knowledge from them vital tools for the future.
-R is one such tool, with advanced analysis, modelling and visualization capabilities.
+R is one such tool, with advanced analysis, modeling and visualization capabilities.
 In this context the focus of the book is not on the language itself [see @wickham_advanced_2014].
 Instead we use R as a 'tool for the trade' for understanding the world, similar to Humboldt's use of tools to gain a deep understanding of nature in all its complexity and interconnections @wulf_invention_2015.
 Although programming can seem like a reductionist activity, the aim is to teach geocomputation with R not only for fun, but for understanding the world.
@@ -186,9 +186,9 @@ Java has fewer tools for statistical modeling and visualization than Python or R
 
 Python is an important language for geocomputation especially because many Desktop GIS such as GRASS, SAGA and QGIS provide a Python API (see Chapter \@ref(gis)).
 Like R, it is a [popular](https://stackoverflow.blog/2017/10/10/impressive-growth-r/) tool for data science.
-Both languages are object-oriented, and have many areas of overlap, leading to initiatives such as the **reticulate** package that facilitates access to Python from R and the [Ursa Labs](https://ursalabs.org/) initiative to support portable libraries of benefit to the entire open source data science ecosystem.
+Both languages are object-oriented, and have many areas of overlap, leading to initiatives such as the **reticulate** package that facilitates access to Python from R and the [Ursa Labs](https://ursalabs.org/) initiative to support portable libraries to the benefit of the entire open source data science ecosystem.
 
-In practice both languages have their strengths and to some extent which you use is less important than the domain of application and communication of results.
+In practice both R and Python have their strengths and to some extent which you use is less important than the domain of application and communication of results.
 Learning either will provide a head-start in learning the other.
 However, there are major advantages of R over Python for geocomputation.
 This includes its much better support of the spatial data models vector and raster in the language itself (see Chapter \@ref(spatial-class)) and corresponding visualization possibilities (see Chapters \@ref(spatial-class) & \@ref(adv-map)).

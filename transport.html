@@ -451,7 +451,7 @@ We will see how to create them in section <a href="transport.html#routes">12.5</
 <li><strong>Route networks</strong>: these represent the system of roads, paths and other linear features in an area and are covered in section <a href="transport.html#route-networks">12.7</a>. They can be represented as geographic features (representing route segments) or structured as an interconnected graph, with the level of traffic on different segments referred to as ‘flow’ by transport modelers <span class="citation">(Hollander <a href="#ref-hollander_transport_2016">2016</a>)</span>.</li>
 </ul>
 <p>Another key level is <strong>agents</strong>, mobile entities like you and me.
-These can be represented computationally thanks to software such as <a href="http://www.matsim.org/">MATSim</a>, which captures the dynamics of transport systems using an agent-based modelling (ABM) approach at high spatial and temporal resolution <span class="citation">(Horni, Nagel, and Axhausen <a href="#ref-horni_multi-agent_2016">2016</a>)</span>.
+These can be represented computationally thanks to software such as <a href="http://www.matsim.org/">MATSim</a>, which captures the dynamics of transport systems using an agent-based modeling (ABM) approach at high spatial and temporal resolution <span class="citation">(Horni, Nagel, and Axhausen <a href="#ref-horni_multi-agent_2016">2016</a>)</span>.
 ABM is a powerful approach to transport research with great potential for integration with R’s spatial classes <span class="citation">(Thiele <a href="#ref-thiele_r_2014">2014</a>; Lovelace and Dumont <a href="#ref-lovelace_spatial_2016">2016</a>)</span>, but is outside the scope of this chapter.
 Beyond geographic levels and agents, the basic unit of analysis in most transport models is the <strong>trip</strong>, a single purpose journey from an origin ‘A’ to a destination ‘B’ <span class="citation">(Hollander <a href="#ref-hollander_transport_2016">2016</a>)</span>.
 Trips join-up the different levels of transport systems: they are usually represented as <em>desire lines</em> connecting <em>zone</em> centroids (<em>nodes</em>), they can be allocated onto the <em>route network</em> as <em>routes</em>, and are made by people who can be represented as <em>agents</em>.</p>
@@ -893,14 +893,14 @@ Further exploration of such ‘transport futures’ at the local level represent
 <p>Methodologically the foundations presented in this chapter could be extended by including more variables in the analysis.
 Characteristics of the route such as speed limits, busyness and the provision of protected cycling and walking paths could be linked to ‘mode-split’ (the proportion of trips made by different modes of transport).
 By aggregating OpenStreetMap data using buffers and spatial data methods presented in Chapters <a href="attr.html#attr">3</a> and <a href="spatial-operations.html#spatial-operations">4</a>, for example, it would be possible to detect the presence of green space in close proximity to transport routes.
-Using R’s statistical modelling capabilities this could then be used to predict current and future levels of cycling, for example.</p>
+Using R’s statistical modeling capabilities this could then be used to predict current and future levels of cycling, for example.</p>
 <p>This type of analysis underlies the Propensity to Cycle Tool (PCT), a publicly accessible (see <a href="http://www.pct.bike/">www.pct.bike</a>) mapping tool developed in R that is being used to prioritize investment in cycling across England <span class="citation">(Lovelace et al. <a href="#ref-lovelace_propensity_2017">2017</a>)</span>.
 Similar tools could be used to encourage evidence-based transport policies related to other topics such as air pollution and public transport access around the world.</p>
-<!-- One growing area of interest surrounds the simulation of individual people and vehicles on the road network using techniques such as spatial microsimulation and agent-based modelling (ABM). -->
+<!-- One growing area of interest surrounds the simulation of individual people and vehicles on the road network using techniques such as spatial microsimulation and agent-based modeling (ABM). -->
 <!-- R has the capability to model people in zones, and interface with ABM software such as NetLogo. -->
 <!-- Combined with its geographical capabilities, demonstrated in this book, R would seem an appropriate language for such developments to take place. -->
 <!-- Of course this should be done in ways that build-on and extend existing work in the area. -->
-<!-- R's 'ecological niche' in transport modelling software could be around the integration of detailed geographic and advanced statistical analysis methods with techniques already used in transport research. -->
+<!-- R's 'ecological niche' in transport modeling software could be around the integration of detailed geographic and advanced statistical analysis methods with techniques already used in transport research. -->
 </div>
 <div id="ex-transport" class="section level2">
 <h2><span class="header-section-number">12.10</span> Exercises</h2>
