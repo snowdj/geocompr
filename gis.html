@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-11-06">
+<meta name="date" content="2018-11-07">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -742,7 +742,7 @@ The location in turn simply contains the geodata for one project.
 Within one location several mapsets can exist, and typically refer to different users.
 PERMANENT is a mandatory mapset, and created automatically.
 It stores the projection, the spatial extent and the default resolution for raster data.
-In order to share spatial data with all users of a project, the database owner can add spatial data to the PERMANENT mapset.
+In order to share geographic data with all users of a project, the database owner can add spatial data to the PERMANENT mapset.
 Please refer to <span class="citation">Neteler and Mitasova (<a href="#ref-neteler_open_2008">2008</a>)</span> and the <a href="https://grass.osgeo.org/grass75/manuals/helptext.html">GRASS GIS quick start</a> for more information on the GRASS geodatabase system.</p>
 <p>You have to set up a location and a mapset if you want to use GRASS from within R.
 First of all, we need to find out if and where GRASS 7 is installed on the computer.</p>
@@ -832,7 +832,7 @@ Figure 9.3: Shortest route between 24 cycle hire station on the OSM street netwo
 <p>Further notes:</p>
 <ul>
 <li>Please note that we have used GRASS’s geodatabase (based on SQLite) which allows faster processing.
-That means we have only exported spatial data at the beginning.
+That means we have only exported geographic data at the beginning.
 Then we created new objects but only imported the final result back into R.
 To find out which datasets are currently available, run <code>execGRASS(&quot;g.list&quot;, type = &quot;vector,raster&quot;, flags = &quot;p&quot;)</code>.</li>
 <li>We could have also accessed an already existing GRASS geodatabase from within R.
@@ -874,7 +874,7 @@ In addition, if you would like to run simulations with the help of a geodatabase
 <div id="other-bridges" class="section level2">
 <h2><span class="header-section-number">9.6</span> Other bridges</h2>
 <p>The focus of this chapter is on R interfaces to Desktop GIS software.
-We emphasize these bridges because dedicated GIS software is well-known and a common ‘way in’ to understanding spatial data.
+We emphasize these bridges because dedicated GIS software is well-known and a common ‘way in’ to understanding geographic data.
 They also provide access to many geoalgorithms.</p>
 <p>Other ‘bridges’ include interfaces to spatial libraries (section <a href="gis.html#gdal">9.6.1</a> shows how to access the GDAL CLI from R), spatial databases (see section <a href="gis.html#postgis">9.6.2</a>) and web mapping services (see chapter <a href="adv-map.html#adv-map">8</a>).
 This section provides only a snippet of what is possible.
@@ -882,7 +882,7 @@ Thanks to R’s flexibility, with its ability to call other programs from the sy
 The aim is not to be comprehensive, but to demonstrate other ways of accessing the ‘flexibility and power’ in the quote by <span class="citation">Sherman (<a href="#ref-sherman_desktop_2008">2008</a>)</span> at the beginning of the chapter.</p>
 <div id="gdal" class="section level3">
 <h3><span class="header-section-number">9.6.1</span> Bridges to GDAL</h3>
-<p>As discussed in Chapter <a href="read-write.html#read-write">7</a>, GDAL is a low-level library that supports many spatial data formats.
+<p>As discussed in Chapter <a href="read-write.html#read-write">7</a>, GDAL is a low-level library that supports many geographic data formats.
 GDAL is so effective that most GIS programs use GDAL in the background for importing and exporting geographic data, rather than re-inventing the wheel and using bespoke read-write code.
 But GDAL offers more than data I/O.
 It has <a href="http://www.gdal.org/pages.html">geoprocessing tools</a> for vector and raster data, functionality to create <a href="https://www.gdal.org/gdal2tiles.html">tiles</a> for serving raster data online, and rapid <a href="https://www.gdal.org/gdal_rasterize.html">rasterization</a> of vector data, all of which can be accessed via the system of R command line.</p>
@@ -938,7 +938,7 @@ To find out about attributes available in a table, we can run:</p>
 <a class="sourceLine" id="cb339-2" data-line-number="2"><span class="co">#&gt; [1] &quot;qc_id&quot;        &quot;wkb_geometry&quot; &quot;gid&quot;          &quot;feature&quot;     </span></a>
 <a class="sourceLine" id="cb339-3" data-line-number="3"><span class="co">#&gt; [5] &quot;name&quot;         &quot;state&quot;   </span></a></code></pre></div>
 <p>The first query will select <code>US Route 1</code> in Maryland (<code>MD</code>).
-Note that <code>st_read()</code> allows us to read spatial data from a database if it is provided with an open connection to a database and a query.
+Note that <code>st_read()</code> allows us to read geographic data from a database if it is provided with an open connection to a database and a query.
 Additionally, <code>st_read()</code> needs to know which column represents the geometry (here: <code>wkb_geometry</code>).</p>
 <div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb340-1" data-line-number="1">query =<span class="st"> </span><span class="kw">paste</span>(</a>
 <a class="sourceLine" id="cb340-2" data-line-number="2">  <span class="st">&quot;SELECT *&quot;</span>,</a>

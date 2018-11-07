@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-11-06">
+<meta name="date" content="2018-11-07">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -476,8 +476,8 @@ The syntax differs but the results are (in essence) the same:</p>
 Again the answer is: it depends.
 Each approach has advantages: the pipe syntax is popular and appealing to some, while base R is more stable, and is well-known to others.
 Choosing between them is therefore largely a matter of preference.
-However, if you do choose to use <strong>tidyverse</strong> functions to handle spatial data, beware of a number of pitfalls (see the supplementary article <a href="https://geocompr.github.io/geocompkg/articles/tidyverse-pitfalls.html"><code>tidyverse-pitfalls</code></a> on the website that supports this book).</p>
-<p>While commonly needed operators/functions (<code>[</code>/<code>select()</code> for example) were covered in depth, there are hundreds of other other functions for working with spatial data which have not been mentioned, let alone demonstrated, in the book.
+However, if you do choose to use <strong>tidyverse</strong> functions to handle geographic data, beware of a number of pitfalls (see the supplementary article <a href="https://geocompr.github.io/geocompkg/articles/tidyverse-pitfalls.html"><code>tidyverse-pitfalls</code></a> on the website that supports this book).</p>
+<p>While commonly needed operators/functions (<code>[</code>/<code>select()</code> for example) were covered in depth, there are hundreds of other other functions for working with geographic data which have not been mentioned, let alone demonstrated, in the book.
 Chapter <a href="intro.html#intro">1</a> mentions 20+ influential packages for working with geographic data, and only a handful of these are demonstrated in subsequent chapters.
 There are hundreds more.
 176 packages are mentioned in the Spatial <a href="https://cran.r-project.org/web/views/">Task View</a> alone (as of October 2018);
@@ -524,7 +524,7 @@ There are also excellent resources on spatial statistics using Bayesian modeling
 This might seem surprising since especially geographic data can become big really fast.
 But the prerequisite for doing big data analytics is to know how to solve a problem on a small dataset.
 Once you have learned that you can apply the exact same techniques on big data questions, though of course you need to expand your toolbox.
-The first thing to learn is to handle spatial data queries.
+The first thing to learn is to handle geographic data queries.
 This is because big data analytics often boil down to extracting a small amount of data from a database for a specific statistical analysis.
 For this, we have provided an introduction to spatial databases and how to use a GIS from within R in chapter <a href="gis.html#gis">9</a>.
 If you really have to do the analysis on a big or even the complete dataset, hopefully, the problem you are trying to solve is embarrassingly parallel.
@@ -603,7 +603,7 @@ But geocomputation has advantages: it concisely captures the ‘computational’
 Reproducibility supports <em>creativity</em>, encouraging the focus of methods to shift away from the basics (which are readily available through shared code, avoiding many people ‘reinventing the wheel’) and towards applications.
 <!-- that nobody has yet thought of. -->
 And reproducibility encourages real world applications because it ensures that methods developed for one purpose (perhaps purely academic) can be used for practical applications.</p>
-<p>If reproducibility is the defining feature of geocomputation (or command-line GIS, code-driven spatial data analysis, or any other synonym for the same thing) it is worth considering what makes it reproducible.
+<p>If reproducibility is the defining feature of geocomputation (or command-line GIS, code-driven geographic data analysis, or any other synonym for the same thing) it is worth considering what makes it reproducible.
 This brings us to the ‘open source approach’, which has three main components:</p>
 <ul>
 <li>A command-line interface (CLI), encouraging scripts recording geographic work to be shared and reproduced.</li>

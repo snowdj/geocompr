@@ -25,7 +25,7 @@
 <meta name="author" content="Robin Lovelace, Jakub Nowosad, Jannes Muenchow">
 
 
-<meta name="date" content="2018-11-06">
+<meta name="date" content="2018-11-07">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -443,7 +443,7 @@ The final section (<a href="read-write.html#visual-outputs">7.8</a>) demonstrate
 </div>
 <div id="retrieving-data" class="section level2">
 <h2><span class="header-section-number">7.2</span> Retrieving open data</h2>
-<p>A vast and ever-increasing amount of spatial data is available on the internet, much of which is free to access and use (with appropriate credit given to its providers).
+<p>A vast and ever-increasing amount of geographic data is available on the internet, much of which is free to access and use (with appropriate credit given to its providers).
 In some ways there is now <em>too much</em> data, in the sense that there are often multiple places to access the same dataset.
 Some datasets are of poor quality.
 In this context it vital know where to look, so the first section covers some of the most important sources.
@@ -467,7 +467,7 @@ Files hosted on static URLs can be downloaded with <code>download.file()</code>,
 These provide interfaces to one or more spatial libraries or geoportals and aim make data access even quicker from the command line.</p>
 <!-- add sentinel2 package as soon as it is published on CRAN https://github.com/IVFL-BOKU/sentinel2-->
 <table>
-<caption><span id="tab:datapackages">Table 7.1: </span>Selected R packages for spatial data retrieval.</caption>
+<caption><span id="tab:datapackages">Table 7.1: </span>Selected R packages for geographic data retrieval.</caption>
 <thead>
 <tr class="header">
 <th align="left">Package</th>
@@ -598,7 +598,7 @@ Still, it seems that ows4r is very much in development. Obviously, it has proble
 </div>
 <div id="file-formats" class="section level2">
 <h2><span class="header-section-number">7.5</span> File formats</h2>
-<p>Spatial datasets are usually stored as files or in spatial databases.
+<p>Geographic datasets are usually stored as files or in spatial databases.
 File formats can either store vector or raster data, while spatial databases such as <a href="https://trac.osgeo.org/postgis/wiki/WKTRaster">PostGIS</a> can store both (see also section <a href="gis.html#postgis">9.6.2</a>).
 Today the variety of file formats may seem bewildering but there has been much consolidation and standardization since the beginnings of GIS software in the 1960s when the first widely distributed program (<a href="https://news.harvard.edu/gazette/story/2011/10/the-invention-of-gis/">SYMAP</a>) for spatial analysis was created at Harvard University <span class="citation">(Coppock and Rhind <a href="#ref-coppock_history_1991">1991</a>)</span>.</p>
 <p>GDAL (which should be pronounced “goo-dal”, with the double “o” making a reference to object-orientation), the Geospatial Data Abstraction Library, has resolved many issues associated with incompatibility between geographic file formats since its release in 2000.
@@ -828,7 +828,7 @@ Aside from GeoPackage there are other geospatial data exchange formats worth che
 <h2><span class="header-section-number">7.6</span> Data Input (I)</h2>
 <p>Executing commands such as <code>sf::st_read()</code> (the main function we use for loading vector data) or <code>raster::raster()</code> (the main function used for loading raster data) silently sets off a chain of events that reads data from files.
 <!-- transition is unclear, not sure what you would like to say -->
-Moreover, there are many R packages containing a wide range of spatial data or providing simple access to different data sources.
+Moreover, there are many R packages containing a wide range of geographic data or providing simple access to different data sources.
 All of them load the data into R or, more precisely, assign objects to your workspace, stored in RAM accessible from the <a href="http://adv-r.had.co.nz/Environments.html"><code>.GlobalEnv</code></a> of the R session.</p>
 <div id="vector-data-1" class="section level3">
 <h3><span class="header-section-number">7.6.1</span> Vector data</h3>
@@ -1076,7 +1076,7 @@ A <a href="https://github.com/ATFutures/geobench">benchmark</a> suggests it is a
 <div id="data-output" class="section level2">
 <h2><span class="header-section-number">7.7</span> Data output (O)</h2>
 <!--maybe we can come up with an intro which is a bit more compelling-->
-<p>Writing spatial data allows you to convert from one format to another and to save newly created objects.
+<p>Writing geographic data allows you to convert from one format to another and to save newly created objects.
 Depending on the data type (vector or raster), object class (e.g <code>multipoint</code> or <code>RasterLayer</code>), and type and amount of stored information (e.g. object size, range of values) - it is important to know how to store spatial files in the most efficient way.
 The next two sections will demonstrate how to do this.</p>
 <!-- should we add a note about recommended way to decide on a file name, for example "don't use spaces in the name", "create descriptive names" -->
