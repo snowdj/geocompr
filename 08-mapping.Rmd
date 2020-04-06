@@ -616,8 +616,8 @@ if (knitr::is_latex_output()){
     # tmap_mode("view")
     # m_tmview = map_nz
     # tmap_save(m_tmview, "tmview-1.html")
-    # file.copy("tmview-1.html", "figures/tmview-1.html")
-    knitr::include_url("figures/tmview-1.html")
+    # file.copy("tmview-1.html", "~/geocompr/geocompr.github.io/static/img/tmview-1.html")
+    knitr::include_url("https://geocompr.github.io/img/tmview-1.html")
 }
 
 ```
@@ -779,7 +779,7 @@ This allows multiple map layers and control settings to be added interactively, 
 ```{r leaflet-code, echo=TRUE, eval=FALSE}
 pal = colorNumeric("RdYlBu", domain = cycle_hire$nbikes)
 leaflet(data = cycle_hire) %>% 
-  addProviderTiles(providers$OpenStreetMap.BlackAndWhite) %>% 
+  addProviderTiles(providers$CartoDB.Positron) %>%
   addCircles(col = ~pal(nbikes), opacity = 0.9) %>% 
   addPolygons(data = lnd, fill = FALSE) %>% 
   addLegend(pal = pal, values = ~nbikes) %>% 
@@ -791,14 +791,19 @@ leaflet(data = cycle_hire) %>%
 if (knitr::is_latex_output()){
   knitr::include_graphics("figures/leaflet-1.png")
 } else if (knitr::is_html_output()){
-  pal = colorNumeric("RdYlBu", domain = cycle_hire$nbikes)
-  leaflet(data = cycle_hire) %>% 
-    # addProviderTiles(providers$OpenStreetMap.BlackAndWhite) %>% 
-    addCircles(col = ~pal(nbikes), opacity = 0.9) %>% 
-    addPolygons(data = lnd, fill = FALSE) %>% 
-    addLegend(pal = pal, values = ~nbikes) %>% 
-    setView(lng = -0.1, 51.5, zoom = 12) %>% 
-    addMiniMap()
+  # pre-generated for https://github.com/ropensci/stplanr/issues/385
+  # pal = colorNumeric("RdYlBu", domain = cycle_hire$nbikes)
+  # m = leaflet(data = cycle_hire) %>% 
+  #   addProviderTiles(providers$CartoDB.Positron) %>%
+  #   addCircles(col = ~pal(nbikes), opacity = 0.9) %>% 
+  #   addPolygons(data = lnd, fill = FALSE) %>% 
+  #   addLegend(pal = pal, values = ~nbikes) %>% 
+  #   setView(lng = -0.1, 51.5, zoom = 12) %>% 
+  #   addMiniMap()
+  # htmlwidgets::saveWidget(m, "leaflet.html")
+  # browseURL("leaflet.html")
+  # file.rename("leaflet.html", "~/geocompr/geocompr.github.io/static/img/leaflet.html")
+  knitr::include_url("https://geocompr.github.io/img/leaflet.html")
 }
 ```
 
